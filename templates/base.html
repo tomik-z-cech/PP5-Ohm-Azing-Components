@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Block for navigation names -->
+    <title>
+        Ohm-azing Components | 
+        {% block nav_name %}{% endblock %}
+    </title>
+
+    <!-- Block Meta -->
+    {% block meta %}
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% endblock %}
+
+    <!-- Block for core CSS styles -->
+    {% block core_css %} 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% endblock %}
+
+    <!-- Block for extra CSS styles -->
+    {% block extra_styles %}{% endblock %}
+
+    <!-- Block for core JS scripts -->
+    {% block core_js %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+        </script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script type="text/javascript">
+            $('.toast').toast('show');
+        </script>
+    {% endblock %}
+
+    <!-- Block for extra JS scripts -->
+    {% block extra_js %}
+    {% endblock %}
+
+    <!-- FavIcon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
+    
+</head>
+<body>
+    <!-- Header -->
+    {% include 'header.html' %}
+    <!-- Content -->
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+    <!-- Footer -->
+    {% include 'footer.html' %}
+    <!-- Toasts -->
+    {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+                {% with message.level as level %}
+                    {% if level == 40 %}
+                        {% include 'toasts/error.html' %}
+                    {% elif level == 30 %}
+                        {% include 'toasts/warning.html' %}
+                    {% elif level == 25 %}
+                        {% include 'toasts/success.html' %}
+                    {% else %}
+                        {% include 'toasts/info.html' %}
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
+        </div>
+    {% endif %}
+</body>
+</html>
