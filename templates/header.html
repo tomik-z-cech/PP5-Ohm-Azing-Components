@@ -1,16 +1,50 @@
-{% if user.is_authenticated %}
-<a  class="nav-link header-text" href="{% url 'account_logout' %}" aria-label="Logout">
-<i class="bi bi-box-arrow-right"></i>
-Logout
-</a>
+{% load static %}
 
-{% else %}
-<a  class="nav-link header-text" href="{% url 'account_signup' %}" aria-label="Register">
-<i class="bi bi-key-fill"></i>
-Register
-</a>
-<a class="nav-link header-text"  href="{% url 'account_login' %}" aria-label="Login">
-<i class="bi bi-house-lock-fill"></i>
-Login
-</a>
-{% endif %}
+<header class="container-fluid" id="header">
+  <div class="row">
+    <div class="col-12 col-lg-4">
+      <a href="{% url 'home' %}" aria-label="Home" id="logo-container" class="w-100">
+        <img src="{% static 'images/logo.png' %}" alt="Logo Ohm-Azing Components" id="logo-image">
+      </a>
+    </div>
+    <div class="col-12 col-lg-5">
+      Search
+    </div>
+    <div class="col-4 col-lg-1">
+      <div class="d-flex justify-content-center align-items-center">
+        <p>
+          Wishlist
+        </p>
+      </div>
+    </div>
+    <div class="col-4 col-lg-1">
+      Vault
+    </div>
+    <div class="col-4 col-lg-1">
+      <div class="dropdown d-flex justify-content-center align-items-center">
+        <a href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="text-center header-link">
+          <i class="bi bi-person-circle"></i>
+          <br>
+          Me
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          {% if user.is_authenticated %}
+            <a class="dropdown-item" href="{% url 'account_logout' %}" aria-label="Logout">
+              <i class="bi bi-box-arrow-right"></i>
+              Logout
+            </a>
+          {% else %}
+          <a class="dropdown-item" href="{% url 'account_signup' %}" aria-label="Register">
+            <i class="bi bi-key-fill"></i>
+            Register
+            </a>
+          <a class="dropdown-item" href="{% url 'account_login' %}" aria-label="Login">
+            <i class="bi bi-house-lock-fill"></i>
+            Login
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

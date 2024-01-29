@@ -1,0 +1,43 @@
+:root {
+    
+    /** COLOR PALETTE **/
+    --white: #ffffff;
+    --lighter-blue: #30577b; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* ----------------------- HEADER ------------------------------ */
+
+#header {
+    background-color: var(--lighter-blue);
+}
+
+#logo-image {
+    width: 55%;
+}
+
+.dropdown {
+    width: 100%;
+    height: 100%;
+}
+
+.header-link {
+    color: var(--white);
+    font-size: 150%;
+}
+
+@media screen and (max-width: 991px) {
+    #logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #logo-image {
+        width: 40%;
+    }
+}
