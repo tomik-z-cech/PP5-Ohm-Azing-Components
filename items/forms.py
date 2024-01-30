@@ -10,6 +10,5 @@ class CategoryForm(forms.ModelForm):
         model = Category
         fields = (
             "category_name",
-            "category_code",
             "category_image",
         )

@@ -93,9 +93,60 @@ class CreateCategoryView(LoginRequiredMixin, UserPassesTestMixin, generic.ListVi
         """
         Function triggers when add category button pressed
         """
-        new_category = self.form(data=request.POST)
+        new_category = self.form(request.POST, request.FILES)
         if new_category.is_valid():
             new_category.save()  # Save category into database
         else:
             new_category = self.form()
+        return redirect("owner")  # Redirect back to admin tools
+    
+
+class EditCategoryView(
+        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    """
+    Class for creating new bookings
+    """
+
+    template_name = "owner/edit_category.html"  # Template
+    form = CategoryForm  # Category form
+    success_url = "/owner/"  # URL to redirect after successful editing
+
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+
+    def get(self, request, category_pk, *args, **kwargs):
+        """
+        Function generates category form into template
+        """
+        category_instance = get_object_or_404(Category, pk=category_pk)
+        name_edit_form = category_instance.category_name
+        image_edit_form = category_instance.category_image
+        category_edit_form = CategoryForm(
+            initial={
+                "category_name": name_edit_form,
+                "category_image": image_edit_form,
+            }
+        )
+        return render(
+            request,
+            self.template_name,
+            {
+                "edit_category_form": category_edit_form,  # Edit form
+            },
+        )
+
+    def post(self, request, category_pk, *args, **kwargs):
+        """
+        Function triggers when submit button on booking form is pressed
+        """
+        edited_category = get_object_or_404(Category, pk=category_pk)
+        edit_form = self.form(request.POST, request.FILES)
+
+        if edit_form.is_valid():
+            edited_category.category_name = edit_form.cleaned_data["category_name"]
+            edited_category.category_image = edit_form.cleaned_data["category_image"]
+            edited_category.save()  # Save category into database
+        else:
+            edit_form = self.form()
         return redirect("owner")  # Redirect back to admin tools
