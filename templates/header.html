@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-12 col-lg-4">
       <a href="{% url 'home' %}" aria-label="Home" id="logo-container" class="w-100">
-        <img src="{% static 'images/logo.png' %}" alt="Logo Ohm-Azing Components" id="logo-image">
+        <img src="{% static 'images/logo.png' %}" alt="Logo Ohm-Azing Components" id="logo-image" class="image-fluid">
       </a>
     </div>
     <div class="col-12 col-lg-5">
@@ -25,10 +25,18 @@
         <a href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="text-center header-link">
           <i class="bi bi-person-circle"></i>
           <br>
-          Menu
+          <span class="hide-less-991px">
+            Menu
+          </span>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+            <a class="dropdown-item" href="{% url 'owner' %}" aria-label="Admin Tools">
+              <i class="bi bi-journals"></i>
+              Admin Tools
+            </a>
+            {% endif %}
             <a class="dropdown-item" href="{% url 'account_logout' %}" aria-label="Logout">
               <i class="bi bi-box-arrow-right"></i>
               Logout

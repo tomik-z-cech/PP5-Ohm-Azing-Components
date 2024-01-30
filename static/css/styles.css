@@ -1,9 +1,28 @@
+/** -------------------------------- IMPORTS ---------------------------- **/
+
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+
+/** -------------------------------- VARS ---------------------------- **/
+
 :root {
     
     /** COLOR PALETTE **/
-    --white: #ffffff;
-    --lighter-blue: #30577b; 
+    --black: #142331;
+    --white: #fafafa;
+    --light-blue: #30577b;
+    --dark-blue: #223d56;
+    --light-gold: #fbdb6b;
+    --dark-gold: #facf39;
+
+
+
+
+    /** FONTS **/
+    --text-font: 'Sriracha', sans-serif;
+    --header-font: 'Electrolize', sans-serif;
 }
+
+/** ------------------------------ GENERAL --------------------------- **/
 
 * {
     margin: 0;
@@ -11,24 +30,49 @@
     border: none;
 }
 
+.wrapper {
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+    min-height: 78vh;
+}
+
+@media screen and (max-width: 991px) {
+    .hide-less-991px {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hide-less-768px {
+        display: none;
+    }
+}
+
 /* ----------------------- HEADER ------------------------------ */
 
-#header {
-    background-color: var(--lighter-blue);
+header {
+    background-color: var(--light-blue);
+    height: 12vh;
 }
 
 #logo-image {
-    width: 55%;
+    height: 60%;
 }
 
 .dropdown {
     width: 100%;
-    height: 100%;
+    height: 60%;
 }
 
 .header-link {
     color: var(--white);
     font-size: 150%;
+    text-decoration: none;
+    font-family: var(--header-font);
+}
+
+.header-link:hover {
+    color: var(--light-gold);
 }
 
 @media screen and (max-width: 991px) {
@@ -37,7 +81,46 @@
         justify-content: center;
         align-items: center;
     }
+    
     #logo-image {
         width: 40%;
+    }
+
+    .header-link {
+        font-size: 200%;
+    }
+
+    header {
+        height: auto;
+    }
+}
+
+/** ------------------------------- FOOTER ---------------------------- **/
+footer {
+    background-color: var(--light-blue);
+    padding: 5px 0;
+    width: 100%;
+    border-top: 2px solid var(--black);
+    height: 10vh;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--white);
+    font-family: var(--header-font);
+}
+
+footer a:hover {
+    color: var(--light-gold);
+}
+
+@media screen and (max-width: 768px) {
+
+    footer {
+        font-size: 95%;
+    }
+
+    #credits {
+        font-size: 85%;
     }
 }
