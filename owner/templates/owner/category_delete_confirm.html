@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container wrapper d-flex justify-content-center align-items-center">
+    <div class="form-background add-shadow">
+        <h1 class="text-center">
+            Are you sure ?
+        </h1>
+        <p class="text-center">
+            You are about to delete category 
+            <strong>
+                {{ category_to_delete.category_name }}
+            </strong>
+            .
+        </p>
+        <div class="w-100 d-flex justify-content-around p-3">
+            <a href="{% url 'owner' %}" aria-label="No, take me back" class="btn btn-success button-shadow">
+                No, take me back
+            </a>
+            <a href="{% url 'delete-category' category_pk=category_to_delete.pk%}" aria-label="Yes, delete" class="btn btn-danger button-shadow">
+                Yes, delete
+            </a>
+        </div>
+    </div>
+</div>
+{%endblock%}

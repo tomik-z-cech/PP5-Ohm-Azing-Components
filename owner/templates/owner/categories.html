@@ -45,7 +45,7 @@
                         </td>
                         <td>
                             <a href="#" aria-label="Add New Category" class="btn btn-warning button-shadow my-1 me-1">Edit Category</a>
-                            <a href="#" aria-label="Add New Category" class="btn btn-danger button-shadow my-1 ms-1">Delete Category</a>
+                            <a href="{% url 'category-delete-request' category_pk=category.pk %}" aria-label="Delete Category" class="btn btn-danger button-shadow my-1 ms-1">Delete Category</a>
                         </td>
                     </tr>    
                 {% endfor %}
@@ -53,7 +53,7 @@
             </div>
         {% endif %}
         <div class="d-flex justify-content-end p-5">
-            <a href="#" aria-label="Add New Category" class="btn btn-success button-shadow">Add New Category</a>
+            <a href="{% url 'add-category' %}" aria-label="Add New Category" class="btn btn-success button-shadow">Add New Category</a>
         </div>
     </div>
 {% endblock %}

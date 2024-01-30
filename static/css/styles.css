@@ -185,3 +185,16 @@ footer a:hover {
     font-family: var(--header-font);
     font-size: 120%;
 }
+
+/** ------------------------------- FORMS ---------------------------- **/
+
+.form-background {
+    background-color: var(--light-blue);
+    color: var(--white);
+    padding: 2vh;
+    width: 50%;
+}
+
+.form-background label {
+    font-family: var(--header-font);
+}

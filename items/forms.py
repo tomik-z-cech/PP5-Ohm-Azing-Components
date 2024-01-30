@@ -10,6 +10,6 @@ class CategoryForm(forms.ModelForm):
         model = Category
         fields = (
             "category_name",
-            "category_sku",
+            "category_code",
             "category_image",
         )
