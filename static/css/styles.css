@@ -1,6 +1,7 @@
 /** -------------------------------- IMPORTS ---------------------------- **/
 
 @import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 /** -------------------------------- VARS ---------------------------- **/
 
@@ -18,7 +19,7 @@
 
 
     /** FONTS **/
-    --text-font: 'Sriracha', sans-serif;
+    --text-font: 'Roboto', sans-serif;
     --header-font: 'Electrolize', sans-serif;
 }
 
@@ -30,10 +31,40 @@
     border: none;
 }
 
+body {
+    background-color: var(--white);
+    font-family: var(--text-font);
+}
+
 .wrapper {
     padding-bottom: 2vh;
     padding-top: 2vh;
     min-height: 78vh;
+}
+
+.heading {
+    color: var(--white);
+    background-color: var(--light-blue);
+    margin-top: 2vh;
+}
+
+h1 {
+    font-family: var(--header-font);
+    text-shadow: 2px 2px 4px var(--black);
+}
+
+h2 {
+    font-family: var(--header-font);
+    text-shadow: 2px 2px 4px var(--black);
+}
+
+.add-shadow {
+    box-shadow: 8px 8px 8px var(--black);
+}
+
+.button-shadow {
+    box-shadow: 3px 3px 3px var(--black);
+    border: 2px solid var(--black)
 }
 
 @media screen and (max-width: 991px) {
@@ -53,6 +84,7 @@
 header {
     background-color: var(--light-blue);
     height: 12vh;
+    border-bottom: 2px solid var(--black);
 }
 
 #logo-image {
@@ -69,6 +101,7 @@ header {
     font-size: 150%;
     text-decoration: none;
     font-family: var(--header-font);
+    text-shadow: 2px 2px 4px var(--black);
 }
 
 .header-link:hover {
@@ -96,6 +129,7 @@ header {
 }
 
 /** ------------------------------- FOOTER ---------------------------- **/
+
 footer {
     background-color: var(--light-blue);
     padding: 5px 0;
@@ -123,4 +157,31 @@ footer a:hover {
     #credits {
         font-size: 85%;
     }
+}
+
+/** ------------------------------- ADMIN TOOLS ---------------------------- **/
+
+.owner-menu a {
+    color: var(--white);
+    font-family: var(--header-font);
+    text-decoration: none;
+    font-size: 130%;
+}
+
+.owner-menu a:hover {
+    color: var(--light-gold);
+}
+
+.admin-hr {
+    color: var(--white);
+    width: 95%;
+}
+
+#category-table {
+    width: 90%;
+}
+
+#category-table th {
+    font-family: var(--header-font);
+    font-size: 120%;
 }

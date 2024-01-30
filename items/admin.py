@@ -6,4 +6,4 @@ from items.models import Category
 class CommentAdmin(admin.ModelAdmin):
     """Class resgisters Categories to Admin"""
 
-    list_display = ("name",)
+    list_display = ("category_name",)

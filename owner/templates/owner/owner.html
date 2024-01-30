@@ -5,6 +5,27 @@
 
 {% block content %}
 <div class="container wrapper">
-    Admin Tools
+    <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
+        <h1>
+            Admin Tools
+        </h1>
+    </div>
+    <div class="col-12 heading add-shadow">
+        <div class="row">
+            <div class="d-flex justify-content-around py-2 owner-menu">
+                <a href="{% url 'owner' %}" aria-label="Categories">Categories</a>
+                <a href="#" aria-label="Products">Products</a>
+                <a href="#" aria-label="Users">Users</a>
+                <a href="#" aria-label="Comments">Comments</a>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <hr class="admin-hr">
+        </div>
+        <div class="row">
+            {% block owner_admin %}
+            {% endblock %}
+        </div>
+    </div>
 </div>
 {% endblock %}

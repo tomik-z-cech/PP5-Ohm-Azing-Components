@@ -1,0 +1,59 @@
+{% extends "owner/owner.html" %}
+{% load static %}
+
+{% block owner_admin %}
+    <div class="col-12 text-center">
+        <h2 class="my-4">
+            Categories
+        </h2>
+        {% if all_categories|length == 0 %}
+            <p class="text-center">
+                No categories to display.
+            </p>
+        {% else %}
+            <div class="d-flex justify-content-center">
+                <table id="category-table">
+                    <tr>
+                        <th>
+                            Code
+                        </th>
+                        <th>
+                            Image
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                        <hr>
+                        </td>
+                    </tr>
+                {% for category in all_categories %}
+                    <tr>
+                        <td>
+                            {{ category.category_code }}
+                        </td>
+                        <td>
+                            {{ category.category_name }}
+                        </td>
+                        <td>
+                            {{ category.category_name }}
+                        </td>
+                        <td>
+                            <a href="#" aria-label="Add New Category" class="btn btn-warning button-shadow my-1 me-1">Edit Category</a>
+                            <a href="#" aria-label="Add New Category" class="btn btn-danger button-shadow my-1 ms-1">Delete Category</a>
+                        </td>
+                    </tr>    
+                {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+        <div class="d-flex justify-content-end p-5">
+            <a href="#" aria-label="Add New Category" class="btn btn-success button-shadow">Add New Category</a>
+        </div>
+    </div>
+{% endblock %}
