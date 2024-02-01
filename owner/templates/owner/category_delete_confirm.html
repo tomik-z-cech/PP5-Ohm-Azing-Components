@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block nav_name %}Confirm{% endblock %}
+
 {% block content %}
 <div class="container wrapper d-flex justify-content-center align-items-center">
     <div class="form-background add-shadow">
+        <div class="w-100 d-flex justify-content-end">
+            <a href="{% url 'owner' %}" aria-label="Close" class="close-form">
+                <i class="bi bi-x"></i>
+            </a>
+        </div>
         <h1 class="text-center">
             Are you sure ?
         </h1>

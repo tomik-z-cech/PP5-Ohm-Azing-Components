@@ -133,6 +133,8 @@ class EditCategoryView(
             self.template_name,
             {
                 "edit_category_form": category_edit_form,  # Edit form
+                "category_name": name_edit_form,
+                "category_image": image_edit_form,
             },
         )
 

@@ -49,12 +49,7 @@ body {
     margin-top: 2vh;
 }
 
-h1 {
-    font-family: var(--header-font);
-    text-shadow: 2px 2px 4px var(--black);
-}
-
-h2 {
+h1, h2, h3 {
     font-family: var(--header-font);
     text-shadow: 2px 2px 4px var(--black);
 }
@@ -213,13 +208,49 @@ footer a:hover {
     width: 95%;
 }
 
-#category-table {
-    width: 90%;
+.category-heading {
+    margin-top: 1vh;
 }
 
-#category-table th {
-    font-family: var(--header-font);
-    font-size: 120%;
+.category-preview {
+    width: 60%;
+    border: 2px solid var(--black)
+}
+
+label[for="id_category_image"] + div {
+    text-align: center;
+}
+
+label[for="id_category_image"] + div a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+label[for="id_category_image"] + div a:hover {
+    color: var(--light-gold);
+}
+
+.folder {
+    width: 18rem;
+    height: 18rem;
+    display: inline-block;
+    margin: auto;
+    position: relative;
+    background-color: var(--dark-blue);
+    border-radius: 0 3px 3px 3px;
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+}
+
+.folder:before {
+    content: '';
+    width: 40%;
+    height: 1em;
+    border-radius: 20px 20px 0 0;
+    background-color: var(--dark-blue);
+    position: absolute;
+    top: -1em;
+    left: 0px;
 }
 
 /** ------------------------------- FORMS ---------------------------- **/
@@ -231,6 +262,24 @@ footer a:hover {
     width: 50%;
 }
 
+@media screen and (max-width: 991px) {
+    .form-background {
+        width: 80%;
+    }
+}
+
 .form-background label {
     font-family: var(--header-font);
+}
+
+.close-form {
+    color: var(--white);
+    font-size: 150%;
+    text-decoration: none;
+}
+
+.close-form:hover {
+    color: var(--light-gold);
+    font-size: 150%;
+    text-decoration: none;
 }

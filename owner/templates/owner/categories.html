@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block owner_admin %}
-    <div class="col-12 text-center">
-        <h2 class="my-4">
+    <div class="col-12 d-flex flex-column">
+        <h2 class="my-4 text-center">
             Categories
         </h2>
         {% if all_categories|length == 0 %}
@@ -11,42 +11,36 @@
                 No categories to display.
             </p>
         {% else %}
-            <div class="d-flex justify-content-center">
-                <table id="category-table">
-                    <tr>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Image
-                        </th>
-                        <th>
-                            Action
-                        </th>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                        <hr>
-                        </td>
-                    </tr>
-                {% for category in all_categories %}
-                    <tr>
-                        <td>
+            <div>
+            {% for category in all_categories%}
+                {% if forloop.first or forloop.counter == 4 or forloop.counter|add:"-1"|divisibleby:3 %}
+                <div class="row">
+                {% endif %}
+                <div class="col-12 col-xl-4 text-center">
+                    <div class="folder">
+                        <h3 class="category-heading">
                             {{ category.category_name }}
-                        </td>
-                        <td>
-                            <img src="{{ category.category_image.url }}" alt="{{ category.category_name }} preview" class="category_preview">
-                        </td>
-                        <td>
-                            <a href="{% url 'edit-category' category_pk=category.pk %}" aria-label="Add New Category" class="btn btn-warning button-shadow my-1 me-1">Edit Category</a>
-                            <a href="{% url 'category-delete-request' category_pk=category.pk %}" aria-label="Delete Category" class="btn btn-danger button-shadow my-1 ms-1">Delete Category</a>
-                        </td>
-                    </tr>    
-                {% endfor %}
-                </table>
+                        </h3>
+                        {% if category.category_image == '' or category.category_image == 'False' %}
+                            <img src="{% static 'images/no_image.png' %}" alt="{{ category.category_name }} preview" class="category-preview">
+                        {% else %}
+                            <img src="{{ category.category_image.url }}" alt="{{ category.category_name }} preview" class="category-preview">
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-around my-2">
+                                <a href="{% url 'edit-category' category_pk=category.pk %}" aria-label="Add New Category" class="btn btn-warning button-shadow">Edit</a>
+                                <a href="{% url 'category-delete-request' category_pk=category.pk %}" aria-label="Delete Category" class="btn btn-danger button-shadow">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:3 or forloop.last %}
+                </div>
+                {% endif %}
+            {% endfor %}
             </div>
         {% endif %}
-        <div class="d-flex justify-content-end p-5">
+        <div class="d-flex justify-content-end p-5 w-100">
             <a href="{% url 'add-category' %}" aria-label="Add New Category" class="btn btn-success button-shadow">Add New Category</a>
         </div>
     </div>
