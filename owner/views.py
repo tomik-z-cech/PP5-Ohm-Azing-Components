@@ -1,17 +1,18 @@
 # Imports
 from django.shortcuts import render, get_object_or_404, redirect  # Responses
 from django.views import generic
-from items.models import Category
-from items.forms import CategoryForm
-
+from django.db.models.functions import Lower
 # Views security
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin,
 )
-
 # Methods security
 from django.contrib.auth.decorators import login_required
+from items.models import Category
+from items.forms import CategoryForm
+
+
 
 # Create your views here.
 class OwnerMainView(generic.ListView, LoginRequiredMixin, UserPassesTestMixin):
@@ -26,7 +27,7 @@ class OwnerMainView(generic.ListView, LoginRequiredMixin, UserPassesTestMixin):
         return self.request.user.is_superuser
 
     def get(self, request, *args, **kwargs):
-        all_categories = Category.objects.all()
+        all_categories = Category.objects.all().order_by(Lower('category_name'))
         return render(
             request,
             self.template_name,

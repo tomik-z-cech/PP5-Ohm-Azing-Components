@@ -217,19 +217,6 @@ footer a:hover {
     border: 2px solid var(--black)
 }
 
-label[for="id_category_image"] + div {
-    text-align: center;
-}
-
-label[for="id_category_image"] + div a {
-    color: var(--white);
-    text-decoration: none;
-}
-
-label[for="id_category_image"] + div a:hover {
-    color: var(--light-gold);
-}
-
 .folder {
     width: 18rem;
     height: 18rem;
@@ -254,6 +241,22 @@ label[for="id_category_image"] + div a:hover {
 }
 
 /** ------------------------------- FORMS ---------------------------- **/
+
+.custom-button {
+    text-align: center;
+    text-decoration: none;
+    background: var(--dark-blue);
+    color: var(--white);
+    padding: 1vh;
+    font-family: var(--header-font);
+    width: 40%;
+}
+
+.custom-button:hover {
+    background: var(--light-blue);
+    color: var(--light-gold);
+}
+
 
 .form-background {
     background-color: var(--light-blue);

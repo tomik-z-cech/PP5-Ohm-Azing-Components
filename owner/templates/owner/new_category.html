@@ -2,14 +2,33 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
+{% block nav_name %}New Category{% endblock %}
+
+{% block extra_css %}
+<!-- Local styling to ensure this doesn't interfere with global styling of same class names -->
+<style>
+    .asteriskField {
+        display: none;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container wrapper d-flex justify-content-center align-items-center">
     <div class="form-background add-shadow">
+        <div class="w-100 d-flex justify-content-end">
+            <a href="{% url 'owner' %}" aria-label="Close" class="close-form">
+                <i class="bi bi-x"></i>
+            </a>
+        </div>
+        <h1 class="text-center">
+            New Category
+        </h1>
         <form method="post" enctype="multipart/form-data" id="newBookingForm">
             {% csrf_token %}
             {{ new_category_form|crispy }}
             <div class="container d-flex justify-content-around">
-                <button type="submit" value="Submit" id="submit-booking" class="btn btn-success button-shadow mt-4">Add Category</button>
+                <button type="submit" value="Submit" id="submit-booking" class="custom-button button-shadow mt-4">Add Category</button>
             </div>
         </form>
     </div>

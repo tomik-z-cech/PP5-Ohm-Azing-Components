@@ -28,13 +28,8 @@
             {% csrf_token %}
             {{ edit_category_form.category_name|as_crispy_field }}
             {{ edit_category_form.category_image|as_crispy_field }}
-            {% if category_image == '' or category.category_image == 'False' %}
-                <img src="{% static 'images/no_image.png' %}" alt="{{ category.category_name }} preview" class="category-preview">
-            {% else %}
-                <img src="{{ category_image.url }}" alt="{{ category.category_name }} preview" class="category-preview">
-            {% endif %}
             <div class="container d-flex justify-content-around">
-                <button type="submit" value="Submit" id="submit-booking" class="btn btn-success button-shadow mt-4">Submit changes</button>
+                <button type="submit" value="Submit" class="custom-button button-shadow mt-4">Submit changes</button>
             </div>
         </form>
     </div>

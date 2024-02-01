@@ -6,6 +6,9 @@
         <h2 class="my-4 text-center">
             Categories
         </h2>
+        <div class="d-flex justify-content-center p-5 w-100">
+            <a href="{% url 'add-category' %}" aria-label="Add New Category" class="custom-button button-shadow">Add New Category</a>
+        </div>
         {% if all_categories|length == 0 %}
             <p class="text-center">
                 No categories to display.
@@ -28,8 +31,8 @@
                         {% endif %}
                         <div class="row">
                             <div class="col-12 d-flex justify-content-around my-2">
-                                <a href="{% url 'edit-category' category_pk=category.pk %}" aria-label="Add New Category" class="btn btn-warning button-shadow">Edit</a>
-                                <a href="{% url 'category-delete-request' category_pk=category.pk %}" aria-label="Delete Category" class="btn btn-danger button-shadow">Delete</a>
+                                <a href="{% url 'edit-category' category_pk=category.pk %}" aria-label="Add New Category" class="custom-button button-shadow">Edit</a>
+                                <a href="{% url 'category-delete-request' category_pk=category.pk %}" aria-label="Delete Category" class="custom-button button-shadow">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -40,8 +43,5 @@
             {% endfor %}
             </div>
         {% endif %}
-        <div class="d-flex justify-content-end p-5 w-100">
-            <a href="{% url 'add-category' %}" aria-label="Add New Category" class="btn btn-success button-shadow">Add New Category</a>
-        </div>
     </div>
 {% endblock %}
