@@ -77,7 +77,7 @@ h1, h2, h3 {
 
 /** ------------------------------ LOADER --------------------------- **/
 
-.loader-container {
+#loader-container {
     position: fixed;
     top: 0;
     left: 0;

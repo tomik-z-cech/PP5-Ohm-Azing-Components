@@ -24,13 +24,24 @@
         <h1 class="text-center">
             New Category
         </h1>
-        <form method="post" enctype="multipart/form-data" id="newBookingForm">
+        <form method="post" enctype="multipart/form-data" id="createCategoryForm">
             {% csrf_token %}
             {{ new_category_form|crispy }}
             <div class="container d-flex justify-content-around">
-                <button type="submit" value="Submit" id="submit-booking" class="custom-button button-shadow mt-4">Add Category</button>
+                <button type="submit" value="Submit" class="custom-button button-shadow mt-4">Add Category</button>
             </div>
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function() {
+            $('#createCategoryForm').submit(function(){
+                $('#loader-container').css("display", "flex");
+            });
+        });
+    </script>
 {% endblock %}

@@ -24,7 +24,7 @@
         <h1 class="text-center">
             Editing category {{ category_name }}
         </h1>
-        <form method="post" enctype="multipart/form-data" id="newBookingForm">
+        <form method="post" enctype="multipart/form-data" id="editCategoryForm">
             {% csrf_token %}
             {{ edit_category_form.category_name|as_crispy_field }}
             {{ edit_category_form.category_image|as_crispy_field }}
@@ -34,4 +34,15 @@
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function() {
+            $('#editCategoryForm').submit(function(){
+                $('#loader-container').css("display", "flex");
+            });
+        });
+    </script>
 {% endblock %}

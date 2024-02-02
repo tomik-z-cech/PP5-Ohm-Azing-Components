@@ -25,10 +25,21 @@
             <a href="{% url 'owner' %}" aria-label="No, take me back" class="custom-button button-shadow">
                 No, take me back
             </a>
-            <a href="{% url 'delete-category' category_pk=category_to_delete.pk%}" aria-label="Yes, delete" class="custom-button button-shadow">
+            <a href="{% url 'delete-category' category_pk=category_to_delete.pk%}" aria-label="Yes, delete" class="custom-button button-shadow" id="deleteButton">
                 Yes, delete
             </a>
         </div>
     </div>
 </div>
 {%endblock%}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function() {
+            $('#deleteButton').click(function(){
+                $('#loader-container').css("display", "flex");
+            });
+        });
+    </script>
+{% endblock %}
