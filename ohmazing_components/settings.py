@@ -24,6 +24,7 @@ X_FRAME_OPTIONS = "SAMEORIGIN"
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
+    "ohmazing-components-1a5a0fcb9e95.herokuapp.com",
 ]
 
 
