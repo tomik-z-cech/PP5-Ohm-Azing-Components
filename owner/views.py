@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import (
 )
 # Methods security
 from django.contrib.auth.decorators import login_required
-from items.models import Category
+from items.models import Category, Item
 from items.forms import CategoryForm
 
 
@@ -169,10 +169,11 @@ class OwnerItemsView(
         return self.request.user.is_superuser
 
     def get(self, request, *args, **kwargs):
+        all_items = Item.objects.all()
         return render(
             request,
             self.template_name,
             {
-                "items": 1,
+                "items": all_items,
             },
         )

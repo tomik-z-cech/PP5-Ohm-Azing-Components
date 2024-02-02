@@ -9,5 +9,12 @@
     <div class="d-flex justify-content-center p-3 w-100">
         <a href="{% url 'add-category' %}" aria-label="Add New Category" class="custom-button button-shadow">Add New Category</a>
     </div>
+    {% for item in items %}
+        {{ item.item_name }}
+        <br>
+        {% for value in item.values %}
+        {{ value }}
+        {% endfor %}
+    {% endfor %}
 </div>
 {% endblock %}
