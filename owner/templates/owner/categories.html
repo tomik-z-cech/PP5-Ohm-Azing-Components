@@ -3,10 +3,10 @@
 
 {% block owner_admin %}
     <div class="col-12 d-flex flex-column">
-        <h2 class="my-4 text-center">
+        <h2 class="my-2 text-center">
             Categories
         </h2>
-        <div class="d-flex justify-content-center p-5 w-100">
+        <div class="d-flex justify-content-center p-3 w-100">
             <a href="{% url 'add-category' %}" aria-label="Add New Category" class="custom-button button-shadow">Add New Category</a>
         </div>
         {% if all_categories|length == 0 %}

@@ -9,8 +9,8 @@ from django.contrib.auth.mixins import (
 )
 # Methods security
 from django.contrib.auth.decorators import login_required
-from products.models import Category
-from products.forms import CategoryForm
+from items.models import Category
+from items.forms import CategoryForm
 
 
 
@@ -156,13 +156,13 @@ class EditCategoryView(
         return redirect("owner")  # Redirect back to admin tools
     
 
-class ProductsMainView(
+class OwnerItemsView(
         LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     """
     Class for creating new bookings
     """
 
-    template_name = "owner/products.html"  # Template
+    template_name = "owner/items.html"  # Template
 
     def test_func(self):
         """Test function to ensure user is superuser"""

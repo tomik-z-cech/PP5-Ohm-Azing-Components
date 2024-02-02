@@ -1,7 +1,7 @@
 # Imports
 from django import forms
 from owner.widgets import CustomClearableFileInput
-from products.models import Category
+from items.models import Category
 
 class CategoryForm(forms.ModelForm):
     """
