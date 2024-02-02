@@ -214,7 +214,13 @@ footer a:hover {
 
 .category-preview {
     width: 60%;
-    border: 2px solid var(--black)
+    border: 2px solid var(--black);
+}
+
+.category-preview-crud {
+    width: 40%;
+    border: 2px solid var(--black);
+    margin-left: 30%;
 }
 
 .folder {
@@ -265,6 +271,22 @@ footer a:hover {
     width: 50%;
 }
 
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    
+}
+
 @media screen and (max-width: 991px) {
     .form-background {
         width: 80%;
@@ -285,4 +307,12 @@ footer a:hover {
     color: var(--light-gold);
     font-size: 150%;
     text-decoration: none;
+}
+
+label[for="id_category_image"] {
+    margin-bottom: 1.5vh;
+}
+
+input[type="text"] {
+    font-family: var(--header-font);
 }

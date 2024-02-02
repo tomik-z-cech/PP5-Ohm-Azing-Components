@@ -9,8 +9,8 @@ from django.contrib.auth.mixins import (
 )
 # Methods security
 from django.contrib.auth.decorators import login_required
-from items.models import Category
-from items.forms import CategoryForm
+from products.models import Category
+from products.forms import CategoryForm
 
 
 
@@ -39,7 +39,7 @@ class OwnerMainView(generic.ListView, LoginRequiredMixin, UserPassesTestMixin):
 class DeleteCategoryView(
         LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     """
-    Class deletes category
+    Class for deleting categories
     """
     def test_func(self):
         """Test function to ensure user is superuser"""
@@ -105,7 +105,7 @@ class CreateCategoryView(LoginRequiredMixin, UserPassesTestMixin, generic.ListVi
 class EditCategoryView(
         LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     """
-    Class for creating new bookings
+    Class for editing categories
     """
 
     template_name = "owner/edit_category.html"  # Template
@@ -149,7 +149,30 @@ class EditCategoryView(
         if edit_form.is_valid():
             edited_category.category_name = edit_form.cleaned_data["category_name"]
             edited_category.category_image = edit_form.cleaned_data["category_image"]
+            print(edited_category.category_image)
             edited_category.save()  # Save category into database
         else:
             edit_form = self.form()
         return redirect("owner")  # Redirect back to admin tools
+    
+
+class ProductsMainView(
+        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    """
+    Class for creating new bookings
+    """
+
+    template_name = "owner/products.html"  # Template
+
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+
+    def get(self, request, *args, **kwargs):
+        return render(
+            request,
+            self.template_name,
+            {
+                "items": 1,
+            },
+        )

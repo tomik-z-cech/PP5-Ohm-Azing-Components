@@ -1,5 +1,5 @@
 from django.contrib import admin
-from items.models import Category
+from products.models import Category
 
 # Register your models here.
 @admin.register(Category)

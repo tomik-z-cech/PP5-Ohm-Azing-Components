@@ -1,0 +1,15 @@
+{% load static %}
+
+
+<span class="custom-button button-shadow btn-file">
+    Select Image <input id="new-image" type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+</span>
+<p class="mt-3" id="filename"></p>
+{% if widget.is_initial %}
+    {% if widget.value.url == '' or 'False' in widget.value.url %}
+        <img src="{% static 'images/no_image.png' %}" alt="{{ category.category_name }} preview" class="category-preview-crud">
+    {% else %}
+        <img class="category-preview-crud" src="{{ widget.value.url }}">
+    {% endif %}
+    {{ widget.input_text }}
+{% endif %}

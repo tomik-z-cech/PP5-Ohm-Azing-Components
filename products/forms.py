@@ -1,6 +1,7 @@
 # Imports
 from django import forms
-from items.models import Category
+from owner.widgets import CustomClearableFileInput
+from products.models import Category
 
 class CategoryForm(forms.ModelForm):
     """
@@ -12,3 +13,5 @@ class CategoryForm(forms.ModelForm):
             "category_name",
             "category_image",
         )
+        
+    category_image = forms.ImageField(label='Category Image', required=False, widget=CustomClearableFileInput)
