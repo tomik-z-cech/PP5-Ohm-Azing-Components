@@ -10,8 +10,10 @@
         <a href="{% url 'add-item' %}" aria-label="Add New Item" class="custom-button button-shadow">Add New Item</a>
     </div>
     {% for item in items %}
-        {{ item.item_name }} - <a href="{% url 'edit-item' item_pk=item.pk %}" aria-label="Edit Item" class="custom-button button-shadow">Edit</a>
-        <br>
+        {{ item.item_name }}
+        <a href="{% url 'edit-item' item_pk=item.pk %}" aria-label="Edit Item" class="custom-button button-shadow">Edit</a>
+        <a href="{% url 'item-delete-request' item_pk=item.pk %}" aria-label="Delete Item" class="custom-button button-shadow">Delete</a>
+        <hr>
     {% endfor %}
 </div>
 {% endblock %}

@@ -238,6 +238,7 @@ class EditItemView(
             self.template_name,
             {
                 "edit_item_form": item_edit_form,  # Edit form
+                "item_name": item_instance.item_name
             },
         )
 
@@ -253,3 +254,32 @@ class EditItemView(
         else:
             edit_form = self.form()
         return redirect("items")  # Redirect back to admin tools
+    
+class DeleteItemView(
+        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    """
+    Class for deleting items
+    """
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+    
+    @login_required
+    def item_delete_request(request, item_pk):
+        """This method redirects user to confirm page"""
+        requested_item = get_object_or_404(
+            Item, pk=item_pk
+        )  # Get Item
+        return render(  # Render template
+            request,
+            "owner/item_delete_confirm.html",
+            {"item_to_delete": requested_item},
+        )
+    
+    def get(self, request, item_pk, *args, **kwargs):
+        """Method GET cancels booking and send confirmation"""
+        requested_item = get_object_or_404(
+            Item, pk=item_pk
+        )  # Get Item
+        requested_item.delete()  # Delete category from DB
+        return redirect("items")  # Return to admin tools

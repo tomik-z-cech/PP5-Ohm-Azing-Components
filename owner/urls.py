@@ -9,6 +9,8 @@ urlpatterns = [
     path("add-category/", views.AddCategoryView.as_view(), name="add-category"),
     path("edit-category/<int:category_pk>/", views.EditCategoryView.as_view(), name="edit-category"),
     path("items/", views.OwnerItemsView.as_view(), name="items"),
+    path("item-delete-request/<int:item_pk>", views.DeleteItemView.item_delete_request, name="item-delete-request"),
     path("add-item/", views.AddItemView.as_view(), name="add-item"),
     path("edit-item/<int:item_pk>/", views.EditItemView.as_view(), name="edit-item"),
+    path("delete-item/<int:item_pk>/", views.DeleteItemView.as_view(), name="delete-item"),
 ]

@@ -23,7 +23,7 @@ class Item(models.Model):
     HAS_VALUES = ((0, "No - Item has no values"), (1, "Yes - Item has different values"))
     
     item_category = models.ManyToManyField(Category, blank=False, help_text='Select more categories by CTRL + click')
-    item_name = models.CharField(max_length=254)
+    item_name = models.CharField(max_length=254, unique=True)
     item_sku = models.CharField(max_length=254, null=True, blank=False)
     item_description = models.TextField(blank=False)
     different_sizes = models.IntegerField(choices=HAS_SIZES, default=0, help_text='Select yes if item comes in different package sizes')
@@ -31,9 +31,9 @@ class Item(models.Model):
     different_values = models.IntegerField(choices=HAS_VALUES, default=0, help_text='Select yes if item comes in different values')
     values = ArrayField(models.CharField(max_length=100), blank=True, null=True, help_text='Separate values by comma ","')
     price_per_unit = models.DecimalField(max_digits=6, decimal_places=2)
-    image_1 = ResizedImageField(size=[400, 400], crop=['middle', 'center'], quality=75, upload_to="category_images/", force_format='WEBP', blank=True)
-    image_2 = ResizedImageField(size=[400, 400], crop=['middle', 'center'], quality=75, upload_to="category_images/", force_format='WEBP', blank=True)
-    image_3 = ResizedImageField(size=[400, 400], crop=['middle', 'center'], quality=75, upload_to="category_images/", force_format='WEBP', blank=True)
+    image_1 = ResizedImageField(size=[400, 400], crop=['middle', 'center'], quality=75, upload_to="item_images/", force_format='WEBP', blank=True)
+    image_2 = ResizedImageField(size=[400, 400], crop=['middle', 'center'], quality=75, upload_to="item_images/", force_format='WEBP', blank=True)
+    image_3 = ResizedImageField(size=[400, 400], crop=['middle', 'center'], quality=75, upload_to="item_images/", force_format='WEBP', blank=True)
 
     def __str__(self):
         return self.item_name
