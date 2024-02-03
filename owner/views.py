@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import (
 # Methods security
 from django.contrib.auth.decorators import login_required
 from items.models import Category, Item
-from items.forms import CategoryForm
+from items.forms import CategoryForm, ItemForm
 
 
 
@@ -65,7 +65,7 @@ class DeleteCategoryView(
         requested_category.delete()  # Delete category from DB
         return redirect("owner")  # Return to admin tools
     
-class CreateCategoryView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+class AddCategoryView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     """
     Class for adding categories
     """
@@ -75,7 +75,7 @@ class CreateCategoryView(LoginRequiredMixin, UserPassesTestMixin, generic.ListVi
         return self.request.user.is_superuser
 
     template_name = "owner/new_category.html"  # Template
-    form = CategoryForm  # New bookings form
+    form = CategoryForm  # New category form
     success_url = "/owner/"  # URL to redirect after successful creation
 
     def get(self, request, *args, **kwargs):
@@ -176,3 +176,40 @@ class OwnerItemsView(
                 "items": all_items,
             },
         )
+        
+class AddItemView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    """
+    Class for adding items
+    """
+    
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+
+    template_name = "owner/new_item.html"  # Template
+    form = ItemForm  # New Item form
+    success_url = "/owner/"  # URL to redirect after successful creation
+
+    def get(self, request, *args, **kwargs):
+        """
+        Function generates new item form into template
+        """
+        print(ItemForm)
+        return render(
+            request,
+            self.template_name,
+            {
+                "new_item_form": ItemForm(),  # Item form
+            },
+        )
+
+    def post(self, request, *args, **kwargs):
+        """
+        Function triggers when add category button pressed
+        """
+        new_category = self.form(request.POST, request.FILES)
+        if new_category.is_valid():
+            new_category.save()  # Save category into database
+        else:
+            new_category = self.form()
+        return redirect("owner")  # Redirect back to admin tools

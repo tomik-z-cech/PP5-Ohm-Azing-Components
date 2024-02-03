@@ -17,13 +17,18 @@ class Category(models.Model):
         return self.category_name
 
 class Item(models.Model):
+    
+    # Set variable for sizes and values
+    HAS_SIZES = ((0, "No - Item has no sizes"), (1, "Yes - Item has different sizes"))
+    HAS_VALUES = ((0, "No - Item has no values"), (1, "Yes - Item has different values"))
+    
     item_category = models.ManyToManyField(Category, blank=False)
     item_name = models.CharField(max_length=254)
     item_sku = models.CharField(max_length=254, null=True, blank=False)
     item_description = models.TextField(blank=False)
-    different_sizes = models.BooleanField(default=False, null=True, blank=True)
+    different_sizes = models.IntegerField(choices=HAS_SIZES, default=0)
     sizes = ArrayField(models.CharField(max_length=100), blank=True, null=True)
-    different_values = models.BooleanField(default=False, null=True, blank=True)
+    different_values = models.IntegerField(choices=HAS_VALUES, default=0)
     values = ArrayField(models.CharField(max_length=100), blank=True, null=True)
     price_per_unit = models.DecimalField(max_digits=6, decimal_places=2)
     image_1 = ResizedImageField(size=[400, 400], crop=['middle', 'center'], quality=75, upload_to="category_images/", force_format='WEBP', blank=True)

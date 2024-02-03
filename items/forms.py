@@ -1,7 +1,7 @@
 # Imports
 from django import forms
-from owner.widgets import CustomClearableFileInput
-from items.models import Category
+from owner.widgets import CustomImageInputCategory
+from items.models import Category, Item
 
 class CategoryForm(forms.ModelForm):
     """
@@ -14,4 +14,12 @@ class CategoryForm(forms.ModelForm):
             "category_image",
         )
         
-    category_image = forms.ImageField(label='Category Image', required=False, widget=CustomClearableFileInput)
+    category_image = forms.ImageField(label='Category Image', required=False, widget=CustomImageInputCategory)
+    
+class ItemForm(forms.ModelForm):
+    """
+    Item form
+    """
+    class Meta:
+        model = Item
+        fields = '__all__'

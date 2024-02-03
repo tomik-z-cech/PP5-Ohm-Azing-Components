@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block nav_name %}New Item{% endblock %}
+
+{% block extra_css %}
+<!-- Local styling to ensure this doesn't interfere with global styling of same class names -->
+<style>
+    .asteriskField {
+        display: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container wrapper d-flex justify-content-center align-items-center">
+    <div class="form-background add-shadow">
+        <div class="w-100 d-flex justify-content-end">
+            <a href="{% url 'items' %}" aria-label="Close" class="close-form">
+                <i class="bi bi-x"></i>
+            </a>
+        </div>
+        <h1 class="text-center">
+            New Item
+        </h1>
+        <form method="post" enctype="multipart/form-data" id="createCategoryForm">
+            {% csrf_token %}
+            {{ new_item_form|crispy }}
+            <div class="container d-flex justify-content-around">
+                <button type="submit" value="Submit" class="custom-button button-shadow mt-4">Add Item</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function() {
+            $('#filename').text(`No file selected.`);
+            $('#new-image').change(function() {
+                let file = $('#new-image')[0].files[0];
+                $('#filename').text(`Image will be set to : ${file.name}`);
+            });
+            $('#createCategoryForm').submit(function(){
+                $('#loader-container').css("display", "flex");
+            });
+        });
+    </script>
+{% endblock %}
