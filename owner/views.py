@@ -144,12 +144,11 @@ class EditCategoryView(
         Function triggers when submit button on booking form is pressed
         """
         edited_category = get_object_or_404(Category, pk=category_pk)
-        edit_form = self.form(request.POST, request.FILES)
+        edit_form = self.form(request.POST, request.FILES, instance=edited_category)
 
         if edit_form.is_valid():
             edited_category.category_name = edit_form.cleaned_data["category_name"]
             edited_category.category_image = edit_form.cleaned_data["category_image"]
-            print(edited_category.category_image)
             edited_category.save()  # Save category into database
         else:
             edit_form = self.form()
