@@ -256,10 +256,11 @@ footer a:hover {
     padding: 1vh;
     font-family: var(--header-font);
     width: 40%;
+    transition: background-color 0.5s, color 0.5s;
 }
 
 .custom-button:hover {
-    background: var(--light-blue);
+    background-color: var(--light-blue);
     color: var(--light-gold);
 }
 
