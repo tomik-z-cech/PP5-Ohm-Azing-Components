@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-{% block nav_name %}New Item{% endblock %}
+{% block nav_name %}Edit Item{% endblock %}
 
 {% block extra_css %}
 <!-- Local styling to ensure this doesn't interfere with global styling of same class names -->
@@ -22,13 +22,13 @@
             </a>
         </div>
         <h1 class="text-center">
-            New Item
+            Editing item {{ category_name }}
         </h1>
         <form method="post" enctype="multipart/form-data" id="form">
             {% csrf_token %}
-            {{ new_item_form|crispy }}
+            {{ edit_item_form|crispy }}
             <div class="container d-flex justify-content-around">
-                <button type="submit" value="Submit" class="custom-button button-shadow mt-4">Add Item</button>
+                <button type="submit" value="Submit" class="custom-button button-shadow mt-4" id="editSubmit">Submit changes</button>
             </div>
         </form>
     </div>
@@ -52,8 +52,12 @@
                 let file = $('#new-image-3')[0].files[0];
                 $('#filename-3').text(`Image 3 will be set to : ${file.name}`);
             });
-            $('#id_sizes,label[for="id_sizes"],#hint_id_sizes').hide();
-            $('#id_values,label[for="id_values"],#hint_id_values').hide();
+            if ($('#id_different_values').val() == 0){
+                $('#id_values,label[for="id_values"],#hint_id_values').hide();
+            };
+            if ($('#id_different_sizes').val() == 0){
+                $('#id_sizes,label[for="id_sizes"],#hint_id_sizes').hide();
+            };
             $('#id_different_values').change(function(){
                 if ($('#id_different_values').val() == 1){
                     $('#id_values,label[for="id_values"],#hint_id_values').show();

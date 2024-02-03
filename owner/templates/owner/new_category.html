@@ -24,7 +24,7 @@
         <h1 class="text-center">
             New Category
         </h1>
-        <form method="post" enctype="multipart/form-data" id="createCategoryForm">
+        <form method="post" enctype="multipart/form-data" id="form">
             {% csrf_token %}
             {{ new_category_form|crispy }}
             <div class="container d-flex justify-content-around">
@@ -42,9 +42,9 @@
             $('#filename').text(`No file selected.`);
             $('#new-image').change(function() {
                 let file = $('#new-image')[0].files[0];
-                $('#filename').text(`Image will be set to : ${file.name}`);
+                $('#filename').text(`Image 1 will be set to : ${file.name}`);
             });
-            $('#createCategoryForm').submit(function(){
+            $('#form').submit(function(){
                 $('#loader-container').css("display", "flex");
             });
         });

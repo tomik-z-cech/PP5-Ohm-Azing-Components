@@ -10,4 +10,5 @@ urlpatterns = [
     path("edit-category/<int:category_pk>/", views.EditCategoryView.as_view(), name="edit-category"),
     path("items/", views.OwnerItemsView.as_view(), name="items"),
     path("add-item/", views.AddItemView.as_view(), name="add-item"),
+    path("edit-item/<int:item_pk>/", views.EditItemView.as_view(), name="edit-item"),
 ]

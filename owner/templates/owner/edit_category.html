@@ -24,7 +24,7 @@
         <h1 class="text-center">
             Editing category {{ category_name }}
         </h1>
-        <form method="post" enctype="multipart/form-data" id="editCategoryForm">
+        <form method="post" enctype="multipart/form-data" id="form">
             {% csrf_token %}
             {{ edit_category_form.category_name|as_crispy_field }}
             <div class="w-100">
@@ -47,7 +47,7 @@
                 let file = $('#new-image')[0].files[0];
                 $('#filename').text(`Image will be set to : ${file.name}`);
             });
-            $('#editCategoryForm').submit(function(){
+            $('#form').submit(function(){
                 $('#loader-container').css("display", "flex");
             });
         });

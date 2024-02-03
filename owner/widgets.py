@@ -8,3 +8,20 @@ class CustomImageInputCategory(ClearableFileInput):
     input_text = _('')
     template_name = 'owner/widgets/category_image.html'
 
+class CustomImageInputItem1(ClearableFileInput):
+    clear_checkbox_label = _('Remove')
+    initial_text = _('Current Image')
+    input_text = _('')
+    template_name = 'owner/widgets/item_image1.html'
+
+class CustomImageInputItem2(ClearableFileInput):
+    clear_checkbox_label = _('Remove')
+    initial_text = _('Current Image')
+    input_text = _('')
+    template_name = 'owner/widgets/item_image2.html'
+    
+class CustomImageInputItem3(ClearableFileInput):
+    clear_checkbox_label = _('Remove')
+    initial_text = _('Current Image')
+    input_text = _('')
+    template_name = 'owner/widgets/item_image3.html'

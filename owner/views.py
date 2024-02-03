@@ -141,7 +141,7 @@ class EditCategoryView(
 
     def post(self, request, category_pk, *args, **kwargs):
         """
-        Function triggers when submit button on booking form is pressed
+        Function triggers when submit button on category edit form is pressed
         """
         edited_category = get_object_or_404(Category, pk=category_pk)
         edit_form = self.form(request.POST, request.FILES, instance=edited_category)
@@ -211,4 +211,45 @@ class AddItemView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
             new_category.save()  # Save category into database
         else:
             new_category = self.form()
-        return redirect("owner")  # Redirect back to admin tools
+        return redirect("items")  # Redirect back to admin tools
+    
+class EditItemView(
+        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    """
+    Class for editing items
+    """
+
+    template_name = "owner/edit_item.html"  # Template
+    form = ItemForm  # Category form
+    success_url = "/items/"  # URL to redirect after successful editing
+
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+
+    def get(self, request, item_pk, *args, **kwargs):
+        """
+        Function generates category form into template
+        """
+        item_instance = get_object_or_404(Item, pk=item_pk)
+        item_edit_form = ItemForm(instance=item_instance)
+        return render(
+            request,
+            self.template_name,
+            {
+                "edit_item_form": item_edit_form,  # Edit form
+            },
+        )
+
+    def post(self, request, item_pk, *args, **kwargs):
+        """
+        Function triggers when submit button on item edit form is pressed
+        """
+        edited_item = get_object_or_404(Item, pk=item_pk)
+        edit_form = self.form(request.POST, request.FILES, instance=edited_item)
+
+        if edit_form.is_valid():
+            edited_item.save()  # Save category into database
+        else:
+            edit_form = self.form()
+        return redirect("items")  # Redirect back to admin tools

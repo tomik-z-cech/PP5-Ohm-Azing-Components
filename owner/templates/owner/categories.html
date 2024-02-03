@@ -31,7 +31,7 @@
                         {% endif %}
                         <div class="row">
                             <div class="col-12 d-flex justify-content-around my-2">
-                                <a href="{% url 'edit-category' category_pk=category.pk %}" aria-label="Add New Category" class="custom-button button-shadow">Edit</a>
+                                <a href="{% url 'edit-category' category_pk=category.pk %}" aria-label="Edit Category" class="custom-button button-shadow">Edit</a>
                                 <a href="{% url 'category-delete-request' category_pk=category.pk %}" aria-label="Delete Category" class="custom-button button-shadow">Delete</a>
                             </div>
                         </div>
