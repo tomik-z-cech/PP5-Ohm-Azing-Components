@@ -39,10 +39,15 @@
     {{ block.super }}
     <script>
         $(document).ready(function() {
-            $('#filename').text(`No file selected.`);
-            $('#new-image').change(function() {
-                let file = $('#new-image')[0].files[0];
-                $('#filename').text(`Image will be set to : ${file.name}`);
+            $('#id_sizes,label[for="id_sizes"],#hint_id_sizes').hide();
+            $('#id_values,label[for="id_values"],#hint_id_values').hide();
+            $('#id_different_values').change(function(){
+                console.log($('#id_different_values').val());
+                if ($('#id_different_values').val() == 1){
+                    $('#id_values,label[for="id_values"],#hint_id_values').show();
+                } else {
+                    $('#id_values,label[for="id_values"],#hint_id_values').hide();
+                };
             });
             $('#createCategoryForm').submit(function(){
                 $('#loader-container').css("display", "flex");

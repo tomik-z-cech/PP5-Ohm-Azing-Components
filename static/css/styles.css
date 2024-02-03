@@ -26,6 +26,22 @@
 
 /** ------------------------------ GENERAL --------------------------- **/
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-blue);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--light-gold);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -298,6 +314,25 @@ footer a:hover {
     font-family: var(--header-font);
 }
 
+.selectmultiple,
+.select,
+input[type="text"],
+textarea,
+input[type="number"]
+{
+    font-family: var(--header-font);
+    border-radius: 0px!important;
+}
+
+.selectmultiple:focus,
+.select:focus,
+input[type="text"]:focus,
+textarea:focus,
+input[type="number"]:focus
+{
+    border: 2px solid var(--dark-gold)!important;
+}
+
 .close-form {
     color: var(--white);
     font-size: 150%;
@@ -314,6 +349,7 @@ label[for="id_category_image"] {
     margin-bottom: 1.5vh;
 }
 
-input[type="text"] {
+.text-muted {
+    color: var(--dark-gold)!important;
     font-family: var(--header-font);
 }

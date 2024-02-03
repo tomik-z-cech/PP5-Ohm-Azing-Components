@@ -194,7 +194,6 @@ class AddItemView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
         """
         Function generates new item form into template
         """
-        print(ItemForm)
         return render(
             request,
             self.template_name,
