@@ -13,6 +13,7 @@ from django.core.paginator import Paginator
 from django.db.models import Count
 from items.models import Category, Item
 from items.forms import CategoryForm, ItemForm
+from owner.models import Invoice
 
 
 
@@ -224,7 +225,6 @@ class OwnerItemsView(
                 paginated_items = Paginator(queryset.order_by('item_name'), page_length)
             else:
                 paginated_items = Paginator(Item.objects.all(), 10)
-            current_page = request.GET.get('page', 1)
             page_obj = paginated_items.get_page(current_page)
             paginator_nav = True
         else:
@@ -397,3 +397,51 @@ class DeleteItemView(
         )  # Get Item
         requested_item.delete()  # Delete category from DB
         return redirect("items")  # Return to admin tools
+    
+class OwnerInvoicesView(
+        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    """
+    Class for displaying invoices
+    """
+
+    template_name = "owner/invoices.html"  # Template
+
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+    
+    def get(self, request, *args, **kwargs):
+        """
+        Function generates list of invoices for template
+        """
+        page_length = int(request.GET.get('page_length', 10))
+        page_sort = int(request.GET.get('page_sort', 0))
+        current_page = request.GET.get('page', 1)
+        print(page_length)
+        print(page_sort)
+        if page_length != 0:
+            if page_sort == 1:
+                paginated_items = Paginator(Invoice.objects.all().order_by('-invoice_number'), page_length)
+            elif page_sort == 0:
+                paginated_items = Paginator(Invoice.objects.all().order_by('invoice_number'), page_length)
+            else:
+                paginated_items = Paginator(Invoice.objects.all().order_by('-invoice_number'), page_length)
+            page_obj = paginated_items.get_page(current_page)
+            paginator_nav = True
+        else:
+            if page_sort == 1:
+                page_obj = Invoice.objects.all().order_by('invoice_number')
+            elif page_sort == 0:
+                page_obj = Invoice.objects.all().order_by('-invoice_number')
+            else:
+                page_obj = Invoice.objects.all().order_by('invoice_number')
+        return render(
+            request,
+            self.template_name,
+            {
+                "invoices": page_obj,
+                "paginator_nav": paginator_nav,
+                "page_sort": page_sort,
+                "page_length":page_length,
+            },
+        )

@@ -224,6 +224,7 @@ footer a:hover {
 
 .owner-menu a:hover {
     color: var(--light-gold);
+    transition: color 0.5s;
 }
 
 .admin-hr {

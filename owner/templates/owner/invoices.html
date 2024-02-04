@@ -5,21 +5,12 @@
 {% block owner_admin %}
 <div class="col-12 d-flex flex-column">
     <h2 class="my-2 text-center">
-        Items
+        Invoices
     </h2>
-    <div class="d-flex justify-content-center p-3 w-100">
-        <a href="{% url 'add-item' %}" aria-label="Add New Item" class="custom-button button-shadow">Add New Item</a>
-    </div>
     <div class="w-100 d-flex justify-content-around">
         <select id="sortingOptions" class="form-control w-25 shadow-none">
-            <option value="0" {% if page_sort == 0 %}selected{% endif %}>Name A-Z</option>
-            <option value="1" {% if page_sort == 1 %}selected{% endif %}>Name Z-A</option>
-            <option value="2" {% if page_sort == 2 %}selected{% endif %}>Price Low - High</option>
-            <option value="3" {% if page_sort == 3 %}selected{% endif %}>Price High - Low</option>
-            <option value="4" {% if page_sort == 4 %}selected{% endif %}>Stock Low - High</option>
-            <option value="5" {% if page_sort == 5 %}selected{% endif %}>Stock High - Low</option>
-            <option value="6" {% if page_sort == 6 %}selected{% endif %}>Most Liked</option>
-            <option value="7" {% if page_sort == 7 %}selected{% endif %}>Least Liked</option>
+            <option value="0" {% if page_sort == 0 %}selected{% endif %}>Number INC</option>
+            <option value="1" {% if page_sort == 1 %}selected{% endif %}>Number DEC</option>
         </select>
         <select id="lengthOptions" class="form-control w-25 shadow-none">
             <option value="5" {% if page_length == 5 %}selected{% endif %}>5 items per page</option>
@@ -28,58 +19,34 @@
             <option value="0" {% if page_length == 0 %}selected{% endif %}>All items</option>
         </select>
     </div>
-    {% if items|length > 0 %}
+    {% if invoices|length > 0 %}
         <table class="items-table mt-4">
             <tr>
                 <th>
-                    SKU
-                </th>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Price Per Unit 
-                </th>
-                <th>
-                    Units in stock
-                </th>
-                <th>
-                    Likes
+                    Number
                 </th>
                 <th>
                     Action
                 </th>
             </tr>
-            {% for item in items %}
+            {% for invoice in invoices %}
                 <tr>
-                    <td colspan="6">
+                    <td colspan="2">
                         <hr>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        {{ item.item_sku }}
+                        {{ invoice.invoice_number }}
                     </td>
                     <td>
-                        {{ item.item_name }}
-                    </td>
-                    <td>
-                        {{ item.price_per_unit }}
-                    </td>
-                    <td>
-                        {{ item.item_stock}}
-                    </td>
-                    <td>
-                        {{ item.item_likes_num}}
-                    </td>
-                    <td>
-                        <a href="{% url 'edit-item' item_pk=item.pk %}" aria-label="Edit Item" class="custom-button-table button-shadow">Edit</a>
-                        <a href="{% url 'item-delete-request' item_pk=item.pk %}" aria-label="Delete Item" class="custom-button-table button-shadow">Delete</a>
+                        <a href="{{invoice.pdf_invoice.url}}" target="_blank" aria-label="View Invoice" class="custom-button-table button-shadow">View</a>
+                        <a href="{{invoice.pdf_invoice.url}}" download aria-label="Download Invoice" class="custom-button-table button-shadow">Download</a>
                     </td>
                 <tr>
             {% endfor %}
             <tr>
-                <td colspan="6">
+                <td colspan="2">
                     <hr>
                 </td>
             </tr>
@@ -92,21 +59,21 @@
     {% if paginator_nav %}
         <div class="w-100 d-flex justify-content-center my-4 pagination-nav">
             <span class="step-links">
-                {% if items.has_previous %}
+                {% if invoices.has_previous %}
                     <a href="?page=1"><i class="bi bi-chevron-bar-left"></i></a>
-                    <a href="?page={{ items.previous_page_number }}"><i class="bi bi-chevron-left"></i></a>
+                    <a href="?page={{ invoices.previous_page_number }}"><i class="bi bi-chevron-left"></i></a>
                 {% else %}
                     <i class="bi bi-chevron-bar-left"></i>
                     <i class="bi bi-chevron-left"></i>
                 {% endif %}
         
                 <span class="current-page">
-                    Page {{ items.number }} of {{ items.paginator.num_pages }}
+                    Page {{ invoices.number }} of {{ invoices.paginator.num_pages }}
                 </span>
         
-                {% if items.has_next %}
-                    <a href="?page={{ items.next_page_number }}"><i class="bi bi-chevron-right"></i></a>
-                    <a href="?page={{ items.paginator.num_pages }}"><i class="bi bi-chevron-bar-right"></i></a>
+                {% if invoices.has_next %}
+                    <a href="?page={{ invoices.next_page_number }}"><i class="bi bi-chevron-right"></i></a>
+                    <a href="?page={{ invoices.paginator.num_pages }}"><i class="bi bi-chevron-bar-right"></i></a>
                 {% else %}
                     <i class="bi bi-chevron-right"></i>
                     <i class="bi bi-chevron-bar-right"></i>
@@ -144,7 +111,6 @@
             let sortOption = $('#sortingOptions').val();
             let lengthOption = $('#lengthOptions').val();
             let newUrl = prepareNewUrl(currentUrl, ["page_sort", sortOption, "page_length", lengthOption]);
-            console.log(newUrl)
             window.location.href = newUrl;
             $('#loader-container').css("display", "flex");
         });
