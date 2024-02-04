@@ -1,4 +1,5 @@
 {% extends "owner/owner.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block owner_admin %}
@@ -10,7 +11,10 @@
         <a href="{% url 'add-item' %}" aria-label="Add New Item" class="custom-button button-shadow">Add New Item</a>
     </div>
     <div>
-        Sorting + Pagination
+        <form method="post" enctype="multipart/form-data" id="form">
+            {% csrf_token %}
+            {{ sort_form|crispy }}
+        </form>
     </div>
     {% if items|length > 0 %}
         <table class="items-table mt-4">
@@ -28,12 +32,15 @@
                     Units in stock
                 </th>
                 <th>
+                    Likes
+                </th>
+                <th>
                     Action
                 </th>
             </tr>
             {% for item in items %}
                 <tr>
-                    <td colspan="5">
+                    <td colspan="6">
                         <hr>
                     </td>
                 </tr>
@@ -51,13 +58,16 @@
                         {{ item.item_stock}}
                     </td>
                     <td>
+                        {{ item.item_likes_num}}
+                    </td>
+                    <td>
                         <a href="{% url 'edit-item' item_pk=item.pk %}" aria-label="Edit Item" class="custom-button-table button-shadow">Edit</a>
                         <a href="{% url 'item-delete-request' item_pk=item.pk %}" aria-label="Delete Item" class="custom-button-table button-shadow">Delete</a>
                     </td>
                 <tr>
             {% endfor %}
             <tr>
-                <td colspan="5">
+                <td colspan="6">
                     <hr>
                 </td>
             </tr>
@@ -67,8 +77,40 @@
             No items to display.
         </p>
     {% endif %}
-    <div>
-        Pages
-    </div>
+    {% if paginator_nav %}
+        <div>
+            <span class="step-links">
+                {% if items.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ items.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ items.number }} of {{ items.paginator.num_pages }}.
+                </span>
+        
+                {% if items.has_next %}
+                    <a href="?page={{ items.next_page_number }}">next</a>
+                    <a href="?page={{ items.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        $('#id_length').change(function(){
+            $('#form').submit();
+        });
+        $('#id_sort').change(function(){
+            $('#form').submit();
+        });
+        $('#form').submit(function(){
+            $('#loader-container').css("display", "flex");
+        });
+    });
+</script>
 {% endblock %}

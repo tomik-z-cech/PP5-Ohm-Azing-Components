@@ -9,8 +9,10 @@ from django.contrib.auth.mixins import (
 )
 # Methods security
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.db.models import Count
 from items.models import Category, Item
-from items.forms import CategoryForm, ItemForm
+from items.forms import CategoryForm, ItemForm, PageSortFormAdmin
 
 
 
@@ -168,15 +170,147 @@ class OwnerItemsView(
         return self.request.user.is_superuser
 
     def get(self, request, *args, **kwargs):
-        all_items = Item.objects.all()
+        sort_form = PageSortFormAdmin()
+        paginated_items = Paginator(Item.objects.all().order_by('item_name').annotate(
+            item_likes_num=Count(
+                "item_likes")
+            ), 5)
+        current_page = request.GET.get('page', 1)
+        page_obj = paginated_items.get_page(current_page)
         return render(
             request,
             self.template_name,
             {
-                "items": all_items,
+                "items": page_obj,
+                "sort_form": sort_form,
+                "paginator_nav": True,
             },
         )
         
+    def post(self, request, *args, **kwargs):
+        sort_form = PageSortFormAdmin(request.POST)
+        if sort_form.is_valid():
+            # page_length = int(sort_form.cleaned_data['length'])
+            page_length = 1
+            page_sort = int(sort_form.cleaned_data['sort'])
+            if page_length != -1:
+                current_page = request.GET.get('page', 1)
+                print(current_page)
+                if page_sort == 7:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    paginated_items = Paginator(queryset.order_by('item_likes_num'), page_length)
+                elif page_sort == 6:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    paginated_items = Paginator(queryset.order_by('-item_likes_num'), page_length)
+                elif page_sort == 5:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    paginated_items = Paginator(queryset.order_by('-item_stock'), page_length)
+                elif page_sort == 4:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    paginated_items = Paginator(queryset.order_by('item_stock'), page_length)
+                elif page_sort == 3:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    paginated_items = Paginator(queryset.order_by('-price_per_unit'), page_length)
+                elif page_sort == 2:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    paginated_items = Paginator(queryset.order_by('price_per_unit'), page_length)
+                elif page_sort == 1:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    paginated_items = Paginator(queryset.order_by('-item_name'), page_length)
+                elif page_sort == 0:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    paginated_items = Paginator(queryset.order_by('item_name'), page_length)
+                else:
+                    paginated_items = Paginator(Item.objects.all(), 10)
+                page_obj = paginated_items.get_page(current_page)
+                paginator_nav = True
+            else:
+                if page_sort == 7:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    page_obj = queryset.order_by('item_likes_num')
+                elif page_sort == 6:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    page_obj = queryset.order_by('-item_likes_num')
+                elif page_sort == 5:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    page_obj = queryset.order_by('-item_stock')
+                elif page_sort == 4:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    page_obj = queryset.order_by('item_stock')
+                elif page_sort == 3:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    page_obj = queryset.order_by('-price_per_unit')
+                elif page_sort == 2:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    page_obj = queryset.order_by('price_per_unit')
+                elif page_sort == 1:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    page_obj = queryset.order_by('-item_name')
+                elif page_sort == 0:
+                    queryset = Item.objects.all().annotate(
+                item_likes_num=Count(
+                    "item_likes")
+                )
+                    page_obj = queryset.order_by('item_name')
+                else:
+                    page_obj = Item.objects.all()
+                paginator_nav = False
+        return render(
+            request,
+            self.template_name,
+            {
+                "items": page_obj,
+                "sort_form": sort_form,
+                "paginator_nav": paginator_nav,
+            },
+        )
+    
+
 class AddItemView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     """
     Class for adding items
@@ -277,7 +411,7 @@ class DeleteItemView(
         )
     
     def get(self, request, item_pk, *args, **kwargs):
-        """Method GET cancels booking and send confirmation"""
+        """Method deletes item"""
         requested_item = get_object_or_404(
             Item, pk=item_pk
         )  # Get Item
