@@ -62,8 +62,3 @@ class ItemForm(forms.ModelForm):
     image_3 = forms.ImageField(label='Image 3', required=False, widget=CustomImageInputItem3)
     
     
-class PageSortFormAdmin(forms.Form):
-    LENGTH_CHOICES = [(5, '5 items per page'), (10, '10 items per page'), (20, '20 items per page'), (-1, 'All items')]
-    length = forms.ChoiceField(choices=LENGTH_CHOICES, initial=5)
-    SORT_CHOICES = [(0, 'Name A-Z'), (1, 'Name Z-A'), (2, 'Price Low - High'), (3, 'Price High - Low'), (4, 'Stock Low - High'),(5, 'Stock High - Low '), (6, 'Most liked'), (7, 'Least liked')]
-    sort = forms.ChoiceField(choices=SORT_CHOICES, initial=0)

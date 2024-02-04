@@ -350,23 +350,38 @@ footer a:hover {
 .select,
 input[type="text"],
 textarea,
-input[type="number"]
+input[type="number"],
+select
 {
     font-family: var(--header-font)!important;
     background-color: var(--light-blue)!important;
     color: var(--white)!important;
     border-radius: 0px!important;
+    border: 1px solid var(--white)!important;
 }
 
 .selectmultiple:focus,
 .select:focus,
 input[type="text"]:focus,
 textarea:focus,
-input[type="number"]:focus
+input[type="number"]:focus,
+select:focus
 {
     background-color: var(--light-blue)!important;
     color: var(--white)!important;
-    border: 2px solid var(--dark-gold)!important;
+    border: 1px solid var(--dark-gold)!important;
+}
+
+.selectmultiple:hover,
+.select:hover,
+input[type="text"]:hover,
+textarea:hover,
+input[type="number"]:hover,
+select:hover
+{
+    background-color: var(--light-blue)!important;
+    color: var(--white)!important;
+    border: 1px solid var(--black)!important;
 }
 
 input[type="text"]::placeholder,
@@ -407,4 +422,20 @@ label[for="id_image_3"] {
 .text-muted {
     color: var(--dark-gold)!important;
     font-family: var(--header-font);
+}
+
+.pagination-nav {
+    font-family: var(--header-font);
+    font-size: 125%;
+}
+
+.pagination-nav a {
+    font-family: var(--header-font);
+    color: var(--white);
+    transition: color 0.5s;
+}
+
+.pagination-nav a:hover {
+    font-family: var(--header-font);
+    color: var(--light-gold);
 }
