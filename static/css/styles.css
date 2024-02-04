@@ -269,6 +269,31 @@ footer a:hover {
     left: 0px;
 }
 
+.items-table {
+    width: 95%;
+    margin-left: 2.5%;
+    font-family: var(--header-font);
+    text-align: center;
+}
+
+.custom-button-table {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background: var(--dark-blue);
+    color: var(--white);
+    padding: 0.1vh;
+    font-family: var(--header-font);
+    width: 40%;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.custom-button-table:hover {
+    background-color: var(--light-blue);
+    color: var(--light-gold);
+}
+
+
 /** ------------------------------- FORMS ---------------------------- **/
 
 .custom-button {
@@ -356,7 +381,7 @@ select option {
 }
 
 select option:checked {
-    background-color: var(--light-blue);
+    background-color: var(--dark-blue);
     color: var(--white);
 }
 

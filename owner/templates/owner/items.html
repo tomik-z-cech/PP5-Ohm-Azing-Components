@@ -9,11 +9,66 @@
     <div class="d-flex justify-content-center p-3 w-100">
         <a href="{% url 'add-item' %}" aria-label="Add New Item" class="custom-button button-shadow">Add New Item</a>
     </div>
-    {% for item in items %}
-        {{ item.item_name }}
-        <a href="{% url 'edit-item' item_pk=item.pk %}" aria-label="Edit Item" class="custom-button button-shadow">Edit</a>
-        <a href="{% url 'item-delete-request' item_pk=item.pk %}" aria-label="Delete Item" class="custom-button button-shadow">Delete</a>
-        <hr>
-    {% endfor %}
+    <div>
+        Sorting + Pagination
+    </div>
+    {% if items|length > 0 %}
+        <table class="items-table mt-4">
+            <tr>
+                <th>
+                    SKU
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Price Per Unit 
+                </th>
+                <th>
+                    Units in stock
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+            {% for item in items %}
+                <tr>
+                    <td colspan="5">
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ item.item_sku }}
+                    </td>
+                    <td>
+                        {{ item.item_name }}
+                    </td>
+                    <td>
+                        {{ item.price_per_unit }}
+                    </td>
+                    <td>
+                        {{ item.item_stock}}
+                    </td>
+                    <td>
+                        <a href="{% url 'edit-item' item_pk=item.pk %}" aria-label="Edit Item" class="custom-button-table button-shadow">Edit</a>
+                        <a href="{% url 'item-delete-request' item_pk=item.pk %}" aria-label="Delete Item" class="custom-button-table button-shadow">Delete</a>
+                    </td>
+                <tr>
+            {% endfor %}
+            <tr>
+                <td colspan="5">
+                    <hr>
+                </td>
+            </tr>
+        </table>
+    {% else %}
+        <p class="text-center">
+            No items to display.
+        </p>
+    {% endif %}
+    <div>
+        Pages
+    </div>
 </div>
 {% endblock %}

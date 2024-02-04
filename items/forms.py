@@ -51,6 +51,11 @@ class ItemForm(forms.ModelForm):
             'placeholder': 'Enter item description (required)',
             'rows': 3,
         })
+        self.fields['item_stock'].widget.attrs.update({
+            'placeholder': 'Enter current stock amount',
+            'step': '1',
+            'min': '0',
+        })
         
     image_1 = forms.ImageField(label='Image 1', required=False, widget=CustomImageInputItem1)
     image_2 = forms.ImageField(label='Image 2', required=False, widget=CustomImageInputItem2)
