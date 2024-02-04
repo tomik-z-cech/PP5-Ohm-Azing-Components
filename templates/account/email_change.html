@@ -1,13 +1,14 @@
 {% extends "account/base_manage_email.html" %}
 {% load i18n %}
 {% load allauth %}
-{% block head_title %}
-    {% trans "Email Address" %}
-{% endblock head_title %}
+{% load static %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Email Address" %}
-    {% endelement %}
+<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-form.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="form-background">
+    <h1 class="text-center">
+        Email Address
+    </h1>
     {% if emailaddresses %}
         {% if current_emailaddress %}
             <p>
@@ -50,4 +51,6 @@
             {% endelement %}
         {% endslot %}
     {% endelement %}
+    </div>
+</div>
 {% endblock content %}

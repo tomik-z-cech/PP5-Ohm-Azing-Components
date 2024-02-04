@@ -1,14 +1,15 @@
-{% extends "account/base_manage_email.html" %}
+{% extends "base.html" %}
 {% load allauth i18n %}
-{% block head_title %}
-    {% trans "Email Addresses" %}
-{% endblock head_title %}
+{% load static %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Email Addresses" %}
-    {% endelement %}
+<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-form.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="form-background">    
+    <h1 class="text-center">
+        Existing Email Addresses
+    </h1>
     {% if emailaddresses %}
-        <p>{% trans 'The following email addresses are associated with your account:' %}</p>
+        <p class="text-center mb-4">{% trans 'The following email addresses are associated with your account:' %}</p>
         {% url 'account_email' as email_url %}
         {% element form form=form action=email_url method="post" %}
             {% slot body %}
@@ -38,40 +39,44 @@
                 {% endfor %}
             {% endslot %}
             {% slot actions %}
-                {% element button type="submit" name="action_primary" %}
-                    {% trans 'Make Primary' %}
-                {% endelement %}
-                {% element button tags="secondary" type="submit" name="action_send" %}
-                    {% trans 'Re-send Verification' %}
-                {% endelement %}
-                {% element button tags="danger,delete" type="submit" name="action_remove" %}
-                    {% trans 'Remove' %}
-                {% endelement %}
+            <div class="w-100 d-flex justify-content-around p-3">
+                <button type="submit" name="action_primary" class="btn btn-success button-shadow">
+                    Make Primary
+                </button>
+                <button tags="secondary" type="submit" name="action_send" class="btn btn-success button-shadow">
+                    Re-send Verification
+                </button>
+                <button tags="danger,delete" type="submit" name="action_remove" class="btn btn-danger button-shadow">
+                    Remove
+                </button>
+            </div>
             {% endslot %}
         {% endelement %}
     {% else %}
         {% include "account/snippets/warn_no_email.html" %}
     {% endif %}
     {% if can_add_email %}
-        {% element h2 %}
-            {% trans "Add Email Address" %}
-        {% endelement %}
+        <h1 class="text-center m-3">
+            Add Email Address
+        </h1>
         {% url 'account_email' as action_url %}
         {% element form form=form method="post" action=action_url %}
-            Hoi bef bod
             {% slot body %}
                 {% csrf_token %}
                 {% element fields form=form %}
                 {% endelement %}
             {% endslot %}
-            befac
             {% slot actions %}
-                {% element button name="action_add" type="submit" %}
-                    {% trans "Add Email" %}
-                {% endelement %}
+            <div class="w-100 d-flex justify-content-center p-3">
+                <button name="action_add" type="submit" class="btn btn-success button-shadow">
+                    Add Email
+                </button>
+            </div>
             {% endslot %}
         {% endelement %}
     {% endif %}
+    </div>
+</div>
 {% endblock content %}
 {% block extra_body %}
     <script type="text/javascript">

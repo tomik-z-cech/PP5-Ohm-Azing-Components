@@ -13,10 +13,10 @@
             <option value="1" {% if page_sort == 1 %}selected{% endif %}>Number DEC</option>
         </select>
         <select id="lengthOptions" class="form-control w-25 shadow-none">
-            <option value="5" {% if page_length == 5 %}selected{% endif %}>5 items per page</option>
-            <option value="10" {% if page_length == 10 %}selected{% endif %}>10 items per page</option>
-            <option value="20" {% if page_length == 20 %}selected{% endif %}>20 items per page</option>
-            <option value="0" {% if page_length == 0 %}selected{% endif %}>All items</option>
+            <option value="5" {% if page_length == 5 %}selected{% endif %}>5 invoices per page</option>
+            <option value="10" {% if page_length == 10 %}selected{% endif %}>10 invoices per page</option>
+            <option value="20" {% if page_length == 20 %}selected{% endif %}>20 invoices per page</option>
+            <option value="0" {% if page_length == 0 %}selected{% endif %}>All invoices</option>
         </select>
     </div>
     {% if invoices|length > 0 %}

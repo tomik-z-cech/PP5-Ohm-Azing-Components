@@ -1,34 +1,46 @@
-{% extends "account/base_entrance.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% load allauth account socialaccount %}
-{% block head_title %}
-    {% trans "Sign In" %}
-{% endblock head_title %}
+{% load static %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign In" %}
-    {% endelement %}
-    <p>
-        {% blocktrans %}If you have not created an account yet, then please
-    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-    </p>
-    {% url 'account_login' as login_url %}
-    {% element form form=form method="post" action=login_url tags="entrance,login" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" tags="prominent,login" %}
-                {% trans "Sign In" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-form.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="form-background">
+        <div class="w-100 d-flex justify-content-center p-3">
+            <h1>
+                Log In
+            </h1>
+        </div>
+        <div class="w-100 d-flex justify-content-center p-3 form-heading">
+            <p>
+                If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.
+            </p>
+        </div>
+        {% url 'account_login' as login_url %}
+        {% element form form=form method="post" action=login_url tags="entrance,login" %}
+            {% slot body %}
+                {% csrf_token %}
+                {% element fields form=form unlabeled=True %}
+                {% endelement %}
+                {% if redirect_field_value %}
+                    <input type="hidden"
+                        name="{{ redirect_field_name }}"
+                        value="{{ redirect_field_value }}" />
+                {% endif %}
+            {% endslot %}
+            {% slot actions %}
+            <!-- Custom reset link to fit the styling -->
+            <div class="w-100 text-center">
+                <a href="{% url 'account_reset_password' %}" class="custom-form-link">Forgot Your Password ?</a>
+            </div>
+            <div class="w-100 d-flex justify-content-center p-3">
+                <button type="submit" tags="prominent,login" class="btn btn-success button-shadow">
+                    Log In
+                </button>
+            </div>
+            {% endslot %}
+        {% endelement %}
+        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+    </div>
+</div>
 {% endblock content %}

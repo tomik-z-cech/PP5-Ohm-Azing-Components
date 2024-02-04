@@ -77,6 +77,10 @@ h1, h2, h3 {
     text-shadow: 2px 2px 4px var(--black);
 }
 
+p {
+    font-family: var(--header-font);
+}
+
 .add-shadow {
     box-shadow: 8px 8px 8px var(--black);
 }

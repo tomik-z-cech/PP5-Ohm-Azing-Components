@@ -1,14 +1,17 @@
-{% extends "account/base_entrance.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% load allauth %}
-{% block head_title %}
-    {% trans "Verify Your Email Address" %}
-{% endblock head_title %}
+{% load static %}
+
 {% block content %}
-    {% element h1 %}
+<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-form.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="form-background">
+    <h1 class="text-center">
         {% trans "Verify Your Email Address" %}
-    {% endelement %}
-    <p>
+    </h1>
+    <p class="text-center">
         {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}
     </p>
+    </div>
+</div>
 {% endblock content %}
