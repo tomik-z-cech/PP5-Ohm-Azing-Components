@@ -417,24 +417,23 @@ class OwnerInvoicesView(
         page_length = int(request.GET.get('page_length', 10))
         page_sort = int(request.GET.get('page_sort', 0))
         current_page = request.GET.get('page', 1)
-        print(page_length)
-        print(page_sort)
         if page_length != 0:
             if page_sort == 1:
-                paginated_items = Paginator(Invoice.objects.all().order_by('-invoice_number'), page_length)
+                paginated_items = Paginator(Invoice.objects.all().order_by('-date_added'), page_length)
             elif page_sort == 0:
-                paginated_items = Paginator(Invoice.objects.all().order_by('invoice_number'), page_length)
+                paginated_items = Paginator(Invoice.objects.all().order_by('date_added'), page_length)
             else:
-                paginated_items = Paginator(Invoice.objects.all().order_by('-invoice_number'), page_length)
+                paginated_items = Paginator(Invoice.objects.all().order_by('-date_added'), page_length)
             page_obj = paginated_items.get_page(current_page)
             paginator_nav = True
         else:
             if page_sort == 1:
-                page_obj = Invoice.objects.all().order_by('invoice_number')
+                page_obj = Invoice.objects.all().order_by('date_added')
             elif page_sort == 0:
-                page_obj = Invoice.objects.all().order_by('-invoice_number')
+                page_obj = Invoice.objects.all().order_by('-date_added')
             else:
-                page_obj = Invoice.objects.all().order_by('invoice_number')
+                page_obj = Invoice.objects.all().order_by('date_added')
+            paginator_nav = False
         return render(
             request,
             self.template_name,

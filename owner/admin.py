@@ -6,4 +6,4 @@ from owner.models import Invoice
 class CommentAdmin(admin.ModelAdmin):
     """Class registers Invoices to Admin"""
 
-    list_display = ("invoice_number",)
+    list_display = ("invoice_number","date_added",)

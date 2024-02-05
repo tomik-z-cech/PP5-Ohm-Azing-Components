@@ -9,8 +9,8 @@
     </h2>
     <div class="w-100 d-flex justify-content-around">
         <select id="sortingOptions" class="form-control w-25 shadow-none">
-            <option value="0" {% if page_sort == 0 %}selected{% endif %}>Number INC</option>
-            <option value="1" {% if page_sort == 1 %}selected{% endif %}>Number DEC</option>
+            <option value="0" {% if page_sort == 0 %}selected{% endif %}>Oldest first</option>
+            <option value="1" {% if page_sort == 1 %}selected{% endif %}>Newest first</option>
         </select>
         <select id="lengthOptions" class="form-control w-25 shadow-none">
             <option value="5" {% if page_length == 5 %}selected{% endif %}>5 invoices per page</option>
@@ -26,12 +26,15 @@
                     Number
                 </th>
                 <th>
+                    Date
+                </th>
+                <th>
                     Action
                 </th>
             </tr>
             {% for invoice in invoices %}
                 <tr>
-                    <td colspan="2">
+                    <td colspan="3">
                         <hr>
                     </td>
                 </tr>
@@ -40,13 +43,16 @@
                         {{ invoice.invoice_number }}
                     </td>
                     <td>
+                        {{ invoice.date_added|date:"d.m.Y" }}
+                    </td>
+                    <td>
                         <a href="{{invoice.pdf_invoice.url}}" target="_blank" aria-label="View Invoice" class="custom-button-table button-shadow">View</a>
                         <a href="{{invoice.pdf_invoice.url}}" download aria-label="Download Invoice" class="custom-button-table button-shadow">Download</a>
                     </td>
                 <tr>
             {% endfor %}
             <tr>
-                <td colspan="2">
+                <td colspan="3">
                     <hr>
                 </td>
             </tr>

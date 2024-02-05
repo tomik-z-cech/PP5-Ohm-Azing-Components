@@ -39,6 +39,7 @@ class Item(models.Model):
     image_3 = ResizedImageField(size=[400, 400], crop=['middle', 'center'], quality=75, upload_to="item_images/", force_format='WEBP', blank=True)
     item_stock = models.IntegerField(default=0)
     item_likes = models.ManyToManyField(User, related_name="item_likes", blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.item_name
