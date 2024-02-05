@@ -21,38 +21,50 @@
       Vault
     </div>
     <div class="col-4 col-lg-1">
-      <div class="dropdown d-flex justify-content-center align-items-center">
-        <a href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="text-center header-link shadow-none">
-          <i class="bi bi-person-circle"></i>
-          <br>
-          <span class="hide-less-991px">
-            Account
-          </span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          {% if user.is_authenticated %}
-            {% if user.is_superuser %}
-            <a class="dropdown-item" href="{% url 'owner' %}" aria-label="Admin Tools">
-              <i class="bi bi-journals"></i>
-              Admin Tools
-            </a>
-            {% endif %}
-            <a class="dropdown-item" href="{% url 'account_logout' %}" aria-label="Logout">
-              <i class="bi bi-box-arrow-right"></i>
-              Logout
-            </a>
-          {% else %}
-          <a class="dropdown-item" href="{% url 'account_signup' %}" aria-label="Register">
-            <i class="bi bi-key-fill"></i>
-            Register
-            </a>
-          <a class="dropdown-item" href="{% url 'account_login' %}" aria-label="Login">
-            <i class="bi bi-house-lock-fill"></i>
-            Login
-          </a>
-          {% endif %}
-        </div>
-      </div>
+      <nav class="navbar navbar-expand-lg">
+          <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+                <a class="nav-link header-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-person-circle"></i>
+                  <br>
+                  <span class="hide-less-991px">
+                    Account
+                  </span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                    <li>
+                      <a class="dropdown-item" href="{% url 'owner' %}" aria-label="Admin Tools">
+                        <i class="bi bi-journals"></i>
+                        Admin Tools
+                      </a>
+                    </li>
+                    {% endif %}
+                    <li class="dropdown-divider">
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'account_logout' %}" aria-label="Logout">
+                        <i class="bi bi-box-arrow-right"></i>
+                        Logout
+                      </a>
+                    </li>
+                  {% else %}
+                    <li>
+                      <a class="dropdown-item" href="{% url 'account_signup' %}" aria-label="Register">
+                        <i class="bi bi-key-fill"></i>
+                        Register
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'account_login' %}" aria-label="Login">
+                        <i class="bi bi-house-lock-fill"></i>
+                        Login
+                      </a>
+                    </li>
+                  {% endif %}
+                </ul>
+          </div>
+      </nav>
     </div>
   </div>
 </header>

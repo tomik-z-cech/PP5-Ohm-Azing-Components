@@ -154,17 +154,23 @@ header {
     height: 60%;
 }
 
+.dropdown-menu {
+    left: -10vw!important;
+    width: 15vw!important;
+    top: 120%!important;
+}
+
 .header-link {
-    color: var(--white);
-    font-size: 150%;
-    text-decoration: none;
-    font-family: var(--header-font);
-    text-shadow: 2px 2px 4px var(--black);
+    color: var(--white)!important;
+    font-size: 150%!important;
+    text-decoration: none!important;
+    font-family: var(--header-font)!important;
+    text-shadow: 2px 2px 4px var(--black)!important;
     transition: color 0.5s;
 }
 
 .header-link:hover {
-    color: var(--light-gold);
+    color: var(--light-gold)!important;
 }
 
 @media screen and (max-width: 991px) {
