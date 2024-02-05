@@ -155,9 +155,32 @@ header {
 }
 
 .dropdown-menu {
-    left: -10vw!important;
+    left: 50%!important;
     width: 15vw!important;
     top: 120%!important;
+    border-radius: 0px;
+    font-family: var(--header-font)!important;
+    background-color: var(--light-blue)!important;
+    transform: translate(-100%, 0%);
+}
+
+.dropdown-menu a {
+    color: var(--white)!important;
+    font-size: 120%;
+    transition: color 0.5s;
+}
+
+.dropdown-menu a:hover {
+    color: var(--light-gold)!important;
+    background-color: var(--light-blue)!important;
+}
+
+.dropdown-menu.show {
+    border: 1px solid var(--white);
+}
+
+.dropdown-divider {
+    border-top: 1px solid var(--white);
 }
 
 .header-link {
@@ -185,7 +208,7 @@ header {
     }
 
     .header-link {
-        font-size: 200%;
+        font-size: 200%!important;
     }
 
     header {
@@ -455,6 +478,25 @@ label[for="id_image_3"] {
     color: var(--light-gold);
 }
 
+/** ---------------------- MODALS ------------------------ **/
+
+.modal-content {
+    background-color: var(--light-blue);
+}
+
+.modal-title {
+    color: var(--white);
+}
+
+.modal p {
+    color: var(--white);
+}
+
+.modal ul {
+    list-style: none;
+    
+}
+
 /** ------------------------------- ALLAUTH ---------------------------- **/
 
 .form-heading a {
@@ -512,4 +554,8 @@ label[for="id_image_3"] {
 #id_password1:hover,
 #id_password2:hover {
     border: 1px solid var(--black)!important;
+}
+
+.form-background ul li {
+    font-family: var(--header-font);
 }
