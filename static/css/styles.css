@@ -559,3 +559,41 @@ label[for="id_image_3"] {
 .form-background ul li {
     font-family: var(--header-font);
 }
+
+/* LOGIN */
+
+#id_password+.helptext {
+    display: none;
+}
+
+#id_password,
+#id_login {
+    background: none;
+    border: 1px solid var(--white);
+    font-family: var(--header-font);
+    padding: 2px;
+    width: 50%;
+    color: var(--white);
+    transition: border 0.5s;
+}
+
+#id_password::placeholder,
+#id_login::placeholder {
+    color: var(--black)!important;
+}
+
+#id_password:hover,
+#id_login:hover {
+    border: 1px solid var(--black)!important;
+}
+
+.custom-form-link {
+    text-decoration: none;
+    color: var(--white);
+    transition: color 0.5s;
+}
+
+.custom-form-link:hover {
+    text-decoration: none;
+    color: var(--light-gold);
+}

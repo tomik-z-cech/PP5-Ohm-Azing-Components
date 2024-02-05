@@ -37,3 +37,14 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function() {
+            $('form:first').submit(function(){
+                $('#loader-container').css("display", "flex");
+            });
+        });
+    </script>
+{% endblock %}

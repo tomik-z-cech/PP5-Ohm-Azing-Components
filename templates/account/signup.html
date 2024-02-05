@@ -138,10 +138,13 @@
         let passOK4 = false;
 
         $(document).ready(function () {
+            $('form:first').submit(function(){
+                $('#loader-container').css("display", "flex");
+            });
             // Initially hide register button
             $("#registerSubmit").hide();
             // If any registration fields change
-            $("#id_password1, #id_email, #id_email2, #id_username").on("input", function() {
+            $("#id_password1, #id_password2, #id_email, #id_email2, #id_username").on("input", function() {
                 // If pasword empty change color to white of all conditions
                 if ($("#id_password1").val().length < 1){
                     $("#registerSubmit").hide();
@@ -192,7 +195,7 @@
                     };
                 };
                 // All 4 conditions are true and other fields are not empty
-                if (passOK1 == true && passOK1 == true && passOK1 == true && passOK1 == true && $("#id_username").val().length > 0 && $("#id_email").val().length > 0 && $("#id_email2").val().length > 0){
+                if (passOK1 == true && passOK1 == true && passOK1 == true && passOK1 == true && $("#id_username").val().length > 0 && $("#id_email").val().length > 0 && $("#id_email2").val().length > 0 && $("#id_password2").val().length > 0 && $("#id_password2").val() == $("#id_password1").val()){
                     // Show register buttton
                     $("#registerSubmit").show();
                 } else {
