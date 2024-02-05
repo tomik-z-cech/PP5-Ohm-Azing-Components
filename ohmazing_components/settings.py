@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "landing",
     "items",
     "owner",
+    "profilemanager",
 ]
 
 MIDDLEWARE = [

@@ -3,8 +3,13 @@
 {% load static %}
 
 {% block content %}
-<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-form.jpg" %}') no-repeat fixed top right / cover;">
-    <div class="form-background">
+<div class="container wrapper d-flex justify-content-center align-items-center">
+    <div class="form-background add-shadow">
+        <div class="w-100 d-flex justify-content-end">
+            <a href="{% url 'home' %}" aria-label="Close" class="close-form">
+                <i class="bi bi-x"></i>
+            </a>
+        </div>
         <div class="w-100 d-flex justify-content-center p-3">
             <h1>
                 Register
@@ -28,7 +33,7 @@
         {% endslot %}
         {% slot actions %}
             <div class="w-100 d-flex justify-content-center p-3">
-                <button tags="prominent,signup" type="submit" class="btn btn-success button-shadow">
+                <button tags="prominent,signup" type="submit" class="custom-button button-shadow">
                     Register
                 </button>
             </div>

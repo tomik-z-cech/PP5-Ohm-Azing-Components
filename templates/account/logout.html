@@ -7,28 +7,33 @@
 {% block content %}
 <div class="container wrapper d-flex justify-content-center align-items-center">
     <div class="form-background add-shadow">
-    <h1 class="text-center">
-        Log Out
-    </h1>
-        <p class="text-center">{% trans 'Are you sure you want to log out?' %}</p>
-    {% url 'account_logout' as action_url %}
-    {% element form method="post" action=action_url no_visible_fields=True %}
-        {% slot body %}
-            {% csrf_token %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-        <div class="w-100 d-flex justify-content-center p-3">
-            <button type="submit" class="custom-button button-shadow">
-                Log Out
-            <button>
+        <div class="w-100 d-flex justify-content-end">
+            <a href="{% url 'home' %}" aria-label="Close" class="close-form">
+                <i class="bi bi-x"></i>
+            </a>
         </div>
-        {% endslot %}
-    {% endelement %}
+        <h1 class="text-center">
+            Log Out
+        </h1>
+            <p class="text-center">{% trans 'Are you sure you want to log out?' %}</p>
+        {% url 'account_logout' as action_url %}
+        {% element form method="post" action=action_url no_visible_fields=True %}
+            {% slot body %}
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                    <input type="hidden"
+                        name="{{ redirect_field_name }}"
+                        value="{{ redirect_field_value }}" />
+                {% endif %}
+            {% endslot %}
+            {% slot actions %}
+            <div class="w-100 d-flex justify-content-center p-3">
+                <button type="submit" class="custom-button button-shadow">
+                    Log Out
+                <button>
+            </div>
+            {% endslot %}
+        {% endelement %}
     </div>
 </div>
 {% endblock content %}

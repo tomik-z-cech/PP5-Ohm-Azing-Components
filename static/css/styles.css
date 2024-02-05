@@ -77,7 +77,7 @@ h1, h2, h3 {
     text-shadow: 2px 2px 4px var(--black);
 }
 
-p {
+p, th {
     font-family: var(--header-font);
 }
 
@@ -160,6 +160,7 @@ header {
     text-decoration: none;
     font-family: var(--header-font);
     text-shadow: 2px 2px 4px var(--black);
+    transition: color 0.5s;
 }
 
 .header-link:hover {
@@ -349,6 +350,7 @@ footer a:hover {
 
 .form-background label {
     font-family: var(--header-font);
+    width: 40%;
 }
 
 .selectmultiple,
@@ -363,6 +365,7 @@ select
     color: var(--white)!important;
     border-radius: 0px!important;
     border: 1px solid var(--white)!important;
+    transition: border 0.5s;
 }
 
 .selectmultiple:focus,
@@ -409,6 +412,7 @@ select option:checked {
     color: var(--white);
     font-size: 150%;
     text-decoration: none;
+    transition: color 0.5s;
 }
 
 .close-form:hover {
@@ -443,4 +447,63 @@ label[for="id_image_3"] {
 .pagination-nav a:hover {
     font-family: var(--header-font);
     color: var(--light-gold);
+}
+
+/** ------------------------------- ALLAUTH ---------------------------- **/
+
+.form-heading a {
+    text-decoration: none;
+    color: var(--darker-black);
+    transition: color 0.5s;
+}
+
+.form-heading a:hover {
+    text-decoration: none;
+    color: var(--light-gold);
+}
+
+/* REGISTER */
+
+#id_email,
+#id_email2,
+#id_username,
+#id_password1,
+#id_password2 {
+    background: none;
+    border: 1px solid var(--white);
+    font-family: var(--header-font);
+    padding: 2px;
+    width: 50%;
+    color: var(--white);
+    transition: border 0.5s;
+}
+
+
+#id_email::placeholder,
+#id_email2::placeholder,
+#id_username::placeholder,
+#id_password1::placeholder,
+#id_password2::placeholder {
+    color: var(--black)!important;
+}
+
+
+#id_email:focus,
+#id_email2:focus,
+#id_username:focus,
+#id_password1:focus,
+#id_password2:focus {
+    background-color: var(--light-blue)!important;
+    color: var(--white)!important;
+    border: 1px solid var(--dark-gold)!important;
+    box-shadow: none!important;
+    border-radius: 0%!important;
+}
+
+#id_email:hover,
+#id_email2:hover,
+#id_username:hover,
+#id_password1:hover,
+#id_password2:hover {
+    border: 1px solid var(--black)!important;
 }
