@@ -230,6 +230,7 @@ footer a {
     text-decoration: none;
     color: var(--white);
     font-family: var(--header-font);
+    transition: color 0.5s;
 }
 
 footer a:hover {
@@ -465,6 +466,7 @@ label[for="id_image_3"] {
 input[type=checkbox] {
     outline: 2px solid var(--dark-blue);
     accent-color: var(--dark-blue);
+    transition: accent-color 0.5s;
 }
 
 input[type=checkbox]:checked {
