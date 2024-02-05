@@ -462,6 +462,17 @@ label[for="id_image_3"] {
     font-family: var(--header-font);
 }
 
+input[type=checkbox] {
+    outline: 2px solid var(--dark-blue);
+    accent-color: var(--dark-blue);
+}
+
+input[type=checkbox]:checked {
+    outline: 2px solid var(--dark-blue);
+}
+
+/** ---------------------- PAGINATOR ------------------------ **/
+
 .pagination-nav {
     font-family: var(--header-font);
     font-size: 125%;

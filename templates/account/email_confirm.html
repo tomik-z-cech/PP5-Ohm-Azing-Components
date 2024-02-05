@@ -4,9 +4,11 @@
 {% load allauth %}
 {% load static %}
 
+{% block nav_name %}Confirm Email{% endblock %}
+
 {% block content %}
-<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-form.jpg" %}') no-repeat fixed top right / cover;">
-    <div class="form-background">
+<div class="container wrapper d-flex justify-content-center align-items-center">
+    <div class="form-background add-shadow">
         <h1 class="text-center">
             Confirm Email Address
         </h1>
@@ -21,7 +23,7 @@
                     {% slot actions %}
                         {% csrf_token %}
                         <div class="w-100 d-flex justify-content-center p-3">
-                            <button type="submit" class="btn btn-success button-shadow">
+                            <button type="submit" class="custom-button button-shadow">
                                 Confirm
                             </button>
                         </div>
@@ -41,3 +43,15 @@
     </div>
 </div>
 {% endblock content %}
+
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function() {
+            $('form:first').submit(function(){
+                $('#loader-container').css("display", "flex");
+            });
+        });
+    </script>
+{% endblock %}
