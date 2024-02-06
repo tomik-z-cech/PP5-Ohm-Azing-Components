@@ -1,4 +1,5 @@
 # Imports
+from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect  # Responses
 from django.views import generic
 from django.db.models.functions import Lower
@@ -16,8 +17,6 @@ from items.forms import CategoryForm, ItemForm
 from owner.models import Invoice
 
 
-
-# Create your views here.
 class OwnerMainView(generic.ListView, LoginRequiredMixin, UserPassesTestMixin):
     """
     View generates main view for owner (site admin)
@@ -66,6 +65,7 @@ class DeleteCategoryView(
             Category, pk=category_pk
         )  # Get category
         requested_category.delete()  # Delete category from DB
+        messages.info(request, f'Category {requested_category.category_name} deleted.')
         return redirect("owner")  # Return to admin tools
     
 class AddCategoryView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
@@ -76,7 +76,7 @@ class AddCategoryView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
     def test_func(self):
         """Test function to ensure user is superuser"""
         return self.request.user.is_superuser
-
+    
     template_name = "owner/new_category.html"  # Template
     form = CategoryForm  # New category form
     success_url = "/owner/"  # URL to redirect after successful creation
@@ -99,6 +99,8 @@ class AddCategoryView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
         """
         new_category = self.form(request.POST, request.FILES)
         if new_category.is_valid():
+            new_category_name = new_category.cleaned_data['category_name']
+            messages.info(request, f'Category {new_category_name} created.')
             new_category.save()  # Save category into database
         else:
             new_category = self.form()
@@ -153,6 +155,7 @@ class EditCategoryView(
             edited_category.category_name = edit_form.cleaned_data["category_name"]
             edited_category.category_image = edit_form.cleaned_data["category_image"]
             edited_category.save()  # Save category into database
+            messages.info(request, f'Category {edited_category.category_name} changed.')
         else:
             edit_form = self.form()
         return redirect("owner")  # Redirect back to admin tools

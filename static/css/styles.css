@@ -482,7 +482,7 @@ input[type=checkbox]:checked {
 
 .message-container {
     position: fixed;
-    bottom: 13vh;
+    bottom: 5vh;
     right: 5vw;
     z-index: 999;
 }
