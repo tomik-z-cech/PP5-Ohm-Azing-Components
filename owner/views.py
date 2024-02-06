@@ -323,11 +323,13 @@ class AddItemView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
         """
         Function triggers when add category button pressed
         """
-        new_category = self.form(request.POST, request.FILES)
-        if new_category.is_valid():
-            new_category.save()  # Save category into database
+        new_item = self.form(request.POST, request.FILES)
+        if new_item.is_valid():
+            new_item.save()  # Save item into database
+            new_item_name = new_item.cleaned_data['item_name']
+            messages.info(request, f'Item {new_item_name} added.')
         else:
-            new_category = self.form()
+            new_item = self.form()
         return redirect("items")  # Redirect back to admin tools
     
 class EditItemView(
@@ -368,6 +370,7 @@ class EditItemView(
 
         if edit_form.is_valid():
             edited_item.save()  # Save category into database
+            messages.info(request, f'Item {edited_item.item_name} changed.')
         else:
             edit_form = self.form()
         return redirect("items")  # Redirect back to admin tools
@@ -399,6 +402,7 @@ class DeleteItemView(
             Item, pk=item_pk
         )  # Get Item
         requested_item.delete()  # Delete category from DB
+        messages.info(request, f'Item {requested_item.item_name} deleted.')
         return redirect("items")  # Return to admin tools
     
 class OwnerInvoicesView(

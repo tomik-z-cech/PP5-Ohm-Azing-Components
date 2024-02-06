@@ -118,6 +118,7 @@
 {% endblock %}
 
 {% block extra_js %}
+{{block.super}}
 <script>
     function prepareNewUrl(currentUrl, parameters) {
         for (let i = 0; i < parameters.length; i += 2) {
