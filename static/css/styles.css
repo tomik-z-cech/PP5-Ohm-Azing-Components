@@ -142,7 +142,7 @@ p, th {
 header {
     background-color: var(--light-blue);
     height: 12vh;
-    border-bottom: 2px solid var(--black);
+    border-bottom: 2px solid var(--dark-blue);
 }
 
 #logo-image {
@@ -196,6 +196,11 @@ header {
     color: var(--light-gold)!important;
 }
 
+.nav-link {
+    padding-left: 0!important;
+    padding-right: 0!important;
+}
+
 @media screen and (max-width: 991px) {
     #logo-container {
         display: flex;
@@ -222,7 +227,7 @@ footer {
     background-color: var(--light-blue);
     padding: 5px 0;
     width: 100%;
-    border-top: 2px solid var(--black);
+    border-top: 2px solid var(--dark-blue);
     height: 10vh;
 }
 
@@ -471,6 +476,39 @@ input[type=checkbox] {
 
 input[type=checkbox]:checked {
     outline: 2px solid var(--dark-blue);
+}
+
+/** ---------------------- TOASTS ------------------------ **/
+
+.message-container {
+    position: fixed;
+    bottom: 13vh;
+    right: 5vw;
+    z-index: 999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast {
+    border-radius: 0px;
+    border: 1px solid var(--dark-blue)!important;
+    font-family: var(--header-font);
+}
+
+.toast-header {
+    background-color: var(--light-blue);
+    border-radius: 0px!important;
+    color:var(--white);
+}
+
+.toast-body {
+    color: var(--dark-blue);
+}
+
+.toast-capper {
+    height: 2px;
 }
 
 /** ---------------------- PAGINATOR ------------------------ **/
