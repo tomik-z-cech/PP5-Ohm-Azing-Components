@@ -14,4 +14,5 @@ urlpatterns = [
     path("edit-item/<int:item_pk>/", views.EditItemView.as_view(), name="edit-item"),
     path("delete-item/<int:item_pk>/", views.DeleteItemView.as_view(), name="delete-item"),
     path("invoices/", views.OwnerInvoicesView.as_view(), name="invoices"),
+    path("download-invoice/<int:invoice_pk>/", views.DownloadInvoiceView.as_view(), name="download-invoice"),
 ]

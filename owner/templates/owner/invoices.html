@@ -47,7 +47,7 @@
                     </td>
                     <td>
                         <a href="{{invoice.pdf_invoice.url}}" target="_blank" aria-label="View Invoice" class="custom-button-table button-shadow">View</a>
-                        <a href="{{invoice.pdf_invoice.url}}" download aria-label="Download Invoice" class="custom-button-table button-shadow">Download</a>
+                        <a href="{% url 'download-invoice' invoice_pk=invoice.pk %}" download aria-label="Download Invoice" class="custom-button-table button-shadow">Download ZIP</a>
                     </td>
                 <tr>
             {% endfor %}

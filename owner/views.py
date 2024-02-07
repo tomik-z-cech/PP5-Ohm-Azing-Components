@@ -1,4 +1,6 @@
 # Imports
+import io
+import zipfile
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect  # Responses
 from django.views import generic
@@ -12,6 +14,8 @@ from django.contrib.auth.mixins import (
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Count
+from django.http import HttpResponse
+from reportlab.pdfgen import canvas
 from items.models import Category, Item
 from items.forms import CategoryForm, ItemForm
 from owner.models import Invoice
@@ -451,3 +455,28 @@ class OwnerInvoicesView(
                 "page_length":page_length,
             },
         )
+        
+        
+class DownloadInvoiceView(generic.View, LoginRequiredMixin, UserPassesTestMixin):
+    """
+    View generates main view for owner (site admin)
+    """
+
+    template_name = "owner/categories.html"  # Template
+    
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+
+    def get(self, request, invoice_pk, *args, **kwargs):
+        requested_invoice = get_object_or_404(Invoice, pk=invoice_pk)
+        print(requested_invoice)
+        with requested_invoice.pdf_invoice.open(mode='rb') as pdf_file:
+            pdf_content = pdf_file.read()
+        zip_buffer = io.BytesIO()
+        with zipfile.ZipFile(zip_buffer, 'w') as zip_file:
+            zip_file.writestr(f'{requested_invoice.invoice_number}.pdf', pdf_content)
+        response = HttpResponse(zip_buffer.getvalue(), content_type='application/zip')
+        response['Content-Disposition'] = f'attachment; filename={requested_invoice.invoice_number}.zip'
+
+        return response
