@@ -648,3 +648,35 @@ input[type=checkbox]:checked {
     text-decoration: none;
     color: var(--light-gold);
 }
+
+/** ------------------------------- LANDING ---------------------------- **/
+
+.jumbotron-wrapper {
+    height: 74vh;
+    background-color: var(--light-blue-opaque);
+}
+
+.main-banner {
+    height: 100%;
+}
+
+.main-banner-message {
+    height: 65%;
+    width: 75%;
+    background-color: var(--light-blue-opaque);
+}
+
+.main-banner-message-text {
+    color: var(--white);
+    font-size: 130%;
+}
+
+.side-banner {
+    height: 37vh;
+}
+
+.side-banner-message {
+    height: 80%;
+    width: 80%;
+    background-color: var(--light-blue-opaque);
+}
