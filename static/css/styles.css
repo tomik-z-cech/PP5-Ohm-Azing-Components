@@ -468,6 +468,10 @@ label[for="id_image_3"] {
     font-family: var(--header-font);
 }
 
+input[type="radio"] {
+    accent-color: var(--dark-blue);
+}
+
 input[type=checkbox] {
     outline: 2px solid var(--dark-blue);
     accent-color: var(--dark-blue);

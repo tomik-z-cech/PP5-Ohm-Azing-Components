@@ -2,79 +2,86 @@
 {% load allauth i18n %}
 {% load static %}
 
+{% block nav_name %}Change Email{% endblock %}
+
 {% block content %}
-<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-form.jpg" %}') no-repeat fixed top right / cover;">
-    <div class="form-background">    
-    <h1 class="text-center">
-        Existing Email Addresses
-    </h1>
-    {% if emailaddresses %}
-        <p class="text-center mb-4">{% trans 'The following email addresses are associated with your account:' %}</p>
-        {% url 'account_email' as email_url %}
-        {% element form form=form action=email_url method="post" %}
-            {% slot body %}
-                {% csrf_token %}
-                {% for radio in emailaddress_radios %}
-                    {% with emailaddress=radio.emailaddress %}
-                        {% element field type="radio" checked=radio.checked name="email" value=emailaddress.email id=radio.id %}
-                            {% slot label %}
-                                {{ emailaddress.email }}
-                                {% if emailaddress.verified %}
-                                    {% element badge tags="success,email,verified" %}
-                                        {% translate "Verified" %}
-                                    {% endelement %}
-                                {% else %}
-                                    {% element badge tags="warning,email,unverified" %}
-                                        {% translate "Unverified" %}
-                                    {% endelement %}
-                                {% endif %}
-                                {% if emailaddress.primary %}
-                                    {% element badge tags="email,primary" %}
-                                        {% translate "Primary" %}
-                                    {% endelement %}
-                                {% endif %}
-                            {% endslot %}
-                        {% endelement %}
-                    {% endwith %}
-                {% endfor %}
-            {% endslot %}
-            {% slot actions %}
-            <div class="w-100 d-flex justify-content-around p-3">
-                <button type="submit" name="action_primary" class="btn btn-success button-shadow">
-                    Make Primary
-                </button>
-                <button tags="secondary" type="submit" name="action_send" class="btn btn-success button-shadow">
-                    Re-send Verification
-                </button>
-                <button tags="danger,delete" type="submit" name="action_remove" class="btn btn-danger button-shadow">
-                    Remove
-                </button>
-            </div>
-            {% endslot %}
-        {% endelement %}
-    {% else %}
-        {% include "account/snippets/warn_no_email.html" %}
-    {% endif %}
-    {% if can_add_email %}
-        <h1 class="text-center m-3">
-            Add Email Address
+<div class="container wrapper d-flex justify-content-center align-items-center">
+    <div class="form-background add-shadow">
+        <div class="w-100 d-flex justify-content-end">
+            <a href="{% url 'profile-manager' %}" aria-label="Close" class="close-form">
+                <i class="bi bi-x"></i>
+            </a>
+        </div>    
+        <h1 class="text-center">
+            Existing Email Addresses
         </h1>
-        {% url 'account_email' as action_url %}
-        {% element form form=form method="post" action=action_url %}
-            {% slot body %}
-                {% csrf_token %}
-                {% element fields form=form %}
-                {% endelement %}
-            {% endslot %}
-            {% slot actions %}
-            <div class="w-100 d-flex justify-content-center p-3">
-                <button name="action_add" type="submit" class="btn btn-success button-shadow">
-                    Add Email
-                </button>
-            </div>
-            {% endslot %}
-        {% endelement %}
-    {% endif %}
+        {% if emailaddresses %}
+            <p class="text-center mb-4">{% trans 'The following email addresses are associated with your account:' %}</p>
+            {% url 'account_email' as email_url %}
+            {% element form form=form action=email_url method="post" %}
+                {% slot body %}
+                    {% csrf_token %}
+                    {% for radio in emailaddress_radios %}
+                        {% with emailaddress=radio.emailaddress %}
+                            {% element field type="radio" checked=radio.checked name="email" value=emailaddress.email id=radio.id %}
+                                {% slot label %}
+                                    {{ emailaddress.email }}
+                                    {% if emailaddress.verified %}
+                                        {% element badge tags="success,email,verified" %}
+                                            {% translate "Verified" %}
+                                        {% endelement %}
+                                    {% else %}
+                                        {% element badge tags="warning,email,unverified" %}
+                                            {% translate "Unverified" %}
+                                        {% endelement %}
+                                    {% endif %}
+                                    {% if emailaddress.primary %}
+                                        {% element badge tags="email,primary" %}
+                                            {% translate "Primary" %}
+                                        {% endelement %}
+                                    {% endif %}
+                                {% endslot %}
+                            {% endelement %}
+                        {% endwith %}
+                    {% endfor %}
+                {% endslot %}
+                {% slot actions %}
+                <div class="w-100 d-flex justify-content-around p-3">
+                    <button type="submit" name="action_primary" class="custom-button button-shadow">
+                        Make Primary
+                    </button>
+                    <button tags="secondary" type="submit" name="action_send" class="custom-button button-shadow">
+                        Re-send Verification
+                    </button>
+                    <button tags="danger,delete" type="submit" name="action_remove" class="custom-button button-shadow">
+                        Remove
+                    </button>
+                </div>
+                {% endslot %}
+            {% endelement %}
+        {% else %}
+            {% include "account/snippets/warn_no_email.html" %}
+        {% endif %}
+        {% if can_add_email %}
+            <h1 class="text-center m-3">
+                Add Email Address
+            </h1>
+            {% url 'account_email' as action_url %}
+            {% element form form=form method="post" action=action_url %}
+                {% slot body %}
+                    {% csrf_token %}
+                    {% element fields form=form %}
+                    {% endelement %}
+                {% endslot %}
+                {% slot actions %}
+                <div class="w-100 d-flex justify-content-center p-3">
+                    <button name="action_add" type="submit" class="custom-button button-shadow">
+                        Add Email
+                    </button>
+                </div>
+                {% endslot %}
+            {% endelement %}
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
