@@ -18,8 +18,8 @@
             <option value="3" {% if page_sort == 3 %}selected{% endif %}>Price High - Low</option>
             <option value="4" {% if page_sort == 4 %}selected{% endif %}>Stock Low - High</option>
             <option value="5" {% if page_sort == 5 %}selected{% endif %}>Stock High - Low</option>
-            <option value="6" {% if page_sort == 6 %}selected{% endif %}>Most Liked</option>
-            <option value="7" {% if page_sort == 7 %}selected{% endif %}>Least Liked</option>
+            <option value="6" {% if page_sort == 6 %}selected{% endif %}>Best Rated</option>
+            <option value="7" {% if page_sort == 7 %}selected{% endif %}>Worst Rated</option>
         </select>
         <select id="lengthOptions" class="form-control w-25 shadow-none">
             <option value="5" {% if page_length == 5 %}selected{% endif %}>5 items per page</option>
@@ -44,7 +44,7 @@
                     Units in stock
                 </th>
                 <th>
-                    Likes
+                    Rating
                 </th>
                 <th>
                     Action

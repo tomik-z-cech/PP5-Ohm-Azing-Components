@@ -3,6 +3,8 @@ from django_resized import ResizedImageField
 from django.db import models
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
+from django.contrib.postgres.fields import ArrayField
+
 
 
 class UserProfile(models.Model):
@@ -21,6 +23,8 @@ class UserProfile(models.Model):
     county = models.CharField(max_length=50, blank=False, null=True)
     post_code = models.CharField(max_length=15, blank=False, null=True)
     country = CountryField(blank=False, null=True)
+    user_wishlist = ArrayField(models.CharField(max_length=254), blank=True, null=True)
+
 
     class Meta:
         verbose_name = "User Profile"

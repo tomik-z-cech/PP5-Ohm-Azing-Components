@@ -30,7 +30,7 @@ class ItemForm(forms.ModelForm):
     """
     class Meta:
         model = Item
-        exclude = ['item_likes', 'date_added']
+        exclude = ['item_dislikes', 'item_likes', 'date_added']
         
     def __init__(self, *args, **kwargs):
         super(ItemForm, self).__init__(*args, **kwargs)

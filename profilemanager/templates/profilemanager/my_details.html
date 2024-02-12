@@ -12,7 +12,16 @@
         </h1>
     </div>
     <div class="col-12 heading add-shadow">
-        {{ profile_form|crispy }}
+        <p>
+            Account Details
+        </p>
+        <p>
+            Personal Details
+        </p>
+        <p>
+            Shipping Details
+        </p>
+        {{ profile_form.address_1|as_crispy_field }}
     </div>
 </div>
 {% endblock %}
