@@ -16,7 +16,7 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=50, blank=False, null=True)
     phone_number = models.CharField(max_length=20, blank=False, null=True)
     marketing = models.BooleanField()
-    profile_picture = ResizedImageField(size=[300, 300], crop=['middle', 'center'], quality=75, upload_to="item_images/", force_format='WEBP', blank=True)
+    profile_picture = ResizedImageField(size=[300, 300], crop=['middle', 'center'], quality=75, upload_to="profile_pictures/", force_format='WEBP', blank=True)
     address_1 = models.CharField(max_length=100, blank=False, null=True)
     address_2 = models.CharField(max_length=100, blank=False, null=True)
     city = models.CharField(max_length=50, blank=False, null=True)
