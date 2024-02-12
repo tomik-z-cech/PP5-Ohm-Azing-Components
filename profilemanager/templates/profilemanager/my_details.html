@@ -5,7 +5,7 @@
 {% block nav_name %}My Details{% endblock %}
 
 {% block content %}
-<div class="container wrapper">
+<div class="container wrapper p-3">
     <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
         <h1>
             My Details
@@ -15,6 +15,8 @@
         <h2>
             Account Details
         </h2>
+        <a href="{% url 'account_change_password' %}" class="btn btn-warning button-shadow" aria-label="Change password">Change password</a>
+          <a href="{% url 'account_email' %}" class="btn btn-warning button-shadow" aria-label="Change email">Change Email</a>
         <hr>
         <p>
             Personal Details

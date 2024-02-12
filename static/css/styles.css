@@ -649,6 +649,26 @@ input[type=checkbox]:checked {
     color: var(--light-gold);
 }
 
+/* CHANGE PASSWORD */
+
+#id_oldpassword {
+    background: none;
+    border: 1px solid var(--white);
+    font-family: var(--header-font);
+    padding: 2px;
+    width: 50%;
+    color: var(--white);
+    transition: border 0.5s;
+}
+
+#id_oldpassword::placeholder {
+    color: var(--black)!important;
+}
+
+#id_oldpassword:hover {
+    border: 1px solid var(--black)!important;
+}
+
 /** ------------------------------- LANDING ---------------------------- **/
 
 .jumbotron-wrapper {
