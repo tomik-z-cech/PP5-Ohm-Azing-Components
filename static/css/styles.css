@@ -624,6 +624,13 @@ input[type=checkbox]:checked {
     font-family: var(--header-font);
 }
 
+.form-background ul li:nth-child(1),
+.form-background ul li:nth-child(2),
+.form-background ul li:nth-child(3),
+.form-background ul li:nth-child(4) {
+    transition: color 0.75s;
+}
+
 /* LOGIN */
 
 #id_password+.helptext {
@@ -718,4 +725,32 @@ input[type=checkbox]:checked {
 
 .accordion-item {
     border-radius: 0px!important;
+    background-color: var(--black);
+}
+
+.accordion-header {
+    background-color: var(--dark-blue);
+    color: var(--white);
+}
+
+.accordion-collapse {
+    background-color: var(--light-blue);
+}
+
+.accordion-button {
+    background-color: var(--dark-blue);
+    color: var(--white);
+}
+
+.accordion-button:hover {
+    text-decoration: underline;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--white);
+    background-color: var(--dark-blue);
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: none;
 }
