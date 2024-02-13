@@ -34,8 +34,11 @@
             {% endif %}
         {% endslot %}
         {% slot actions %}
-            <div class="w-100 d-flex justify-content-center p-3">
-                <button tags="prominent,signup" type="submit" class="custom-button button-shadow" id="registerSubmit">
+            <div class="w-100 text-center p-3" id="register-submit-container">
+                <p class="register-submit-item">
+                    By clicking the register button, you do agree to our Terms & Conditions.
+                </p>
+                <button tags="prominent,signup" type="submit" class="custom-button button-shadow register-submit-item">
                     Register
                 </button>
             </div>
@@ -97,112 +100,11 @@
 {% block extra_js %}
     {{ block.super }}
     <script>
-        // Common Passwords to compare
-        let tooCommonPass = [
-            "password",
-            "123456",
-            "123456789",
-            "qwerty",
-            "abc123",
-            "111111",
-            "123123",
-            "admin",
-            "letmein",
-            "welcome",
-            "monkey",
-            "1234",
-            "12345",
-            "1234567",
-            "12345678",
-            "1234567890",
-            "password1",
-            "123",
-            "1234",
-            "12345",
-            "123456",
-            "1234567",
-            "12345678",
-            "123456789",
-            "1234567890",
-            "qwertyuiop",
-            "asdfghjkl",
-            "zxcvbnm",
-            "123qwe",
-            "123abc"
-        ];
-
-        // Checkers of 4 password conditions
-        let passOK1 = false;
-        let passOK2 = false;
-        let passOK3 = false;
-        let passOK4 = false;
-
         $(document).ready(function () {
             $('form:first').submit(function(){
                 $('#loader-container').css("display", "flex");
             });
-            // Initially hide register button
-            $("#registerSubmit").hide();
-            // If any registration fields change
-            $("#id_password1, #id_password2, #id_email, #id_email2, #id_username").on("input", function() {
-                // If pasword empty change color to white of all conditions
-                if ($("#id_password1").val().length < 1){
-                    $("#registerSubmit").hide();
-                    $(".form-background ul li:nth-child(1)").css("color", "var(--white)");
-                    $(".form-background ul li:nth-child(2)").css("color", "var(--white)");
-                    $(".form-background ul li:nth-child(3)").css("color", "var(--white)");
-                    $(".form-background ul li:nth-child(4)").css("color", "var(--white)");
-                } else {
-                    // If password longer then 8 characters
-                    if ($("#id_password1").val().length > 8) {
-                        // Highlight condition passed and set checker
-                        $(".form-background ul li:nth-child(2)").css("color", "var(--light-gold)");
-                        passOK1 = true;
-                    } else {
-                        // Make condition not highlighted and unset checker
-                        $(".form-background ul li:nth-child(2)").css("color", "var(--white)");
-                        passOK1 = false;
-                    };
-                    // If password contains at least one letter
-                    if (/[a-zA-Z]/.test($("#id_password1").val())) {
-                        // Highlight condition passed and set checker
-                        $(".form-background ul li:nth-child(4)").css("color", "var(--light-gold)");
-                        passOK2 = true;
-                    } else {
-                        // Make condition not highlighted and unset checker
-                        $(".form-background ul li:nth-child(4)").css("color", "var(--white)");
-                        passOK2 = false;
-                    };
-                    // If username not included in password
-                    if ($("#id_password1").val().toLowerCase().includes($("#id_username").val().toLowerCase()) && $("#id_username").val().length > 0 ) {
-                        // Make condition not highlighted and unset checker
-                        $(".form-background ul li:nth-child(1)").css("color", "var(--white)");
-                        passOK3 = false;
-                    } else {
-                        // Highlight condition passed and set checker
-                        $(".form-background ul li:nth-child(1)").css("color", "var(--light-gold)");
-                        passOK3 = true;
-                    };
-                    // If passsword not included in common passwords above
-                    if (tooCommonPass.includes($("#id_password1").val().toLowerCase())) {
-                        // Make condition not highlighted and unset checker
-                        $(".form-background ul li:nth-child(3)").css("color", "var(--white)");
-                        passOK4 = false;
-                    } else {
-                        // Highlight condition passed and set checker
-                        $(".form-background ul li:nth-child(3)").css("color", "var(--light-gold)");
-                        passOK4 = true;
-                    };
-                };
-                // All 4 conditions are true and other fields are not empty
-                if (passOK1 == true && passOK1 == true && passOK1 == true && passOK1 == true && $("#id_username").val().length > 0 && $("#id_email").val().length > 0 && $("#id_email2").val().length > 0 && $("#id_password2").val().length > 0 && $("#id_password2").val() == $("#id_password1").val()){
-                    // Show register buttton
-                    $("#registerSubmit").show();
-                } else {
-                    // Hide regisater button
-                    $("#registerSubmit").hide();
-                };
-            });
         });
     </script>
+    <script src="{% static 'js/register.js' %}"></script>
 {% endblock %}
