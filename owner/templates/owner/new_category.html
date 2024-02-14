@@ -4,6 +4,10 @@
 
 {% block nav_name %}New Category{% endblock %}
 
+{% block extra_css %} 
+        <link rel="stylesheet" href="{% static 'css/owner.css' %}">
+{% endblock %}
+
 {% block extra_css %}
 <!-- Local styling to ensure this doesn't interfere with global styling of same class names -->
 <style>

@@ -1,0 +1,31 @@
+/** ------------------------------- FOOTER ---------------------------- **/
+
+footer {
+    background-color: var(--light-blue);
+    padding: 5px 0;
+    width: 100%;
+    border-top: 2px solid var(--dark-blue);
+    height: 10vh;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--white);
+    font-family: var(--header-font);
+    transition: color 0.5s;
+}
+
+footer a:hover {
+    color: var(--light-gold);
+}
+
+@media screen and (max-width: 768px) {
+
+    footer {
+        font-size: 95%;
+    }
+
+    #credits {
+        font-size: 85%;
+    }
+}

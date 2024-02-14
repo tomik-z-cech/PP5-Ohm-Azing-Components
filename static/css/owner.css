@@ -1,0 +1,80 @@
+/** ------------------------------- ADMIN TOOLS ---------------------------- **/
+
+.owner-menu a {
+    color: var(--white);
+    font-family: var(--header-font);
+    text-decoration: none;
+    font-size: 130%;
+}
+
+.owner-menu a:hover {
+    color: var(--light-gold);
+    transition: color 0.5s;
+}
+
+.admin-hr {
+    color: var(--white);
+    width: 95%;
+}
+
+.category-heading {
+    margin-top: 1vh;
+}
+
+.category-preview {
+    width: 60%;
+    border: 2px solid var(--black);
+}
+
+.category-preview-crud {
+    width: 40%;
+    border: 2px solid var(--black);
+    margin-left: 30%;
+}
+
+.folder {
+    width: 18rem;
+    height: 18rem;
+    display: inline-block;
+    margin: auto;
+    position: relative;
+    background-color: var(--dark-blue);
+    border-radius: 0 3px 3px 3px;
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+}
+
+.folder:before {
+    content: '';
+    width: 40%;
+    height: 1em;
+    border-radius: 20px 20px 0 0;
+    background-color: var(--dark-blue);
+    position: absolute;
+    top: -1em;
+    left: 0px;
+}
+
+.items-table {
+    width: 95%;
+    margin-left: 2.5%;
+    font-family: var(--header-font);
+    text-align: center;
+}
+
+.custom-button-table {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background: var(--dark-blue);
+    color: var(--white);
+    padding: 0.1vh;
+    font-family: var(--header-font);
+    width: 40%;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.custom-button-table:hover {
+    background-color: var(--light-blue);
+    color: var(--light-gold);
+}

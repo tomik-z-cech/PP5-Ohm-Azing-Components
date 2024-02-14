@@ -4,6 +4,10 @@
 
 {% block nav_name %}My Details{% endblock %}
 
+{% block extra_css %} 
+        <link rel="stylesheet" href="{% static 'css/profilemanager.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container wrapper p-3">
     <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
@@ -40,7 +44,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="panelsStayOpen-headingThree">
                     <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                    Marketing preferences
+                    Marketing Preferences
                     </button>
                 </h2>
                 <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
@@ -52,13 +56,38 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="panelsStayOpen-headingFour">
                     <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
-                    Account settings
+                    Account Settings
                     </button>
                 </h2>
                 <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
-                    <div class="accordion-body">
-                        <a href="{% url 'account_change_password' %}" class="btn btn-warning button-shadow" aria-label="Change password">Change password</a>
-                        <a href="{% url 'account_email' %}" class="btn btn-warning button-shadow" aria-label="Change email">Change Email</a>
+                    <div class="accordion-body d-flex justify-content-around">
+                        <a href="{% url 'account_change_password' %}" class="custom-button button-shadow" aria-label="Change password">Change Password</a>
+                        <a href="{% url 'account_email' %}" class="custom-button button-shadow" aria-label="Change email">Change Email</a>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+                    <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+                    Account Cesation
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
+                    <div class="accordion-body d-flex justify-content-around">
+                        <p>
+                            <ul>
+                                <li>
+                                    Account Access: You will no longer be able to log in and access your account information, preferences, and saved details.
+                                </li>
+                                <li>
+                                    Order History: Your order history, including past purchases and transaction details, will be permanently deleted. This information will no longer be retrievable.
+                                </li>
+                                <li>
+                                    Preferences and Settings: Any personalized preferences and settings associated with your account will be lost.
+                                </li>
+                            </ul>
+                            <a href="{% url 'account_email' %}" class="custom-button button-shadow" aria-label="Change email">Delete Account</a>
+                        </p>
                     </div>
                 </div>
             </div>

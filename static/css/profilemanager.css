@@ -1,0 +1,33 @@
+/** ------------------------------- MY DETAILS ---------------------------- **/
+
+.accordion-item {
+    border-radius: 0px!important;
+    background-color: var(--black);
+}
+
+.accordion-header {
+    background-color: var(--dark-blue);
+    color: var(--white);
+}
+
+.accordion-collapse {
+    background-color: var(--light-blue);
+}
+
+.accordion-button {
+    background-color: var(--dark-blue);
+    color: var(--white);
+}
+
+.accordion-button:hover {
+    text-decoration: underline;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--white);
+    background-color: var(--dark-blue);
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: none;
+}

@@ -3,6 +3,10 @@
 
 {% block nav_name %}Home{% endblock %}
 
+{% block extra_css %} 
+        <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container wrapper">
     <div class="row jumbotron-wrapper" style="background: url('{% static "images/banner-background.jpg" %}') no-repeat fixed center center / cover;">

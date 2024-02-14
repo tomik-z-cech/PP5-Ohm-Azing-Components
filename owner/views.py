@@ -17,7 +17,7 @@ from django.db.models import Count, F, ExpressionWrapper, fields
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
 from items.models import Category, Item
-from items.forms import CategoryForm, ItemForm
+from owner.forms import CategoryForm, ItemForm
 from owner.models import Invoice
 
 
