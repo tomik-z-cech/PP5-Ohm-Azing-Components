@@ -31,3 +31,8 @@
 .accordion-button:not(.collapsed)::after {
     background-image: none;
 }
+
+#cessation-list {
+    font-family: var(--header-font);
+    list-style: none;
+}

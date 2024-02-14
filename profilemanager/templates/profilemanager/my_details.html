@@ -16,82 +16,97 @@
         </h1>
     </div>
     <div class="col-12 heading add-shadow p-3">
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                    <button class="accordion-button shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                    Personal Details
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                    <div class="accordion-body">
-                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        <form method="post" enctype="multipart/form-data" id="form">
+            {% csrf_token %}
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                        Personal Details
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                            {{ profile_form.profile_picture|as_crispy_field}}
+                            {{ profile_form.first_name|as_crispy_field}}
+                            {{ profile_form.last_name|as_crispy_field}}
+                            <div class="d-flex justify-content-end">
+                                <input type="submit" class="custom-button button-shadow mt-2" aria-label="Save Changes">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                        <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        Shipping Details
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                        <div class="accordion-body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                        <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                        Marketing Preferences
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                        <div class="accordion-body">
+                            {{ profile_form.marketing_sms|as_crispy_field}}
+                            {{ profile_form.marketing_email|as_crispy_field}}
+                            {{ profile_form.marketing_phone|as_crispy_field}}
+                            <div class="d-flex justify-content-end">
+                                <a href="{% url 'account_email' %}" class="custom-button button-shadow mt-2" aria-label="Save Changes">Save Changes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                        <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                        Account Settings
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+                        <div class="accordion-body d-flex justify-content-around">
+                            <a href="{% url 'account_change_password' %}" class="custom-button button-shadow" aria-label="Change password">Change Password</a>
+                            <a href="{% url 'account_email' %}" class="custom-button button-shadow" aria-label="Change email">Change Email</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+                        <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+                        Account Cesation
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
+                        <div class="accordion-body">
+                            <p>
+                                <ul id="cessation-list">
+                                    <li>
+                                        <strong>Account Access :</strong> You will no longer be able to log in and access your account information, preferences, and saved details.
+                                    </li>
+                                    <li>
+                                        <strong>Order History :</strong> Your order history, including past purchases and transaction details, will be permanently deleted. This information will no longer be retrievable.
+                                    </li>
+                                    <li>
+                                        <strong>Preferences and Settings :</strong> Any personalized preferences and settings associated with your account will be lost.
+                                    </li>
+                                </ul>
+                            </p>
+                            <p class="text-center mt-4">
+                                <a href="{% url 'account_email' %}" class="custom-button button-shadow mt-2" aria-label="Delete Account">Delete Account</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                    <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                    Shipping Details
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                    <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                    <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                    Marketing Preferences
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                    <div class="accordion-body">
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingFour">
-                    <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
-                    Account Settings
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
-                    <div class="accordion-body d-flex justify-content-around">
-                        <a href="{% url 'account_change_password' %}" class="custom-button button-shadow" aria-label="Change password">Change Password</a>
-                        <a href="{% url 'account_email' %}" class="custom-button button-shadow" aria-label="Change email">Change Email</a>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingFive">
-                    <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
-                    Account Cesation
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
-                    <div class="accordion-body d-flex justify-content-around">
-                        <p>
-                            <ul>
-                                <li>
-                                    Account Access: You will no longer be able to log in and access your account information, preferences, and saved details.
-                                </li>
-                                <li>
-                                    Order History: Your order history, including past purchases and transaction details, will be permanently deleted. This information will no longer be retrievable.
-                                </li>
-                                <li>
-                                    Preferences and Settings: Any personalized preferences and settings associated with your account will be lost.
-                                </li>
-                            </ul>
-                            <a href="{% url 'account_email' %}" class="custom-button button-shadow" aria-label="Change email">Delete Account</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 {% endblock %}

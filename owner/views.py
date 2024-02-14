@@ -107,6 +107,7 @@ class AddCategoryView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
             messages.info(request, f'Category {new_category_name} created.')
             new_category.save()  # Save category into database
         else:
+            messages.error(request, "Category couldn't be added.")
             new_category = self.form()
         return redirect("owner")  # Redirect back to admin tools
     
@@ -162,6 +163,7 @@ class EditCategoryView(
             messages.info(request, f'Category {edited_category.category_name} changed.')
         else:
             edit_form = self.form()
+            messages.error(request, "Category details couldn't be changed.")
         return redirect("owner")  # Redirect back to admin tools
     
 
@@ -278,6 +280,7 @@ class AddItemView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
             messages.info(request, f'Item {new_item_name} added.')
         else:
             new_item = self.form()
+            messages.error(request, "Item couldn't be added.")
         return redirect("items")  # Redirect back to admin tools
     
 class EditItemView(
@@ -321,6 +324,7 @@ class EditItemView(
             messages.info(request, f'Item {edited_item.item_name} changed.')
         else:
             edit_form = self.form()
+            messages.error(request, "Item details couldn't be changed.")
         return redirect("items")  # Redirect back to admin tools
     
 class DeleteItemView(
