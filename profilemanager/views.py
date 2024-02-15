@@ -28,11 +28,19 @@ class MyDetailsView(generic.ListView, UserPassesTestMixin, LoginRequiredMixin):
         profile_selected = request.user.userprofile
         # Prepopulate form
         profile_form = UserProfileForm(instance=profile_selected)
+        first_letter = request.user.userprofile.first_name[0]
+        second_letter = request.user.userprofile.last_name[0]
+        initials = first_letter + second_letter
+        initials = initials.upper()
         # Render template
         return render(
             request,
             self.template_name,
-            {"profile_form": profile_form},
+            {
+            "profile_form": profile_form,
+            "profile_picture": profile_selected.profile_picture,
+            "initials": initials,
+            },
         )
         
     def post(self, request, *args, **kwargs):
@@ -40,7 +48,8 @@ class MyDetailsView(generic.ListView, UserPassesTestMixin, LoginRequiredMixin):
         Function triggers when submit button on my details form is pressed
         """
         profile_selected = request.user.userprofile
-        profile_form = UserProfileForm(request.POST, instance=profile_selected)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=profile_selected)
+        print(request.POST)
         if profile_form.is_valid():
             profile_form.save()
             messages.success(request, 'Your profile details were updated.')

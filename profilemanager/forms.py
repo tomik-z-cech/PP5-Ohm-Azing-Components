@@ -19,4 +19,5 @@ class UserProfileForm(forms.ModelForm):
             })
         self.fields['first_name'].widget.attrs.update({'placeholder': 'Your First Name(s)'})
         self.fields['last_name'].widget.attrs.update({'placeholder': 'Your Last Name'})
-    
+        
+   

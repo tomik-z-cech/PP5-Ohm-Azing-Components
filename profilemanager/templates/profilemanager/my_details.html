@@ -30,8 +30,20 @@
                             <div class="row">
                                 <div class="col-12 col-lg-4">
                                     {{ profile_form.profile_picture|as_crispy_field}}
-                                    <input type="file" id="profile-picture-input" accept="image/*" />
-                                    <img id="profile-picture-preview" src="#" alt="Profile Picture Preview" style="display: none;" />
+                                    <div class="w-100 d-flex justify-content-center">
+                                        <div id="profile-picture-handler">
+                                            {% if profile_picture == '' or 'False' in profile_picture %}
+                                                <img id="profile-picture-preview" src="#" alt="Profile Picture Preview" style="display: none">
+                                                <div id="initials">
+                                                    {{ initials }}
+                                                </div>
+                                                <img id="camera-icon" src="{% static 'images/camera.png' %}" alt="Camera Icon">
+                                            {% else %}
+                                                <img id="profile-picture-preview" src="{{ profile_picture.url }}" alt="Profile Picture Preview">
+                                                <img id="camera-icon" src="{% static 'images/camera.png' %}" alt="Camera Icon">
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-lg-8">
                                     {{ profile_form.first_name|as_crispy_field}}
@@ -123,40 +135,10 @@
     {{ block.super }}
     <script>
         $(document).ready(function() {
-            $('#filename').text(`No file selected.`);
-            $('#new-image').change(function() {
-                let file = $('#new-image')[0].files[0];
-                $('#filename').text(`Image will be set to : ${file.name}`);
-            });
             $('#form').submit(function(){
                 $('#loader-container').css("display", "flex");
             });
         });
     </script>
-    <script>
-        $(document).ready(function() {
-            // Triggered when file input changes
-            $("#profile-picture-input").change(function() {
-                // Get the selected file
-                var file = this.files[0];
-        
-                if (file) {
-                    // Create a FileReader to read the file
-                    var reader = new FileReader();
-        
-                    // Set up the FileReader to display the image preview
-                    reader.onload = function(e) {
-                        $("#profile-picture-preview").attr("src", e.target.result);
-                        $("#profile-picture-preview").show();
-                    };
-        
-                    // Read the file as a data URL
-                    reader.readAsDataURL(file);
-                } else {
-                    // If no file is selected, hide the preview
-                    $("#profile-picture-preview").hide();
-                }
-            });
-        });
-        </script>
+    <script src="{% static 'js/profile_picture.js' %}"></script>
 {% endblock %}

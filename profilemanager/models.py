@@ -18,7 +18,7 @@ class UserProfile(models.Model):
     marketing_phone = models.BooleanField(default=True)
     marketing_email = models.BooleanField(default=True)
     marketing_sms = models.BooleanField(default=True)
-    profile_picture = ResizedImageField(size=[300, 300], crop=['middle', 'center'], quality=75, upload_to="profile_pictures/", force_format='WEBP', blank=True)
+    profile_picture = ResizedImageField(size=[300, 300], quality=75, upload_to="profile_pictures/", force_format='WEBP', blank=True)
     address_1 = models.CharField(max_length=100, blank=True, null=True)
     address_2 = models.CharField(max_length=100, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)

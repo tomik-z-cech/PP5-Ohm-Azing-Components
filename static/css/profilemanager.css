@@ -36,3 +36,49 @@
     font-family: var(--header-font);
     list-style: none;
 }
+
+label[for="id_first_name"],
+label[for="id_last_name"],
+label[for="id_profile_picture"] {
+    font-family: var(--header-font);
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+}
+
+#profile-picture-handler {
+    height: 10em;
+    width: 10em;
+    cursor: pointer;
+    border: 1px solid var(--white);
+    padding: 5px;
+    transition: border 0.5s;
+}
+
+#profile-picture-handler:hover {
+    border: 1px solid var(--black);
+}
+
+#profile-picture-preview {
+    height: 100%;
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
+#initials {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 250%;
+    font-family: var(--header-font);
+}
+
+#camera-icon {
+    position: relative;
+    left: 75%;
+    bottom: 25%;
+    height: 20%;
+    width: 20%;
+    aspect-ratio: 1/1;
+}
