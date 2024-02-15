@@ -28,10 +28,24 @@ class MyDetailsView(generic.ListView, UserPassesTestMixin, LoginRequiredMixin):
         profile_selected = request.user.userprofile
         # Prepopulate form
         profile_form = UserProfileForm(instance=profile_selected)
-        first_letter = request.user.userprofile.first_name[0]
-        second_letter = request.user.userprofile.last_name[0]
-        initials = first_letter + second_letter
-        initials = initials.upper()
+        # Initials to display if no profile picture available
+        if request.user.userprofile.first_name and request.user.userprofile.last_name:
+            first_letter = request.user.userprofile.first_name[0]
+            second_letter = request.user.userprofile.last_name[0]
+            initials = first_letter + second_letter
+            initials = initials.upper()
+        elif request.user.userprofile.first_name and not request.user.userprofile.last_name:
+            first_letter = request.user.userprofile.first_name[0]
+            second_letter = ""
+            initials = first_letter + second_letter
+            initials = initials.upper()
+        elif request.user.userprofile.last_name and not request.user.userprofile.first_name:
+            first_letter = ""
+            second_letter = request.user.userprofile.last_name[0]
+            initials = first_letter + second_letter
+            initials = initials.upper()
+        else:
+            initials = 'OC'
         # Render template
         return render(
             request,

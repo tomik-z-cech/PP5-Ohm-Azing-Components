@@ -32,4 +32,4 @@ class UserProfile(models.Model):
         verbose_name = "User Profile"
 
     def __str__(self):
-        return self.first_name
+        return self.user.username

@@ -39,7 +39,13 @@
 
 label[for="id_first_name"],
 label[for="id_last_name"],
-label[for="id_profile_picture"] {
+label[for="id_profile_picture"],
+label[for="id_address_1"],
+label[for="id_address_2"],
+label[for="id_city"],
+label[for="id_county"],
+label[for="id_post_code"],
+label[for="id_country"] {
     font-family: var(--header-font);
     margin-bottom: 1vh;
     margin-top: 1vh;

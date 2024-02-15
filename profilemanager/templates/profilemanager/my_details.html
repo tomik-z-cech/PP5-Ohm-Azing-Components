@@ -4,8 +4,8 @@
 
 {% block nav_name %}My Details{% endblock %}
 
-{% block extra_css %} 
-        <link rel="stylesheet" href="{% static 'css/profilemanager.css' %}">
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/profilemanager.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button type="submit" value="Submit" class="custom-button button-shadow mt-4" id="editSubmit" aria-label="Save details">Save details</button>
+                                <button type="submit" value="Submit" class="custom-button button-shadow mt-4" id="editSubmit" aria-label="Save details">Save Details</button>
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,15 @@
                     </h2>
                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
                         <div class="accordion-body">
-
+                            {{ profile_form.address_1|as_crispy_field}}
+                            {{ profile_form.address_2|as_crispy_field}}
+                            {{ profile_form.city|as_crispy_field}}
+                            {{ profile_form.county|as_crispy_field}}
+                            {{ profile_form.post_code|as_crispy_field}}
+                            {{ profile_form.country|as_crispy_field }}
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" value="Submit" class="custom-button button-shadow mt-4" id="editSubmit" aria-label="Save details">Save Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,7 +88,7 @@
                             {{ profile_form.marketing_email|as_crispy_field}}
                             {{ profile_form.marketing_phone|as_crispy_field}}
                             <div class="d-flex justify-content-end">
-                                <a href="{% url 'account_email' %}" class="custom-button button-shadow mt-2" aria-label="Save Changes">Save Changes</a>
+                                <button type="submit" value="Submit" class="custom-button button-shadow mt-4" id="editSubmit" aria-label="Save details">Save Details</button>
                             </div>
                         </div>
                     </div>
@@ -92,8 +100,10 @@
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
-                        <div class="accordion-body d-flex justify-content-around">
+                        <div class="accordion-body d-flex justify-content-center">
                             <a href="{% url 'account_change_password' %}" class="custom-button button-shadow" aria-label="Change password">Change Password</a>
+                        </div>    
+                        <div class="accordion-body d-flex justify-content-center">
                             <a href="{% url 'account_email' %}" class="custom-button button-shadow" aria-label="Change email">Change Email</a>
                         </div>
                     </div>
