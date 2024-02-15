@@ -20,13 +20,12 @@ class MyDetailsView(generic.ListView, UserPassesTestMixin, LoginRequiredMixin):
 
     def test_func(self):
         """Test function to ensure user is superuser"""
-        return self.request.user == UserProfile.username
+        return self.request.user == UserProfile.user
     
     def get(self, request, *args, **kwargs):
         """Method generates view for profile manager"""
         # Request logged in user
-        login_user = request.user
-        profile_selected = login_user.userprofile
+        profile_selected = request.user.userprofile
         # Prepopulate form
         profile_form = UserProfileForm(instance=profile_selected)
         # Render template
@@ -40,19 +39,11 @@ class MyDetailsView(generic.ListView, UserPassesTestMixin, LoginRequiredMixin):
         """
         Function triggers when submit button on my details form is pressed
         """
-        profile_form = UserProfileForm(request.POST)
-        print(profile_form)
-        #profile_form['user'] = request.user
-        #if profile_form.is_valid():
-        #    messages.success(request, "Your details were changed.")
-        #    profile_form.save()
-        #else:
-        #    profile_form = UserProfileForm()
-        #    messages.error(request, "Your details couldn't be changed.")
+        profile_selected = request.user.userprofile
+        profile_form = UserProfileForm(request.POST, instance=profile_selected)
         if profile_form.is_valid():
-            print('Valid')
             profile_form.save()
+            messages.success(request, 'Your profile details were updated.')
         else:
-            for field, errors in your_form_instance.errors.items():
-                print(f"Errors for {field}: {', '.join(errors)}")
+            messages.error(request, "Your profile details weren't updated.")
         return redirect("profile-manager")  # Redirect back to profile manager
