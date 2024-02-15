@@ -15,13 +15,12 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Count, F, ExpressionWrapper, fields
 from django.http import HttpResponse
-from reportlab.pdfgen import canvas
 from items.models import Category, Item
 from owner.forms import CategoryForm, ItemForm
 from owner.models import Invoice
 
 
-class OwnerMainView(generic.ListView, LoginRequiredMixin, UserPassesTestMixin):
+class OwnerMainView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
     """
     View generates main view for owner (site admin)
     """
@@ -43,7 +42,7 @@ class OwnerMainView(generic.ListView, LoginRequiredMixin, UserPassesTestMixin):
         )
         
 class DeleteCategoryView(
-        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+        UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
     """
     Class for deleting categories
     """
@@ -72,7 +71,7 @@ class DeleteCategoryView(
         messages.info(request, f'Category {requested_category.category_name} deleted.')
         return redirect("owner")  # Return to admin tools
     
-class AddCategoryView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+class AddCategoryView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
     """
     Class for adding categories
     """
@@ -113,7 +112,7 @@ class AddCategoryView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
     
 
 class EditCategoryView(
-        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+        UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
     """
     Class for editing categories
     """
@@ -168,7 +167,7 @@ class EditCategoryView(
     
 
 class OwnerItemsView(
-        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+        UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
     """
     Class for creating new bookings
     """
@@ -244,7 +243,7 @@ class OwnerItemsView(
             },
         )
 
-class AddItemView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+class AddItemView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
     """
     Class for adding items
     """
@@ -284,7 +283,7 @@ class AddItemView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
         return redirect("items")  # Redirect back to admin tools
     
 class EditItemView(
-        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+        UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
     """
     Class for editing items
     """
@@ -328,7 +327,7 @@ class EditItemView(
         return redirect("items")  # Redirect back to admin tools
     
 class DeleteItemView(
-        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+        UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
     """
     Class for deleting items
     """
@@ -358,7 +357,7 @@ class DeleteItemView(
         return redirect("items")  # Return to admin tools
     
 class OwnerInvoicesView(
-        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+        UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
     """
     Class for displaying invoices
     """
@@ -405,7 +404,7 @@ class OwnerInvoicesView(
         )
         
         
-class DownloadInvoiceView(generic.View, LoginRequiredMixin, UserPassesTestMixin):
+class DownloadInvoiceView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
     """
     View generates main view for owner (site admin)
     """

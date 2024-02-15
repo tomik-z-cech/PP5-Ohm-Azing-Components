@@ -1,0 +1,10 @@
+.form-background a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+.form-background a:hover {
+    color: var(--light-gold);
+    text-decoration: none;
+}

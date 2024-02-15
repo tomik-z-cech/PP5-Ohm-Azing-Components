@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-error.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="form-background">
+        <h1 class="text-center">500 - Uh-oh! Technical Nail Break</h1>
+        <p class="text-center">Sorry, but our nail art server seems to have encountered a little hiccup. Our tech team is on it, and we'll have things polished up in no time.</p> 
+    </div>
+</div>
+{%endblock%}
