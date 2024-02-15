@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block nav_name %}Oops !{% endblock %}
+
+{% block extra_css %} 
+        <link rel="stylesheet" href="{% static 'css/error.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-error.jpg" %}') no-repeat fixed top right / cover;">
-    <div class="form-background">
-        <h1 class="text-center">404 - Oops! You've Nailed It!</h1>
-        <p class="text-center">Looks like you've ventured into uncharted territory. Our nail artists are masters of precision, but the page you are trying to reach seems to be a work in progress.</p>
+<div class="container wrapper d-flex justify-content-center align-items-center">
+    <div class="form-background add-shadow">
+        <h1 class="text-center">404 Not Found in Ohm-Azing Components</h1>
+        <p class="text-center">Sorry, the circuit you're looking for doesn't exist in our electronic inventory. Double-check your path or return to the <a href="{% url 'home' %}" aria-label="Home">home page</a>.</p>
     </div>
 </div>
 {%endblock%}
