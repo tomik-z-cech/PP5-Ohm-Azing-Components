@@ -84,10 +84,14 @@
                     </h2>
                     <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                         <div class="accordion-body">
-                            {{ profile_form.marketing_sms|as_crispy_field}}
-                            {{ profile_form.marketing_email|as_crispy_field}}
-                            {{ profile_form.marketing_phone|as_crispy_field}}
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-center w-100">
+                                <div>
+                                    {{ profile_form.marketing_sms|as_crispy_field}}
+                                    {{ profile_form.marketing_email|as_crispy_field}}
+                                    {{ profile_form.marketing_phone|as_crispy_field}}
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end w-100">
                                 <button type="submit" value="Submit" class="custom-button button-shadow mt-4" id="editSubmit" aria-label="Save details">Save Details</button>
                             </div>
                         </div>
@@ -129,14 +133,34 @@
                                     </li>
                                 </ul>
                             </p>
-                            <p class="text-center mt-4">
-                                <a href="{% url 'account_email' %}" class="custom-button button-shadow mt-2" aria-label="Delete Account">Delete Account</a>
-                            </p>
+                            <div class="text-center mt-4 w-100">
+                                <button type="button" class="custom-button button-shadow" data-bs-toggle="modal" data-bs-target="#deleteProfileModal" aria-label="Delete account">
+                                    Delete account
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="deleteProfileModal" tabindex="-1" aria-labelledby="deleteProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="deleteProfileModalLabel">Delete acount ?</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure ? Bad things will happen.
+            </div>
+            <div class="modal-footer w-100 d-flex justify-content-around">
+                <button type="button" class="custom-button button-shadow" data-bs-dismiss="modal">Back</button>
+                <a href="{% url 'delete-profile' %}" class="custom-button button-shadow">Delete my account</a>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -51,6 +51,12 @@ label[for="id_country"] {
     margin-top: 1vh;
 }
 
+label[for="id_marketing_sms"],
+label[for="id_marketing_phone"],
+label[for="id_marketing_email"] {
+    font-family: var(--header-font);
+}
+
 #profile-picture-handler {
     height: 10em;
     width: 10em;
@@ -87,4 +93,9 @@ label[for="id_country"] {
     height: 20%;
     width: 20%;
     aspect-ratio: 1/1;
+}
+
+.modal-body {
+    color: var(--white);
+    font-family: var(--header-font);
 }

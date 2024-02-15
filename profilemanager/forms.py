@@ -13,6 +13,9 @@ class UserProfileForm(forms.ModelForm):
         
     address_1 = forms.CharField(label='First Line of Address', required=False)
     address_2 = forms.CharField(label='Second Line of Address', required=False)
+    marketing_sms = forms.BooleanField(label='Can we contact you via SMS ?', required=False)
+    marketing_email = forms.BooleanField(label='Can we contact you via phone ?', required=False)
+    marketing_phone = forms.BooleanField(label='Can we contact you via Email ?', required=False)
     country = forms.ChoiceField(choices=[('', 'Country')] + list(CountryField().choices), required=False)
 
     def __init__(self, *args, **kwargs):

@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin,
 )
+from .models import User
 from profilemanager.models import UserProfile
 from profilemanager.forms import UserProfileForm
 
@@ -70,3 +71,18 @@ class MyDetailsView(generic.ListView, UserPassesTestMixin, LoginRequiredMixin):
         else:
             messages.error(request, "Your profile details weren't updated.")
         return redirect("profile-manager")  # Redirect back to profile manager
+    
+    
+class DeleteMyProfileView(generic.ListView):
+    """
+    Class deletes user profile
+    """
+    def get(self, request, *args, **kwargs):
+        """Method entirely deletes user profile"""
+        logged_in_user = request.user
+        # Delete user profile
+        logged_in_user.delete()
+        # User message
+        messages.info(request, 'Your profile was deleted.')
+        # Redirect home
+        return redirect("home")
