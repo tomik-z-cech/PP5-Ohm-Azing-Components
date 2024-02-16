@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block nav_name %}All Products{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/items.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="wrapper w-100 overflow-hidden">
+    <div class="row d-flex justify-content-around" id="items-container">
+            {% if all_categories|length > 0 %}
+            <div class="col-2 add-shadow text-center" id="categories-menu">
+                <h3 class="category-heading">
+                    Shop by Category
+                </h3>
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <a href="{% url 'shop' category_pk=0 %}" aria-label="{{ category.category_name }}">
+                            <div class="folder">
+                                <h4 class="category-heading">
+                                    All Products
+                                </h4>
+                                    <img src="{% static 'images/all_image.png' %}" alt="All Products" class="category-preview">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% for category in all_categories %}
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="{% url 'shop' category_pk=category.pk %}" aria-label="{{ category.category_name }}">
+                                <div class="folder">
+                                    <h4 class="category-heading">
+                                        {{ category.category_name }}
+                                    </h4>
+                                    {% if category.category_image == '' or category.category_image == 'False' %}
+                                        <img src="{% static 'images/no_image.png' %}" alt="{{ category.category_name }} preview" class="category-preview">
+                                    {% else %}
+                                        <img src="{{ category.category_image.url }}" alt="{{ category.category_name }} preview" class="category-preview">
+                                    {% endif %}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+            <div class="col-2 add-shadow d-flex justify-content-center align-items-center" id="categories-menu">
+                <p id="no-categories">
+                    Something went wrong !
+                    <br>
+                    No categories to display.
+                </p>
+            {% endif %}
+        </div>
+        <div class="col-8 add-shadow" id="items-menu">
+            <h3 class="text-center category-heading">
+                {{ selected_category }}
+            </h3>
+            Found {{ items|length }} items.
+            {% for item in items %}
+                {% if forloop.first or forloop.counter == 5 or forloop.counter|add:"-1"|divisibleby:4 %}
+                    <div class="row">
+                {% endif %}
+                <div class="col-12 col-xl-3 text-center">
+                    <div class="product-container p-3">
+                        {% if item.image_1 == '' or item.image_1 == 'False' %}
+                            <img src="{% static 'images/no_image.png' %}" alt="{{ item.item_name }} preview" class="category-preview">
+                        {% else %}
+                            <img src="{{ item.image_1.url }}" alt="{{ item.item_name }} preview" class="category-preview">
+                        {% endif %}
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:4 or forloop.last %}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+

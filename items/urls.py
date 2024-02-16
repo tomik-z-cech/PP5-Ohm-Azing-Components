@@ -5,5 +5,5 @@ from items import views
 
 
 urlpatterns = [
-    path("", views.AllItemsView.as_view(), name="all-items"),
+    path("<int:category_pk>/", views.ShopView.as_view(), name="shop"),
 ]
