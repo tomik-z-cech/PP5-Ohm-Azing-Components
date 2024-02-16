@@ -246,6 +246,43 @@ select option:checked {
     color: var(--white);
 }
 
+.form-check-input[type=checkbox] {
+    border-radius: 0px!important;
+    transition: border-color 0.5s ease-in-out;
+}
+
+.form-check-input[type=checkbox]:focus {
+    border-color: var(--light-gold)!important;
+}
+
+.form-check-input[type=checkbox]:hover {
+    border-color: var(--black)!important;
+}
+
+.form-check-input:checked {
+    background-color: var(--dark-blue)!important;
+    border-color: var(--dark-blue)!important;
+    transition: border-color 0.5s ease-in-out;
+}
+
+.form-check-input:checked:hover {
+    border-color: var(--black)!important;
+}
+
+.form-check-input:checked:focus {
+    border-color: var(--light-gold)!important;
+}
+
+input[type=checkbox] {
+    outline: 2px solid var(--dark-blue);
+    accent-color: var(--dark-blue);
+    transition: accent-color 0.5s;
+}
+
+input[type=checkbox]:checked {
+    outline: 2px solid var(--dark-blue);
+}
+
 .close-form {
     color: var(--white);
     font-size: 150%;
@@ -273,16 +310,6 @@ label[for="id_image_3"] {
 
 input[type="radio"] {
     accent-color: var(--dark-blue);
-}
-
-input[type=checkbox] {
-    outline: 2px solid var(--dark-blue);
-    accent-color: var(--dark-blue);
-    transition: accent-color 0.5s;
-}
-
-input[type=checkbox]:checked {
-    outline: 2px solid var(--dark-blue);
 }
 
 /** ---------------------- TOASTS ------------------------ **/

@@ -3,6 +3,7 @@ from django import forms
 from django.core.validators import MinValueValidator
 from owner.widgets import CustomImageInputCategory, CustomImageInputItem1, CustomImageInputItem2, CustomImageInputItem3
 from items.models import Category, Item
+from owner.models import PostageSettings
 
 class CategoryForm(forms.ModelForm):
     """
@@ -62,3 +63,33 @@ class ItemForm(forms.ModelForm):
     image_3 = forms.ImageField(label='Image 3', required=False, widget=CustomImageInputItem3)
     
     
+class PostageSettingsForm(forms.ModelForm):
+    """
+    Postage form
+    """
+    class Meta:
+        model = PostageSettings
+        fields = ("__all__")
+        
+    def __init__(self, *args, **kwargs):
+        super(PostageSettingsForm, self).__init__(*args, **kwargs)
+        fields_to_add_class = self.fields.keys()
+        for field in fields_to_add_class:
+            self.fields[field].widget.attrs.update({
+                'class': 'shadow-none',
+            })
+        self.fields['free_postage'].widget.attrs.update({
+            'placeholder': 'Free postage threshold € (required)',
+            'step': '0.05',
+            'min': '1',
+        })
+        self.fields['standard_delivery'].widget.attrs.update({
+            'placeholder': 'Postage cost % (required)',
+            'step': '0.05',
+            'min': '1',
+        })
+        self.fields['express_delivery'].widget.attrs.update({
+            'placeholder': 'Postage cost % (required)',
+            'step': '0.05',
+            'min': '1',
+        })

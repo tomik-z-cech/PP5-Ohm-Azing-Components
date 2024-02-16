@@ -8,3 +8,11 @@ class Invoice(models.Model):
     
     def __str__(self):
         return self.invoice_number
+    
+class PostageSettings(models.Model):
+    free_postage = models.DecimalField(max_digits=5, decimal_places=2, blank=False, help_text='Amount in € that TOTAL needs to be over for free delivery')
+    standard_delivery = models.DecimalField(max_digits=5, decimal_places=2, blank=False, help_text='Cost of standard delivery - % of TOTAL')
+    express_delivery = models.DecimalField(max_digits=5, decimal_places=2, blank=False, help_text='Cost of express delivery - % of TOTAL')
+    
+    def __int__(self):
+        return self.free_postage

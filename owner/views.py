@@ -16,8 +16,8 @@ from django.core.paginator import Paginator
 from django.db.models import Count, F, ExpressionWrapper, fields
 from django.http import HttpResponse
 from items.models import Category, Item
-from owner.forms import CategoryForm, ItemForm
-from owner.models import Invoice
+from owner.forms import CategoryForm, ItemForm, PostageSettingsForm
+from owner.models import Invoice, PostageSettings
 
 
 class OwnerMainView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
@@ -417,7 +417,6 @@ class DownloadInvoiceView(UserPassesTestMixin, LoginRequiredMixin, generic.ListV
 
     def get(self, request, invoice_pk, *args, **kwargs):
         requested_invoice = get_object_or_404(Invoice, pk=invoice_pk)
-        print(requested_invoice)
         with requested_invoice.pdf_invoice.open(mode='rb') as pdf_file:
             pdf_content = pdf_file.read()
         zip_buffer = io.BytesIO()
@@ -427,3 +426,45 @@ class DownloadInvoiceView(UserPassesTestMixin, LoginRequiredMixin, generic.ListV
         response['Content-Disposition'] = f'attachment; filename={requested_invoice.invoice_number}.zip'
 
         return response
+    
+    
+class PostageSettingsView(
+        UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
+    """
+    Class for editing postage settings
+    """
+
+    template_name = "owner/postage.html"  # Template
+    success_url = "/owner/"  # URL to redirect after successful editing
+
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+
+    def get(self, request, *args, **kwargs):
+        """
+        Function generates postage settings form into template
+        """
+        instance = PostageSettings.objects.filter(pk=1).first()
+        settings_form = PostageSettingsForm(instance=instance)
+        return render(
+            request,
+            self.template_name,
+            {
+                "postage_settings_form": settings_form,
+            },
+        )
+        
+    def post(self, request, *args, **kwargs):
+        """
+        Function saves post settings
+        """
+        instance = PostageSettings.objects.filter(pk=1).first()
+        settings_form = PostageSettingsForm(request.POST, instance=instance)
+        if settings_form.is_valid():
+            settings_form.save()  # Save category into database
+            messages.success(request, 'Postage settings saved.')
+        else:
+            settings_form = PostageSettingsForm()
+            messages.error(request, "Postage settings couldn't be changed.")
+        return redirect("owner")  # Redirect back to admin tools
