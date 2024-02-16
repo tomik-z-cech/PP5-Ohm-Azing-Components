@@ -11,17 +11,20 @@
 <div class="container wrapper">
     <div class="row jumbotron-wrapper" style="background: url('{% static "images/banner-background.jpg" %}') no-repeat fixed center center / cover;">
         <div class="col-12 col-lg-8 main-banner d-flex justify-content-center align-items-center">
-            <div class="p-3 main-banner-message d-flex justify-content-center align-items-center flex-column">
+            <div class="p-3 main-banner-message d-flex justify-content-center align-items-center flex-column add-shadow">
                 <p class="text-center main-banner-message-text">
-                    Empower Your Creations with Ohm-Azing Components - Where Innovation Meets Circuitry! Unleash your imagination and illuminate your designs with quality electronic components. Join us at Ohm-Azing Components, where innovation resonates in every piece. Spark the future of electronics – your circuit dreams begin here!
+                    Empower Your Creations with Ohm-Azing Components - Where Innovation Meets Circuitry ! Unleash your imagination and illuminate your designs with quality electronic components. Join us at Ohm-Azing Components, where innovation resonates in every piece. Spark the future of electronics – your circuit dreams begin here !
                 </p>
-                <a href="#" class="custom-button button-shadow mt-3" aria-label="Shop Now">Shop Now</a>
+                <a href="{% url 'all-items' %}" class="custom-button button-shadow mt-3" aria-label="Shop Now">Shop Now</a>
+                <p class="free-shipping-message mt-4">
+                    Enjoy free shipping on orders over {{ free_postage|floatformat:0 }} €
+                </p>
             </div>
         </div>
         <div class="col-12 col-lg-4">
             <div class="row">
                 <div class="col-12 side-banner d-flex justify-content-center align-items-center">
-                    <div class="p-3 side-banner-message d-flex justify-content-center align-items-center flex-column">
+                    <div class="p-3 side-banner-message d-flex justify-content-center align-items-center flex-column add-shadow">
                         <p class="text-center main-banner-message-text">
                             Favorites
                         </p>
@@ -30,7 +33,7 @@
             </div>
             <div class="row">
                 <div class="col-12 side-banner d-flex justify-content-center align-items-center">
-                    <div class="p-3 side-banner-message d-flex justify-content-center align-items-center flex-column">
+                    <div class="p-3 side-banner-message d-flex justify-content-center align-items-center flex-column add-shadow">
                         <p class="text-center main-banner-message-text">
                             New Arrivals
                         </p>

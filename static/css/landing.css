@@ -29,3 +29,24 @@
     width: 80%;
     background-color: var(--light-blue-opaque);
 }
+
+@keyframes free-shipping-change {
+    0% {
+        scale: 1.0;
+        color: var(--white);
+    }
+    50% {
+        scale: 1.1;
+        color: var(--light-gold);
+    }
+    100% {
+        scale: 1.0;
+        color: var(--white);
+    }
+}
+
+.free-shipping-message {
+    color: var(--white);
+    font-size: 130%;
+    animation: free-shipping-change 3s infinite;
+}
