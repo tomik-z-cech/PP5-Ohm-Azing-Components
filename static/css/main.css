@@ -72,7 +72,7 @@ body {
     margin-top: 2vh;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     font-family: var(--header-font);
     text-shadow: 2px 2px 4px var(--black);
 }
