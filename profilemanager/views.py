@@ -64,7 +64,6 @@ class MyDetailsView(generic.ListView, UserPassesTestMixin, LoginRequiredMixin):
         """
         profile_selected = request.user.userprofile
         profile_form = UserProfileForm(request.POST, request.FILES, instance=profile_selected)
-        print(request.POST)
         if profile_form.is_valid():
             profile_form.save()
             messages.success(request, 'Your profile details were updated.')

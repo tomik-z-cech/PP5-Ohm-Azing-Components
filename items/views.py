@@ -19,8 +19,6 @@ class ShopView(generic.ListView):
         page_sort = int(request.GET.get('page_sort', 0))
         page_length = int(request.GET.get('page_length', 8))
         current_page = request.GET.get('page', 1)
-        print(f"Sort : {page_sort}")
-        print(f"Length : {page_length}")
         if category_pk == 0:
             queryset = Item.objects.all().order_by('item_name').annotate(
             like=Count("item_likes"),

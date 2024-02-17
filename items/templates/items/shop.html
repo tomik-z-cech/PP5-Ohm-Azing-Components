@@ -47,6 +47,12 @@
                         </div>
                     </div>
                 {% endfor %}
+                <hr>
+                <div id="scroll-up-categories" class="scroll-up">
+                    <i class="bi bi-arrow-up-square"></i>
+                    &nbsp;
+                    Back to Top
+                </div>
             {% else %}
             <div class="col-2 add-shadow d-flex justify-content-center align-items-center" id="categories-menu">
                 <p id="no-categories">
@@ -140,6 +146,11 @@
                 </span>
             </div>
             {% endif %}
+            <div id="scroll-up-items" class="scroll-up">
+                <i class="bi bi-arrow-up-square"></i>
+                &nbsp;
+                Back to Top
+            </div>
         </div>
     </div>
 </div>
@@ -175,6 +186,18 @@
             let newUrl = prepareNewUrl(currentUrl, ["page_sort", sortOption, "page_length", lengthOption]);
             window.location.href = newUrl;
         });
+        if ($('#items-menu').prop('scrollHeight') <= $('#items-menu').prop('clientHeight')) {
+            $('#scroll-up-items').hide();
+        };
+        $('#scroll-up-items').click(function(e) {
+			$('#items-menu').animate({ scrollTop: 0 }, 1500);
+		})
+        if ($('#categories-menu').prop('scrollHeight') <= $('#categories-menu').prop('clientHeight')) {
+            $('#scroll-up-categories').hide();
+        };
+        $('#scroll-up-categories').click(function(e) {
+			$('#categories-menu').animate({ scrollTop: 0 }, 1500);
+		})
     });
 </script>
 {% endblock %}

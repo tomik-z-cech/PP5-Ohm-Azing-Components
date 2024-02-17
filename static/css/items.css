@@ -93,3 +93,14 @@
     color: var(--white);
     font-family: var(--header-font);
 }
+
+.scroll-up {
+    color: var(--white);
+    cursor: pointer;
+    font-family: var(--header-font);
+    margin: 1vh;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding: 1vh;
+}
