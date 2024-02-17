@@ -317,9 +317,8 @@ class EditItemView(
         """
         edited_item = get_object_or_404(Item, pk=item_pk)
         edit_form = self.form(request.POST, request.FILES, instance=edited_item)
-
         if edit_form.is_valid():
-            edited_item.save()  # Save category into database
+            edit_form.save()  # Save category into database
             messages.info(request, f'Item {edited_item.item_name} changed.')
         else:
             edit_form = self.form()

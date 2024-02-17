@@ -44,4 +44,18 @@ class Item(models.Model):
 
     def __str__(self):
         return self.item_name
+    
+class ItemComments(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="item_comments",)
+    comment_author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="items")
+    comment_body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["created_on"]
+        verbose_name = "Item Comment"
+
+    def __str__(self):
+        return f"Comment {self.comment_body} by {self.creator}"
 

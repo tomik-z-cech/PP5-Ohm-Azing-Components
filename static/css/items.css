@@ -7,6 +7,9 @@
 
 #items-menu {
     background-color: var(--light-blue);
+    height: 73vh;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #items-container {
@@ -50,6 +53,43 @@
     border: 2px solid var(--black);
 }
 
+.category-container {
+    scale: 1;
+    transition: scale 0.5s ease-in-out;
+}
+
+.category-container:hover {
+    scale: 1.1;
+}
+
 .product-container {
-    background-color: var(--white);
+    background-color: var(--dark-blue);
+    height: 100%;
+    scale: 1;
+    transition: scale 0.5s ease-in-out, border 0.5s ease-in-out;
+    border: 1px solid var(--black);
+}
+
+.product-container:hover {
+    scale: 1.05;
+    border: 1px solid var(--light-gold);
+}
+
+.item-name {
+    height: 7vh;
+    color: var(--white);
+    font-family: var(--header-font);
+}
+
+.item-stats {
+    margin-top: 0.5vh;
+    color: var(--white);
+    font-family: var(--header-font);
+}
+
+.item-price {
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    color: var(--white);
+    font-family: var(--header-font);
 }
