@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-{% block nav_name %}All Products{% endblock %}
+{% block nav_name %}Shop{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/items.css' %}">
@@ -60,7 +60,24 @@
             <h3 class="text-center category-heading">
                 {{ selected_category }}
             </h3>
-            Found {{ items|length }} items.
+            <hr>
+            <div class="w-100 d-flex justify-content-around">
+                <select id="sortingOptions" class="form-control w-25 shadow-none">
+                    <option value="0" {% if page_sort == 0 %}selected{% endif %}>Name A-Z</option>
+                    <option value="1" {% if page_sort == 1 %}selected{% endif %}>Name Z-A</option>
+                    <option value="2" {% if page_sort == 2 %}selected{% endif %}>Price Low - High</option>
+                    <option value="3" {% if page_sort == 3 %}selected{% endif %}>Price High - Low</option>
+                    <option value="4" {% if page_sort == 4 %}selected{% endif %}>Best Rated</option>
+                    <option value="5" {% if page_sort == 5 %}selected{% endif %}>Worst Rated</option>
+                </select>
+                <select id="lengthOptions" class="form-control w-25 shadow-none">
+                    <option value="4" {% if page_length == 4 %}selected{% endif %}>4 items per page</option>
+                    <option value="8" {% if page_length == 8 %}selected{% endif %}>8 items per page</option>
+                    <option value="12" {% if page_length == 12 %}selected{% endif %}>12 items per page</option>
+                    <option value="0" {% if page_length == 0 %}selected{% endif %}>All items</option>
+                </select>
+            </div>
+            <hr>
             {% for item in items %}
                 {% if forloop.first or forloop.counter == 5 or forloop.counter|add:"-1"|divisibleby:4 %}
                     <div class="row">
@@ -98,8 +115,66 @@
                     <hr>
                 {% endif %}
             {% endfor %}
+            {% if paginator_nav %}
+            <div class="w-100 d-flex justify-content-center my-4 pagination-nav">
+                <span class="step-links">
+                    {% if items.has_previous %}
+                        <a href="?page=1&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-left"></i></a>
+                        <a href="?page={{ items.previous_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-left"></i></a>
+                    {% else %}
+                        <i class="bi bi-chevron-bar-left"></i>
+                        <i class="bi bi-chevron-left"></i>
+                    {% endif %}
+            
+                    <span class="current-page">
+                        Page {{ items.number }} of {{ items.paginator.num_pages }}
+                    </span>
+            
+                    {% if items.has_next %}
+                        <a href="?page={{ items.next_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-right"></i></a>
+                        <a href="?page={{ items.paginator.num_pages }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-right"></i></a>
+                    {% else %}
+                        <i class="bi bi-chevron-right"></i>
+                        <i class="bi bi-chevron-bar-right"></i>
+                    {% endif %}
+                </span>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
 {% endblock %}
 
+{% block extra_js %}
+{{block.super}}
+<script>
+    function prepareNewUrl(currentUrl, parameters) {
+        for (let i = 0; i < parameters.length; i += 2) {
+            let key = parameters[i];
+            let value = parameters[i + 1];
+            currentUrl = cleanseUrl(currentUrl, key, value);
+        }
+        return currentUrl;
+    }
+    
+    function cleanseUrl(uri, key, value) {
+        let re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+        if (uri.match(re)) {
+            return uri.replace(re, '$1' + key + "=" + value + '$2');
+        } else {
+            let separator = uri.indexOf('?') !== -1 ? "&" : "?";
+            return uri + separator + key + "=" + value;
+        }
+    }
+
+    $(document).ready(function() {
+        $('#sortingOptions, #lengthOptions').change(function(){
+            let currentUrl = window.location.href;
+            let sortOption = $('#sortingOptions').val();
+            let lengthOption = $('#lengthOptions').val();
+            let newUrl = prepareNewUrl(currentUrl, ["page_sort", sortOption, "page_length", lengthOption]);
+            window.location.href = newUrl;
+        });
+    });
+</script>
+{% endblock %}

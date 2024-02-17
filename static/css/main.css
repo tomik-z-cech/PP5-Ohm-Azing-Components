@@ -348,6 +348,7 @@ input[type="radio"] {
 /** ---------------------- PAGINATOR ------------------------ **/
 
 .pagination-nav {
+    color: var(--white);
     font-family: var(--header-font);
     font-size: 125%;
 }

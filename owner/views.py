@@ -229,7 +229,6 @@ class OwnerItemsView(
             elif page_sort == 0:
                 page_obj = queryset.order_by('item_name')
             else:
-                print('else')
                 page_obj = Item.objects.all()
             paginator_nav = False
         return render(

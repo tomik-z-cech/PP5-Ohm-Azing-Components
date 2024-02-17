@@ -93,8 +93,8 @@
         <div class="w-100 d-flex justify-content-center my-4 pagination-nav">
             <span class="step-links">
                 {% if items.has_previous %}
-                    <a href="?page=1"><i class="bi bi-chevron-bar-left"></i></a>
-                    <a href="?page={{ items.previous_page_number }}"><i class="bi bi-chevron-left"></i></a>
+                    <a href="?page=1&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-left"></i></a>
+                    <a href="?page={{ items.previous_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-left"></i></a>
                 {% else %}
                     <i class="bi bi-chevron-bar-left"></i>
                     <i class="bi bi-chevron-left"></i>
@@ -105,8 +105,8 @@
                 </span>
         
                 {% if items.has_next %}
-                    <a href="?page={{ items.next_page_number }}"><i class="bi bi-chevron-right"></i></a>
-                    <a href="?page={{ items.paginator.num_pages }}"><i class="bi bi-chevron-bar-right"></i></a>
+                    <a href="?page={{ items.next_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-right"></i></a>
+                    <a href="?page={{ items.paginator.num_pages }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-right"></i></a>
                 {% else %}
                     <i class="bi bi-chevron-right"></i>
                     <i class="bi bi-chevron-bar-right"></i>
@@ -145,7 +145,6 @@
             let sortOption = $('#sortingOptions').val();
             let lengthOption = $('#lengthOptions').val();
             let newUrl = prepareNewUrl(currentUrl, ["page_sort", sortOption, "page_length", lengthOption]);
-            console.log(newUrl)
             window.location.href = newUrl;
             $('#loader-container').css("display", "flex");
         });
