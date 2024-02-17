@@ -1,7 +1,7 @@
 # Imports
 from django.shortcuts import render
 from django.views import generic
-from django.db.models import Count, F, ExpressionWrapper, fields
+from django.db.models import Count, F, ExpressionWrapper, fields, Q
 from items.models import Category, Item
 
 
@@ -23,7 +23,11 @@ class ShopView(generic.ListView):
                 F('like') - F('dislike'),
                 output_field=fields.IntegerField()
                 )
+            ).annotate(
+            item_comments_num=Count(
+                "comments_num", filter=Q(item_comments__approved=1)
             )
+        )
             selected_category = 'All Products'
         else:
             items = Item.objects.filter(item_category__pk=category_pk).annotate(
@@ -33,7 +37,11 @@ class ShopView(generic.ListView):
                 F('like') - F('dislike'),
                 output_field=fields.IntegerField()
                 )
+            ).annotate(
+            item_comments_num=Count(
+                "item_comments", filter=Q(item_comments__approved=1)
             )
+        )
             running_category = Category.objects.filter(pk=category_pk).first()
             selected_category = running_category.category_name
         # Render template

@@ -4,7 +4,7 @@ from items.models import Category, Item, ItemComments
 # Register your models here.
 @admin.register(Category)
 class CommentAdmin(admin.ModelAdmin):
-    """Class resgisters Categories to Admin"""
+    """Class registers Categories to Admin"""
 
     list_display = ("category_name",)
     
@@ -16,6 +16,7 @@ class CommentAdmin(admin.ModelAdmin):
     
 @admin.register(ItemComments)
 class StylesCommentAdmin(admin.ModelAdmin):
+    """Class registers Comments to Admin"""
     list_display = ("comment_author", "comment_body", "item", "approved")
     actions = ['approve_comments']
 

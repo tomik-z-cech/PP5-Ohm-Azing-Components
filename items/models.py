@@ -57,5 +57,5 @@ class ItemComments(models.Model):
         verbose_name = "Item Comment"
 
     def __str__(self):
-        return f"Comment {self.comment_body} by {self.creator}"
+        return f"Comment {self.comment_body} by {self.comment_author}"
 
