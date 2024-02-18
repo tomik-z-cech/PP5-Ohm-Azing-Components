@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "items",
     "owner",
     "profilemanager",
+    "vault",
 ]
 
 MIDDLEWARE = [
