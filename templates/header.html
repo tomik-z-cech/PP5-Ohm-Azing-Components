@@ -15,10 +15,12 @@
       Search
     </div>
     <div class="col-4 col-lg-1">
-      Wishlist
+      {% if user.is_authenticated %}
+        <i class="bi bi-star"></i>
+      {% endif %}
     </div>
     <div class="col-4 col-lg-1">
-      Vault
+      {{ postage_settings }}
     </div>
     <div class="col-4 col-lg-1">
       <nav class="navbar navbar-expand">
