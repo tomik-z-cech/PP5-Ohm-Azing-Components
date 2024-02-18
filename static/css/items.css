@@ -92,6 +92,7 @@
     margin-bottom: 0.5vh;
     color: var(--white);
     font-family: var(--header-font);
+    font-size: 110%;
 }
 
 .scroll-up {
