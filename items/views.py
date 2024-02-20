@@ -1,5 +1,5 @@
 # Imports
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.db.models import Count, F, ExpressionWrapper, fields, Q
 from django.core.paginator import Paginator
@@ -92,5 +92,24 @@ class ShopView(generic.ListView):
                 "paginator_nav": paginator_nav,
                 "page_sort": page_sort,
                 "page_length":page_length,
+            },
+        )
+        
+        
+class ItemDetailView(generic.ListView):
+    """
+    Class generates view of item's detail
+    """
+
+    template_name = "items/item_detail.html"
+    
+    def get(self, request, item_pk, *args, **kwargs):
+        item_to_view = get_object_or_404(Item, pk=item_pk)
+        # Render template
+        return render(
+            request,
+            self.template_name,
+            {
+                "item": item_to_view,
             },
         )

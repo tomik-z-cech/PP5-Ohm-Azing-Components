@@ -95,13 +95,28 @@
     font-size: 110%;
 }
 
+.item-link {
+    text-decoration: none;
+}
+
 .scroll-up {
     color: var(--white);
-    cursor: pointer;
     font-family: var(--header-font);
     margin: 1vh;
     width: 100%;
     display: flex;
     justify-content: end;
     padding: 1vh;
+}
+
+#scroll-up-items,
+#scroll-up-categories {
+    cursor: pointer;
+    color: var(--white);
+    transition: color 0.5s ease-in-out;
+}
+
+#scroll-up-items:hover,
+#scroll-up-categories:hover {
+    color: var(--light-gold);
 }

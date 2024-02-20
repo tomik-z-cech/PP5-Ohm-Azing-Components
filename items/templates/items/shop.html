@@ -48,10 +48,12 @@
                     </div>
                 {% endfor %}
                 <hr>
-                <div id="scroll-up-categories" class="scroll-up">
-                    <i class="bi bi-arrow-up-square"></i>
-                    &nbsp;
-                    Back to Top
+                <div class="scroll-up">
+                    <span id="scroll-up-categories">
+                        <i class="bi bi-arrow-up-square"></i>
+                        &nbsp;
+                        Back to Top
+                    </span>
                 </div>
             {% else %}
             <div class="col-2 add-shadow d-flex justify-content-center align-items-center" id="categories-menu">
@@ -89,41 +91,43 @@
                     <div class="row">
                         {% endif %}
                             <div class="col-12 col-xl-3 text-center">
-                                <div class="product-container p-3">
-                                    <div class="item-name">
-                                        <strong>
-                                            {{ item.item_name }}
-                                        </strong>
-                                    </div>
-                                    {% if item.image_1 == '' or item.image_1 == 'False' %}
-                                        <img src="{% static 'images/no_image.png' %}" alt="{{ item.item_name }} preview" class="category-preview">
-                                    {% else %}
-                                        <img src="{{ item.image_1.url }}" alt="{{ item.item_name }} preview" class="category-preview">
-                                    {% endif %}
-                                    <div class="item-stats">
-                                        <i class="bi bi-chat-left-text"></i>
-                                        &nbsp;
-                                        {{ item.item_comments_num }}
-                                        &nbsp;
-                                        -
-                                        &nbsp;
-                                        <i class="bi bi-award"></i>
-                                        &nbsp;
-                                        {{ item.item_likes_num }}
-                                    </div>
-                                    <div class="item-price">
-                                        <strong>
-                                            {% with price_slice=item.price_per_unit|floatformat:0 %}
-                                                {{ price_slice }} 
-                                                <sup>
-                                                    {{ item.price_per_unit|floatformat:"2"|stringformat:"s"|slice:"-2:"|add:"" }}
-                                                </sup>
-                                            {% endwith %}
+                                <a href="{% url 'item-detail' item_pk=item.pk %}" aria-label="{{ category.category_name }}" class="item-link">
+                                    <div class="product-container p-3">
+                                        <div class="item-name">
+                                            <strong>
+                                                {{ item.item_name }}
+                                            </strong>
+                                        </div>
+                                        {% if item.image_1 == '' or item.image_1 == 'False' %}
+                                            <img src="{% static 'images/no_image.png' %}" alt="{{ item.item_name }} preview" class="category-preview">
+                                        {% else %}
+                                            <img src="{{ item.image_1.url }}" alt="{{ item.item_name }} preview" class="category-preview">
+                                        {% endif %}
+                                        <div class="item-stats">
+                                            <i class="bi bi-chat-left-text"></i>
                                             &nbsp;
-                                            €
-                                        </strong>
+                                            {{ item.item_comments_num }}
+                                            &nbsp;
+                                            -
+                                            &nbsp;
+                                            <i class="bi bi-award"></i>
+                                            &nbsp;
+                                            {{ item.item_likes_num }}
+                                        </div>
+                                        <div class="item-price">
+                                            <strong>
+                                                {% with price_slice=item.price_per_unit|floatformat:0 %}
+                                                    {{ price_slice }} 
+                                                    <sup>
+                                                        {{ item.price_per_unit|floatformat:"2"|stringformat:"s"|slice:"-2:"|add:"" }}
+                                                    </sup>
+                                                {% endwith %}
+                                                &nbsp;
+                                                €
+                                            </strong>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         {% if forloop.counter|divisibleby:4 or forloop.last %}
                     </div>
@@ -155,10 +159,12 @@
                 </span>
             </div>
             {% endif %}
-            <div id="scroll-up-items" class="scroll-up">
-                <i class="bi bi-arrow-up-square"></i>
-                &nbsp;
-                Back to Top
+            <div class="scroll-up">
+                <span  id="scroll-up-items" >
+                    <i class="bi bi-arrow-up-square"></i>
+                    &nbsp;
+                    Back to Top
+                </span>
             </div>
         </div>
     </div>

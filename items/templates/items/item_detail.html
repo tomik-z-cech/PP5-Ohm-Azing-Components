@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block nav_name %}Shop{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/items.css' %}">
+{% endblock %}
+
+{% block content %}
+item detail template
+<br>
+{{ item.item_name }}
+{% endblock %}
