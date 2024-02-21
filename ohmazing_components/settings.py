@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "owner",
     "profilemanager",
     "vault",
+    "wishlist",
 ]
 
 MIDDLEWARE = [
