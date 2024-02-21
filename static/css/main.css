@@ -17,9 +17,6 @@
     --out-of-stock: #c0392b;
     --in-stock: #218c54;
 
-
-
-
     /** FONTS **/
     --main-font: 'Electrolize', sans-serif;
 }
@@ -248,7 +245,7 @@ select option:checked {
 
 .form-check-input[type=checkbox] {
     border-radius: 0px!important;
-    transition: border-color 0.5s ease-in-out;
+    transition: border 0.5s ease-in-out;
 }
 
 .form-check-input[type=checkbox]:focus {
@@ -262,7 +259,7 @@ select option:checked {
 .form-check-input:checked {
     background-color: var(--dark-background)!important;
     border-color: var(--dark-background)!important;
-    transition: border-color 0.5s ease-in-out;
+    transition: border 0.5s ease-in-out;
 }
 
 .form-check-input:checked:hover {

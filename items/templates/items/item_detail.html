@@ -9,9 +9,121 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container wrapper">
-    item detail template
-    <br>
-    {{ item.item_name }}
+    <div class="container wrapper d-flex justify-content-center align-items-center">
+        <div class="w-100 d-flex justify-content-center align-items-center p-3 item-detail-background add-shadow">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-6">
+                    <div class="product-gallery-container">
+                        <div  id="img1" class="image-large product-image-container">
+                            {% if item.image_1 == '' or item.image_1 == 'False' %}
+                                <img src="{% static 'images/no_image.png' %}" alt="First Image of {{ item.item_name }}" class="product-gallery-image">
+                            {% else %}
+                                <img src="{{ item.image_1.url }}" alt="First Image of {{ item.item_name }}" class="product-gallery-image">
+                            {% endif %}
+                        </div>
+                        <div  id="img2" class="image-small product-image-container">
+                            {% if item.image_2 == '' or item.image_2 == 'False' %}
+                                <img src="{% static 'images/no_image.png' %}" alt="Second Image of {{ item.item_name }}" class="product-gallery-image">
+                            {% else %}
+                                <img src="{{ item.image_2.url }}" alt="Second Image of {{ item.item_name }}" class="product-gallery-image">
+                            {% endif %}
+                        </div>
+                        <div  id="img3" class="image-small product-image-container">
+                            {% if item.image_3 == '' or item.image_3 == 'False' %}
+                                <img src="{% static 'images/no_image.png' %}" alt="Third Image of {{ item.item_name }}" class="product-gallery-image">
+                            {% else %}
+                                <img src="{{ item.image_3.url }}" alt="Third Image of {{ item.item_name }}" class="product-gallery-image">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <h3>
+                        {{ item.item_name }}
+                    </h3>
+                    <div class="mb-3">
+                        {% if item.item_stock > 0 %}
+                            <span class="badge rounded-pill in-stock">{{ item.item_stock }} available</span>
+                        {% else %}
+                            <span class="badge rounded-pill out-of-stock">Out Of Stock</span>
+                        {% endif %}
+                    </div>
+                    <p>
+                        {{ item.item_description }}
+                    </p>
+                    <div class="item-price mb-4 w-100 d-flex justify-content-start">
+                        Price per unit :
+                        &nbsp;
+                        <strong>
+                            {% with price_slice=item.price_per_unit|floatformat:0 %}
+                                {{ price_slice }} 
+                                <sup>
+                                    {{ item.price_per_unit|floatformat:"2"|stringformat:"s"|slice:"-2:"|add:"" }}
+                                </sup>
+                            {% endwith %}
+                            &nbsp;
+                            €
+                        </strong>
+                    </div>
+                    {% if item.different_sizes and item.different_values %}
+                        <div class="d-flex justify-content-around mb-3">
+                            <span class="product-detail-input">
+                                {% if item.different_sizes %}
+                                    <label for="size">
+                                        Select package size
+                                    </label>
+                                    <select class="form-control shadow-none" id="size" name="size">
+                                    {% for size in item.sizes %}
+                                        <option>{{ size }} {% if size == "1" %}unit{% else %}units{% endif %}</option>
+                                    {% endfor %}
+                                    </select>
+                                {% endif %}
+                            </span>
+                            <span class="product-detail-input">
+                                {% if item.different_values %}
+                                    <label for="value">
+                                        Select value
+                                    </label>
+                                    <select class="form-control shadow-none" id="value" name="value">
+                                    {% for value in item.values %}
+                                        <option>{{ value }}</option>
+                                    {% endfor %}
+                                    </select>
+                                {% endif %}
+                            </span>
+                        </div>
+                    {% endif %}
+                    <div class="d-flex justify-content-around">
+                        <span class="product-detail-input">
+                            <label for="quantity">Quantity :</label>
+                            <input type="number" class="form-control shadow-none" id="quantity" name="quantity">
+                        </span>
+                        <button class="custom-button button-shadow">Add to Vault</button>
+                    </div>
+                    <div class="scroll-up">
+                        <span id="back-to-shop">
+                            <i class="bi bi-arrow-left-square"></i>
+                            &nbsp;
+                            Continue Shopping
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script src="{% static 'js/product_gallery.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            if (document.referrer) {
+                let previousDestination = document.referrer;
+                $('#back-to-shop').click(function(){
+                    window.location.href = previousDestination;
+                });
+            };
+        });
+    </script>
 {% endblock %}

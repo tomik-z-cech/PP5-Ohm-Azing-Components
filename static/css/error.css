@@ -1,10 +1,10 @@
-.form-background a {
+.error-background a {
     color: var(--light-foreground);
     text-decoration: none;
     transition: color 0.5s;
 }
 
-.form-background a:hover {
+.error-background a:hover {
     color: var(--light-highlight);
     text-decoration: none;
 }
