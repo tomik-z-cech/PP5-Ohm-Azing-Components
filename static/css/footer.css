@@ -1,22 +1,22 @@
 /** ------------------------------- FOOTER ---------------------------- **/
 
 footer {
-    background-color: var(--light-blue);
+    background-color: var(--light-background);
     padding: 5px 0;
     width: 100%;
-    border-top: 2px solid var(--dark-blue);
+    border-top: 2px solid var(--dark-background);
     height: 10vh;
 }
 
 footer a {
     text-decoration: none;
-    color: var(--white);
-    font-family: var(--header-font);
+    color: var(--light-foreground);
+    font-family: var(--main-font);
     transition: color 0.5s;
 }
 
 footer a:hover {
-    color: var(--light-gold);
+    color: var(--light-highlight);
 }
 
 @media screen and (max-width: 768px) {

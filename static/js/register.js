@@ -46,49 +46,49 @@ $(document).ready(function () {
         // If pasword empty change color to white of all conditions
         if ($("#id_password1").val().length < 1){
             $(".register-submit-item").css("opacity", "0").css("pointer-events", "none");
-            $(".form-background ul li:nth-child(1)").css("color", "var(--white)");
-            $(".form-background ul li:nth-child(2)").css("color", "var(--white)");
-            $(".form-background ul li:nth-child(3)").css("color", "var(--white)");
-            $(".form-background ul li:nth-child(4)").css("color", "var(--white)");
+            $(".form-background ul li:nth-child(1)").css("color", "var(--light-foreground)");
+            $(".form-background ul li:nth-child(2)").css("color", "var(--light-foreground)");
+            $(".form-background ul li:nth-child(3)").css("color", "var(--light-foreground)");
+            $(".form-background ul li:nth-child(4)").css("color", "var(--light-foreground)");
         } else {
             // If password longer then 8 characters
             if ($("#id_password1").val().length > 8) {
                 // Highlight condition passed and set checker
-                $(".form-background ul li:nth-child(2)").css("color", "var(--light-gold)");
+                $(".form-background ul li:nth-child(2)").css("color", "var(--light-highlight)");
                 passOK1 = true;
             } else {
                 // Make condition not highlighted and unset checker
-                $(".form-background ul li:nth-child(2)").css("color", "var(--white)");
+                $(".form-background ul li:nth-child(2)").css("color", "var(--light-foreground)");
                 passOK1 = false;
             };
             // If password contains at least one letter
             if (/[a-zA-Z]/.test($("#id_password1").val())) {
                 // Highlight condition passed and set checker
-                $(".form-background ul li:nth-child(4)").css("color", "var(--light-gold)");
+                $(".form-background ul li:nth-child(4)").css("color", "var(--light-highlight)");
                 passOK2 = true;
             } else {
                 // Make condition not highlighted and unset checker
-                $(".form-background ul li:nth-child(4)").css("color", "var(--white)");
+                $(".form-background ul li:nth-child(4)").css("color", "var(--light-foreground)");
                 passOK2 = false;
             };
             // If username not included in password
             if ($("#id_password1").val().toLowerCase().includes($("#id_username").val().toLowerCase()) && $("#id_username").val().length > 0 ) {
                 // Make condition not highlighted and unset checker
-                $(".form-background ul li:nth-child(1)").css("color", "var(--white)");
+                $(".form-background ul li:nth-child(1)").css("color", "var(--light-foreground)");
                 passOK3 = false;
             } else {
                 // Highlight condition passed and set checker
-                $(".form-background ul li:nth-child(1)").css("color", "var(--light-gold)");
+                $(".form-background ul li:nth-child(1)").css("color", "var(--light-highlight)");
                 passOK3 = true;
             };
             // If passsword not included in common passwords above
             if (tooCommonPass.includes($("#id_password1").val().toLowerCase())) {
                 // Make condition not highlighted and unset checker
-                $(".form-background ul li:nth-child(3)").css("color", "var(--white)");
+                $(".form-background ul li:nth-child(3)").css("color", "var(--light-foreground)");
                 passOK4 = false;
             } else {
                 // Highlight condition passed and set checker
-                $(".form-background ul li:nth-child(3)").css("color", "var(--light-gold)");
+                $(".form-background ul li:nth-child(3)").css("color", "var(--light-highlight)");
                 passOK4 = true;
             };
         };

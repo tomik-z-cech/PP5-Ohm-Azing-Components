@@ -114,6 +114,13 @@
                                             &nbsp;
                                             {{ item.item_likes_num }}
                                         </div>
+                                        <div>
+                                            {% if item.item_stock > 0 %}
+                                                <span class="badge rounded-pill in-stock">{{ item.item_stock }} available</span>
+                                            {% else %}
+                                                <span class="badge rounded-pill out-of-stock">Out Of Stock</span>
+                                            {% endif %}
+                                        </div>
                                         <div class="item-price">
                                             <strong>
                                                 {% with price_slice=item.price_per_unit|floatformat:0 %}

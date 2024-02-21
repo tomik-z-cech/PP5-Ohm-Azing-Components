@@ -1,12 +1,12 @@
 #categories-menu {
-    background-color: var(--light-blue);
+    background-color: var(--light-background);
     height: 73vh;
     overflow-x: hidden;
     overflow-y: auto;    
 }
 
 #items-menu {
-    background-color: var(--light-blue);
+    background-color: var(--light-background);
     height: 73vh;
     overflow-x: hidden;
     overflow-y: auto;
@@ -17,7 +17,7 @@
 }
 
 #no-categories {
-    color: var(--white);
+    color: var(--light-foreground);
 }
 
 .folder {
@@ -26,7 +26,7 @@
     display: inline-block;
     margin: auto;
     position: relative;
-    background-color: var(--dark-blue);
+    background-color: var(--dark-background);
     border-radius: 0 3px 3px 3px;
     margin-bottom: 3rem;
     margin-top: 1rem;
@@ -37,7 +37,7 @@
     width: 40%;
     height: 1em;
     border-radius: 20px 20px 0 0;
-    background-color: var(--dark-blue);
+    background-color: var(--dark-background);
     position: absolute;
     top: -1em;
     left: 0px;
@@ -45,12 +45,12 @@
 
 .category-heading {
     margin-top: 1vh;
-    color: var(--white);
+    color: var(--light-foreground);
 }
 
 .category-preview {
     width: 60%;
-    border: 2px solid var(--black);
+    border: 2px solid var(--dark-foreground);
 }
 
 .category-container {
@@ -63,35 +63,35 @@
 }
 
 .product-container {
-    background-color: var(--dark-blue);
+    background-color: var(--dark-background);
     height: 100%;
     scale: 1;
     transition: scale 0.5s ease-in-out, border 0.5s ease-in-out;
-    border: 1px solid var(--black);
+    border: 1px solid var(--dark-foreground);
 }
 
 .product-container:hover {
     scale: 1.05;
-    border: 1px solid var(--light-gold);
+    border: 1px solid var(--light-highlight);
 }
 
 .item-name {
     height: 7vh;
-    color: var(--white);
-    font-family: var(--header-font);
+    color: var(--light-foreground);
+    font-family: var(--main-font);
 }
 
 .item-stats {
     margin-top: 0.5vh;
-    color: var(--white);
-    font-family: var(--header-font);
+    color: var(--light-foreground);
+    font-family: var(--main-font);
 }
 
 .item-price {
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
-    color: var(--white);
-    font-family: var(--header-font);
+    color: var(--light-foreground);
+    font-family: var(--main-font);
     font-size: 110%;
 }
 
@@ -100,8 +100,8 @@
 }
 
 .scroll-up {
-    color: var(--white);
-    font-family: var(--header-font);
+    color: var(--light-foreground);
+    font-family: var(--main-font);
     margin: 1vh;
     width: 100%;
     display: flex;
@@ -112,11 +112,24 @@
 #scroll-up-items,
 #scroll-up-categories {
     cursor: pointer;
-    color: var(--white);
+    color: var(--light-foreground);
     transition: color 0.5s ease-in-out;
 }
 
 #scroll-up-items:hover,
 #scroll-up-categories:hover {
-    color: var(--light-gold);
+    color: var(--light-highlight);
+}
+
+.rounded-pill {
+    border: 1px solid var(--dark-foreground);
+    font-family: var(--main-font);
+}
+
+.out-of-stock {
+    background-color: var(--out-of-stock);
+}
+
+.in-stock {
+    background-color: var(--in-stock);
 }

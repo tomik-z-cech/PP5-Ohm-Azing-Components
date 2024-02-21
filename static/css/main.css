@@ -1,27 +1,27 @@
 /** -------------------------------- IMPORTS ---------------------------- **/
 
 @import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 /** -------------------------------- VARS ---------------------------- **/
 
 :root {
     
     /** COLOR PALETTE **/
-    --black: #142331;
-    --white: #fafafa;
-    --light-blue: #30577b;
-    --light-blue-opaque: rgba(48,87,123,0.75);
-    --dark-blue: #223d56;
-    --light-gold: #fbdb6b;
-    --dark-gold: #facf39;
+    --dark-foreground: #142331;
+    --light-foreground: #fafafa;
+    --light-background: #30577b;
+    --light-background-opaque: rgba(48,87,123,0.75);
+    --dark-background: #223d56;
+    --light-highlight: #fbdb6b;
+    --dark-highlight: #facf39;
+    --out-of-stock: #c0392b;
+    --in-stock: #218c54;
 
 
 
 
     /** FONTS **/
-    --text-font: 'Roboto', sans-serif;
-    --header-font: 'Electrolize', sans-serif;
+    --main-font: 'Electrolize', sans-serif;
 }
 
 /** ------------------------------ GENERAL --------------------------- **/
@@ -38,15 +38,15 @@ input[type="number"] {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--light-blue);
+    background: var(--light-background);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--black);
+    background: var(--dark-foreground);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--light-gold);
+    background: var(--light-highlight);
 }
 
 * {
@@ -56,8 +56,8 @@ input[type="number"] {
 }
 
 body {
-    background-color: var(--white);
-    font-family: var(--text-font);
+    background-color: var(--light-foreground);
+    font-family: var(--main-font);
 }
 
 .wrapper {
@@ -67,27 +67,27 @@ body {
 }
 
 .heading {
-    color: var(--white);
-    background-color: var(--light-blue);
+    color: var(--light-foreground);
+    background-color: var(--light-background);
     margin-top: 2vh;
 }
 
 h1, h2, h3, h4 {
-    font-family: var(--header-font);
-    text-shadow: 2px 2px 4px var(--black);
+    font-family: var(--main-font);
+    text-shadow: 2px 2px 4px var(--dark-foreground);
 }
 
 p, th {
-    font-family: var(--header-font);
+    font-family: var(--main-font);
 }
 
 .add-shadow {
-    box-shadow: 8px 8px 8px var(--black);
+    box-shadow: 8px 8px 8px var(--dark-foreground);
 }
 
 .button-shadow {
-    box-shadow: 3px 3px 3px var(--black);
-    border: 2px solid var(--black)
+    box-shadow: 3px 3px 3px var(--dark-foreground);
+    border: 2px solid var(--dark-foreground)
 }
 
 @media screen and (max-width: 991px) {
@@ -110,7 +110,7 @@ p, th {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--light-blue-opaque);
+    background: var(--light-background-opaque);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -143,23 +143,23 @@ p, th {
 .custom-button {
     text-align: center;
     text-decoration: none;
-    background: var(--dark-blue);
-    color: var(--white);
+    background: var(--dark-background);
+    color: var(--light-foreground);
     padding: 1vh;
-    font-family: var(--header-font);
+    font-family: var(--main-font);
     width: 40%;
     transition: background-color 0.5s, color 0.5s;
 }
 
 .custom-button:hover {
-    background-color: var(--light-blue);
-    color: var(--light-gold);
+    background-color: var(--light-background);
+    color: var(--light-highlight);
 }
 
 
 .form-background {
-    background-color: var(--light-blue);
-    color: var(--white);
+    background-color: var(--light-background);
+    color: var(--light-foreground);
     padding: 2vh;
     width: 50%;
 }
@@ -187,7 +187,7 @@ p, th {
 }
 
 .form-background label {
-    font-family: var(--header-font);
+    font-family: var(--main-font);
     width: 40%;
 }
 
@@ -198,11 +198,11 @@ textarea,
 input[type="number"],
 select
 {
-    font-family: var(--header-font)!important;
-    background-color: var(--light-blue)!important;
-    color: var(--white)!important;
+    font-family: var(--main-font)!important;
+    background-color: var(--light-background)!important;
+    color: var(--light-foreground)!important;
     border-radius: 0px!important;
-    border: 1px solid var(--white)!important;
+    border: 1px solid var(--light-foreground)!important;
     transition: border 0.5s;
 }
 
@@ -213,9 +213,9 @@ textarea:focus,
 input[type="number"]:focus,
 select:focus
 {
-    background-color: var(--light-blue)!important;
-    color: var(--white)!important;
-    border: 1px solid var(--dark-gold)!important;
+    background-color: var(--light-background)!important;
+    color: var(--light-foreground)!important;
+    border: 1px solid var(--dark-highlight)!important;
 }
 
 .selectmultiple:hover,
@@ -225,25 +225,25 @@ textarea:hover,
 input[type="number"]:hover,
 select:hover
 {
-    background-color: var(--light-blue)!important;
-    color: var(--white)!important;
-    border: 1px solid var(--black)!important;
+    background-color: var(--light-background)!important;
+    color: var(--light-foreground)!important;
+    border: 1px solid var(--dark-foreground)!important;
 }
 
 input[type="text"]::placeholder,
 textarea::placeholder,
 input[type="number"]::placeholder {
-    color: var(--black)!important;
+    color: var(--dark-foreground)!important;
 }
 
 select option {
-    background-color: var(--light-blue);
-    color: var(--white);
+    background-color: var(--light-background);
+    color: var(--light-foreground);
 }
 
 select option:checked {
-    background-color: var(--dark-blue);
-    color: var(--white);
+    background-color: var(--dark-background);
+    color: var(--light-foreground);
 }
 
 .form-check-input[type=checkbox] {
@@ -252,46 +252,46 @@ select option:checked {
 }
 
 .form-check-input[type=checkbox]:focus {
-    border-color: var(--light-gold)!important;
+    border-color: var(--light-highlight)!important;
 }
 
 .form-check-input[type=checkbox]:hover {
-    border-color: var(--black)!important;
+    border-color: var(--dark-foreground)!important;
 }
 
 .form-check-input:checked {
-    background-color: var(--dark-blue)!important;
-    border-color: var(--dark-blue)!important;
+    background-color: var(--dark-background)!important;
+    border-color: var(--dark-background)!important;
     transition: border-color 0.5s ease-in-out;
 }
 
 .form-check-input:checked:hover {
-    border-color: var(--black)!important;
+    border-color: var(--dark-foreground)!important;
 }
 
 .form-check-input:checked:focus {
-    border-color: var(--light-gold)!important;
+    border-color: var(--light-highlight)!important;
 }
 
 input[type=checkbox] {
-    outline: 2px solid var(--dark-blue);
-    accent-color: var(--dark-blue);
+    outline: 2px solid var(--dark-background);
+    accent-color: var(--dark-background);
     transition: accent-color 0.5s;
 }
 
 input[type=checkbox]:checked {
-    outline: 2px solid var(--dark-blue);
+    outline: 2px solid var(--dark-background);
 }
 
 .close-form {
-    color: var(--white);
+    color: var(--light-foreground);
     font-size: 150%;
     text-decoration: none;
     transition: color 0.5s;
 }
 
 .close-form:hover {
-    color: var(--light-gold);
+    color: var(--light-highlight);
     font-size: 150%;
     text-decoration: none;
 }
@@ -304,12 +304,12 @@ label[for="id_image_3"] {
 }
 
 .text-muted {
-    color: var(--dark-gold)!important;
-    font-family: var(--header-font);
+    color: var(--dark-highlight)!important;
+    font-family: var(--main-font);
 }
 
 input[type="radio"] {
-    accent-color: var(--dark-blue);
+    accent-color: var(--dark-background);
 }
 
 /** ---------------------- TOASTS ------------------------ **/
@@ -327,18 +327,18 @@ input[type="radio"] {
 
 .toast {
     border-radius: 0px;
-    border: 1px solid var(--dark-blue)!important;
-    font-family: var(--header-font);
+    border: 1px solid var(--dark-background)!important;
+    font-family: var(--main-font);
 }
 
 .toast-header {
-    background-color: var(--light-blue);
+    background-color: var(--light-background);
     border-radius: 0px!important;
-    color:var(--white);
+    color:var(--light-foreground);
 }
 
 .toast-body {
-    color: var(--dark-blue);
+    color: var(--dark-background);
 }
 
 .toast-capper {
@@ -348,34 +348,34 @@ input[type="radio"] {
 /** ---------------------- PAGINATOR ------------------------ **/
 
 .pagination-nav {
-    color: var(--white);
-    font-family: var(--header-font);
+    color: var(--light-foreground);
+    font-family: var(--main-font);
     font-size: 125%;
 }
 
 .pagination-nav a {
-    font-family: var(--header-font);
-    color: var(--white);
+    font-family: var(--main-font);
+    color: var(--light-foreground);
     transition: color 0.5s;
 }
 
 .pagination-nav a:hover {
-    font-family: var(--header-font);
-    color: var(--light-gold);
+    font-family: var(--main-font);
+    color: var(--light-highlight);
 }
 
 /** ---------------------- MODALS ------------------------ **/
 
 .modal-content {
-    background-color: var(--light-blue);
+    background-color: var(--light-background);
 }
 
 .modal-title {
-    color: var(--white);
+    color: var(--light-foreground);
 }
 
 .modal p {
-    color: var(--white);
+    color: var(--light-foreground);
 }
 
 .modal ul {
@@ -387,26 +387,26 @@ input[type="radio"] {
 
 .form-heading a {
     text-decoration: none;
-    color: var(--white);
+    color: var(--light-foreground);
     transition: color 0.5s;
 }
 
 .form-heading a:hover {
     text-decoration: none;
-    color: var(--light-gold);
+    color: var(--light-highlight);
 }
 
 /* REGISTER */
 
 #register-submit-container a {
     text-decoration: none;
-    color: var(--white);
+    color: var(--light-foreground);
     transition: color 0.5s;
 }
 
 #register-submit-container a:hover {
     text-decoration: none;
-    color: var(--light-gold);
+    color: var(--light-highlight);
 }
 
 #register-submit-container {
@@ -424,11 +424,11 @@ input[type="radio"] {
 #id_password1,
 #id_password2 {
     background: none;
-    border: 1px solid var(--white);
-    font-family: var(--header-font);
+    border: 1px solid var(--light-foreground);
+    font-family: var(--main-font);
     padding: 2px;
     width: 50%;
-    color: var(--white);
+    color: var(--light-foreground);
     transition: border 0.5s;
 }
 
@@ -438,7 +438,7 @@ input[type="radio"] {
 #id_username::placeholder,
 #id_password1::placeholder,
 #id_password2::placeholder {
-    color: var(--black)!important;
+    color: var(--dark-foreground)!important;
 }
 
 
@@ -447,9 +447,9 @@ input[type="radio"] {
 #id_username:focus,
 #id_password1:focus,
 #id_password2:focus {
-    background-color: var(--light-blue)!important;
-    color: var(--white)!important;
-    border: 1px solid var(--dark-gold)!important;
+    background-color: var(--light-background)!important;
+    color: var(--light-foreground)!important;
+    border: 1px solid var(--dark-highlight)!important;
     box-shadow: none!important;
     border-radius: 0%!important;
 }
@@ -459,11 +459,11 @@ input[type="radio"] {
 #id_username:hover,
 #id_password1:hover,
 #id_password2:hover {
-    border: 1px solid var(--black)!important;
+    border: 1px solid var(--dark-foreground)!important;
 }
 
 .form-background ul li {
-    font-family: var(--header-font);
+    font-family: var(--main-font);
 }
 
 .form-background ul li:nth-child(1),
@@ -482,52 +482,52 @@ input[type="radio"] {
 #id_password,
 #id_login {
     background: none;
-    border: 1px solid var(--white);
-    font-family: var(--header-font);
+    border: 1px solid var(--light-foreground);
+    font-family: var(--main-font);
     padding: 2px;
     width: 50%;
-    color: var(--white);
+    color: var(--light-foreground);
     transition: border 0.5s;
 }
 
 #id_password::placeholder,
 #id_login::placeholder {
-    color: var(--black)!important;
+    color: var(--dark-foreground)!important;
 }
 
 #id_password:hover,
 #id_login:hover {
-    border: 1px solid var(--black)!important;
+    border: 1px solid var(--dark-foreground)!important;
 }
 
 .custom-form-link {
     text-decoration: none;
-    color: var(--white);
+    color: var(--light-foreground);
     transition: color 0.5s;
 }
 
 .custom-form-link:hover {
     text-decoration: none;
-    color: var(--light-gold);
+    color: var(--light-highlight);
 }
 
 /* CHANGE PASSWORD */
 
 #id_oldpassword {
     background: none;
-    border: 1px solid var(--white);
-    font-family: var(--header-font);
+    border: 1px solid var(--light-foreground);
+    font-family: var(--main-font);
     padding: 2px;
     width: 50%;
-    color: var(--white);
+    color: var(--light-foreground);
     transition: border 0.5s;
 }
 
 #id_oldpassword::placeholder {
-    color: var(--black)!important;
+    color: var(--dark-foreground)!important;
 }
 
 #id_oldpassword:hover {
-    border: 1px solid var(--black)!important;
+    border: 1px solid var(--dark-foreground)!important;
 }
 

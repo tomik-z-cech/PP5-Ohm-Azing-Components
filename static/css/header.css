@@ -1,9 +1,9 @@
 /* ----------------------- HEADER ------------------------------ */
 
 header {
-    background-color: var(--light-blue);
+    background-color: var(--light-background);
     height: 12vh;
-    border-bottom: 2px solid var(--dark-blue);
+    border-bottom: 2px solid var(--dark-background);
 }
 
 #logo-image {
@@ -20,41 +20,41 @@ header {
     width: 15vw!important;
     top: 120%!important;
     border-radius: 0px;
-    font-family: var(--header-font)!important;
-    background-color: var(--light-blue)!important;
+    font-family: var(--main-font)!important;
+    background-color: var(--light-background)!important;
     transform: translate(-100%, 0%);
 }
 
 .dropdown-menu a {
-    color: var(--white)!important;
+    color: var(--light-foreground)!important;
     font-size: 120%;
     transition: color 0.5s;
 }
 
 .dropdown-menu a:hover {
-    color: var(--light-gold)!important;
-    background-color: var(--light-blue)!important;
+    color: var(--light-highlight)!important;
+    background-color: var(--light-background)!important;
 }
 
 .dropdown-menu.show {
-    border: 1px solid var(--white);
+    border: 1px solid var(--light-foreground);
 }
 
 .dropdown-divider {
-    border-top: 1px solid var(--white);
+    border-top: 1px solid var(--light-foreground);
 }
 
 .header-link {
-    color: var(--white)!important;
+    color: var(--light-foreground)!important;
     font-size: 150%!important;
     text-decoration: none!important;
-    font-family: var(--header-font)!important;
-    text-shadow: 2px 2px 4px var(--black)!important;
+    font-family: var(--main-font)!important;
+    text-shadow: 2px 2px 4px var(--dark-foreground)!important;
     transition: color 0.5s;
 }
 
 .header-link:hover {
-    color: var(--light-gold)!important;
+    color: var(--light-highlight)!important;
 }
 
 .nav-link {

@@ -2,7 +2,7 @@
 
 .jumbotron-wrapper {
     height: 74vh;
-    background-color: var(--light-blue-opaque);
+    background-color: var(--light-background-opaque);
 }
 
 .main-banner {
@@ -12,11 +12,11 @@
 .main-banner-message {
     height: 65%;
     width: 75%;
-    background-color: var(--light-blue-opaque);
+    background-color: var(--light-background-opaque);
 }
 
 .main-banner-message-text {
-    color: var(--white);
+    color: var(--light-foreground);
     font-size: 130%;
 }
 
@@ -27,26 +27,26 @@
 .side-banner-message {
     height: 80%;
     width: 80%;
-    background-color: var(--light-blue-opaque);
+    background-color: var(--light-background-opaque);
 }
 
 @keyframes free-shipping-change {
     0% {
         scale: 1.0;
-        color: var(--white);
+        color: var(--light-foreground);
     }
     50% {
         scale: 1.1;
-        color: var(--light-gold);
+        color: var(--light-highlight);
     }
     100% {
         scale: 1.0;
-        color: var(--white);
+        color: var(--light-foreground);
     }
 }
 
 .free-shipping-message {
-    color: var(--white);
+    color: var(--light-foreground);
     font-size: 130%;
     animation: free-shipping-change 3s infinite;
 }

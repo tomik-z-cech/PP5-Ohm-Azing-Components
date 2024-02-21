@@ -2,21 +2,21 @@
 
 .accordion-item {
     border-radius: 0px!important;
-    background-color: var(--black);
+    background-color: var(--dark-foreground);
 }
 
 .accordion-header {
-    background-color: var(--dark-blue);
-    color: var(--white);
+    background-color: var(--dark-background);
+    color: var(--light-foreground);
 }
 
 .accordion-collapse {
-    background-color: var(--light-blue);
+    background-color: var(--light-background);
 }
 
 .accordion-button {
-    background-color: var(--dark-blue);
-    color: var(--white);
+    background-color: var(--dark-background);
+    color: var(--light-foreground);
 }
 
 .accordion-button:hover {
@@ -24,8 +24,8 @@
 }
 
 .accordion-button:not(.collapsed) {
-    color: var(--white);
-    background-color: var(--dark-blue);
+    color: var(--light-foreground);
+    background-color: var(--dark-background);
 }
 
 .accordion-button:not(.collapsed)::after {
@@ -33,7 +33,7 @@
 }
 
 #cessation-list {
-    font-family: var(--header-font);
+    font-family: var(--main-font);
     list-style: none;
 }
 
@@ -46,7 +46,7 @@ label[for="id_city"],
 label[for="id_county"],
 label[for="id_post_code"],
 label[for="id_country"] {
-    font-family: var(--header-font);
+    font-family: var(--main-font);
     margin-bottom: 1vh;
     margin-top: 1vh;
 }
@@ -54,20 +54,20 @@ label[for="id_country"] {
 label[for="id_marketing_sms"],
 label[for="id_marketing_phone"],
 label[for="id_marketing_email"] {
-    font-family: var(--header-font);
+    font-family: var(--main-font);
 }
 
 #profile-picture-handler {
     height: 10em;
     width: 10em;
     cursor: pointer;
-    border: 1px solid var(--white);
+    border: 1px solid var(--light-foreground);
     padding: 5px;
     transition: border 0.5s;
 }
 
 #profile-picture-handler:hover {
-    border: 1px solid var(--black);
+    border: 1px solid var(--dark-foreground);
 }
 
 #profile-picture-preview {
@@ -83,7 +83,7 @@ label[for="id_marketing_email"] {
     justify-content: center;
     align-items: center;
     font-size: 250%;
-    font-family: var(--header-font);
+    font-family: var(--main-font);
 }
 
 #camera-icon {
@@ -96,6 +96,6 @@ label[for="id_marketing_email"] {
 }
 
 .modal-body {
-    color: var(--white);
-    font-family: var(--header-font);
+    color: var(--light-foreground);
+    font-family: var(--main-font);
 }
