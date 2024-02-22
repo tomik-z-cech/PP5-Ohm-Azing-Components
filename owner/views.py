@@ -563,6 +563,6 @@ class ApproveCommentView(
             ItemComments, pk=comment_pk
         )  # Get Comment
         requested_comment.approved = True
-        print(requested_comment.approved)
+        requested_comment.save()
         messages.info(request, f'Comment created by {requested_comment.comment_author} approved.')
         return redirect("comments-owner")  # Return to admin tools
