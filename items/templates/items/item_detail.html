@@ -97,7 +97,11 @@
                     <div class="d-flex justify-content-around">
                         <span class="product-detail-input">
                             <label for="quantity">Quantity :</label>
-                            <input type="number" class="form-control shadow-none" id="quantity" name="quantity">
+                            <span class="quantity-input-container">
+                                <span class="minus">-</span>
+                                <input type="number" class="form-control shadow-none" id="quantity" name="quantity" min="0" max="{{ item.item_stock }}">
+                                <span class="plus">+</span>
+                            </span>
                         </span>
                         <span class="product-detail-input d-flex align-items-end">
                             <button class="custom-button button-shadow" type="submit" id="add-button">Add to Vault</button>
@@ -163,8 +167,8 @@
                             Hold on tight, your comment is being approved !
                         {% endif %}
                     {% else %}
-                    <div class="col-12 d-flex justify-content-center align-items-center mb-3">
-                        <strong>Log In to comment ;)</strong>
+                    <div class="col-12 d-flex justify-content-center align-items-center">
+                        <strong>Please Log In to comment ;)</strong>
                     </div>
                     {% endif %}
             </div>
@@ -202,6 +206,20 @@
             };
             $('#form').submit(function(){
                 $('#loader-container').css("display", "flex");
+            });
+            let inputField = $('#quantity');
+            if (inputField.val() == '') {
+                inputField.val(1);
+            };
+            $('.plus').click(function() {
+                if (inputField.val() < {{ item.item_stock }} ){
+                    inputField.val(parseInt(inputField.val(), 10) + 1);
+                };
+            });
+            $('.minus').click(function() {
+                if (inputField.val() > 1 ){
+                    inputField.val(parseInt(inputField.val(), 10) - 1);
+                };
             });
         });
     </script>

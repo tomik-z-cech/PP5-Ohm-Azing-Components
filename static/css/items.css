@@ -207,3 +207,37 @@
 .comments-background label {
     display: none;
 }
+
+/* Style for the container div */
+.product-detail-input {
+    position: relative;
+}
+
+.minus {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate( 100%, 0%);
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.5s ease-in-out;
+}
+
+.plus {
+    position: absolute;
+    top: 50%;
+    transform: translate( -100%, 0%);
+    right: 0%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.5s ease-in-out;
+}
+
+.minus:hover,
+.plus:hover {
+    color: var(--light-highlight);
+}
+
+#quantity {
+    text-align: center;
+}
