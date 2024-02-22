@@ -70,7 +70,17 @@
                         {{ item.item_stock}}
                     </td>
                     <td>
-                        {{ item.item_likes_num}}
+                        {% if item.item_likes_num > 0 %}
+                        <span class="pos-rating">
+                            {{ item.item_likes_num }}
+                        {% elif item.item_likes_num < 0 %}
+                        <span class="neg-rating">
+                            {{ item.item_likes_num }}
+                        {% else %}
+                        <span>
+                            0
+                        {% endif %}
+                        </span>
                     </td>
                     <td>
                         <a href="{% url 'edit-item' item_pk=item.pk %}" aria-label="Edit Item" class="custom-button-table button-shadow">Edit</a>

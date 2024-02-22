@@ -121,3 +121,11 @@
     height: 15vh!important;
     overflow: scroll!important;
 }
+
+.neg-rating {
+    color: var(--negative-foreground);
+}
+
+.pos-rating {
+    color: var(--positive-foreground);
+}
