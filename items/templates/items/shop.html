@@ -219,6 +219,7 @@
             let sortOption = $('#sortingOptions').val();
             let lengthOption = $('#lengthOptions').val();
             let newUrl = prepareNewUrl(currentUrl, ["page_sort", sortOption, "page_length", lengthOption]);
+            $('#loader-container').css("display", "flex");
             window.location.href = newUrl;
         });
         if ($('#items-menu').prop('scrollHeight') <= $('#items-menu').prop('clientHeight')) {
@@ -232,7 +233,7 @@
         };
         $('#scroll-up-categories').click(function(e) {
 			$('#categories-menu').animate({ scrollTop: 0 }, 1500);
-		})
+		});
     });
 </script>
 {% endblock %}

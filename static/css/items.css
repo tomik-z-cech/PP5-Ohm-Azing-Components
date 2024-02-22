@@ -208,16 +208,16 @@
     display: none;
 }
 
-/* Style for the container div */
 .product-detail-input {
     position: relative;
+    height: auto;
 }
 
 .minus {
     position: absolute;
     top: 50%;
     left: 0%;
-    transform: translate( 100%, 0%);
+    transform: translate( 0%, 0%);
     font-size: 16px;
     cursor: pointer;
     transition: color 0.5s ease-in-out;
@@ -226,11 +226,17 @@
 .plus {
     position: absolute;
     top: 50%;
-    transform: translate( -100%, 0%);
+    transform: translate( 0%, 0%);
     right: 0%;
     font-size: 16px;
     cursor: pointer;
     transition: color 0.5s ease-in-out;
+}
+
+.plus,
+.minus {
+    padding-left: 1vw;
+    padding-right: 1vw;
 }
 
 .minus:hover,
