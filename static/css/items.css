@@ -129,11 +129,11 @@
 }
 
 .out-of-stock {
-    background-color: var(--out-of-stock);
+    background-color: var(--negative-background);
 }
 
 .in-stock {
-    background-color: var(--in-stock);
+    background-color: var(--positive-background);
 }
 
 .product-image-container {
@@ -189,4 +189,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.neg-rating {
+    color: var(--negative-foreground);
+}
+
+.pos-rating {
+    color: var(--positive-foreground);
+}
+
+.comments-background {
+    background-color: var(--light-background);
+    color: var(--light-foreground);
+}
+
+.comments-background label {
+    display: none;
 }

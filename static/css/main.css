@@ -9,13 +9,17 @@
     /** COLOR PALETTE **/
     --dark-foreground: #142331;
     --light-foreground: #fafafa;
+    --positive-foreground: #b0fc38;
+    --negative-foreground: #ff3333;
+    
     --light-background: #30577b;
     --light-background-opaque: rgba(48,87,123,0.75);
     --dark-background: #223d56;
+    --negative-background: #c0392b;
+    --positive-background: #218c54;    
+    
     --light-highlight: #fbdb6b;
     --dark-highlight: #facf39;
-    --out-of-stock: #c0392b;
-    --in-stock: #218c54;
 
     /** FONTS **/
     --main-font: 'Electrolize', sans-serif;
@@ -153,6 +157,9 @@ p, th {
     color: var(--light-highlight);
 }
 
+.short-button {
+    width: 20%!important;
+}
 
 .form-background {
     background-color: var(--light-background);

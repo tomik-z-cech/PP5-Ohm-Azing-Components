@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load mathfilters %}
 {% load crispy_forms_tags %}
 {% load static %}
 
@@ -9,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container wrapper d-flex justify-content-center align-items-center">
+    <div class="container wrapper d-flex justify-content-center flex-column">
         <div class="w-100 d-flex justify-content-center align-items-center p-3 item-detail-background add-shadow">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-6">
@@ -102,15 +103,84 @@
                             <button class="custom-button button-shadow" type="submit" id="add-button">Add to Vault</button>
                         </span>
                     </div>
-                    <div class="scroll-up">
-                        <span id="back-to-shop">
+                    <div class="scroll-up row">
+                        <div class="col-4 d-flex align-items-end">
+                            <i class="bi bi-award"></i>
+                            &nbsp;
+                            Rating
+                            &nbsp;
+                            {% if item.rating_counter > 0 %}
+                            <span class="pos-rating">
+                                + 
+                                {{ item.rating_counter|abs }}
+                            {% elif item.rating_counter < 0 %}
+                            <span class="neg-rating">
+                                - 
+                                {{ item.rating_counter|abs }}
+                            {% else %}
+                            <span>
+                                {{ item.rating_counter|abs }}
+                            {% endif %}
+                            </span>
+                        </div>
+                        <div class="col-4 d-flex align-items-end">
+                            <i class="bi bi-chat-left-text"></i>
+                            &nbsp;
+                            {{ item.item_comments_num }}
+                            {% if item.item_comments_num != 1 %}
+                            Comments
+                            {% else %}
+                            Comment
+                            {% endif %}
+                        </div>
+                        <div class="col-4" id="back-to-shop">
                             <i class="bi bi-arrow-left-square"></i>
                             &nbsp;
                             Continue Shopping
-                        </span>
+                        </div>
                     </div>
+
                 </div>
             </div>
+        </div>
+        <!-- Only for logged in users -->
+        {% if user.is_authenticated %}
+            <div class="w-100 p-3 comments-background add-shadow mt-3">
+                    <!-- If no comment submitted yet, display form -->
+                    {% if can_comment %}
+                    <div class="col-12 d-flex justify-content-start mb-3">
+                        <strong>Commenting as {{ user.username }} :</strong>
+                    </div>
+                    <form method="post">
+                        {{ item_comment_form | crispy }}
+                        {% csrf_token %}
+                        <div class="col-12 d-flex justify-content-end mt-3">
+                            <button type="Submit" class="custom-button button-shadow mt-2 short-button">Comment</button>
+                        </div>
+                    </form>
+                    <!-- If form submitted, display message -->
+                    {% else %}
+                        Hold on tight, your comment is being approved !
+                    {% endif %}
+            </div>
+        {% endif %}
+        <div class="w-100 p-3 add-shadow mt-3 comments-background">
+            {% if comments|length == 0%}
+                Be first to comment ;)
+            {%else%}
+                <!-- Loop to iterate through all comments -->
+                {% for comment in comments %}
+                    {% if forloop.first %}
+                    <hr>
+                    {% endif %}
+                    <strong>
+                        Comment by {{ comment.comment_author }} - {{ comment.created_on|date:"d.m.Y" }}
+                    </strong> 
+                    <br>
+                    {{ comment.comment_body }}
+                    <hr>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

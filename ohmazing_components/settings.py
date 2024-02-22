@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "crispy_forms",
     "storages",
+    "mathfilters",
     "landing",
     "items",
     "owner",

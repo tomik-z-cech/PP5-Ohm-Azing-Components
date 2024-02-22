@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load mathfilters %}
 {% load crispy_forms_tags %}
 {% load static %}
 
@@ -112,7 +113,17 @@
                                             &nbsp;
                                             <i class="bi bi-award"></i>
                                             &nbsp;
-                                            {{ item.item_likes_num }}
+                                            {% if item.rating_counter > 0 %}
+                                            <span class="pos-rating">
+                                                + 
+                                                {{ item.rating_counter|abs }}
+                                            {% elif item.rating_counter < 0 %}
+                                            <span class="neg-rating">
+                                                - 
+                                                {{ item.rating_counter|abs }}
+                                            {% else %}
+                                            <span>
+                                            {% endif %}
                                         </div>
                                         <div>
                                             {% if item.item_stock > 0 %}

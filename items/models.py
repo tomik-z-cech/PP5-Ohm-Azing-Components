@@ -45,6 +45,9 @@ class Item(models.Model):
     def __str__(self):
         return self.item_name
     
+    def rating_counter(self):
+        return self.item_likes.count() - self.item_dislikes.count()
+    
 class ItemComments(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="item_comments",)
     comment_author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="items")
