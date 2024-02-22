@@ -151,7 +151,7 @@
                     <div class="col-12 d-flex justify-content-start mb-3">
                         <strong>Commenting as {{ user.username }} :</strong>
                     </div>
-                    <form method="post">
+                    <form method="post" id="form">
                         {{ item_comment_form | crispy }}
                         {% csrf_token %}
                         <div class="col-12 d-flex justify-content-end mt-3">
@@ -196,6 +196,9 @@
                     window.location.href = previousDestination;
                 });
             };
+            $('#form').submit(function(){
+                $('#loader-container').css("display", "flex");
+            });
         });
     </script>
 {% endblock %}

@@ -17,4 +17,8 @@ urlpatterns = [
     path("invoices/", login_required(views.OwnerInvoicesView.as_view()), name="invoices"),
     path("download-invoice/<int:invoice_pk>/", login_required(views.DownloadInvoiceView.as_view()), name="download-invoice"),
     path("postage-settings/", login_required(views.PostageSettingsView.as_view()), name="postage-settings"),
+    path("comments/", login_required(views.CommentsOwnerView.as_view()), name="comments-owner"),
+    path("comment-delete-request/<int:comment_pk>", login_required(views.DeleteCommentView.comment_delete_request), name="comment-delete-request"),
+    path("delete-comment/<int:comment_pk>/", login_required(views.DeleteCommentView.as_view()), name="delete-comment"),
+    path("approve-comment/<int:comment_pk>/", login_required(views.ApproveCommentView.as_view()), name="approve-comment"),
 ]

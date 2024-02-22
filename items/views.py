@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.db.models import Count, Q
 from django.core.paginator import Paginator
+from django.contrib import messages
 from items.models import Category, Item, ItemComments
 from items.forms import ItemCommentForm
 
@@ -132,6 +133,7 @@ class ItemDetailView(generic.ListView):
             new_comment = item_comment_form.save(commit=False)
             new_comment.item = item_to_view
             new_comment.save()
+            messages.success(request, f'Your comment regarding {item_to_view} was submitted and pending approval.')
         # If not valid, return form
         else:
             item_comment_form = ItemCommentForm()

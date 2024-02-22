@@ -16,5 +16,6 @@ class ItemCommentForm(forms.ModelForm):
                 "rows": 3,
                 "placeholder": "Type your comment here ...",
                 "aria-label": "News Comment",
+                'class': 'shadow-none',
             }
         )

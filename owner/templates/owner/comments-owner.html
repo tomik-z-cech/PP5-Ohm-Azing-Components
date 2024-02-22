@@ -1,0 +1,164 @@
+{% extends "owner/owner.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block owner_admin %}
+<div class="col-12 d-flex flex-column">
+    <h2 class="my-2 text-center">
+        Comments
+    </h2>
+    <div class="w-100 d-flex justify-content-around">
+        <select id="sortingOptions" class="form-control w-25 shadow-none">
+            <option value="0" {% if page_sort == 0 %}selected{% endif %}>All Comments</option>
+            <option value="1" {% if page_sort == 1 %}selected{% endif %}>Approved Comments</option>
+            <option value="2" {% if page_sort == 2 %}selected{% endif %}>Not Approved Comments</option>
+        </select>
+        <select id="lengthOptions" class="form-control w-25 shadow-none">
+            <option value="5" {% if page_length == 5 %}selected{% endif %}>5 items per page</option>
+            <option value="10" {% if page_length == 10 %}selected{% endif %}>10 items per page</option>
+            <option value="20" {% if page_length == 20 %}selected{% endif %}>20 items per page</option>
+            <option value="0" {% if page_length == 0 %}selected{% endif %}>All items</option>
+        </select>
+    </div>
+    {% if comments|length > 0 %}
+        <table class="items-table mt-4">
+            <tr>
+                <th>
+                    Author
+                </th>
+                <th>
+                    Comment 
+                </th>
+                <th>
+                    Created on
+                </th>
+                <th>
+                    Approved
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+            {% for comment in comments %}
+                <tr>
+                    <td colspan="6">
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ comment.comment_author }}
+                    </td>
+                    <td>
+                        <div class="comment-text-container hidden-overflow">
+                            <div class="comment-text">
+                                {{ comment.comment_body}}
+                            </div>
+                        {% if comment.comment_body|length > 60 %}
+                            <div class="more-text">
+                                ...
+                            </div>
+                        {% endif %}
+                        </div>
+                    </td>
+                    <td>
+                        {{ comment.created_on|date:"d.m.Y" }}
+                    </td>
+                    <td>
+                        {% if comment.approved %}
+                        <span class="approved">
+                            Yes
+                        </span>
+                        {% else %}
+                        <span class="not-approved">
+                            No
+                        </span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if not comment.approved %}
+                        <a href="{% url 'approve-comment' comment_pk=comment.pk %}" aria-label="Approve Comment" class="custom-button button-shadow" id="approveButton">Approve</a>
+                        {% endif %}
+                        <a href="{% url 'comment-delete-request' comment_pk=comment.pk %}" aria-label="Delete Comment" class="custom-button button-shadow">Delete</a>
+                    </td>
+                <tr>
+            {% endfor %}
+            <tr>
+                <td colspan="6">
+                    <hr>
+                </td>
+            </tr>
+        </table>
+    {% else %}
+        <p class="text-center mt-5">
+            No items to display.
+        </p>
+    {% endif %}
+    {% if paginator_nav %}
+        <div class="w-100 d-flex justify-content-center my-4 pagination-nav">
+            <span class="step-links">
+                {% if comments.has_previous %}
+                    <a href="?page=1&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-left"></i></a>
+                    <a href="?page={{ items.previous_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-left"></i></a>
+                {% else %}
+                    <i class="bi bi-chevron-bar-left"></i>
+                    <i class="bi bi-chevron-left"></i>
+                {% endif %}
+        
+                <span class="current-page">
+                    Page {{ comments.number }} of {{ comments.paginator.num_pages }}
+                </span>
+        
+                {% if comments.has_next %}
+                    <a href="?page={{ items.next_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-right"></i></a>
+                    <a href="?page={{ items.paginator.num_pages }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-right"></i></a>
+                {% else %}
+                    <i class="bi bi-chevron-right"></i>
+                    <i class="bi bi-chevron-bar-right"></i>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{{block.super}}
+<script>
+    function prepareNewUrl(currentUrl, parameters) {
+        for (let i = 0; i < parameters.length; i += 2) {
+            let key = parameters[i];
+            let value = parameters[i + 1];
+            currentUrl = cleanseUrl(currentUrl, key, value);
+        }
+        return currentUrl;
+    }
+    
+    function cleanseUrl(uri, key, value) {
+        let re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+        if (uri.match(re)) {
+            return uri.replace(re, '$1' + key + "=" + value + '$2');
+        } else {
+            let separator = uri.indexOf('?') !== -1 ? "&" : "?";
+            return uri + separator + key + "=" + value;
+        }
+    }
+
+    $(document).ready(function() {
+        $('#sortingOptions, #lengthOptions').change(function(){
+            let currentUrl = window.location.href;
+            let sortOption = $('#sortingOptions').val();
+            let lengthOption = $('#lengthOptions').val();
+            let newUrl = prepareNewUrl(currentUrl, ["page_sort", sortOption, "page_length", lengthOption]);
+            window.location.href = newUrl;
+            $('#loader-container').css("display", "flex");
+        });
+        $('#approveButton').click(function(){
+            $('#loader-container').css("display", "flex");
+        });
+        $('.more-text').click(function() {
+            $(this).parent('.comment-text-container').toggleClass('expand-box');
+        });
+    });
+</script>
+{% endblock %}

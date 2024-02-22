@@ -78,3 +78,46 @@
     background-color: var(--light-background);
     color: var(--light-highlight);
 }
+
+.approved {
+    color: var(--positive-foreground);
+}
+
+.not-approved {
+    color: var(--negative-foreground);
+}
+
+.comment-text-container {
+    width: 40vw;
+    height: 1.7em;
+    position: relative;
+    overflow: hidden;
+}
+
+.comment-text {
+    width: 90%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.more-text {
+    height: 1.7em;
+    width: 8%;
+    background-color: var(--dark-background);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+    transition: color 0.5s ease-in-out;
+}
+
+.more-text:hover {
+    color: var(--light-highlight);
+}
+
+.expand-box {
+    height: 15vh!important;
+    overflow: scroll!important;
+}
