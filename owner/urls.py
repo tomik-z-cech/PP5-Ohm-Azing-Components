@@ -21,4 +21,6 @@ urlpatterns = [
     path("comment-delete-request/<int:comment_pk>", login_required(views.DeleteCommentView.comment_delete_request), name="comment-delete-request"),
     path("delete-comment/<int:comment_pk>/", login_required(views.DeleteCommentView.as_view()), name="delete-comment"),
     path("approve-comment/<int:comment_pk>/", login_required(views.ApproveCommentView.as_view()), name="approve-comment"),
+    path("vouchers/", login_required(views.VouchersOwnerView.as_view()), name="vouchers-owner"),
+    path("add-voucher/", login_required(views.AddVoucherView.as_view()), name="add-voucher"),
 ]

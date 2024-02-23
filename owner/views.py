@@ -14,10 +14,10 @@ from django.contrib.auth.mixins import (
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Count, F, ExpressionWrapper, fields
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpResponse
 from items.models import Category, Item, ItemComments
-from owner.forms import CategoryForm, ItemForm, PostageSettingsForm
-from owner.models import Invoice, PostageSettings
+from owner.forms import CategoryForm, ItemForm, PostageSettingsForm, VoucherForm
+from owner.models import Invoice, PostageSettings, Voucher
 
 
 class OwnerMainView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
@@ -475,7 +475,6 @@ class CommentsOwnerView(
     """
 
     template_name = "owner/comments-owner.html"  # Template
-    success_url = "/owner/"  # URL to redirect after successful editing
 
     def test_func(self):
         """Test function to ensure user is superuser"""
@@ -566,3 +565,93 @@ class ApproveCommentView(
         requested_comment.save()
         messages.info(request, f'Comment created by {requested_comment.comment_author} approved.')
         return redirect("comments-owner")  # Return to admin tools
+    
+    
+class VouchersOwnerView(
+        UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
+    """
+    Class for managing vouchers
+    """
+
+    template_name = "owner/vouchers.html"  # Template
+
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+    
+    def get(self, request, *args, **kwargs):
+        page_length = int(request.GET.get('page_length', 0))
+        page_sort = int(request.GET.get('page_sort', 0))
+        current_page = request.GET.get('page', 1)
+        vouchers = Voucher.objects.all()
+        #if page_length != 0:
+        #    if page_sort == 0:
+        #        paginated_items = Paginator(ItemComments.objects.all().order_by('-created_on'), page_length)
+        #    elif page_sort == 1:
+        #        paginated_items = Paginator(ItemComments.objects.filter(approved=1).order_by('-created_on'), page_length)
+        #    elif page_sort == 2:
+        #        paginated_items = Paginator(ItemComments.objects.filter(approved=0).order_by('-created_on'), page_length)
+        #    else:
+        #        paginated_items = Paginator(ItemComments.objects.all().order_by('-created_on'), page_length)
+        #    page_obj = paginated_items.get_page(current_page)
+        #    paginator_nav = True
+        #else:
+        #    if page_sort == 0:
+        #        page_obj = ItemComments.objects.all().order_by('-created_on')
+        #    elif page_sort == 1:
+        #        page_obj = ItemComments.objects.filter(approved=1).order_by('-created_on')
+        #    elif page_sort == 2:
+        #        page_obj = ItemComments.objects.filter(approved=0).order_by('-created_on')
+        #    else:
+        #        page_obj = ItemComments.objects.all().order_by('-created_on')
+        #    paginator_nav = False
+        print(vouchers)
+        return render(
+            request,
+            self.template_name,
+            {
+                "vouchers": vouchers,
+                # "paginator_nav": paginator_nav,
+                "page_sort": page_sort,
+                "page_length": page_length,
+            },
+        )
+        
+class AddVoucherView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
+    """
+    Class for adding categories
+    """
+    
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+    
+    template_name = "owner/new_voucher.html"  # Template
+    form = VoucherForm  # New voucher form
+    success_url = "/vouchers/"  # URL to redirect after successful creation
+
+    def get(self, request, *args, **kwargs):
+        """
+        Function generates new category form into template
+        """
+        return render(
+            request,
+            self.template_name,
+            {
+                "new_voucher_form": VoucherForm(),  # Category form
+            },
+        )
+
+    def post(self, request, *args, **kwargs):
+        """
+        Function triggers when add category button pressed
+        """
+        new_voucher = self.form(request.POST, request.FILES)
+        if new_voucher.is_valid():
+            new_voucher_code = new_voucher.cleaned_data['voucher_code']
+            messages.info(request, f'Voucher {new_voucher_code} created.')
+            new_voucher.save()  # Save category into database
+        else:
+            messages.error(request, "Voucher couldn't be created.")
+            new_voucher = self.form()
+        return redirect("vouchers-owner")  # Redirect back to admin tools

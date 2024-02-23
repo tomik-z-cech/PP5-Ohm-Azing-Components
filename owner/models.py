@@ -20,10 +20,10 @@ class PostageSettings(models.Model):
     
 
 class Voucher(models.Model):
-    voucher_code = models.CharField(blank=False, null=False)
-    start_date = models.DateField(blank=False, null=False)
-    end_date = models.DateField(blank=False, null=False)
-    discount = models.PositiveIntegerField(blank=False, null=False)
+    voucher_code = models.CharField(blank=False, null=False, help_text='Discount Code')
+    start_date = models.DateTimeField(blank=False, null=False, help_text='First Day of Validity')
+    end_date = models.DateField(blank=False, null=False, help_text='Last Day of Validity ')
+    discount = models.PositiveIntegerField(blank=False, null=False, help_text='Discount - % of TOTAL')
     
     def __str__(self):
         return self.voucher_code

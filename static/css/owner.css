@@ -129,3 +129,7 @@
 .pos-rating {
     color: var(--positive-foreground);
 }
+
+.neu-rating {
+    color: var(--neutral-foreground);
+}

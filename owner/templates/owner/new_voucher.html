@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block nav_name %}New Voucher{% endblock %}
+
+{% block extra_css %}
+<!-- Local styling to ensure this doesn't interfere with global styling of same class names -->
+<style>
+    .asteriskField {
+        display: none;
+    }
+</style>
+<link rel="stylesheet" href="{% static 'css/owner.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container wrapper d-flex justify-content-center align-items-center">
+    <div class="form-background add-shadow">
+        <div class="w-100 d-flex justify-content-end">
+            <a href="{% url 'vouchers-owner' %}" aria-label="Close" class="close-form">
+                <i class="bi bi-x"></i>
+            </a>
+        </div>
+        <h1 class="text-center">
+            New Voucher
+        </h1>
+        <form method="post" enctype="multipart/form-data" id="form">
+            {% csrf_token %}
+            {{ new_voucher_form|crispy }}
+            <div class="container d-flex justify-content-around">
+                <button type="submit" value="Submit" class="custom-button button-shadow mt-4">Add Voucher</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function() {
+            $('#filename').text(`No file selected.`);
+            $('#new-image').change(function() {
+                let file = $('#new-image')[0].files[0];
+                $('#filename').text(`Image will be set to : ${file.name}`);
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    $("#image-preview").attr("src", e.target.result);
+                    $("#image-preview").show();
+                };
+                reader.readAsDataURL(file);
+            });
+            $('#form').submit(function(){
+                $('#loader-container').css("display", "flex");
+            });
+        });
+    </script>
+{% endblock %}

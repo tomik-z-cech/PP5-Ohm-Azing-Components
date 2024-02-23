@@ -1,9 +1,9 @@
 # Imports
 from django import forms
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from owner.widgets import CustomImageInputCategory, CustomImageInputItem1, CustomImageInputItem2, CustomImageInputItem3
 from items.models import Category, Item
-from owner.models import PostageSettings
+from owner.models import PostageSettings, Voucher
 
 class CategoryForm(forms.ModelForm):
     """
@@ -93,3 +93,40 @@ class PostageSettingsForm(forms.ModelForm):
             'step': '0.05',
             'min': '1',
         })
+        
+class VoucherForm(forms.ModelForm):
+    """
+    Voucher form
+    """
+    class Meta:
+        model = Voucher
+        fields = ('__all__')
+        widgets = {
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date'}),
+        }
+        
+        
+    def __init__(self, *args, **kwargs):
+        super(VoucherForm, self).__init__(*args, **kwargs)
+        fields_to_add_class = self.fields.keys()
+        for field in fields_to_add_class:
+            self.fields[field].widget.attrs.update({
+                'class': 'shadow-none',
+            })
+        self.fields['discount'].widget.attrs.update({
+            'placeholder': 'Enter % of discount',
+            'step': '1',
+            'min': '1',
+            'max': '100',
+        })
+        self.fields['voucher_code'].widget.attrs.update({
+            'placeholder': 'Enter CODE of discount',
+        })
+            
+    discount = forms.IntegerField(
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(100)
+        ]
+    )

@@ -11,6 +11,7 @@
     --light-foreground: #fafafa;
     --positive-foreground: #b0fc38;
     --negative-foreground: #ff3333;
+    --neutral-foreground: #dfff00;
     
     --light-background: #30577b;
     --light-background-opaque: rgba(48,87,123,0.75);
@@ -200,6 +201,7 @@ p, th {
 input[type="text"],
 textarea,
 input[type="number"],
+input[type="date"],
 select
 {
     font-family: var(--main-font)!important;
@@ -215,7 +217,8 @@ select
 input[type="text"]:focus,
 textarea:focus,
 input[type="number"]:focus,
-select:focus
+select:focus,
+input[type="date"]:focus
 {
     background-color: var(--light-background)!important;
     color: var(--light-foreground)!important;
@@ -227,7 +230,8 @@ select:focus
 input[type="text"]:hover,
 textarea:hover,
 input[type="number"]:hover,
-select:hover
+select:hover,
+input[type="date"]:hover
 {
     background-color: var(--light-background)!important;
     color: var(--light-foreground)!important;
