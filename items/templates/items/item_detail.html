@@ -181,11 +181,22 @@
                     {% if forloop.first %}
                     <hr>
                     {% endif %}
-                    <strong>
-                        Comment by {{ comment.comment_author }} - {{ comment.created_on|date:"d.m.Y" }}
-                    </strong> 
-                    <br>
-                    {{ comment.comment_body }}
+                    <div class="row">
+                        <div class="col-1">
+                            {% if comment.comment_author.userprofile.profile_picture %}
+                                <img src="{{ comment.comment_author.userprofile.profile_picture.url }}" alt="Profile Picture of {{ comment.comment_author }}" class="comments-profile-picture">
+                            {% else %}
+                                <img src="{% static 'images/blank_profile_picture.png' %}" alt="Profile Picture of {{ comment.comment_author }}" class="comments-profile-picture">
+                            {% endif %}
+                        </div>
+                        <div class="col-11">
+                            <strong>
+                                Comment by {{ comment.comment_author }} - {{ comment.created_on|date:"d.m.Y" }}
+                            </strong> 
+                            <br>
+                            {{ comment.comment_body }}
+                        </div>
+                    </div>
                     <hr>
                 {% endfor %}
             {% endif %}

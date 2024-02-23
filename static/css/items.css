@@ -247,3 +247,10 @@
 #quantity {
     text-align: center;
 }
+
+.comments-profile-picture {
+    height: 7vh;
+    width: 7vh;
+    border: 2px solid var(--dark-foreground);
+    border-radius: 50%;
+}
