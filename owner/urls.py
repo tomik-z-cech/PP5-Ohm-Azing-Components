@@ -23,4 +23,7 @@ urlpatterns = [
     path("approve-comment/<int:comment_pk>/", login_required(views.ApproveCommentView.as_view()), name="approve-comment"),
     path("vouchers/", login_required(views.VouchersOwnerView.as_view()), name="vouchers-owner"),
     path("add-voucher/", login_required(views.AddVoucherView.as_view()), name="add-voucher"),
+    path("voucher-delete-request/<int:voucher_pk>", login_required(views.DeleteVoucherView.voucher_delete_request), name="voucher-delete-request"),
+    path("delete-voucher/<int:voucher_pk>/", login_required(views.DeleteVoucherView.as_view()), name="delete-voucher"),
+    path("edit-voucher/<int:voucher_pk>/", login_required(views.EditVoucherView.as_view()), name="edit-voucher"),
 ]

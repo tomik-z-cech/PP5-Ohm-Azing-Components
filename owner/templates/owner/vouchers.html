@@ -12,14 +12,10 @@
     </div>
     <div class="w-100 d-flex justify-content-around">
         <select id="sortingOptions" class="form-control w-25 shadow-none">
-            <option value="0" {% if page_sort == 0 %}selected{% endif %}>Name A-Z</option>
-            <option value="1" {% if page_sort == 1 %}selected{% endif %}>Name Z-A</option>
-            <option value="2" {% if page_sort == 2 %}selected{% endif %}>Price Low - High</option>
-            <option value="3" {% if page_sort == 3 %}selected{% endif %}>Price High - Low</option>
-            <option value="4" {% if page_sort == 4 %}selected{% endif %}>Stock Low - High</option>
-            <option value="5" {% if page_sort == 5 %}selected{% endif %}>Stock High - Low</option>
-            <option value="6" {% if page_sort == 6 %}selected{% endif %}>Best Rated</option>
-            <option value="7" {% if page_sort == 7 %}selected{% endif %}>Worst Rated</option>
+            <option value="0" {% if page_sort == 0 %}selected{% endif %}>All Vouchers</option>
+            <option value="1" {% if page_sort == 1 %}selected{% endif %}>Pending only</option>
+            <option value="2" {% if page_sort == 2 %}selected{% endif %}>Active only</option>
+            <option value="3" {% if page_sort == 3 %}selected{% endif %}>Expired only</option>
         </select>
         <select id="lengthOptions" class="form-control w-25 shadow-none">
             <option value="5" {% if page_length == 5 %}selected{% endif %}>5 items per page</option>
@@ -70,22 +66,19 @@
                         {{ voucher.discount }} %
                     </td>
                     <td>
-                        {% now "d.m.Y" as current_date %}
-                        {% if voucher.start_date|date:"d.m.Y" < current_date %}
+                        {% if voucher.status == "Pending" %}
                         <span class="neu-rating">
-                            Pending
-                        {% elif voucher.start_date|date:"d.m.Y" > current_date and voucher.start_date|date:"d.m.Y" < current_date %}
+                        {% elif voucher.status == "Active" %}
                         <span class="pos-rating">
-                            Active
                         {% else %}
                         <span class="neg-rating">
-                            Expired
                         {% endif %}
+                        {{ voucher.status }}
                         </span>
                     </td>
                     <td>
-                        <a href="#" aria-label="Edit Item" class="custom-button-table button-shadow">Edit</a>
-                        <a href="#" aria-label="Delete Item" class="custom-button-table button-shadow">Delete</a>
+                        <a href="{% url 'edit-voucher' voucher_pk=voucher.pk %}" aria-label="Edit Voucher" class="custom-button-table button-shadow">Edit</a>
+                        <a href="{% url 'voucher-delete-request' voucher_pk=voucher.pk %}" aria-label="Delete Voucher" class="custom-button-table button-shadow">Delete</a>
                     </td>
                 <tr>
             {% endfor %}
@@ -103,7 +96,7 @@
     {% if paginator_nav %}
         <div class="w-100 d-flex justify-content-center my-4 pagination-nav">
             <span class="step-links">
-                {% if items.has_previous %}
+                {% if vouchers.has_previous %}
                     <a href="?page=1&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-left"></i></a>
                     <a href="?page={{ items.previous_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-left"></i></a>
                 {% else %}
@@ -112,10 +105,10 @@
                 {% endif %}
         
                 <span class="current-page">
-                    Page {{ items.number }} of {{ items.paginator.num_pages }}
+                    Page {{ vouchers.number }} of {{ vouchers.paginator.num_pages }}
                 </span>
         
-                {% if items.has_next %}
+                {% if vouchers.has_next %}
                     <a href="?page={{ items.next_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-right"></i></a>
                     <a href="?page={{ items.paginator.num_pages }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-right"></i></a>
                 {% else %}

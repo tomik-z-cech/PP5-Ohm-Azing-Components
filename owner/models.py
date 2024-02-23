@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 
 # Create your models here.
@@ -24,6 +25,17 @@ class Voucher(models.Model):
     start_date = models.DateTimeField(blank=False, null=False, help_text='First Day of Validity')
     end_date = models.DateField(blank=False, null=False, help_text='Last Day of Validity ')
     discount = models.PositiveIntegerField(blank=False, null=False, help_text='Discount - % of TOTAL')
+    
+    @property
+    def status(self):
+        today = date.today()
+
+        if self.start_date > today:
+            return "Pending"
+        elif self.start_date <= today <= self.end_date:
+            return "Active"
+        else:
+            return "Expired"
     
     def __str__(self):
         return self.voucher_code

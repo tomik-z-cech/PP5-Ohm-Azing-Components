@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block nav_name %}Confirm{% endblock %}
+
+{% block extra_css %} 
+        <link rel="stylesheet" href="{% static 'css/owner.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container wrapper d-flex justify-content-center align-items-center">
+    <div class="form-background add-shadow">
+        <div class="w-100 d-flex justify-content-end">
+            <a href="{% url 'vouchers-owner' %}" aria-label="Close" class="close-form">
+                <i class="bi bi-x"></i>
+            </a>
+        </div>
+        <h1 class="text-center">
+            Are you sure ?
+        </h1>
+        <p class="text-center">
+            You are about to delete voucher with code 
+            <strong>
+                {{ voucher_to_delete.voucher_code }}
+            </strong>
+            starting on 
+            <strong>
+                {{ voucher_to_delete.start_date|date:"d.m.Y" }}
+            </strong>
+            and ending on 
+            <strong>
+                {{ voucher_to_delete.end_date|date:"d.m.Y" }}
+            </strong>
+            .
+        </p>
+        <div class="w-100 d-flex justify-content-around p-3">
+            <a href="{% url 'vouchers-owner' %}" aria-label="No, take me back" class="custom-button button-shadow">
+                No, take me back
+            </a>
+            <a href="{% url 'delete-voucher' voucher_pk=voucher_to_delete.pk %}" aria-label="Yes, delete" class="custom-button button-shadow" id="deleteButton">
+                Yes, delete
+            </a>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function() {
+            $('#deleteButton').click(function(){
+                $('#loader-container').css("display", "flex");
+            });
+        });
+    </script>
+{% endblock %}

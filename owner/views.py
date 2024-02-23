@@ -1,6 +1,7 @@
 # Imports
 import io
 import zipfile
+from datetime import date
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect  # Responses
 from django.views import generic
@@ -584,34 +585,38 @@ class VouchersOwnerView(
         page_sort = int(request.GET.get('page_sort', 0))
         current_page = request.GET.get('page', 1)
         vouchers = Voucher.objects.all()
-        #if page_length != 0:
-        #    if page_sort == 0:
-        #        paginated_items = Paginator(ItemComments.objects.all().order_by('-created_on'), page_length)
-        #    elif page_sort == 1:
-        #        paginated_items = Paginator(ItemComments.objects.filter(approved=1).order_by('-created_on'), page_length)
-        #    elif page_sort == 2:
-        #        paginated_items = Paginator(ItemComments.objects.filter(approved=0).order_by('-created_on'), page_length)
-        #    else:
-        #        paginated_items = Paginator(ItemComments.objects.all().order_by('-created_on'), page_length)
-        #    page_obj = paginated_items.get_page(current_page)
-        #    paginator_nav = True
-        #else:
-        #    if page_sort == 0:
-        #        page_obj = ItemComments.objects.all().order_by('-created_on')
-        #    elif page_sort == 1:
-        #        page_obj = ItemComments.objects.filter(approved=1).order_by('-created_on')
-        #    elif page_sort == 2:
-        #        page_obj = ItemComments.objects.filter(approved=0).order_by('-created_on')
-        #    else:
-        #        page_obj = ItemComments.objects.all().order_by('-created_on')
-        #    paginator_nav = False
-        print(vouchers)
+        today = date.today()
+        if page_length != 0:
+            if page_sort == 0:
+                paginated_items = Paginator(Voucher.objects.all().order_by('start_date'), page_length)
+            elif page_sort == 1:
+                paginated_items = Paginator(Voucher.objects.filter(start_date__gt=today).order_by('start_date'), page_length)
+            elif page_sort == 2:
+                paginated_items = Paginator(Voucher.objects.filter(start_date__lte=today, end_date__gte=today).order_by('start_date'))
+            elif page_sort == 3:
+                paginated_items = Paginator(Voucher.objects.filter(end_date__lt=today).order_by('start_date'), page_length)
+            else:
+                paginated_items = Paginator(Voucher.objects.all().order_by('start_date'), page_length)
+            page_obj = paginated_items.get_page(current_page)
+            paginator_nav = True
+        else:
+            if page_sort == 0:
+                page_obj = Voucher.objects.all().order_by('start_date')
+            elif page_sort == 1:
+                page_obj = Voucher.objects.filter(start_date__gt=today).order_by('start_date')
+            elif page_sort == 2:
+                page_obj = Voucher.objects.filter(start_date__lte=today, end_date__gte=today).order_by('start_date')
+            elif page_sort == 3:
+                page_obj = Voucher.objects.filter(end_date__lt=today).order_by('start_date')
+            else:
+                page_obj = Voucher.objects.all().order_by('start_date')
+            paginator_nav = False
         return render(
             request,
             self.template_name,
             {
-                "vouchers": vouchers,
-                # "paginator_nav": paginator_nav,
+                "vouchers": page_obj,
+                "paginator_nav": paginator_nav,
                 "page_sort": page_sort,
                 "page_length": page_length,
             },
@@ -654,4 +659,80 @@ class AddVoucherView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
         else:
             messages.error(request, "Voucher couldn't be created.")
             new_voucher = self.form()
+        return redirect("vouchers-owner")  # Redirect back to admin tools
+    
+    
+class DeleteVoucherView(
+        UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
+    """
+    Class for deleting comments
+    """
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+    
+    @login_required
+    def voucher_delete_request(request, voucher_pk):
+        """This method redirects user to confirm page"""
+        requested_voucher = get_object_or_404(
+            Voucher, pk=voucher_pk
+        )  # Get Voucher
+        return render(  # Render template
+            request,
+            "owner/voucher_delete_confirm.html",
+            {"voucher_to_delete": requested_voucher},
+        )
+    
+    def get(self, request, voucher_pk, *args, **kwargs):
+        """Method deletes vocuher"""
+        requested_voucher = get_object_or_404(
+            Voucher, pk=voucher_pk
+        )  # Get Comment
+        requested_voucher.delete()  # Delete category from DB
+        messages.info(request, f'Voucher {requested_voucher.voucher_code} deleted.')
+        return redirect("vouchers-owner")  # Return to admin tools
+    
+    
+class EditVoucherView(
+        UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
+    """
+    Class for editing vouchers
+    """
+
+    template_name = "owner/edit_voucher.html"  # Template
+    form = VoucherForm  # Category form
+    success_url = "/vouchers/"  # URL to redirect after successful editing
+
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+
+    def get(self, request, voucher_pk, *args, **kwargs):
+        """
+        Function generates voucher form into template
+        """
+        voucher_instance = get_object_or_404(Voucher, pk=voucher_pk)
+        voucher_edit_form = VoucherForm(instance=voucher_instance)
+        return render(
+            request,
+            self.template_name,
+            {
+                "edit_voucher_form": voucher_edit_form,  # Edit form
+                "voucher_code": voucher_instance.voucher_code,
+            },
+        )
+
+    def post(self, request, voucher_pk, *args, **kwargs):
+        """
+        Function triggers when submit button on category edit form is pressed
+        """
+        edited_voucher = get_object_or_404(Voucher, pk=voucher_pk)
+        edit_form = self.form(request.POST, instance=edited_voucher)
+
+        if edit_form.is_valid():
+            edited_voucher.save()  # Save category into database
+            messages.info(request, f'Vocuher {edited_voucher.voucher_code} changed.')
+        else:
+            edit_form = self.form()
+            messages.error(request, "Vocuher details couldn't be changed.")
         return redirect("vouchers-owner")  # Redirect back to admin tools
