@@ -9,6 +9,7 @@ class Invoice(models.Model):
     def __str__(self):
         return self.invoice_number
     
+    
 class PostageSettings(models.Model):
     free_postage = models.DecimalField(max_digits=5, decimal_places=2, blank=False, help_text='Amount in € that TOTAL needs to be over for free delivery')
     standard_delivery = models.DecimalField(max_digits=5, decimal_places=2, blank=False, help_text='Cost of standard delivery - % of TOTAL')
@@ -16,3 +17,13 @@ class PostageSettings(models.Model):
     
     def __int__(self):
         return self.free_postage
+    
+
+class Voucher(models.Model):
+    voucher_code = models.CharField(blank=False, null=False)
+    start_date = models.DateField(blank=False, null=False)
+    end_date = models.DateField(blank=False, null=False)
+    discount = models.PositiveIntegerField(blank=False, null=False)
+    
+    def __str__(self):
+        return self.voucher_code
