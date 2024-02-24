@@ -76,9 +76,13 @@ def create_newsletter_subscription(sender, instance, created, **kwargs):
                 newsletter_instance.delete()
                 
 class NewsletterEmail(models.Model):
+    
+    EMAIL_STATUS = ((0, "Draft"), (1, "Sent"))
+    
     subject = models.CharField(blank=False, null=False)                
     body = HTMLField(blank=False, null=False)
     to_address = models.ManyToManyField(Newsletter, blank=False)
+    status = models.IntegerField(choices=EMAIL_STATUS, default=0)
     
     def __str__(self):
         return self.subject
