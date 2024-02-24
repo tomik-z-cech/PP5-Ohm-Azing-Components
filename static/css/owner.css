@@ -133,3 +133,7 @@
 .neu-rating {
     color: var(--neutral-foreground);
 }
+
+.full-button {
+    width: 5vw;
+}

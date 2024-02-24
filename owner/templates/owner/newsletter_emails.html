@@ -8,7 +8,7 @@
         Newsletter Emails
     </h2>
     <div class="d-flex justify-content-center p-3 w-100">
-        <a href="#" aria-label="Create New Email" class="custom-button button-shadow">Create New Email</a>
+        <a href="{% url 'new-email' %}" aria-label="Create New Email" class="custom-button button-shadow">Create New Email</a>
     </div>
     <div class="w-100 d-flex justify-content-around">
         <select id="sortingOptions" class="form-control w-25 shadow-none">
@@ -35,13 +35,13 @@
                 <th>
                     Body
                 </th>
-                <th>
+                <th colspan="2">
                     Action
                 </th>
             </tr>
             {% for email in emails %}
                 <tr>
-                    <td colspan="4">
+                    <td colspan="5">
                         <hr>
                     </td>
                 </tr>
@@ -73,13 +73,18 @@
                     </td>
                     <td>
                         {% if email.status == 0 %}
-                            <a href="#" aria-label="Edit" class="custom-button-table button-shadow long-button w-100">Edit</a>
+                            <a href="#" aria-label="Edit" class="custom-button-table button-shadow full-button">Edit</a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if email.status == 0 %}
+                            <a href="#" aria-label="Delete" class="custom-button-table button-shadow full-button ms-3">Delete</a>
                         {% endif %}
                     </td>
                 <tr>
             {% endfor %}
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <hr>
                 </td>
             </tr>
@@ -92,7 +97,7 @@
     {% if paginator_nav %}
         <div class="w-100 d-flex justify-content-center my-4 pagination-nav">
             <span class="step-links">
-                {% if vouchers.has_previous %}
+                {% if emails.has_previous %}
                     <a href="?page=1&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-left"></i></a>
                     <a href="?page={{ items.previous_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-left"></i></a>
                 {% else %}
@@ -101,10 +106,10 @@
                 {% endif %}
         
                 <span class="current-page">
-                    Page {{ vouchers.number }} of {{ vouchers.paginator.num_pages }}
+                    Page {{ emails.number }} of {{ emails.paginator.num_pages }}
                 </span>
         
-                {% if vouchers.has_next %}
+                {% if emails.has_next %}
                     <a href="?page={{ items.next_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-right"></i></a>
                     <a href="?page={{ items.paginator.num_pages }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-right"></i></a>
                 {% else %}

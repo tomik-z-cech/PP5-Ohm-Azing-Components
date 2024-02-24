@@ -17,7 +17,7 @@ from django.core.paginator import Paginator
 from django.db.models import Count, F, ExpressionWrapper, fields
 from django.http import HttpResponse
 from items.models import Category, Item, ItemComments
-from owner.forms import CategoryForm, ItemForm, PostageSettingsForm, VoucherForm
+from owner.forms import CategoryForm, ItemForm, PostageSettingsForm, VoucherForm, NewsletterEmailForm
 from owner.models import Invoice, PostageSettings, Voucher, Newsletter, NewsletterEmail
 
 
@@ -757,22 +757,22 @@ class EmailsOwnerView(
             if page_sort == 0:
                 paginated_items = Paginator(NewsletterEmail.objects.all().order_by('date_sent'), page_length)
             elif page_sort == 1:
-                paginated_items = Paginator(Newsletter.objects.filter(status=0).order_by('date_sent'), page_length)
+                paginated_items = Paginator(NewsletterEmail.objects.filter(status=0).order_by('date_sent'), page_length)
             elif page_sort == 2:
-                paginated_items = Paginator(Newsletter.objects.filter(status=1).order_by('date_sent'), page_length)
+                paginated_items = Paginator(NewsletterEmail.objects.filter(status=1).order_by('date_sent'), page_length)
             else:
                 paginated_items = Paginator(NewsletterEmail.objects.all().order_by('date_sent'), page_length)
             page_obj = paginated_items.get_page(current_page)
             paginator_nav = True
         else:
             if page_sort == 0:
-                page_obj = NewsletterEmail.objects.all().order_by('date_sent'), page_length
+                page_obj = NewsletterEmail.objects.all().order_by('date_sent')
             elif page_sort == 1:
-                page_obj = Newsletter.objects.filter(status=0).order_by('date_sent')
+                page_obj = NewsletterEmail.objects.filter(status=0).order_by('date_sent')
             elif page_sort == 2:
-                page_obj = Newsletter.objects.filter(status=1).order_by('date_sent')
+                page_obj = NewsletterEmail.objects.filter(status=1).order_by('date_sent')
             else:
-                page_obj = NewsletterEmail.objects.all().order_by('date_sent'), page_length
+                page_obj = NewsletterEmail.objects.all().order_by('date_sent')
             paginator_nav = False
         return render(
             request,
@@ -784,3 +784,41 @@ class EmailsOwnerView(
                 "page_length": page_length,
             },
         )
+        
+class NewEmailView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
+    """
+    Class for creating new newsletter email
+    """
+    
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+    
+    template_name = "owner/new_email.html"  # Template
+    form = NewsletterEmail  # New voucher form
+    success_url = "/emails/"  # URL to redirect after successful creation
+
+    def get(self, request, *args, **kwargs):
+        """
+        Function generates new email form into template
+        """
+        return render(
+            request,
+            self.template_name,
+            {
+                "new_email_form": NewsletterEmailForm(),  # Category form
+            },
+        )
+        
+    def post(self, request, *args, **kwargs):
+        new_email = NewsletterEmailForm(request.POST)
+        if 'save' in request.POST:
+            if new_email.is_valid():
+                new_email.save()
+            else:
+                new_email = NewsletterEmailForm()
+        elif 'send' in request.POST:
+            print('send')
+        else:
+            new_email = NewsletterEmailForm()
+        return redirect("emails-owner")  # Redirect back to admin tools
