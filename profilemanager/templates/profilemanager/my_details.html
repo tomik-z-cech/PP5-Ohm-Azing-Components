@@ -16,6 +16,11 @@
         </h1>
     </div>
     <div class="col-12 heading add-shadow p-3">
+        <div class="w-100 d-flex justify-content-end">
+            <a href="{% url 'home' %}" aria-label="Close" class="close-form">
+                <i class="bi bi-x"></i>
+            </a>
+        </div>
         <form method="post" enctype="multipart/form-data" id="form">
             {% csrf_token %}
             <div class="accordion" id="accordionPanelsStayOpenExample">
