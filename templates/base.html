@@ -73,8 +73,12 @@
     {% block extra_js %}
             <!-- Toasts -->
             <script type="text/javascript">
-                let newToast = new bootstrap.Toast($('.toast'));
-                newToast.show();
+                $(document).ready(function() {
+                    let newToast = new bootstrap.Toast($('.toast'));
+                    if ($('.toast').length > 0) {
+                        newToast.show();
+                    };
+                });
             </script>
     {% endblock %}
 </body>
