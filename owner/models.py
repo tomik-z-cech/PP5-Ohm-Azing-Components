@@ -1,6 +1,6 @@
 from datetime import date
 from django.db import models
-from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 from profilemanager.models import UserProfile
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -74,3 +74,11 @@ def create_newsletter_subscription(sender, instance, created, **kwargs):
             if not instance.marketing_email:
                 newsletter_instance = Newsletter.objects.get(newsletter_email=instance.user.email)
                 newsletter_instance.delete()
+                
+class NewsletterEmail(models.Model):
+    subject = models.CharField(blank=False, null=False)                
+    body = HTMLField(blank=False, null=False)
+    to_address = models.ManyToManyField(Newsletter, blank=False)
+    
+    def __str__(self):
+        return self.subject

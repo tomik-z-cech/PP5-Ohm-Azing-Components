@@ -21,7 +21,7 @@ class VoucherAdmin(admin.ModelAdmin):
     list_display = ("voucher_code", "start_date", "end_date", "status")
     
 @admin.register(Newsletter)
-class PostageSettingsAdmin(admin.ModelAdmin):
+class NewsletterAdmin(admin.ModelAdmin):
     """Class registers Postage Settings to Admin"""
 
     list_display = ("newsletter_email",)
