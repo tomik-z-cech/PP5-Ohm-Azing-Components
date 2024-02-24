@@ -584,7 +584,6 @@ class VouchersOwnerView(
         page_length = int(request.GET.get('page_length', 0))
         page_sort = int(request.GET.get('page_sort', 0))
         current_page = request.GET.get('page', 1)
-        vouchers = Voucher.objects.all()
         today = date.today()
         if page_length != 0:
             if page_sort == 0:
@@ -751,11 +750,37 @@ class EmailsOwnerView(
         return self.request.user.is_superuser
     
     def get(self, request, *args, **kwargs):
-        emails = NewsletterEmail.objects.all()
+        page_length = int(request.GET.get('page_length', 0))
+        page_sort = int(request.GET.get('page_sort', 0))
+        current_page = request.GET.get('page', 1)
+        if page_length != 0:
+            if page_sort == 0:
+                paginated_items = Paginator(NewsletterEmail.objects.all().order_by('date_sent'), page_length)
+            elif page_sort == 1:
+                paginated_items = Paginator(Newsletter.objects.filter(status=0).order_by('date_sent'), page_length)
+            elif page_sort == 2:
+                paginated_items = Paginator(Newsletter.objects.filter(status=1).order_by('date_sent'), page_length)
+            else:
+                paginated_items = Paginator(NewsletterEmail.objects.all().order_by('date_sent'), page_length)
+            page_obj = paginated_items.get_page(current_page)
+            paginator_nav = True
+        else:
+            if page_sort == 0:
+                page_obj = NewsletterEmail.objects.all().order_by('date_sent'), page_length
+            elif page_sort == 1:
+                page_obj = Newsletter.objects.filter(status=0).order_by('date_sent')
+            elif page_sort == 2:
+                page_obj = Newsletter.objects.filter(status=1).order_by('date_sent')
+            else:
+                page_obj = NewsletterEmail.objects.all().order_by('date_sent'), page_length
+            paginator_nav = False
         return render(
             request,
             self.template_name,
             {
-                "emails": emails,
+                "emails": page_obj,
+                "paginator_nav": paginator_nav,
+                "page_sort": page_sort,
+                "page_length": page_length,
             },
         )

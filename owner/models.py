@@ -83,6 +83,7 @@ class NewsletterEmail(models.Model):
     body = HTMLField(blank=False, null=False)
     to_address = models.ManyToManyField(Newsletter, blank=False)
     status = models.IntegerField(choices=EMAIL_STATUS, default=0)
+    date_sent = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.subject
