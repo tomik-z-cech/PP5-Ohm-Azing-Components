@@ -26,4 +26,5 @@ urlpatterns = [
     path("voucher-delete-request/<int:voucher_pk>", login_required(views.DeleteVoucherView.voucher_delete_request), name="voucher-delete-request"),
     path("delete-voucher/<int:voucher_pk>/", login_required(views.DeleteVoucherView.as_view()), name="delete-voucher"),
     path("edit-voucher/<int:voucher_pk>/", login_required(views.EditVoucherView.as_view()), name="edit-voucher"),
+    path("emails/", login_required(views.EmailsOwnerView.as_view()), name="emails-owner"),
 ]

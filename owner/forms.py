@@ -3,7 +3,7 @@ from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator
 from owner.widgets import CustomImageInputCategory, CustomImageInputItem1, CustomImageInputItem2, CustomImageInputItem3
 from items.models import Category, Item
-from owner.models import PostageSettings, Voucher, Newsletter
+from owner.models import PostageSettings, Voucher, Newsletter, NewsletterEmail
 
 class CategoryForm(forms.ModelForm):
     """
@@ -145,6 +145,22 @@ class NewsletterForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(NewsletterForm, self).__init__(*args, **kwargs)
+        fields_to_add_class = self.fields.keys()
+        for field in fields_to_add_class:
+            self.fields[field].widget.attrs.update({
+                'class': 'shadow-none',
+            })
+            
+class NewsletterEmailForm(forms.ModelForm):
+    """
+    Newsletter Emails form
+    """
+    class Meta:
+        model = NewsletterEmail
+        fields = ('subject', 'body')
+        
+    def __init__(self, *args, **kwargs):
+        super(NewsletterEmailForm, self).__init__(*args, **kwargs)
         fields_to_add_class = self.fields.keys()
         for field in fields_to_add_class:
             self.fields[field].widget.attrs.update({

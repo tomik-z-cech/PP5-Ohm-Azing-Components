@@ -1,0 +1,157 @@
+{% extends "owner/owner.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block owner_admin %}
+<div class="col-12 d-flex flex-column">
+    <h2 class="my-2 text-center">
+        Newsletter Emails
+    </h2>
+    <div class="d-flex justify-content-center p-3 w-100">
+        <a href="#" aria-label="Create New Email" class="custom-button button-shadow">Create New Email</a>
+    </div>
+    <div class="w-100 d-flex justify-content-around">
+        <select id="sortingOptions" class="form-control w-25 shadow-none">
+            <option value="0" {% if page_sort == 0 %}selected{% endif %}>All Emails</option>
+            <option value="1" {% if page_sort == 1 %}selected{% endif %}>Drafts only</option>
+            <option value="2" {% if page_sort == 2 %}selected{% endif %}>Sent only</option>
+        </select>
+        <select id="lengthOptions" class="form-control w-25 shadow-none">
+            <option value="5" {% if page_length == 5 %}selected{% endif %}>5 items per page</option>
+            <option value="10" {% if page_length == 10 %}selected{% endif %}>10 items per page</option>
+            <option value="20" {% if page_length == 20 %}selected{% endif %}>20 items per page</option>
+            <option value="0" {% if page_length == 0 %}selected{% endif %}>All items</option>
+        </select>
+    </div>
+    {% if emails|length > 0 %}
+        <table class="items-table mt-4">
+            <tr>
+                <th>
+                    Status 
+                </th>
+                <th>
+                    Subject
+                </th>
+                <th>
+                    Body
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+            {% for email in emails %}
+                <tr>
+                    <td colspan="4">
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {% if email.status == 0 %}
+                        <span class="neu-rating">
+                            Draft
+                        {% else %}
+                        <span class="pos-rating">
+                            Sent
+                        {% endif %}
+                        </span>
+                    </td>
+                    <td>
+                        {{ email.subject }}
+                    </td>
+                    <td>
+                        <div class="comment-text-container hidden-overflow">
+                            <div class="comment-text">
+                                {{ email.body|safe}}
+                            </div>
+                        {% if email.body|length > 60 %}
+                            <div class="more-text">
+                                ...
+                            </div>
+                        {% endif %}
+                        </div>
+                    </td>
+                    <td>
+                        {% if email.status == 0 %}
+                            <a href="#" aria-label="Edit" class="custom-button-table button-shadow long-button w-100">Edit</a>
+                        {% endif %}
+                    </td>
+                <tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4">
+                    <hr>
+                </td>
+            </tr>
+        </table>
+    {% else %}
+        <p class="text-center mt-5">
+            No items to display.
+        </p>
+    {% endif %}
+    {% if paginator_nav %}
+        <div class="w-100 d-flex justify-content-center my-4 pagination-nav">
+            <span class="step-links">
+                {% if vouchers.has_previous %}
+                    <a href="?page=1&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-left"></i></a>
+                    <a href="?page={{ items.previous_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-left"></i></a>
+                {% else %}
+                    <i class="bi bi-chevron-bar-left"></i>
+                    <i class="bi bi-chevron-left"></i>
+                {% endif %}
+        
+                <span class="current-page">
+                    Page {{ vouchers.number }} of {{ vouchers.paginator.num_pages }}
+                </span>
+        
+                {% if vouchers.has_next %}
+                    <a href="?page={{ items.next_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-right"></i></a>
+                    <a href="?page={{ items.paginator.num_pages }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-right"></i></a>
+                {% else %}
+                    <i class="bi bi-chevron-right"></i>
+                    <i class="bi bi-chevron-bar-right"></i>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{{block.super}}
+<script>
+    function prepareNewUrl(currentUrl, parameters) {
+        for (let i = 0; i < parameters.length; i += 2) {
+            let key = parameters[i];
+            let value = parameters[i + 1];
+            currentUrl = cleanseUrl(currentUrl, key, value);
+        }
+        return currentUrl;
+    }
+    
+    function cleanseUrl(uri, key, value) {
+        let re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+        if (uri.match(re)) {
+            return uri.replace(re, '$1' + key + "=" + value + '$2');
+        } else {
+            let separator = uri.indexOf('?') !== -1 ? "&" : "?";
+            return uri + separator + key + "=" + value;
+        }
+    }
+
+    $(document).ready(function() {
+        $('#sortingOptions, #lengthOptions').change(function(){
+            let currentUrl = window.location.href;
+            let sortOption = $('#sortingOptions').val();
+            let lengthOption = $('#lengthOptions').val();
+            let newUrl = prepareNewUrl(currentUrl, ["page_sort", sortOption, "page_length", lengthOption]);
+            window.location.href = newUrl;
+            $('#loader-container').css("display", "flex");
+            });
+        });
+        $('.more-text').click(function() {
+            console.log('click');
+            $(this).parent('.comment-text-container').toggleClass('expand-box');
+    });
+</script>
+{% endblock %}

@@ -18,7 +18,7 @@ from django.db.models import Count, F, ExpressionWrapper, fields
 from django.http import HttpResponse
 from items.models import Category, Item, ItemComments
 from owner.forms import CategoryForm, ItemForm, PostageSettingsForm, VoucherForm
-from owner.models import Invoice, PostageSettings, Voucher
+from owner.models import Invoice, PostageSettings, Voucher, Newsletter, NewsletterEmail
 
 
 class OwnerMainView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
@@ -736,3 +736,26 @@ class EditVoucherView(
             edit_form = self.form()
             messages.error(request, "Vocuher details couldn't be changed.")
         return redirect("vouchers-owner")  # Redirect back to admin tools
+    
+    
+class EmailsOwnerView(
+        UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
+    """
+    Class for sending newsletter emails
+    """
+
+    template_name = "owner/newsletter_emails.html"  # Template
+
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+    
+    def get(self, request, *args, **kwargs):
+        emails = NewsletterEmail.objects.all()
+        return render(
+            request,
+            self.template_name,
+            {
+                "emails": emails,
+            },
+        )
