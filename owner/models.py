@@ -1,5 +1,9 @@
 from datetime import date
 from django.db import models
+from django.contrib.auth.models import User
+from profilemanager.models import UserProfile
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 class Invoice(models.Model):
@@ -39,3 +43,34 @@ class Voucher(models.Model):
     
     def __str__(self):
         return self.voucher_code
+    
+class Newsletter(models.Model):
+    newsletter_email = models.EmailField(blank=False, null=False)
+    
+    @property
+    def status(self):
+        today = date.today()
+
+        if self.start_date > today:
+            return "Pending"
+        elif self.start_date <= today <= self.end_date:
+            return "Active"
+        else:
+            return "Expired"
+    
+    def __str__(self):
+        return self.newsletter_email
+    
+@receiver(post_save, sender=UserProfile)
+def create_newsletter_subscription(sender, instance, created, **kwargs):
+    if created:
+        if instance.user.email not in Newsletter.objects.values_list('newsletter_email', flat=True):
+            Newsletter.objects.create(newsletter_email=instance.user.email)
+    if not created:
+        if instance.user.email not in Newsletter.objects.values_list('newsletter_email', flat=True):
+            if instance.marketing_email:
+                Newsletter.objects.create(newsletter_email=instance.user.email)
+        else:
+            if not instance.marketing_email:
+                newsletter_instance = Newsletter.objects.get(newsletter_email=instance.user.email)
+                newsletter_instance.delete()

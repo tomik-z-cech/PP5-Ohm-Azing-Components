@@ -1,16 +1,24 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block nav_name %}Home{% endblock %}
 
-{% block extra_css %} 
+{% block extra_css %}
+        <!-- Local styling to ensure this doesn't interfere with global styling of same class names -->
+        <style>
+            .asteriskField {
+                display: none;
+            }
+        </style>                                         
         <link rel="stylesheet" href="{% static 'css/landing.css' %}">
 {% endblock %}
+
 
 {% block content %}
 <div class="container wrapper">
     <div class="row jumbotron-wrapper" style="background: url('{% static "images/banner-background.jpg" %}') no-repeat fixed center center / cover;">
-        <div class="col-12 col-lg-8 main-banner d-flex justify-content-center align-items-center">
+        <div class="col-12 col-lg-8 main-banner d-flex justify-content-center align-items-center flex-column">
             <div class="p-3 main-banner-message d-flex justify-content-center align-items-center flex-column add-shadow">
                 <p class="text-center main-banner-message-text">
                     Empower Your Creations with Ohm-Azing Components - Where Innovation Meets Circuitry ! Unleash your imagination and illuminate your designs with quality electronic components. Join us at Ohm-Azing Components, where innovation resonates in every piece. Spark the future of electronics – your circuit dreams begin here !
@@ -19,6 +27,26 @@
                 <p class="free-shipping-message mt-4">
                     Enjoy free shipping on orders over {{ free_postage|floatformat:0 }} €
                 </p>
+            </div>
+            <div class="email-message add-shadow p-3">
+                <p class="text-center main-banner-message-text">
+                    Stay Wired In : Subscribe to Our Tech Updates !
+                </p>
+                <div class="w-100">
+                    <form method="post" id="form">
+                        {% csrf_token %}
+                        <div class="inline-block text-center" id="newsletter-input-field">
+                            {{ newsletter_form|crispy}}
+                        </div>
+                        <br>
+                        <div class="inline-block text-center" id="newsletter-input-button">
+                            <button type="Submit" class="custom-button button-shadow short-button">
+                                <i class="bi bi-bell"></i>
+                                Subscribe
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="col-12 col-lg-4">

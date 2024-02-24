@@ -16,7 +16,6 @@ def vault_content(request):
     items_count = 0
     vault = request.session.get('vault', {})
     postage_settings = PostageSettings.objects.filter(pk=1).first()
-    print(postage_settings)
     
     context = {
         "postage_settings": postage_settings,

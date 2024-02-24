@@ -202,8 +202,7 @@ input[type="text"],
 textarea,
 input[type="number"],
 input[type="date"],
-select
-{
+select {
     font-family: var(--main-font)!important;
     background-color: var(--light-background)!important;
     color: var(--light-foreground)!important;
