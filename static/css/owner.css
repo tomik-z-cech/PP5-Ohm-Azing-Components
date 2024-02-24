@@ -137,3 +137,10 @@
 .full-button {
     width: 5vw;
 }
+
+.comment-email-container {
+    width: 30vw;
+    height: 1.7em;
+    position: relative;
+    overflow: hidden;
+}

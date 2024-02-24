@@ -33,6 +33,9 @@
                     Subject
                 </th>
                 <th>
+                    Created/Sent
+                </th>
+                <th>
                     Body
                 </th>
                 <th colspan="2">
@@ -41,7 +44,7 @@
             </tr>
             {% for email in emails %}
                 <tr>
-                    <td colspan="5">
+                    <td colspan="6">
                         <hr>
                     </td>
                 </tr>
@@ -60,7 +63,10 @@
                         {{ email.subject }}
                     </td>
                     <td>
-                        <div class="comment-text-container hidden-overflow">
+                        {{ email.date_sent|date:"d.m.Y" }}
+                    </td>
+                    <td>
+                        <div class="comment-email-container hidden-overflow">
                             <div class="comment-text">
                                 {{ email.body|safe}}
                             </div>
@@ -78,13 +84,13 @@
                     </td>
                     <td>
                         {% if email.status == 0 %}
-                            <a href="#" aria-label="Delete" class="custom-button-table button-shadow full-button ms-3">Delete</a>
+                            <a href="{% url 'email-delete-request' email_pk=email.pk %}" aria-label="Delete" class="custom-button-table button-shadow full-button ms-3">Delete</a>
                         {% endif %}
                     </td>
                 <tr>
             {% endfor %}
             <tr>
-                <td colspan="5">
+                <td colspan="6">
                     <hr>
                 </td>
             </tr>
@@ -156,7 +162,7 @@
         });
         $('.more-text').click(function() {
             console.log('click');
-            $(this).parent('.comment-text-container').toggleClass('expand-box');
+            $(this).parent('.comment-email-container').toggleClass('expand-box');
     });
 </script>
 {% endblock %}

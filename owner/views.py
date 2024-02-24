@@ -815,6 +815,7 @@ class NewEmailView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
         if 'save' in request.POST:
             if new_email.is_valid():
                 new_email.save()
+                messages.info(request, f'Email saved as draft.')
             else:
                 new_email = NewsletterEmailForm()
         elif 'send' in request.POST:
@@ -822,3 +823,33 @@ class NewEmailView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
         else:
             new_email = NewsletterEmailForm()
         return redirect("emails-owner")  # Redirect back to admin tools
+    
+class DeleteEmailView(
+        UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
+    """
+    Class for deleting emails
+    """
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+    
+    @login_required
+    def email_delete_request(request, email_pk):
+        """This method redirects user to confirm page"""
+        requested_email = get_object_or_404(
+            NewsletterEmail, pk=email_pk
+        )  # Get Voucher
+        return render(  # Render template
+            request,
+            "owner/email_delete_confirm.html",
+            {"email_to_delete": requested_email},
+        )
+    
+    def get(self, request, email_pk, *args, **kwargs):
+        """Method deletes email draft"""
+        requested_email = get_object_or_404(
+            NewsletterEmail, pk=email_pk
+        )  # Get Comment
+        requested_email.delete()  # Delete category from DB
+        messages.info(request, 'Email draft deleted.')
+        return redirect("emails-owner")  # Return to admin tools
