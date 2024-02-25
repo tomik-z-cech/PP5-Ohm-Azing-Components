@@ -8,3 +8,10 @@
     color: var(--light-highlight);
     text-decoration: none;
 }
+
+.error-background {
+    background-color: var(--light-background);
+    color: var(--light-foreground);
+    padding: 2vh;
+    width: 50%;
+}

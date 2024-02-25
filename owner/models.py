@@ -26,7 +26,7 @@ class PostageSettings(models.Model):
 
 class Voucher(models.Model):
     voucher_code = models.CharField(blank=False, null=False, help_text='Discount Code')
-    start_date = models.DateTimeField(blank=False, null=False, help_text='First Day of Validity')
+    start_date = models.DateField(blank=False, null=False, help_text='First Day of Validity')
     end_date = models.DateField(blank=False, null=False, help_text='Last Day of Validity ')
     discount = models.PositiveIntegerField(blank=False, null=False, help_text='Discount - % of TOTAL')
     
@@ -47,33 +47,22 @@ class Voucher(models.Model):
 class Newsletter(models.Model):
     newsletter_email = models.EmailField(blank=False, null=False)
     
-    @property
-    def status(self):
-        today = date.today()
-
-        if self.start_date > today:
-            return "Pending"
-        elif self.start_date <= today <= self.end_date:
-            return "Active"
-        else:
-            return "Expired"
-    
     def __str__(self):
         return self.newsletter_email
     
-@receiver(post_save, sender=UserProfile)
-def create_newsletter_subscription(sender, instance, created, **kwargs):
-    if created:
-        if instance.user.email not in Newsletter.objects.values_list('newsletter_email', flat=True):
-            Newsletter.objects.create(newsletter_email=instance.user.email)
-    if not created:
-        if instance.user.email not in Newsletter.objects.values_list('newsletter_email', flat=True):
-            if instance.marketing_email:
+    @receiver(post_save, sender=UserProfile)
+    def create_newsletter_subscription(sender, instance, created, **kwargs):
+        if created:
+            if instance.user.email not in Newsletter.objects.values_list('newsletter_email', flat=True):
                 Newsletter.objects.create(newsletter_email=instance.user.email)
-        else:
-            if not instance.marketing_email:
-                newsletter_instance = Newsletter.objects.get(newsletter_email=instance.user.email)
-                newsletter_instance.delete()
+        if not created:
+            if instance.user.email not in Newsletter.objects.values_list('newsletter_email', flat=True):
+                if instance.marketing_email:
+                    Newsletter.objects.create(newsletter_email=instance.user.email)
+            else:
+                if not instance.marketing_email:
+                    newsletter_instance = Newsletter.objects.get(newsletter_email=instance.user.email)
+                    newsletter_instance.delete()
                 
 class NewsletterEmail(models.Model):
     
