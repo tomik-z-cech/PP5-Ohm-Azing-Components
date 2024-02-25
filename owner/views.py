@@ -733,10 +733,10 @@ class EditVoucherView(
 
         if edit_form.is_valid():
             edited_voucher.save()  # Save category into database
-            messages.info(request, f'Vocuher {edited_voucher.voucher_code} changed.')
+            messages.info(request, f'Voucher {edited_voucher.voucher_code} changed.')
         else:
             edit_form = self.form()
-            messages.error(request, "Vocuher details couldn't be changed.")
+            messages.error(request, "Voucher details couldn't be changed.")
         return redirect("vouchers-owner")  # Redirect back to admin tools
     
     
@@ -822,7 +822,34 @@ class NewEmailView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
             else:
                 new_email = NewsletterEmailForm()
         elif 'send' in request.POST:
-            print('send')
+            if new_email.is_valid():
+                new_email.instance.date_sent = date.today()
+                new_email.instance.status = 1
+                new_email.save()
+                # Add email of user creating booking
+                email_addresses = Newsletter.objects.all()
+                subject = new_email.instance.subject  # Subject
+                from_address = "ohmazingcomponents@gmail.com"  # From
+                for email_address in email_addresses:
+                    recipient = []
+                    recipient.append(email_address.newsletter_email)
+                    print(email_address.newsletter_email)
+                    html_message = render_to_string(
+                        "emails/newsletter_template.html",
+                        {
+                            "user": email_address.newsletter_email,
+                            "body": new_email.instance.body
+                        },
+                    )
+                    message = strip_tags(html_message)
+                    send_mail(
+                        subject,
+                        message,
+                        from_address,
+                        recipient,
+                        html_message=html_message
+                    )
+                    messages.info(request, f'Email sent to {len(email_addresses)} recipients.')
         else:
             new_email = NewsletterEmailForm()
         return redirect("emails-owner")  # Redirect back to admin tools
@@ -910,7 +937,8 @@ class EditEmailView(
                 subject = edited_email.instance.subject  # Subject
                 from_address = "ohmazingcomponents@gmail.com"  # From
                 for email_address in email_addresses:
-                    recipient = email_address.newsletter_email
+                    recipient = []
+                    recipient.append(email_address.newsletter_email)
                     print(email_address.newsletter_email)
                     html_message = render_to_string(
                         "emails/newsletter_template.html",
@@ -927,6 +955,7 @@ class EditEmailView(
                         recipient,
                         html_message=html_message
                     )
+                    messages.info(request, f'Email sent to {len(email_addresses)} recipients.')
         else:
             edited_email = NewsletterEmailForm()
         return redirect("emails-owner")  # Redirect back to admin tools
