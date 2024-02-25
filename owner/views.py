@@ -853,3 +853,52 @@ class DeleteEmailView(
         requested_email.delete()  # Delete category from DB
         messages.info(request, 'Email draft deleted.')
         return redirect("emails-owner")  # Return to admin tools
+    
+    
+class EditEmailView(
+        UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
+    """
+    Class for editing emails
+    """
+
+    template_name = "owner/edit_email.html"  # Template
+    form = NewsletterEmailForm  # Category form
+    success_url = "/emails/"  # URL to redirect after successful editing
+
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+
+    def get(self, request, email_pk, *args, **kwargs):
+        """
+        Function generates email form into template
+        """
+        email_instance = get_object_or_404(NewsletterEmail, pk=email_pk)
+        email_edit_form = NewsletterEmailForm(instance=email_instance)
+        return render(
+            request,
+            self.template_name,
+            {
+                "edit_email_form": email_edit_form,  # Edit form
+                "email_subject": email_instance.subject,
+            },
+        )
+
+    def post(self, request, email_pk, *args, **kwargs):
+        """
+        Function triggers when submit button on category edit form is pressed
+        """
+        edited_email_instance = NewsletterEmail(pk=email_pk)
+        edited_email = NewsletterEmailForm(request.POST, instance=edited_email_instance)
+        if 'save' in request.POST:
+            if edited_email.is_valid():
+                edited_email.instance.date_sent = date.today()
+                edited_email.save()
+                messages.info(request, f'Edited email saved as draft.')
+            else:
+                edited_email = NewsletterEmailForm()
+        elif 'send' in request.POST:
+            print('send')
+        else:
+            edited_email = NewsletterEmailForm()
+        return redirect("emails-owner")  # Redirect back to admin tools

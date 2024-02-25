@@ -30,4 +30,5 @@ urlpatterns = [
     path("new-email/", login_required(views.NewEmailView.as_view()), name="new-email"),
     path("email-delete-request/<int:email_pk>", login_required(views.DeleteEmailView.email_delete_request), name="email-delete-request"),
     path("delete-email/<int:email_pk>/", login_required(views.DeleteEmailView.as_view()), name="delete-email"),
+    path("edit-email/<int:email_pk>/", login_required(views.EditEmailView.as_view()), name="edit-email"),
 ]

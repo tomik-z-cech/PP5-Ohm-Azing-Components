@@ -79,7 +79,7 @@
                     </td>
                     <td>
                         {% if email.status == 0 %}
-                            <a href="#" aria-label="Edit" class="custom-button-table button-shadow full-button">Edit</a>
+                            <a href="{% url 'edit-email' email_pk=email.pk %}" aria-label="Edit" class="custom-button-table button-shadow full-button">Edit</a>
                         {% endif %}
                     </td>
                     <td>

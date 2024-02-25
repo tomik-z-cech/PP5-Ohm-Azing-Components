@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block nav_name %}Edit Email{% endblock %}
+
+{% block extra_css %}
+<!-- Local styling to ensure this doesn't interfere with global styling of same class names -->
+<style>
+    .asteriskField {
+        display: none;
+    }
+</style>
+<link rel="stylesheet" href="{% static 'css/owner.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container wrapper d-flex justify-content-center align-items-center">
+    <div class="form-background add-shadow">
+        <div class="w-100 d-flex justify-content-end">
+            <a href="{% url 'emails-owner' %}" aria-label="Close" class="close-form">
+                <i class="bi bi-x"></i>
+            </a>
+        </div>
+        <h1 class="text-center">
+            Editing email : {{ email_subject }}
+        </h1>
+        <form method="post" enctype="multipart/form-data" id="form">
+            {% csrf_token %}
+            {{ edit_email_form|crispy }}
+            <div class="container d-flex justify-content-around">
+                <button type="submit" name="save" class="custom-button button-shadow mt-4">Save</button>
+                <button type="submit" name="send" class="custom-button button-shadow mt-4">Send Now</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function() {
+            $('#form').submit(function(){
+                $('#loader-container').css("display", "flex");
+            });
+        });
+    </script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            skin: 'oxide',
+            toolbar: 'undo redo | bold italic underline | fontsizeselect forecolor backcolor',
+            skin_url: "{% static '/tinymce' %}",
+        });
+    </script>
+{% endblock %}
