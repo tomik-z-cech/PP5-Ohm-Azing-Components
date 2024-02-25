@@ -41,6 +41,12 @@
     {{ block.super }}
     <script>
         $(document).ready(function() {
+            tinymce.init({
+                selector: 'textarea',
+                skin: 'oxide',
+                toolbar: 'undo redo | bold italic underline | fontsizeselect forecolor backcolor',
+                skin_url: "{% static '/tinymce' %}",
+            });
             $('#filename').text(`No file selected.`);
             $('#new-image').change(function() {
                 let file = $('#new-image')[0].files[0];
@@ -55,14 +61,6 @@
             $('#form').submit(function(){
                 $('#loader-container').css("display", "flex");
             });
-        });
-    </script>
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            skin: 'oxide',
-            toolbar: 'undo redo | bold italic underline | fontsizeselect forecolor backcolor',
-            skin_url: "{% static '/tinymce' %}",
         });
     </script>
 {% endblock %}

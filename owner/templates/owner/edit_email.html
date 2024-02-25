@@ -44,16 +44,12 @@
             $('#form').submit(function(){
                 $('#loader-container').css("display", "flex");
             });
+            tinymce.init({
+                selector: 'textarea',
+                skin: 'oxide',
+                toolbar: 'undo redo | bold italic underline | fontsizeselect forecolor backcolor',
+                skin_url: "{% static '/tinymce' %}",
+            });
         });
-    </script>
-    <script>
-        /*
-        tinymce.init({
-            selector: 'textarea',
-            skin: 'oxide',
-            toolbar: 'undo redo | bold italic underline | fontsizeselect forecolor backcolor',
-            skin_url: "{% static '/tinymce' %}",
-        });
-        */
     </script>
 {% endblock %}
