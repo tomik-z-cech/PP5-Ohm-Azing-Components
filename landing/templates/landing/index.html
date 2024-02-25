@@ -61,10 +61,60 @@
             </div>
             <div class="row">
                 <div class="col-12 side-banner d-flex justify-content-center align-items-center">
-                    <div class="p-3 side-banner-message d-flex justify-content-center align-items-center flex-column add-shadow">
-                        <p class="text-center main-banner-message-text">
-                            New Arrivals
+                    <div class="p-3 side-banner-message d-flex flex-column add-shadow">
+                        {% if new_arrivals|length == 0 %}
+                            <p class="main-banner-message-text">No products to show.</p>
+                        {% else %}
+                        <p class="text-center side-banner-heading">
+                            <strong>
+                                New Arrivals
+                            </strong>
                         </p>
+                        <div id="carousel-new-arrivals" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                            {% for arrival in new_arrivals %}
+                                {% if  forloop.counter == 1 %}
+                                    <div class="carousel-item active">
+                                        {% if 'default_heading_image' in news.heading_image.url %}
+                                            <img src="{% static 'images/default_news.png' %}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
+                                        {% else %}
+                                            <img src="{{ arrival.image_1.url }}" class="d-block w-100 carousel-picture" alt="{{ arrival.item_name }}">
+                                        {% endif %}
+                                        <div class="carousel-caption">
+                                            <a href="#">
+                                                <p class="news-carousel-heading">
+                                                    {{ arrival.item_name }}
+                                                    {{ arrival.price_per_unit }}
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="carousel-item">
+                                        {% if 'default_heading_image' in news.heading_image.url %}
+                                            <img src="{% static 'images/default_news.png' %}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
+                                        {% else %}
+                                            <img src="{{ arrival.image_1.url }}" class="d-block w-100 carousel-picture" alt="{{ arrival.item_name }}">
+                                        {% endif %}
+                                        <div class="carousel-caption d-md-block add-shadow">
+                                            <a href="#">
+                                                <p class="news-carousel-heading">
+                                                    {{ arrival.item_name }}
+                                                    {{ arrival.price_per_unit }}
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -72,3 +122,4 @@
     </div>
 </div>
 {% endblock %}
+

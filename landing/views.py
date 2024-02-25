@@ -4,6 +4,7 @@ from django.views import generic
 from django.contrib import messages
 from owner.models import PostageSettings, Newsletter
 from owner.forms import NewsletterForm
+from items.models import Item
 
 
 
@@ -19,12 +20,15 @@ class LandingPageView(generic.ListView):
         """This method generates view of landing page"""
         # Render template
         postage_settings = PostageSettings.objects.filter(pk=1).first()
+        new_arrivals = Item.objects.all().order_by('-date_added')[:3]
+        print(new_arrivals)
         return render(
             request,
             self.template_name,
             {
                 "free_postage": postage_settings.free_postage,
-                "newsletter_form": NewsletterForm()
+                "newsletter_form": NewsletterForm(),
+                "new_arrivals": new_arrivals,
             },
         )
         
@@ -32,6 +36,8 @@ class LandingPageView(generic.ListView):
         newsletter_form = NewsletterForm(request.POST)
         # Render template
         postage_settings = PostageSettings.objects.filter(pk=1).first()
+        new_arrivals = Item.objects.all().order_by('date_added')[:3]
+        print(new_arrivals)
         if newsletter_form.is_valid():
             submitted_email = newsletter_form.cleaned_data['newsletter_email']
             if submitted_email not in Newsletter.objects.values_list('newsletter_email', flat=True):
@@ -45,7 +51,8 @@ class LandingPageView(generic.ListView):
             self.template_name,
             {
                 "free_postage": postage_settings.free_postage,
-                "newsletter_form": NewsletterForm()
+                "newsletter_form": NewsletterForm(),
+                "new_arrivals": new_arrivals,
             },
         )
         

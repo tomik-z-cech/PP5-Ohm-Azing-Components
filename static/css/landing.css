@@ -83,3 +83,22 @@ label[for="id_newsletter_email"] {
 #id_newsletter_email::placeholder {
     color: var(--dark-foreground)!important;
 }
+
+.carousel-picture {
+    height: 20vh;
+    border: 2px solid var(--dark-foreground);
+    transition: border 0.5s ease-in-out;
+}
+
+.carousel-picture:hover {
+    height: 20vh;
+    border: 2px solid var(--light-highlight);
+}
+
+.side-banner-heading {
+    color: var(--light-foreground);
+}
+
+.carousel-caption {
+    background-color: red;
+}
