@@ -144,3 +144,7 @@
     position: relative;
     overflow: hidden;
 }
+
+.tinymce {
+    border-radius: 0px!important;
+}
