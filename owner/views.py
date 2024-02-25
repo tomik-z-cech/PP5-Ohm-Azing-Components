@@ -16,6 +16,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Count, F, ExpressionWrapper, fields
 from django.http import HttpResponse
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.core.mail import send_mail
 from items.models import Category, Item, ItemComments
 from owner.forms import CategoryForm, ItemForm, PostageSettingsForm, VoucherForm, NewsletterEmailForm
 from owner.models import Invoice, PostageSettings, Voucher, Newsletter, NewsletterEmail
@@ -898,7 +901,32 @@ class EditEmailView(
             else:
                 edited_email = NewsletterEmailForm()
         elif 'send' in request.POST:
-            print('send')
+            if edited_email.is_valid():
+                edited_email.instance.date_sent = date.today()
+                edited_email.instance.status = 1
+                edited_email.save()
+                # Add email of user creating booking
+                email_addresses = Newsletter.objects.all()
+                subject = edited_email.instance.subject  # Subject
+                from_address = "ohmazingcomponents@gmail.com"  # From
+                for email_address in email_addresses:
+                    recipient = email_address.newsletter_email
+                    print(email_address.newsletter_email)
+                    html_message = render_to_string(
+                        "emails/newsletter_template.html",
+                        {
+                            "user": email_address.newsletter_email,
+                            "body": edited_email.instance.body
+                        },
+                    )
+                    message = strip_tags(html_message)
+                    send_mail(
+                        subject,
+                        message,
+                        from_address,
+                        recipient,
+                        html_message=html_message
+                    )
         else:
             edited_email = NewsletterEmailForm()
         return redirect("emails-owner")  # Redirect back to admin tools
