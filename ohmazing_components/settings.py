@@ -71,8 +71,8 @@ CKEDITOR_CONFIGS = {
             ['TextColor', 'BGColor'],
             ['Maximize'],
         ],
-        'width': 800,
-        'height': 300,
+        'width': '100%',
+        'height': '70%',
         'allowedContent': True,
     },
 }
