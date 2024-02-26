@@ -4,6 +4,7 @@ from tinymce.models import HTMLField
 from profilemanager.models import UserProfile
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from djrichtextfield.models import RichTextField
 
 # Create your models here.
 class Invoice(models.Model):
@@ -68,8 +69,8 @@ class NewsletterEmail(models.Model):
     
     EMAIL_STATUS = ((0, "Draft"), (1, "Sent"))
     
-    subject = models.CharField(blank=False, null=False)                
-    body = HTMLField(blank=False, null=False)
+    subject = models.CharField(max_length=200, blank=False, null=False)                
+    body = RichTextField(max_length=10000, null=False, blank=False)
     to_address = models.ManyToManyField(Newsletter, blank=False)
     status = models.IntegerField(choices=EMAIL_STATUS, default=0)
     date_sent = models.DateTimeField(auto_now_add=True)

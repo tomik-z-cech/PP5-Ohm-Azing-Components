@@ -41,14 +41,14 @@
     {{ block.super }}
     <script>
         $(document).ready(function() {
-            $('#form').submit(function(){
-                $('#loader-container').css("display", "flex");
-            });
             tinymce.init({
                 selector: 'textarea',
                 skin: 'oxide',
                 toolbar: 'undo redo | bold italic underline | fontsizeselect forecolor backcolor',
                 skin_url: "{% static '/tinymce' %}",
+            });
+            $('#form').submit(function(){
+                $('#loader-container').css("display", "flex");
             });
         });
     </script>

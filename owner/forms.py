@@ -1,6 +1,7 @@
 # Imports
 from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator
+from djrichtextfield.widgets import RichTextWidget
 from owner.widgets import CustomImageInputCategory, CustomImageInputItem1, CustomImageInputItem2, CustomImageInputItem3
 from items.models import Category, Item
 from owner.models import PostageSettings, Voucher, Newsletter, NewsletterEmail
@@ -166,3 +167,5 @@ class NewsletterEmailForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({
                 'class': 'shadow-none',
             })
+            
+    body = forms.CharField(widget=RichTextWidget())

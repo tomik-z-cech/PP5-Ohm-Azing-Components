@@ -47,17 +47,6 @@
                 toolbar: 'undo redo | bold italic underline | fontsizeselect forecolor backcolor',
                 skin_url: "{% static '/tinymce' %}",
             });
-            $('#filename').text(`No file selected.`);
-            $('#new-image').change(function() {
-                let file = $('#new-image')[0].files[0];
-                $('#filename').text(`Image will be set to : ${file.name}`);
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    $("#image-preview").attr("src", e.target.result);
-                    $("#image-preview").show();
-                };
-                reader.readAsDataURL(file);
-            });
             $('#form').submit(function(){
                 $('#loader-container').css("display", "flex");
             });
