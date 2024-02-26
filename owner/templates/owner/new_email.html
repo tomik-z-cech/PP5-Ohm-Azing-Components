@@ -27,7 +27,7 @@
         </h1>
         <form method="post" enctype="multipart/form-data" id="form">
             {% csrf_token %}
-            {{ new_email_form.as_p}}
+            {{ new_email_form|crispy}}
             <div class="container d-flex justify-content-around">
                 <button type="submit" name="save" class="custom-button button-shadow mt-4">Save</button>
                 <button type="submit" name="send" class="custom-button button-shadow mt-4">Send Now</button>
@@ -44,6 +44,12 @@
             $('#form').submit(function(){
                 $('#loader-container').css("display", "flex");
             });
+            ClassicEditor
+                    .create( document.querySelector( '#id_body' ) )
+                    .then( editor => {
+                    } )
+                    .catch( error => {
+                    } );
         });
     </script>
 {% endblock %}

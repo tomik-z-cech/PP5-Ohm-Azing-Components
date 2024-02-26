@@ -160,6 +160,8 @@ class NewsletterEmailForm(forms.ModelForm):
         model = NewsletterEmail
         fields = ('subject', 'body')
         
+        body = forms.CharField(widget=RichTextWidget())
+        
     def __init__(self, *args, **kwargs):
         super(NewsletterEmailForm, self).__init__(*args, **kwargs)
         fields_to_add_class = self.fields.keys()
@@ -168,4 +170,4 @@ class NewsletterEmailForm(forms.ModelForm):
                 'class': 'shadow-none',
             })
             
-    body = forms.CharField(widget=RichTextWidget())
+    
