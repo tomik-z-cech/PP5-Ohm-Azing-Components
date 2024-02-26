@@ -1,6 +1,5 @@
 from datetime import date
 from django.db import models
-from tinymce.models import HTMLField
 from profilemanager.models import UserProfile
 from django.db.models.signals import post_save
 from django.dispatch import receiver

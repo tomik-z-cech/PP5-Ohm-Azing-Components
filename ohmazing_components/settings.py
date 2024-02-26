@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     "crispy_forms",
     "storages",
     "mathfilters",
-    "tinymce",
     "djrichtextfield",
     
     # Apps
