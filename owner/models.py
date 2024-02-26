@@ -3,7 +3,7 @@ from django.db import models
 from profilemanager.models import UserProfile
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from djrichtextfield.models import RichTextField
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Invoice(models.Model):

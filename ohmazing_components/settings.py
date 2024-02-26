@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "storages",
     "mathfilters",
-    "djrichtextfield",
+    "ckeditor",
     
     # Apps
     
@@ -58,17 +58,23 @@ INSTALLED_APPS = [
     "wishlist",
 ]
 
-DJRICHTEXTFIELD_CONFIG = {
-    'js': ['//cdn.ckeditor.com/4.14.0/standard/ckeditor.js'],
-    'init_template': 'djrichtextfield/init/ckeditor.js',
-    'settings': {
-        'toolbar': [
-            ['Format', 'Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList'], ['Undo', 'Redo'],
-            ['Maximize']
+CKEDITOR_UPLOAD_PATH = 'media/docs/'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike'],
+            ['NumberedList', 'BulletedList', 'Outdent', 'Indent'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Table', 'HorizontalRule', 'SpecialChar'],
+            ['Format', 'Font', 'FontSize'],
+            ['TextColor', 'BGColor'],
+            ['Maximize'],
         ],
-        'format_tags': 'p;h1;h2;h3'
-    }
+        'width': 800,
+        'height': 300,
+        'allowedContent': True,
+    },
 }
 
 MIDDLEWARE = [

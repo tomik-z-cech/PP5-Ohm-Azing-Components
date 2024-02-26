@@ -1,7 +1,7 @@
 # Imports
 from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator
-from djrichtextfield.widgets import RichTextWidget
+from ckeditor.widgets import CKEditorWidget
 from owner.widgets import CustomImageInputCategory, CustomImageInputItem1, CustomImageInputItem2, CustomImageInputItem3
 from items.models import Category, Item
 from owner.models import PostageSettings, Voucher, Newsletter, NewsletterEmail
@@ -160,7 +160,7 @@ class NewsletterEmailForm(forms.ModelForm):
         model = NewsletterEmail
         fields = ('subject', 'body')
         
-        body = forms.CharField(widget=RichTextWidget())
+        body = forms.CharField(widget=CKEditorWidget())
         
     def __init__(self, *args, **kwargs):
         super(NewsletterEmailForm, self).__init__(*args, **kwargs)
