@@ -69,7 +69,7 @@ class NewsletterEmail(models.Model):
     EMAIL_STATUS = ((0, "Draft"), (1, "Sent"))
     
     subject = models.CharField(max_length=200, blank=False, null=False)                
-    body = RichTextField(max_length=10000, null=False, blank=False)
+    body = models.TextField(max_length=10000, null=False, blank=False)
     to_address = models.ManyToManyField(Newsletter, blank=False)
     status = models.IntegerField(choices=EMAIL_STATUS, default=0)
     date_sent = models.DateTimeField(auto_now_add=True)
