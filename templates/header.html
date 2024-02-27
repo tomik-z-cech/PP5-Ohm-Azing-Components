@@ -14,27 +14,41 @@
     <div class="col-12 col-lg-5">
       Search
     </div>
-    <div class="col-4 col-lg-1">
+    <div class="col-4 col-lg-1 d-flex justify-content-center">
       {% if user.is_authenticated %}
-        <i class="bi bi-star"></i>
-        {{ items_in_wishlist }}
+      <nav class="navbar">
+        <a class="nav-link header-link text-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu">
+          <i class="bi bi-star"></i>
+          <br>
+          <span class="hide-less-991px">
+            Wishlist
+          </span>
+          {% if items_in_wishlist != 0 %}
+            <div class="wishlist-bubble d-flex justify-content-center align-items-center">
+              {{ items_in_wishlist }}
+            </div>
+          {% endif %}
+        </a>
+      </nav>
       {% endif %}
     </div>
     <div class="col-4 col-lg-1 text-center">
-      {% if vault_items|length > 0%}
+      {% if vault_items|length > 0 %}
         Neco tam je
       {% else %}
-        <a class="" href="#" aria-label="Menu">
+      <nav class="navbar">
+        <a class="" href="#" aria-label="Vault">
           <i class="bi bi-safe"></i>
           <br>
           <span>
             {{ postage_settings }}
           </span>
         </a>
+      </nav>
       {% endif %}
     </div>
-    <div class="col-4 col-lg-1">
-      <nav class="navbar navbar-expand">
+    <div class="col-4 col-lg-1 d-flex justify-content-center">
+      <nav class="navbar navbar-expand d-flex justify-content-center">
           <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                 <a class="nav-link header-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu">
                   <i class="bi bi-person-circle"></i>

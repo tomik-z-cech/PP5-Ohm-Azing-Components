@@ -81,3 +81,16 @@ header {
         height: auto;
     }
 }
+
+.wishlist-bubble {
+    position: absolute;
+    top: 30%;
+    left: 80%;
+    height: 3vh;
+    width: 3vh;
+    transform: translate(-50%, -50%);
+    background-color: var(--light-foreground);
+    border-radius: 50%;
+    color: var(--dark-foreground);
+    font-size: 50%;
+}
