@@ -25,8 +25,8 @@
 }
 
 .side-banner-message {
-    height: 80%;
-    width: 80%;
+    height: 90%;
+    width: 90%;
     background-color: var(--light-background-opaque);
 }
 
@@ -52,7 +52,7 @@
 }
 
 .email-message {
-    margin-top: 5%;
+    margin-top: 10%;
     height: 28%;
     width: 75%;
     background-color: var(--light-background-opaque);
@@ -84,14 +84,14 @@ label[for="id_newsletter_email"] {
     color: var(--dark-foreground)!important;
 }
 
-.carousel-picture {
-    height: 20vh;
+.carousel {
+    height: 25vh;
+    width: 25vh;
     border: 2px solid var(--dark-foreground);
     transition: border 0.5s ease-in-out;
 }
 
-.carousel-picture:hover {
-    height: 20vh;
+.carousel:hover {
     border: 2px solid var(--light-highlight);
 }
 
@@ -100,5 +100,11 @@ label[for="id_newsletter_email"] {
 }
 
 .carousel-caption {
-    background-color: red;
+    background-color: var(--light-background-opaque);
+}
+
+.carousel-caption a {
+    color: var(--light-highlight);
+    text-decoration: none;
+    font-family: var(--main-font);
 }

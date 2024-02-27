@@ -21,7 +21,9 @@ class LandingPageView(generic.ListView):
         # Render template
         postage_settings = PostageSettings.objects.filter(pk=1).first()
         new_arrivals = Item.objects.all().order_by('-date_added')[:3]
-        print(new_arrivals)
+        all_items = Item.objects.all()
+        sorted_by_likes = sorted(all_items, key=lambda item: item.rating_counter(), reverse=True)
+        favourites = sorted_by_likes[:3]
         return render(
             request,
             self.template_name,
@@ -29,6 +31,7 @@ class LandingPageView(generic.ListView):
                 "free_postage": postage_settings.free_postage,
                 "newsletter_form": NewsletterForm(),
                 "new_arrivals": new_arrivals,
+                "favourites": favourites,
             },
         )
         
@@ -37,7 +40,9 @@ class LandingPageView(generic.ListView):
         # Render template
         postage_settings = PostageSettings.objects.filter(pk=1).first()
         new_arrivals = Item.objects.all().order_by('date_added')[:3]
-        print(new_arrivals)
+        all_items = Item.objects.all()
+        sorted_by_likes = sorted(all_items, key=lambda item: item.rating_counter(), reverse=True)
+        favourites = sorted_by_likes[:3]
         if newsletter_form.is_valid():
             submitted_email = newsletter_form.cleaned_data['newsletter_email']
             if submitted_email not in Newsletter.objects.values_list('newsletter_email', flat=True):
@@ -45,7 +50,6 @@ class LandingPageView(generic.ListView):
                 messages.success(request, f'Email address {submitted_email} successfully added to our mailing list.')
             else:
                 messages.error(request, f'Email address {submitted_email} is already on our mailing list.')
-        print(Newsletter.objects.all())
         return render(
             request,
             self.template_name,
@@ -53,6 +57,7 @@ class LandingPageView(generic.ListView):
                 "free_postage": postage_settings.free_postage,
                 "newsletter_form": NewsletterForm(),
                 "new_arrivals": new_arrivals,
+                "favourites": favourites,
             },
         )
         
