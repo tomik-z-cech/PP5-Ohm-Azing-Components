@@ -101,7 +101,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "vault.context_list.vault_content"
+                "vault.context_list.vault_content",
+                "wishlist.context_list.wishlist_content"
             ],
         },
     },
