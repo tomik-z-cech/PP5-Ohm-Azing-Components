@@ -1,9 +1,10 @@
 # Imports
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.db.models import Count, Q
 from django.core.paginator import Paginator
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from items.models import Category, Item, ItemComments
 from items.forms import ItemCommentForm
 
@@ -101,6 +102,14 @@ class ItemDetailView(generic.ListView):
             .filter(approved=1)
             .order_by("-created_on")
         )
+        if request.user.is_authenticated:
+            users_wishlist = request.user.userprofile.user_wishlist
+            if item_to_view.item_sku in users_wishlist:
+                in_wishlist = True
+            else:
+                in_wishlist = False
+        else:
+            in_wishlist = False
         # Render template
         return render(
             request,
@@ -110,10 +119,11 @@ class ItemDetailView(generic.ListView):
                 "comments": comments,
                 "can_comment": True,
                 "item_comment_form": item_comment_form,
+                "in_wishlist": in_wishlist,
             },
         )
 
-    def post(self, request, item_pk, *args, **kwargs):
+    def submit_comment(request, item_pk, *args, **kwargs):
         """
         Function is called when comment submitted
         """
@@ -139,7 +149,7 @@ class ItemDetailView(generic.ListView):
             item_comment_form = ItemCommentForm()
         return render(  # Render template
             request,
-            self.template_name,
+            'items/item_detail.html',
             {
                 "item": item_to_view,
                 "comments": comments,
@@ -147,3 +157,20 @@ class ItemDetailView(generic.ListView):
                 "item_comment_form": item_comment_form,
             }
         )
+    
+    @login_required    
+    def wishlist_toggle(request, item_pk, *args, **kwargs):
+            """
+            Function is called when wishlist button pressed submitted
+            """
+            users_wishlist = request.user.userprofile.user_wishlist
+            item_to_toggle = get_object_or_404(Item, pk=item_pk)
+            if item_to_toggle.item_sku in users_wishlist:
+                users_wishlist.remove(item_to_toggle.item_sku)
+                messages.success(request, f'Item {item_to_toggle.item_name} was removed from your wishlist.')
+            else:
+                users_wishlist.append(item_to_toggle.item_sku)
+                messages.success(request, f'Item {item_to_toggle.item_name} was added to your wishlist.')
+            request.user.userprofile.save()
+            return redirect('item-detail', item_pk=item_pk)
+    

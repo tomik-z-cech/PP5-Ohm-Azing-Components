@@ -254,3 +254,13 @@
     border: 2px solid var(--dark-foreground);
     border-radius: 50%;
 }
+
+.wishlist-link {
+    color: var(--light-foreground);
+    text-decoration: none;
+    transition: color 0.5s ease-in-out;
+}
+
+.wishlist-link:hover {
+    color: var(--light-highlight);
+}

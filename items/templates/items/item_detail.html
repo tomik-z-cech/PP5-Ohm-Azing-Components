@@ -42,11 +42,29 @@
                     <h3>
                         {{ item.item_name }}
                     </h3>
-                    <div class="mb-3">
+                    <div class="mb-3 w-100 d-flex justify-content-start">
                         {% if item.item_stock > 0 %}
                             <span class="badge rounded-pill in-stock">{{ item.item_stock }} available</span>
                         {% else %}
                             <span class="badge rounded-pill out-of-stock">Out Of Stock</span>
+                        {% endif %}
+                        {% if user.is_authenticated%}
+                        <form method="POST" id="wishlistForm"  action="{% url 'wishlist-toggle' item_pk=item.pk %}">
+                            {% csrf_token %}
+                            <a href="#" aria-label="Add {{ item.item_name }} to wishlist" class="wishlist-link" id="wishlistButton" name="wishlist">
+                                {% if in_wishlist %}
+                                &nbsp;
+                                <i class="bi bi-star-fill"></i>
+                                &nbsp;
+                                Remove from Wishlist
+                                {% else %}
+                                &nbsp;
+                                <i class="bi bi-star"></i>
+                                &nbsp;
+                                Add to Wishlist
+                                {% endif %}
+                            </a>
+                        </form>
                         {% endif %}
                     </div>
                     <p>
@@ -155,11 +173,11 @@
                         <div class="col-12 d-flex justify-content-start mb-3">
                             <strong>Commenting as {{ user.username }} :</strong>
                         </div>
-                        <form method="post" id="form">
+                        <form method="POST" id="commentForm" action="{% url 'submit-comment' item_pk=item.pk %}">
                             {{ item_comment_form | crispy }}
                             {% csrf_token %}
                             <div class="col-12 d-flex justify-content-end mt-3">
-                                <button type="Submit" class="custom-button button-shadow mt-2 short-button">Comment</button>
+                                <button type="Submit" class="custom-button button-shadow mt-2 short-button" name="comment">Comment</button>
                             </div>
                         </form>
                         <!-- If form submitted, display message -->
@@ -206,31 +224,13 @@
 
 {% block extra_js %}
     {{ block.super }}
-    <script src="{% static 'js/product_gallery.js' %}"></script>
+    <script src="{% static 'js/product_detail.js' %}"></script>
+    <script src="{% static 'js/wishlist.js' %}"></script>
     <script>
+        let stockAmount = {{ item.item_stock }}
         $(document).ready(function() {
-            if (document.referrer) {
-                let previousDestination = document.referrer;
-                $('#back-to-shop').click(function(){
-                    window.location.href = previousDestination;
-                });
-            };
-            $('#form').submit(function(){
+            $('#wishlistForm, #commentForm').submit(function(){
                 $('#loader-container').css("display", "flex");
-            });
-            let inputField = $('#quantity');
-            if (inputField.val() == '') {
-                inputField.val(1);
-            };
-            $('.plus').click(function() {
-                if (inputField.val() < {{ item.item_stock }} ){
-                    inputField.val(parseInt(inputField.val(), 10) + 1);
-                };
-            });
-            $('.minus').click(function() {
-                if (inputField.val() > 1 ){
-                    inputField.val(parseInt(inputField.val(), 10) - 1);
-                };
             });
         });
     </script>
