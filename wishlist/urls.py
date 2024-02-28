@@ -7,4 +7,5 @@ from wishlist import views
 urlpatterns = [
     path('', login_required(views.WishlistView.as_view()), name='show-wishlist'),
     path('wishlist-toggle/<int:item_pk>/', login_required(views.WishlistView.wishlist_toggle), name='wishlist-toggle'),
+    path('clear-wishlist', login_required(views.ClearWishlistView.as_view()), name='clear-wishlist'),
 ]

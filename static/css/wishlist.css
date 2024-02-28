@@ -1,3 +1,11 @@
 .no-items-wishlist {
     font-size: 150%;
 }
+
+.wishlist-preview {
+    width: 75%;
+}
+
+.wishlist-button {
+    width: 90%;
+}

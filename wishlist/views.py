@@ -10,7 +10,6 @@ class WishlistView(LoginRequiredMixin, generic.ListView):
     
     template_name = "wishlist/wishlist.html"  # Template
     
-    @login_required    
     def wishlist_toggle(request, item_pk, *args, **kwargs):
             """
             Function is called when wishlist button pressed submitted
@@ -26,7 +25,6 @@ class WishlistView(LoginRequiredMixin, generic.ListView):
             request.user.userprofile.save()
             return redirect('item-detail', item_pk=item_pk)
         
-    
     def get(self, request, *args, **kwargs):
         user_wishlist = request.user.userprofile.user_wishlist
         wishlist_for_template = Item.objects.filter(item_sku__in=user_wishlist)
@@ -37,3 +35,10 @@ class WishlistView(LoginRequiredMixin, generic.ListView):
                 "user_wishlist": wishlist_for_template
             },
         )
+        
+class ClearWishlistView(LoginRequiredMixin, generic.ListView):
+    
+    def get(self, request, *args, **kwargs):
+        request.user.userprofile.user_wishlist = []
+        request.user.userprofile.save()
+        return redirect("show-wishlist")  # Redirect back to Wishlist
