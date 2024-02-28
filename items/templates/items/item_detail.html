@@ -84,47 +84,50 @@
                             €
                         </strong>
                     </div>
-                    {% if item.different_sizes and item.different_values %}
-                        <div class="d-flex justify-content-around mb-3">
+                    <form method="POST" id="vaultForm"  action="{% url 'add-to-vault' item_pk=item.pk %}">
+                        {% csrf_token %}
+                        {% if item.different_sizes and item.different_values %}
+                            <div class="d-flex justify-content-around mb-3">
+                                <span class="product-detail-input">
+                                    {% if item.different_sizes %}
+                                        <label for="size">
+                                            Select package size
+                                        </label>
+                                        <select class="form-control shadow-none" id="size" name="size">
+                                        {% for size in item.sizes %}
+                                            <option>{{ size }} {% if size == "1" %}unit{% else %}units{% endif %}</option>
+                                        {% endfor %}
+                                        </select>
+                                    {% endif %}
+                                </span>
+                                <span class="product-detail-input">
+                                    {% if item.different_values %}
+                                        <label for="value">
+                                            Select value
+                                        </label>
+                                        <select class="form-control shadow-none" id="value" name="value">
+                                        {% for value in item.values %}
+                                            <option>{{ value }}</option>
+                                        {% endfor %}
+                                        </select>
+                                    {% endif %}
+                                </span>
+                            </div>
+                        {% endif %}
+                        <div class="d-flex justify-content-around">
                             <span class="product-detail-input">
-                                {% if item.different_sizes %}
-                                    <label for="size">
-                                        Select package size
-                                    </label>
-                                    <select class="form-control shadow-none" id="size" name="size">
-                                    {% for size in item.sizes %}
-                                        <option>{{ size }} {% if size == "1" %}unit{% else %}units{% endif %}</option>
-                                    {% endfor %}
-                                    </select>
-                                {% endif %}
+                                <label for="quantity">Quantity :</label>
+                                <span class="quantity-input-container">
+                                    <span class="minus">-</span>
+                                    <input type="number" class="form-control shadow-none" id="quantity" name="quantity" min="0" max="{{ item.item_stock }}">
+                                    <span class="plus">+</span>
+                                </span>
                             </span>
-                            <span class="product-detail-input">
-                                {% if item.different_values %}
-                                    <label for="value">
-                                        Select value
-                                    </label>
-                                    <select class="form-control shadow-none" id="value" name="value">
-                                    {% for value in item.values %}
-                                        <option>{{ value }}</option>
-                                    {% endfor %}
-                                    </select>
-                                {% endif %}
+                            <span class="product-detail-input d-flex align-items-end">
+                                <button class="custom-button button-shadow" type="submit" id="add-button">Add to Vault</button>
                             </span>
                         </div>
-                    {% endif %}
-                    <div class="d-flex justify-content-around">
-                        <span class="product-detail-input">
-                            <label for="quantity">Quantity :</label>
-                            <span class="quantity-input-container">
-                                <span class="minus">-</span>
-                                <input type="number" class="form-control shadow-none" id="quantity" name="quantity" min="0" max="{{ item.item_stock }}">
-                                <span class="plus">+</span>
-                            </span>
-                        </span>
-                        <span class="product-detail-input d-flex align-items-end">
-                            <button class="custom-button button-shadow" type="submit" id="add-button">Add to Vault</button>
-                        </span>
-                    </div>
+                    </form>
                     <div class="scroll-up row">
                         <div class="col-4 d-flex align-items-end">
                             <i class="bi bi-award"></i>
@@ -229,7 +232,7 @@
     <script>
         let stockAmount = {{ item.item_stock }}
         $(document).ready(function() {
-            $('#wishlistForm, #commentForm').submit(function(){
+            $('#wishlistForm, #commentForm, #vaultForm').submit(function(){
                 $('#loader-container').css("display", "flex");
             });
         });

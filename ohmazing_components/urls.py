@@ -29,6 +29,8 @@ urlpatterns = [
     path("owner/", include("owner.urls")),
     path("profilemanager/", include("profilemanager.urls")),
     path("items/", include("items.urls")),
+    path("wishlist/", include("wishlist.urls")),
+    path("vault/", include("vault.urls")),
     path("favicon.ico", RedirectView.as_view(
         url="/static/images/favicon.png")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

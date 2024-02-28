@@ -87,10 +87,10 @@ header {
     }
 }
 
-.wishlist-bubble {
+.header-bubble {
     position: absolute;
     top: 20%;
-    left: 80%;
+    left: 85%;
     height: 3vh;
     width: 3vh;
     transform: translate(-50%, -50%);

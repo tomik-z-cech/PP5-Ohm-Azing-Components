@@ -24,7 +24,7 @@
             Wishlist
           </span>
           {% if items_in_wishlist != 0 %}
-            <div class="wishlist-bubble d-flex justify-content-center align-items-center">
+            <div class="header-bubble d-flex justify-content-center align-items-center">
               {{ items_in_wishlist }}
             </div>
           {% endif %}
@@ -40,6 +40,11 @@
           <span class="hide-less-991px">
             0.00 €
           </span>
+          {% if items_in_vault != 0 %}
+            <div class="header-bubble d-flex justify-content-center align-items-center">
+              {{ items_in_vault }}
+            </div>
+          {% endif %}
         </a>
       </nav>
     </div>
