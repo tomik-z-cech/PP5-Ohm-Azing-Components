@@ -24,14 +24,14 @@ def add_to_vault(request, item_pk):
         if append_new:
             vault.append(item_to_add)
         for vault_item in vault:
-            if vault_item[0] == item_pk and vault_item[3] > item_selected.item_stock:
+            if vault_item[0] == item_pk and int(vault_item[3]) > int(item_selected.item_stock):
                 messages.error(request, f'The amount of {item_selected.item_name} you trying to add to vault is higher than the stock amount.')
             else:
                 request.session['vault'] = vault
-                messages.success(request, f'Item {item_selected.item_name} was added to vault.')
+                messages.warning(request, f'Item {item_selected.item_name} was added to vault.')
     else:
         item_to_add = [item_pk, size, value, quantity]
         vault.append(item_to_add)
         request.session['vault'] = vault
-        messages.success(request, f'Item {item_selected.item_name} was added to vault.')
+        messages.warning(request, f'Item {item_selected.item_name} was added to vault.')
     return redirect('item-detail', item_pk=item_pk)
