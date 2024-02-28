@@ -19,7 +19,7 @@ class LandingPageView(generic.ListView):
     def get(self, request, *args, **kwargs):
         """This method generates view of landing page"""
         # Render template
-        postage_settings = PostageSettings.objects.filter(pk=1).first()
+        free_postage_treshold = PostageSettings.objects.filter(pk=1).first()
         new_arrivals = Item.objects.all().order_by('-date_added')[:3]
         all_items = Item.objects.all()
         sorted_by_likes = sorted(all_items, key=lambda item: item.rating_counter(), reverse=True)
@@ -28,7 +28,7 @@ class LandingPageView(generic.ListView):
             request,
             self.template_name,
             {
-                "free_postage": postage_settings.free_postage,
+                "free_postage": free_postage_treshold.free_postage,
                 "newsletter_form": NewsletterForm(),
                 "new_arrivals": new_arrivals,
                 "favourites": favourites,

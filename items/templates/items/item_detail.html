@@ -74,12 +74,7 @@
                         Price per unit :
                         &nbsp;
                         <strong>
-                            {% with price_slice=item.price_per_unit|floatformat:0 %}
-                                {{ price_slice }} 
-                                <sup>
-                                    {{ item.price_per_unit|floatformat:"2"|stringformat:"s"|slice:"-2:"|add:"" }}
-                                </sup>
-                            {% endwith %}
+                            {{ item.price_per_unit}}
                             &nbsp;
                             €
                         </strong>
