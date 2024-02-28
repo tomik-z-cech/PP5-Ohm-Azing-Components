@@ -17,7 +17,7 @@
     <div class="col-4 col-lg-1 d-flex justify-content-center header-height">
       {% if user.is_authenticated %}
       <nav class="navbar">
-        <a class="nav-link header-link text-center" href="#" aria-label="Wishlist">
+        <a class="nav-link header-link text-center" href="{% url 'show-wishlist' %}" aria-label="Wishlist">
           <i class="bi bi-star"></i>
           <br>
           <span class="hide-less-991px">

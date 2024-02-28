@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block nav_name %}My Wishlist{% endblock %}
+
+{% block extra_css %} 
+        <link rel="stylesheet" href="{% static 'css/wishlist.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container wrapper">
+    <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
+        <h1>
+            My Wishlist
+        </h1>
+    </div>
+    <div class="col-12 heading add-shadow">
+        {% if user_wishlist|length == 0 %}
+        <div class="p-3">
+            <div class="w-100 text-center no-items-wishlist">
+                You have nothing in your Wishlist yet, why not to visit our shop ?
+            </div>
+            <div class="w-100 d-flex justify-content-center">
+                <a href="{% url 'shop' category_pk=0 %}" class="custom-button button-shadow mt-3" aria-label="Shop Now">Shop Now</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="row p-3">
+            {% for row in user_wishlist %}
+                {{ row.item_name }}
+                <hr>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
