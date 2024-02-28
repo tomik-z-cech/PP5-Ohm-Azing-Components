@@ -8,7 +8,7 @@ def add_to_vault(request, item_pk):
     """
     vault = request.session.get('vault', [])
     quantity = request.POST['quantity']
-    size = request.POST.get('size', 0)
+    size = request.POST.get('size', 1)
     value = request.POST.get('value', 0)
     if len(vault) > 0:
         for vault_item in vault:
