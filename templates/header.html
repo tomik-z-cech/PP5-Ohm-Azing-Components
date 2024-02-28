@@ -32,20 +32,16 @@
       </nav>
       {% endif %}
     </div>
-    <div class="col-4 col-lg-1 text-center header-height">
-      {% if vault_items|length > 0 %}
-        Neco tam je
-      {% else %}
+    <div class="col-4 col-lg-1  d-flex justify-content-center header-height">
       <nav class="navbar">
-        <a class="" href="#" aria-label="Vault">
+        <a class="nav-link header-link text-center" href="#" aria-label="Vault">
           <i class="bi bi-safe"></i>
           <br>
-          <span>
-            {{ postage_settings }}
+          <span class="hide-less-991px">
+            0.00 €
           </span>
         </a>
       </nav>
-      {% endif %}
     </div>
     <div class="col-4 col-lg-1 d-flex justify-content-center header-height">
       <nav class="navbar navbar-expand d-flex justify-content-center">
