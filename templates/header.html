@@ -38,7 +38,11 @@
           <i class="bi bi-safe"></i>
           <br>
           <span class="hide-less-991px">
-            0.00 €
+            {% if subtotal > 0 %}
+              {{ subtotal }} €
+            {% else %}
+              0.00 €
+            {% endif %}
           </span>
           {% if items_in_vault != 0 %}
             <div class="header-bubble d-flex justify-content-center align-items-center">
