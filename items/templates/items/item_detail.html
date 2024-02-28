@@ -95,7 +95,7 @@
                                         </label>
                                         <select class="form-control shadow-none" id="size" name="size">
                                         {% for size in item.sizes %}
-                                            <option>{{ size }} {% if size == "1" %}unit{% else %}units{% endif %}</option>
+                                            <option value="{{ size }}"">{{ size }} {% if size == "1" %}unit{% else %}units{% endif %}</option>
                                         {% endfor %}
                                         </select>
                                     {% endif %}
@@ -107,7 +107,7 @@
                                         </label>
                                         <select class="form-control shadow-none" id="value" name="value">
                                         {% for value in item.values %}
-                                            <option>{{ value }}</option>
+                                            <option value="{{ value }}">{{ value }}</option>
                                         {% endfor %}
                                         </select>
                                     {% endif %}
