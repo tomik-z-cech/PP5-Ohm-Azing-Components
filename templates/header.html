@@ -6,18 +6,18 @@
 
 <header class="container-fluid w-100" id="header">
   <div class="row">
-    <div class="col-12 col-lg-4">
+    <div class="col-12 col-lg-3 header-height">
       <a href="{% url 'home' %}" aria-label="Home" id="logo-container" class="w-100">
         <img src="{% static 'images/logo.png' %}" alt="Logo Ohm-Azing Components" id="logo-image" class="image-fluid">
       </a>
     </div>
-    <div class="col-12 col-lg-5">
+    <div class="col-12 col-lg-6 header-height">
       Search
     </div>
-    <div class="col-4 col-lg-1 d-flex justify-content-center">
+    <div class="col-4 col-lg-1 d-flex justify-content-center header-height">
       {% if user.is_authenticated %}
       <nav class="navbar">
-        <a class="nav-link header-link text-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu">
+        <a class="nav-link header-link text-center" href="#" aria-label="Wishlist">
           <i class="bi bi-star"></i>
           <br>
           <span class="hide-less-991px">
@@ -32,7 +32,7 @@
       </nav>
       {% endif %}
     </div>
-    <div class="col-4 col-lg-1 text-center">
+    <div class="col-4 col-lg-1 text-center header-height">
       {% if vault_items|length > 0 %}
         Neco tam je
       {% else %}
@@ -47,7 +47,7 @@
       </nav>
       {% endif %}
     </div>
-    <div class="col-4 col-lg-1 d-flex justify-content-center">
+    <div class="col-4 col-lg-1 d-flex justify-content-center header-height">
       <nav class="navbar navbar-expand d-flex justify-content-center">
           <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                 <a class="nav-link header-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu">
