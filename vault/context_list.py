@@ -1,9 +1,11 @@
+# Imports
 from django.shortcuts import get_object_or_404
 from items.models import Item
 from owner.models import PostageSettings
 
 def vault_content(request):
     """
+    Method counts all necessary details for vault content
     Items in vault :
     [item_pk, size, value, quantity]
     Translated items for template
@@ -33,4 +35,5 @@ def vault_content(request):
         "free_postage_left": free_postage_left,
         "vault_content": translated_vault_content
     }
+    # Return dictionary 
     return vault_context

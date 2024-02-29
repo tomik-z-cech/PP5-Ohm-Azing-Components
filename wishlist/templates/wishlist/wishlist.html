@@ -28,15 +28,19 @@
                 {% for row in user_wishlist %}
                     <div class="row">
                         <div class="col-2 d-flex justify-content-center align-items-center">
-                            {% if row.image_1 == '' or row.image_1 == 'False' %}
-                                <img src="{% static 'images/no_image.png' %}" alt="{{ row.item_name }} Preview" class="wishlist-preview">
-                            {% else %}
-                                <img src="{{ row.image_1.url }}" alt="{{ row.item_name }} Preview" class="wishlist-preview">
-                            {% endif %}
+                            <a href="{% url 'item-detail' item_pk=row.pk %}" aria-label="Details of {{ row.item_name }}">
+                                {% if row.image_1 == '' or row.image_1 == 'False' %}
+                                    <img src="{% static 'images/no_image.png' %}" alt="{{ row.item_name }} Preview" class="wishlist-preview">
+                                {% else %}
+                                    <img src="{{ row.image_1.url }}" alt="{{ row.item_name }} Preview" class="wishlist-preview">
+                                {% endif %}
+                            </a>
                         </div>
                         <div class="col-7 d-flex justify-content-center align-items-center flex-column">
                             <strong class="mb-2">
-                                {{ row.item_name }}
+                                <a href="{% url 'item-detail' item_pk=row.pk %}" aria-label="Details of {{ row.item_name }}" class="heading-link">
+                                    {{ row.item_name }}
+                                </a>
                             </strong>
                             <p>
                                 {{ row.item_description }}

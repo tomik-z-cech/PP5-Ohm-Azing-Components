@@ -5,6 +5,11 @@
 .wishlist-preview {
     width: 75%;
     border: 2px solid var(--dark-background);
+    transition: border 0.5s ease-in-out;
+}
+
+.wishlist-preview:hover {
+    border: 2px solid var(--light-highlight);
 }
 
 .wishlist-button {
@@ -70,4 +75,14 @@ label[for="quantity"] {
 
 .vault-total {
     font-size: 130%;
+}
+
+.heading-link {
+    color: var(--light-foreground);
+    text-decoration: none;
+    transition: color 0.5s ease-in-out;
+}
+
+.heading-link:hover {
+    color: var(--light-highlight);
 }
