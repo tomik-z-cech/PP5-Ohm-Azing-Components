@@ -129,7 +129,7 @@
                         </span>
                     </div>
                     <div class="col-2 d-flex justify-content-around align-items-center flex-column">
-                        <a href="#" class="custom-button button-shadow wishlist-button">
+                        <a href="#" class="custom-button button-shadow wishlist-button updateButton">
                             <i class="bi bi-arrow-repeat"></i>
                             &nbsp;
                             Update
@@ -159,7 +159,7 @@
                         &nbsp;
                         Remove All Items
                     </a>
-                    <a href="#" class="custom-button button-shadow" aria-label="Clear Vault" data-bs-toggle="modal" data-bs-target="#clearVaultModal">
+                    <a href="#" class="custom-button button-shadow" aria-label="Checkout">
                         <i class="bi bi-shield-check"></i>
                         &nbsp;
                         Secure Checkout
@@ -191,6 +191,7 @@
 
 {% block extra_js %}
     {{ block.super }}
+    <script src="{% static 'js/vault.js' %}"></script>
     <script>
         $(document).ready(function() {
             $('#clearButton, .deleteButton').click(function(){

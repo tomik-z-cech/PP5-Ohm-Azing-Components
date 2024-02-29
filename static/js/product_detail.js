@@ -8,14 +8,14 @@ $(document).ready(function() {
     // if plus clicked
     $('.plus').click(function() {
         // quantity ++ max stockAmount
-        if (inputField.val() < stockAmount ){
+        if (parseInt(inputField.val()) < stockAmount ){
             inputField.val(parseInt(inputField.val(), 10) + 1);
         };
     });
     // if minus clicked
     $('.minus').click(function() {
         // quantity -- min 0 
-        if (inputField.val() > 1 ){
+        if (parseInt(inputField.val()) > 1 ){
             inputField.val(parseInt(inputField.val(), 10) - 1);
         };
     });
