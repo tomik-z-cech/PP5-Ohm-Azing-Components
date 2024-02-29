@@ -58,3 +58,12 @@ class RemoveVaultItemView(generic.ListView):
         request.session['vault'] = vault
         messages.warning(request, f'Item {item_selected.item_name} was removed from vault.')
         return redirect('vault')
+    
+class ClearVaultView(generic.ListView):
+    
+    def get(self, request, *args, **kwargs):
+        vault = request.session.get('vault', [])
+        vault = []
+        request.session['vault'] = vault
+        messages.info(request, 'All items were removed from Vault.')
+        return redirect('vault')

@@ -390,6 +390,11 @@ input[type="radio"] {
     
 }
 
+.modal-body {
+    color: var(--light-foreground);
+    font-family: var(--main-font);
+}
+
 /** ------------------------------- ALLAUTH ---------------------------- **/
 
 .form-heading a {

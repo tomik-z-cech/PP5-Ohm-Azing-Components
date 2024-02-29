@@ -94,8 +94,3 @@ label[for="id_marketing_email"] {
     width: 20%;
     aspect-ratio: 1/1;
 }
-
-.modal-body {
-    color: var(--light-foreground);
-    font-family: var(--main-font);
-}
