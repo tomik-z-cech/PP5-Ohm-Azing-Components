@@ -4,7 +4,7 @@
 {% block nav_name %}Vault{% endblock %}
 
 {% block extra_css %} 
-        <link rel="stylesheet" href="{% static 'css/wishlist.css' %}">
+        <link rel="stylesheet" href="{% static 'css/wishlist_vault.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -25,13 +25,51 @@
                 </div>
             {% else %}
                 <hr>
-                {% for row in user_wishlist %}
+                {% for row in vault_content %}
+                <div class="row">
+                    <div class="col-2 d-flex justify-content-center align-items-center">
+                        <img src="{{ row.5.url }}" alt="{{ row.item_name }} Preview" class="wishlist-preview">
+                    </div>
+                    <div class="col-7 d-flex justify-content-center align-items-center flex-column">
+                        <strong class="mb-2">
+                            {{ row.4 }}
+                        </strong>
+                        <p>
+                            {{ row.item_description }}
+                        </p>
+                    </div>
+                    <div class="col-1  d-flex justify-content-center align-items-center">
+                        <strong>
+                            {{ row.price_per_unit }}
+                            &nbsp;
+                            €
+                        </strong>
+                    </div>
+                    <div class="col-2 d-flex justify-content-around align-items-center flex-column">
+                        <a href="#" class="custom-button button-shadow wishlist-button">
+                            <i class="bi bi-arrow-repeat"></i>
+                            &nbsp;
+                            Update
+                        </a>
+                        <a href="#" class="custom-button button-shadow wishlist-button">
+                            <i class="bi bi-trash3"></i>
+                            &nbsp;
+                            Remove
+                        </a>
+                    </div>
+                    <hr class="mt-3">
+                </div>
                 {% endfor %}
-                <div class="col-2 d-flex justify-content-center align-items-center w-100">
+                <div class="col-2 d-flex justify-content-around align-items-center w-100">
                     <a href="#" class="custom-button button-shadow" aria-label="Clear Vault" data-bs-toggle="modal" data-bs-target="#clearVaultModal">
                         <i class="bi bi-trash3"></i>
                         &nbsp;
                         Remove All Items
+                    </a>
+                    <a href="#" class="custom-button button-shadow" aria-label="Clear Vault" data-bs-toggle="modal" data-bs-target="#clearVaultModal">
+                        <i class="bi bi-shield-check"></i>
+                        &nbsp;
+                        Secure Checkout
                     </a>
                 </div>
             {% endif %}

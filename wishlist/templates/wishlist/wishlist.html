@@ -4,7 +4,7 @@
 {% block nav_name %}My Wishlist{% endblock %}
 
 {% block extra_css %} 
-        <link rel="stylesheet" href="{% static 'css/wishlist.css' %}">
+        <link rel="stylesheet" href="{% static 'css/wishlist_vault.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -46,7 +46,7 @@
                             </strong>
                         </div>
                         <div class="col-2 d-flex justify-content-center align-items-center">
-                            <a href="{% url 'delete-wishlist-item' item_pk=row.pk %}" class="custom-button button-shadow wishlist-button">
+                            <a href="{% url 'delete-wishlist-item' item_pk=row.pk %}" class="custom-button button-shadow wishlist-button" id="deleteButton">
                                 <i class="bi bi-trash3"></i>
                                 &nbsp;
                                 Remove
@@ -79,9 +79,21 @@
             </div>
             <div class="modal-footer w-100 d-flex justify-content-around">
                 <button type="button" class="custom-button button-shadow" data-bs-dismiss="modal">Back</button>
-                <a href="{% url 'clear-wishlist' %}" class="custom-button button-shadow">Clear Wishlist</a>
+                <a href="{% url 'clear-wishlist' %}" class="custom-button button-shadow" id="clearButton">Clear Wishlist</a>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function() {
+            $('#clearButton, #deleteButton').click(function(){
+                $('.modal').hide();
+                $('#loader-container').css("display", "flex");
+            });
+        });
+    </script>
 {% endblock %}
