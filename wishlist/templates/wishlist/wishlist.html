@@ -56,13 +56,31 @@
                     </div>
                 {% endfor %}
                 <div class="col-2 d-flex justify-content-center align-items-center w-100">
-                    <a href="{% url 'clear-wishlist' %}" class="custom-button button-shadow" aria-label="Clear Wishlist">
+                    <a href="#" class="custom-button button-shadow" aria-label="Clear Wishlist" data-bs-toggle="modal" data-bs-target="#clearWishlistModal">
                         <i class="bi bi-trash3"></i>
                         &nbsp;
                         Remove All Items
                     </a>
                 </div>
             {% endif %}
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="clearWishlistModal" tabindex="-1" aria-labelledby="clearWishlistModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="clearWishlistModalLabel">Clear the Wishlist ?</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure ? All items from your Wishlist will be deleted.
+            </div>
+            <div class="modal-footer w-100 d-flex justify-content-around">
+                <button type="button" class="custom-button button-shadow" data-bs-dismiss="modal">Back</button>
+                <a href="{% url 'clear-wishlist' %}" class="custom-button button-shadow">Clear Wishlist</a>
+            </div>
         </div>
     </div>
 </div>
