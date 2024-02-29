@@ -41,4 +41,15 @@ class ClearWishlistView(LoginRequiredMixin, generic.ListView):
     def get(self, request, *args, **kwargs):
         request.user.userprofile.user_wishlist = []
         request.user.userprofile.save()
+        messages.success(request, f'Your wishlist is now empty.')
         return redirect("show-wishlist")  # Redirect back to Wishlist
+    
+    
+class DeleteWishlistItemView(LoginRequiredMixin, generic.ListView):
+    
+    def get(self, request, item_pk, *args, **kwargs):
+        item_to_delete = get_object_or_404(Item, pk=item_pk)
+        users_wishlist = request.user.userprofile.user_wishlist
+        users_wishlist.remove(item_to_delete.item_sku)
+        request.user.userprofile.save()
+        return redirect("show-wishlist")
