@@ -28,7 +28,11 @@
                 {% for row in user_wishlist %}
                     <div class="row">
                         <div class="col-2 d-flex justify-content-center align-items-center">
-                            <img src="{{ row.image_1.url }}" alt="{{ row.item_name }} Preview" class="wishlist-preview">
+                            {% if row.image_1 == '' or row.image_1 == 'False' %}
+                                <img src="{% static 'images/no_image.png' %}" alt="{{ row.item_name }} Preview" class="wishlist-preview">
+                            {% else %}
+                                <img src="{{ row.image_1.url }}" alt="{{ row.item_name }} Preview" class="wishlist-preview">
+                            {% endif %}
                         </div>
                         <div class="col-7 d-flex justify-content-center align-items-center flex-column">
                             <strong class="mb-2">
