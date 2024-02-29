@@ -59,15 +59,19 @@
                 {% for row in vault_content %}
                 <div class="row">
                     <div class="col-2 d-flex justify-content-center align-items-center">
-                        {% if row.5 == '' or row.5 == 'False' %}
-                            <img src="{% static 'images/no_image.png' %}" alt="{{ row.4 }} Preview" class="wishlist-preview">
-                        {% else %}
-                            <img src="{{ row.5.url }}" alt="{{ row.4 }} Preview" class="wishlist-preview">
-                        {% endif %}
+                        <a href="{% url 'item-detail' item_pk=row.0 %}" aria-label="Details of {{ row.4 }}">
+                            {% if row.5 == '' or row.5 == 'False' %}
+                                <img src="{% static 'images/no_image.png' %}" alt="{{ row.4 }} Preview" class="wishlist-preview">
+                            {% else %}
+                                <img src="{{ row.5.url }}" alt="{{ row.4 }} Preview" class="wishlist-preview">
+                            {% endif %}
+                        </a>
                     </div>
                     <div class="col-5 d-flex justify-content-center align-items-center flex-column">
                         <strong class="mb-2">
-                            {{ row.4 }}
+                            <a href="{% url 'item-detail' item_pk=row.0 %}" aria-label="Details of {{ row.4 }}" class="heading-link">
+                                {{ row.4 }}
+                            </a>
                         </strong>
                         <div class="w-75 d-flex justify-content-around mt-2">
                             <span>
