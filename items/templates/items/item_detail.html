@@ -90,7 +90,7 @@
                                         </label>
                                         <select class="form-control shadow-none" id="size" name="size">
                                         {% for size in item.sizes %}
-                                            <option value="{{ size }}"">{{ size }} {% if size == "1" %}unit{% else %}units{% endif %}</option>
+                                            <option value="{{ size }}">{{ size }} {% if size == "1" %}unit{% else %}units{% endif %}</option>
                                         {% endfor %}
                                         </select>
                                     {% endif %}
@@ -112,7 +112,7 @@
                         <div class="d-flex justify-content-around">
                             <span class="product-detail-input">
                                 <label for="quantity">Quantity :</label>
-                                <span class="quantity-input-container">
+                                <span>
                                     <span class="minus">-</span>
                                     <input type="number" class="form-control shadow-none" id="quantity" name="quantity" min="0" max="{{ item.item_stock }}">
                                     <span class="plus">+</span>

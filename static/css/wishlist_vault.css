@@ -4,8 +4,70 @@
 
 .wishlist-preview {
     width: 75%;
+    border: 2px solid var(--dark-background);
 }
 
 .wishlist-button {
     width: 90%;
+}
+
+.minus {
+    position: absolute;
+    top: 25%;
+    left: 0%;
+    transform: translate( 0%, 0%);
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.5s ease-in-out;
+}
+
+.plus {
+    position: absolute;
+    top: 25%;
+    transform: translate( 0%, 0%);
+    right: 0%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.5s ease-in-out;
+}
+
+.plus,
+.minus {
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.minus:hover,
+.plus:hover {
+    color: var(--light-highlight);
+}
+
+.quantity {
+    text-align: center;
+}
+
+.product-detail-input {
+    position: relative;
+    height: auto;
+}
+
+label[for="quantity"] {
+    display: none;
+}
+
+.out-of-stock {
+    background-color: var(--negative-background);
+}
+
+.in-stock {
+    background-color: var(--positive-background);
+}
+
+.rounded-pill {
+    border: 1px solid var(--dark-foreground);
+    font-family: var(--main-font);
+}
+
+.vault-total {
+    font-size: 130%;
 }

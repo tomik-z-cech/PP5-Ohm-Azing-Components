@@ -14,6 +14,37 @@
             Vault
         </h1>
     </div>
+    {% if vault_content|length > 0 %}
+        <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
+            {% if free_postage_left > 0 %}
+                Power up your Vault with just
+                &nbsp;
+                <strong>
+                    {{ free_postage_left }} € 
+                </strong>
+                &nbsp;
+                more in electronic wonders for
+                &nbsp; 
+                <strong>
+                    FREE DELIVERY 
+                </strong>
+                &nbsp;
+                !
+            {% else %}
+                <strong>
+                    Congratulations !
+                </strong>
+                &nbsp;
+                You're already enjoying
+                &nbsp; 
+                <strong>
+                FREE DELIVERY
+                </strong>
+                &nbsp;
+                !
+            {% endif %}
+        </div>
+    {% endif %}
     <div class="col-12 heading add-shadow">
         <div class="row p-3">
             {% if vault_content|length == 0 %}
@@ -30,20 +61,64 @@
                     <div class="col-2 d-flex justify-content-center align-items-center">
                         <img src="{{ row.5.url }}" alt="{{ row.item_name }} Preview" class="wishlist-preview">
                     </div>
-                    <div class="col-7 d-flex justify-content-center align-items-center flex-column">
+                    <div class="col-5 d-flex justify-content-center align-items-center flex-column">
                         <strong class="mb-2">
                             {{ row.4 }}
                         </strong>
-                        <p>
-                            {{ row.item_description }}
-                        </p>
+                        <div class="w-75 d-flex justify-content-around mt-2">
+                            <span>
+                                {{ row.6 }} €
+                            </span>
+                            {% if row.7 > 0 %}
+                                <span class="badge rounded-pill in-stock">{{ row.7 }} available</span>
+                            {% else %}
+                                <span class="badge rounded-pill out-of-stock">Out Of Stock</span>
+                            {% endif %}
+                        </div>
+                        {% if row.1 != 1 and row.2 != 0 %}
+                        <div class="w-75 d-flex justify-content-around mt-2">
+                            {% if row.1 != 1 %}
+                                <span>
+                                    <strong>
+                                        Size :
+                                    </strong>
+                                    {{ row.1 }}
+                                    &nbsp;
+                                    units
+                                </span>
+                            {% endif %}
+                            {% if row.2 != 0 %}
+                            <span>
+                                <strong>
+                                    Value :
+                                </strong>
+                                {{ row.2 }}
+                                &nbsp;
+                                units
+                            </span>
+                            {% endif %}
+                        </div>
+                        {% endif %}
                     </div>
-                    <div class="col-1  d-flex justify-content-center align-items-center">
-                        <strong>
-                            {{ row.price_per_unit }}
-                            &nbsp;
-                            €
-                        </strong>
+                    <div class="col-2 d-flex align-items-center">
+                        <span class="product-detail-input w-100">
+                            <label for="quantity">Quantity :</label>
+                            <span>
+                                <span class="minus">-</span>
+                                <input type="number" class="form-control shadow-none quantity" min="0" max="{{ row.7 }}" value="{{ row.3 }}">
+                                <span class="plus">+</span>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center align-items-center flex-column">
+                        <span>
+                            <strong>
+                                Subtotal :
+                            </strong>
+                        </span>
+                        <span>
+                            {{ row.8 }}
+                        </span>
                     </div>
                     <div class="col-2 d-flex justify-content-around align-items-center flex-column">
                         <a href="#" class="custom-button button-shadow wishlist-button">
@@ -60,7 +135,17 @@
                     <hr class="mt-3">
                 </div>
                 {% endfor %}
-                <div class="col-2 d-flex justify-content-around align-items-center w-100">
+                <div class="mb-3 d-flex justify-content-end align-items-center w-100">
+                    <span class="me-5 vault-total">
+                        <strong>
+                            Vault total : 
+                        </strong>
+                        {{ subtotal }} 
+                        €
+                    </span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-around align-items-center w-100">
                     <a href="#" class="custom-button button-shadow" aria-label="Clear Vault" data-bs-toggle="modal" data-bs-target="#clearVaultModal">
                         <i class="bi bi-trash3"></i>
                         &nbsp;
