@@ -58,7 +58,6 @@
                 <hr>
                 {% for row in vault_content %}
                 <div class="row">
-                    {{ forloop.counter0 }}
                     <div class="col-2 d-flex justify-content-center align-items-center">
                         <a href="{% url 'item-detail' item_pk=row.0 %}" aria-label="Details of {{ row.4 }}">
                             {% if row.5 == '' or row.5 == 'False' %}
@@ -135,7 +134,7 @@
                             &nbsp;
                             Update
                         </a>
-                        <a href="#" class="custom-button button-shadow wishlist-button">
+                        <a href="{% url 'remove-from-vault' vault_item=forloop.counter0 %}" class="custom-button button-shadow wishlist-button deleteButton">
                             <i class="bi bi-trash3"></i>
                             &nbsp;
                             Remove
@@ -188,4 +187,16 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function() {
+            $('#clearButton, .deleteButton').click(function(){
+                $('.modal').hide();
+                $('#loader-container').css("display", "flex");
+            });
+        });
+    </script>
 {% endblock %}

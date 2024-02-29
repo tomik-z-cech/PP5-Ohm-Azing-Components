@@ -46,7 +46,15 @@ class DisplayVaultItemsView(generic.ListView):
         return render(
             request,
             self.template_name,
-            {
-                "neco": 1,
-            }
         )
+        
+
+class RemoveVaultItemView(generic.ListView):
+    
+    def get(self, request, vault_item, *args, **kwargs):
+        vault = request.session.get('vault', [])
+        item_selected = get_object_or_404(Item, pk=vault[vault_item][0]) 
+        vault.pop(vault_item)
+        request.session['vault'] = vault
+        messages.warning(request, f'Item {item_selected.item_name} was removed from vault.')
+        return redirect('vault')

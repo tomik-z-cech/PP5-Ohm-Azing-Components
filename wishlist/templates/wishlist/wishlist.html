@@ -54,7 +54,7 @@
                             </strong>
                         </div>
                         <div class="col-2 d-flex justify-content-center align-items-center">
-                            <a href="{% url 'delete-wishlist-item' item_pk=row.pk %}" class="custom-button button-shadow wishlist-button" id="deleteButton">
+                            <a href="{% url 'delete-wishlist-item' item_pk=row.pk %}" class="custom-button button-shadow wishlist-button deleteButton">
                                 <i class="bi bi-trash3"></i>
                                 &nbsp;
                                 Remove
@@ -98,7 +98,7 @@
     {{ block.super }}
     <script>
         $(document).ready(function() {
-            $('#clearButton, #deleteButton').click(function(){
+            $('#clearButton, .deleteButton').click(function(){
                 $('.modal').hide();
                 $('#loader-container').css("display", "flex");
             });
