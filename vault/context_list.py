@@ -18,5 +18,6 @@ def vault_content(request):
         "items_in_vault": len(vault),
         "subtotal": subtotal,
         "free_postage_left": free_postage_left,
+        "vault_content": vault,
     }
     return vault_context

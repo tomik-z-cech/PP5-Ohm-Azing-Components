@@ -1,5 +1,6 @@
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render
 from django.contrib import messages
+from django.views import generic
 from items.models import Item
 
 # Create your views here.
@@ -35,3 +36,17 @@ def add_to_vault(request, item_pk):
         request.session['vault'] = vault
         messages.warning(request, f'Item {item_selected.item_name} was added to vault.')
     return redirect('item-detail', item_pk=item_pk)
+
+
+class DisplayVaultItemsView(generic.ListView):
+
+    template_name = "vault/vault.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(
+            request,
+            self.template_name,
+            {
+                "neco": 1,
+            }
+        )

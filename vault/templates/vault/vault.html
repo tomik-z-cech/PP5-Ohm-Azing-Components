@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block nav_name %}Vault{% endblock %}
+
+{% block extra_css %} 
+        <link rel="stylesheet" href="{% static 'css/wishlist.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container wrapper">
+    <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
+        <h1>
+            Vault
+        </h1>
+    </div>
+    <div class="col-12 heading add-shadow">
+        <div class="row p-3">
+            {% if vault_content|length == 0 %}
+                <div class="w-100 text-center no-items-wishlist">
+                    You have nothing in your Vault yet, why not to visit our shop ?
+                </div>
+                <div class="w-100 d-flex justify-content-center">
+                    <a href="{% url 'shop' category_pk=0 %}" class="custom-button button-shadow mt-3" aria-label="Shop Now">Visit the Shop</a>
+                </div>
+            {% else %}
+                <hr>
+                {% for row in user_wishlist %}
+                {% endfor %}
+                <div class="col-2 d-flex justify-content-center align-items-center w-100">
+                    <a href="#" class="custom-button button-shadow" aria-label="Clear Vault" data-bs-toggle="modal" data-bs-target="#clearVaultModal">
+                        <i class="bi bi-trash3"></i>
+                        &nbsp;
+                        Remove All Items
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="clearVaultModal" tabindex="-1" aria-labelledby="clearVaultModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="clearVaultModalLabel">Clear the Vault ?</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure ? All items from your Vault will be deleted.
+            </div>
+            <div class="modal-footer w-100 d-flex justify-content-around">
+                <button type="button" class="custom-button button-shadow" data-bs-dismiss="modal">Back</button>
+                <a href="#" class="custom-button button-shadow">Clear Vault</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

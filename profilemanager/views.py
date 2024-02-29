@@ -7,7 +7,6 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin,
 )
-from .models import User
 from profilemanager.models import UserProfile
 from profilemanager.forms import UserProfileForm
 
