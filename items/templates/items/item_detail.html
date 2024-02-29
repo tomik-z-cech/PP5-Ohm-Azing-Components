@@ -153,10 +153,12 @@
                             Comment
                             {% endif %}
                         </div>
-                        <div class="col-4" id="back-to-shop">
-                            <i class="bi bi-arrow-left-square"></i>
-                            &nbsp;
-                            Continue Shopping
+                        <div class="col-4">
+                            <a href="{% url 'shop' category_pk=0 %}" aria-label="Continue Shopping" id="back-to-shop">
+                                <i class="bi bi-arrow-left-square"></i>
+                                &nbsp;
+                                Continue Shopping
+                            </a>
                         </div>
                     </div>
 

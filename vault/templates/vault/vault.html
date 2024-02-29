@@ -58,6 +58,7 @@
                 <hr>
                 {% for row in vault_content %}
                 <div class="row">
+                    {{ forloop.counter0 }}
                     <div class="col-2 d-flex justify-content-center align-items-center">
                         <a href="{% url 'item-detail' item_pk=row.0 %}" aria-label="Details of {{ row.4 }}">
                             {% if row.5 == '' or row.5 == 'False' %}

@@ -39,11 +39,5 @@ $(document).ready(function() {
         $('#img1').removeClass('image-small').addClass('image-large');
         // Set the other images small
         $('#img2, #img3').removeClass('image-large').addClass('image-small');
-        if (document.referrer) {
-            let previousDestination = document.referrer;
-            $('#back-to-shop').click(function(){
-                window.location.href = previousDestination;
-            });
-        };
     });
 });
