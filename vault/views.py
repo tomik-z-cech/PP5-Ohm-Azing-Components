@@ -48,6 +48,11 @@ class DisplayVaultItemsView(generic.ListView):
             self.template_name,
         )
         
+    def post(self, request, *args, **kwargs):
+        vault_item_number = request.POST.get('vault_item_number')
+        print(vault_item_number)
+        return redirect('vault')
+        
 
 class RemoveVaultItemView(generic.ListView):
     

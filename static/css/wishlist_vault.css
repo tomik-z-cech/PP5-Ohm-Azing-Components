@@ -18,7 +18,7 @@
 
 .minus {
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 0%;
     transform: translate( 0%, 0%);
     font-size: 16px;
@@ -28,7 +28,7 @@
 
 .plus {
     position: absolute;
-    top: 25%;
+    top: 50%;
     transform: translate( 0%, 0%);
     right: 0%;
     font-size: 16px;

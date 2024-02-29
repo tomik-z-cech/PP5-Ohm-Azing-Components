@@ -110,12 +110,13 @@
                     </div>
                     <div class="col-2 d-flex align-items-center">
                         <span class="product-detail-input w-100">
-                            <label for="quantity">Quantity :</label>
-                            <span>
+                            <form method="post" id="item-{{ forloop.counter0 }}">
+                                {% csrf_token %}
+                                <label for="quantity-{{ forloop.counter0 }}">Quantity :</label>
+                                <input type="number" class="form-control shadow-none quantity" min="0" max="{{ row.7 }}" value="{{ row.3 }}" name="quantity-{{ forloop.counter0 }}">
                                 <span class="minus">-</span>
-                                <input type="number" class="form-control shadow-none quantity" min="0" max="{{ row.7 }}" value="{{ row.3 }}">
                                 <span class="plus">+</span>
-                            </span>
+                            <form>
                         </span>
                     </div>
                     <div class="col-1 d-flex justify-content-center align-items-center flex-column">
@@ -129,11 +130,6 @@
                         </span>
                     </div>
                     <div class="col-2 d-flex justify-content-around align-items-center flex-column">
-                        <a href="#" class="custom-button button-shadow wishlist-button updateButton">
-                            <i class="bi bi-arrow-repeat"></i>
-                            &nbsp;
-                            Update
-                        </a>
                         <a href="{% url 'remove-from-vault' vault_item=forloop.counter0 %}" class="custom-button button-shadow wishlist-button deleteButton">
                             <i class="bi bi-trash3"></i>
                             &nbsp;
