@@ -112,11 +112,12 @@
                         <span class="product-detail-input w-100">
                             <form method="post" id="item-{{ forloop.counter0 }}">
                                 {% csrf_token %}
-                                <label for="quantity-{{ forloop.counter0 }}">Quantity :</label>
-                                <input type="number" class="form-control shadow-none quantity" min="0" max="{{ row.7 }}" value="{{ row.3 }}" name="quantity-{{ forloop.counter0 }}">
+                                <label for="quantity">Quantity :</label>
+                                <input type="number" class="form-control shadow-none quantity" min="0" max="{{ row.7 }}" value="{{ row.3 }}" name="quantity">
                                 <span class="minus">-</span>
                                 <span class="plus">+</span>
-                            <form>
+                                <input type="hidden" name="vault-item" value="{{ forloop.counter0}}">
+                            </form>
                         </span>
                     </div>
                     <div class="col-1 d-flex justify-content-center align-items-center flex-column">

@@ -49,8 +49,16 @@ class DisplayVaultItemsView(generic.ListView):
         )
         
     def post(self, request, *args, **kwargs):
-        vault_item_number = request.POST.get('vault_item_number')
-        print(vault_item_number)
+        vault_item = int(request.POST.get('vault-item', 0))
+        new_quantity = request.POST.get('quantity', 0)
+        if new_quantity.isdigit():
+            vault = request.session.get('vault', [])
+            vault[vault_item][3] = int(new_quantity)
+            item_selected = get_object_or_404(Item, pk=vault[vault_item][0])
+            request.session['vault'] = vault
+            messages.warning(request, f'Quantity of {item_selected.item_name} was changed.')
+        else:
+            messages.error(request, "Quantity couldn't be updated. Input wasn't a number.")
         return redirect('vault')
         
 

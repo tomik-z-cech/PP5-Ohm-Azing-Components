@@ -13,13 +13,14 @@ $(document).ready(function() {
         // quantity ++ max stockAmount
         if (parseInt(inputField.val()) < stockAmount ){
             inputField.val(parseInt(inputField.val(), 10) + 1);
+            $('#loader-container').css("display", "flex");
+            formField.submit();
         };
-        console.log(formField);
-        //formField.submit();
     });
     // if minus clicked
     $('.minus').click(function() {
         // set the field edited
+        let formField = $(this).siblings('input[type="number"]').parent()
         let inputField = $(this).siblings('input[type="number"]')
         // if no input then input = 1
         if (inputField.val() == '') {
@@ -28,6 +29,13 @@ $(document).ready(function() {
         // quantity -- min 0 
         if (parseInt(inputField.val()) > 1 ){
             inputField.val(parseInt(inputField.val(), 10) - 1);
+            $('#loader-container').css("display", "flex");
+            formField.submit();
         };
+    });
+    // If any class quantity field changes
+    $('.quantity').change(function() {
+        // Submit parent form
+        $(this).parent().submit();
     });
 });
