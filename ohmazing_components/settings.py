@@ -3,8 +3,11 @@ from pathlib import Path
 import os
 import dj_database_url
 
+
+# Environment variable settings
 if os.path.isfile("env.py"):
     import env
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +32,6 @@ ALLOWED_HOSTS = [
 
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -41,15 +43,13 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     
-    # Other
-    
+    # Other    
     "crispy_forms",
     "storages",
     "mathfilters",
     "ckeditor",
     
-    # Apps
-    
+    # Apps    
     "landing",
     "items",
     "owner",
@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     "checkout",
 ]
 
+
+# CKEditor settings
 CKEDITOR_UPLOAD_PATH = 'media/docs/'
 CKEDITOR_CONFIGS = {
     'default': {
@@ -78,6 +80,8 @@ CKEDITOR_CONFIGS = {
     },
 }
 
+
+# Middlewares
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -114,8 +118,6 @@ WSGI_APPLICATION = "ohmazing_components.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-# Database
 if "DATABASE_URL" in os.environ:
     DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 else:
@@ -129,7 +131,6 @@ else:
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -148,31 +149,27 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
-
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Email verification
+
+# AllAuth Settings
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
@@ -188,7 +185,6 @@ LOGOUT_REDIRECT_URL = "/"
 ACCOUNT_SIGNUP_REDIRECT_URL = "/"
 
 
-
 # Gmail settings
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "Ohm-azning Components - "
 MAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -197,6 +193,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
+
 
 # Crispy forms bootstrap pack
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -222,10 +219,9 @@ if 'USE_AWS' in os.environ:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
     
 
+# Django Countries settings - Frequent Countries
 FREQUENT_COUNTRIES = [
 'IE',
 'GB',
-'divider',
 ]
-
 COUNTRIES_FIRST = FREQUENT_COUNTRIES

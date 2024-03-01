@@ -31,6 +31,7 @@ urlpatterns = [
     path("items/", include("items.urls")),
     path("wishlist/", include("wishlist.urls")),
     path("vault/", include("vault.urls")),
+    path("checkout/", include("checkout.urls")),
     path("favicon.ico", RedirectView.as_view(
         url="/static/images/favicon.png")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
