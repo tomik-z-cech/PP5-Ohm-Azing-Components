@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "profilemanager",
     "vault",
     "wishlist",
+    "checkout",
 ]
 
 CKEDITOR_UPLOAD_PATH = 'media/docs/'
