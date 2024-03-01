@@ -79,6 +79,7 @@
                             €
                         </strong>
                     </div>
+                    {% if item.item_stock > 0 %}
                     <form method="POST" id="vaultForm"  action="{% url 'add-to-vault' item_pk=item.pk %}">
                         {% csrf_token %}
                         {% if item.different_sizes and item.different_values %}
@@ -123,6 +124,7 @@
                             </span>
                         </div>
                     </form>
+                    {% endif %}
                     <div class="scroll-up row">
                         <div class="col-4 d-flex align-items-end">
                             <i class="bi bi-award"></i>
