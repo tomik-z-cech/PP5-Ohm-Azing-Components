@@ -13,7 +13,9 @@ $(document).ready(function() {
         // quantity ++ max stockAmount
         if (parseInt(inputField.val()) < stockAmount ){
             inputField.val(parseInt(inputField.val(), 10) + 1);
+            // Display leader
             $('#loader-container').css("display", "flex");
+            // Submit parent form
             formField.submit();
         };
     });
@@ -29,12 +31,16 @@ $(document).ready(function() {
         // quantity -- min 0 
         if (parseInt(inputField.val()) > 1 ){
             inputField.val(parseInt(inputField.val(), 10) - 1);
+            // Display loader
             $('#loader-container').css("display", "flex");
+            // Submit parent form
             formField.submit();
         };
     });
     // If any class quantity field changes
     $('.quantity').change(function() {
+        // Display loader
+        $('#loader-container').css("display", "flex");
         // Submit parent form
         $(this).parent().submit();
     });

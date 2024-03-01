@@ -1,0 +1,71 @@
+{% load static %}
+
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+    <div class="toast-header">
+        <strong class="me-auto">
+            <i class="bi bi-safe"></i>
+            &nbsp;
+            Vault
+        </strong>
+        <button type="button" class="btn-close shadow-none" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+        {% if vault_content|length > 0 %}
+            <div class="text-center w-100 vault-toast-postage">
+                {% if free_postage_left > 0 %}
+                    Spend
+                    <strong>
+                        {{ free_postage_left }} € 
+                    </strong>
+                    more for
+                    <strong>
+                        FREE DELIVERY 
+                    </strong>
+                    !
+                {% else %}
+                    You're enjoying
+                    &nbsp; 
+                    <strong>
+                    FREE DELIVERY
+                    </strong>
+                    &nbsp;
+                    !
+                {% endif %}
+            </div>
+        {% endif %}
+        <div class="w-100 d-flex justify-content-center align-items-center pt-3">
+            <span class="text-center">
+                {{ message }}
+            </span>
+        </div>
+        {% if vault_content|length == 0 %}
+            <div class="heading w-100 d-flex flex-row p-3 text-center">
+                You have nothing in your Vault .
+            </div>
+        {% else %}
+            {% for row in vault_content %}
+            <div class="heading w-100 d-flex flex-row p-1">
+                <div class="w-20 d-flex text-center align-items-center">
+                    {% if row.5 == '' or row.5 == 'False' %}
+                        <img src="{% static 'images/no_image.png' %}" alt="{{ row.4 }} Preview" class="toast-preview">
+                    {% else %}
+                        <img src="{{ row.5.url }}" alt="{{ row.4 }} Preview" class="toast-preview">
+                    {% endif %}
+                </div>
+                <div class="w-40 d-flex align-items-center text-center">
+                    <strong>
+                        {{ row.4 }}
+                    </strong>
+                </div>
+                <div class="w-20 d-flex justify-content-center align-items-center">
+                    {{ row.3 }}
+                </div>
+                <div class="w-20 d-flex justify-content-center align-items-center">
+                    {{ row.8 }} €
+                </div>
+                <hr class="mt-3">
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>

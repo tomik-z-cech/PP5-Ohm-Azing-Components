@@ -53,13 +53,13 @@
             {% for message in messages %}
                 {% with message.level as level %}
                     {% if level == 40 %}
-                        {% include 'toasts/error.html' %}
+                        {% include 'toasts/toast_error.html' %}
                     {% elif level == 30 %}
-                        {% include 'toasts/vault.html' %}
+                        {% include 'toasts/toast_vault.html' %}
                     {% elif level == 25 %}
-                        {% include 'toasts/success.html' %}
+                        {% include 'toasts/toast_success.html' %}
                     {% else %}
-                        {% include 'toasts/info.html' %}
+                        {% include 'toasts/toast_info.html' %}
                     {% endif %}
                 {% endwith %}
             {% endfor %}

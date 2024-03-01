@@ -58,7 +58,7 @@ class DisplayVaultItemsView(generic.ListView):
             request.session['vault'] = vault
             messages.warning(request, f'Quantity of {item_selected.item_name} was changed.')
         else:
-            messages.error(request, "Quantity couldn't be updated. Input wasn't a number.")
+            messages.error(request, "Quantity couldn't be updated. Input wasn't a valid quantity.")
         return redirect('vault')
         
 

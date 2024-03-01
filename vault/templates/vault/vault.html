@@ -188,8 +188,8 @@
 
 {% block extra_js %}
     {{ block.super }}
-    <script src="{% static 'js/vault.js' %}"></script>
-    <script>
+    <script src="{% static 'js/vault.js' %}" type="text/javascript"></script>
+    <script type="text/javascript">
         $(document).ready(function() {
             $('#clearButton, .deleteButton').click(function(){
                 $('.modal').hide();
