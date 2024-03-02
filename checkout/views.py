@@ -37,7 +37,6 @@ class CheckoutView(generic.ListView):
         """
         Voucher in use : voucher_used, voucher_code, discount_applied, voucher_discount
         """
-        print(request.POST)
         postage_settings = PostageSettings.objects.filter(pk=1).first()
         order_form = OrderForm(request.POST)
         subtotal = request.session.get('subtotal', 0)
@@ -45,7 +44,6 @@ class CheckoutView(generic.ListView):
         standard_delivery_cost = round((float(postage_settings.standard_delivery) * subtotal / 100), 2)
         express_delivery_cost = round((float(postage_settings.express_delivery) * subtotal / 100), 2)
         selected_delivery = request.session.get('selected_delivery', 0)
-        print(selected_delivery)
         # Vouchers starting points
         current_voucher = request.session.get('current_voucher', [False, '', 0, 0])
         if 'delivery' in request.POST:
