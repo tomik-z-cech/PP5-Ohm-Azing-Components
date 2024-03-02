@@ -31,3 +31,7 @@
 .accordion-button:not(.collapsed)::after {
     background-image: none;
 }
+
+#delivery-button {
+    display: none;
+}

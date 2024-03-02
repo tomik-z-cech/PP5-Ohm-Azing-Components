@@ -52,6 +52,7 @@
                         {{ standard_delivery_cost }}
                         <br>
                         {{ express_delivery_cost }}
+                        <button type="submit" name="delivery" id="delivery-button"></button>
                     </div>
                 </div>
                 <div class="accordion-item">
@@ -62,7 +63,7 @@
                     </h2>
                     <div id="panelsStayOpen-collapseThree" class="accordion-collapse show" aria-labelledby="panelsStayOpen-headingThree">
                         <div class="accordion-body d-flex justify-content-center">
-                            {% if not voucher_used %}
+                            {% if not current_voucher.0 %}
                                 <div class="w-50 text-center">
                                     <span class="w-50">
                                         {{ order_form.voucher|as_crispy_field }}
@@ -80,19 +81,19 @@
                                         <span class="mx-5">
                                             Code used : 
                                             <strong>
-                                                {{ usable_voucher.voucher_code }}
+                                                {{ current_voucher.1 }}
                                             </strong>
                                         </span>
                                         <span class="mx-5">
                                             Voucher Discount : 
                                             <strong>
-                                                {{ usable_voucher.discount }} %
+                                                {{ current_voucher.3 }} %
                                             </strong>
                                         </span>
                                         <span class="mx-5">
                                             Your Discount : 
                                             <strong>
-                                                {{ discount_applied }} €
+                                                {{ current_voucher.2 }} €
                                             </strong>
                                         </span>
                                     </div>
@@ -133,7 +134,7 @@
                 $('#loader-container').css("display", "flex");
             });
             $('#id_delivery_option_0, #id_delivery_option_1').change(function(){
-                $('form').submit();
+                $('#delivery-button').click();
             });
         });
     </script>

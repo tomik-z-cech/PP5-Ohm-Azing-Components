@@ -34,27 +34,38 @@ class CheckoutView(generic.ListView):
         )
         
     def post(self, request, *args, **kwargs):
+        """
+        Voucher in use : voucher_used, voucher_code, discount_applied, voucher_discount
+        """
         postage_settings = PostageSettings.objects.filter(pk=1).first()
         order_form = OrderForm(request.POST)
         subtotal = request.session.get('subtotal', 0)
         # Delivery starting points
         standard_delivery_cost = round((float(postage_settings.standard_delivery) * subtotal / 100), 2)
         express_delivery_cost = round((float(postage_settings.express_delivery) * subtotal / 100), 2)
-        total = subtotal + standard_delivery_cost
+        selected_delivery = request.session.get('selected_delivery', 0)
+        print(selected_delivery)
         # Vouchers starting points
-        voucher_used = False
-        usable_voucher = 0
-        discount_applied = 0
+        current_voucher = request.session.get('current_voucher', [False, '', 0, 0])
+        if 'delivery' in request.POST:
+            if request.POST.get('delivery_option') == '1':
+                selected_delivery_cost = express_delivery_cost
+                request.session['selected_delivery'] = '1'
+            else:
+                selected_delivery_cost = standard_delivery_cost
+                request.session['selected_delivery'] = '0'
+            
         if 'check-voucher' in request.POST:
-            voucher_code = request.POST.get('voucher')
+            voucher_code = request.POST.get('voucher','')
             if voucher_code != '':
                 usable_voucher = Voucher.objects.filter(voucher_code__contains=voucher_code).first()
                 if usable_voucher:
+                    current_voucher[1] = usable_voucher.voucher_code
                     if usable_voucher.status == 'Active':
-                        voucher_used = True
-                        discount_applied = round((subtotal * usable_voucher.discount / 100), 2)
-                        subtotal = subtotal - discount_applied
-                        total = subtotal + standard_delivery_cost
+                        current_voucher[0] = True
+                        current_voucher[2] = round((subtotal * usable_voucher.discount / 100), 2)
+                        current_voucher[3] = usable_voucher.discount
+                        subtotal = subtotal - current_voucher[2]
                         messages.success(request, f'Code {usable_voucher.voucher_code} valid. You gained {usable_voucher.discount} % discount.')
                     else:
                         messages.error(request, f"Voucher Code {voucher_code} is not active.")
@@ -65,9 +76,11 @@ class CheckoutView(generic.ListView):
             else:
                 messages.error(request, "Voucher Code can't be empty.")
                 order_form = OrderForm(initial={'voucher': ''})
+        request.session['current_voucher'] = current_voucher
         if 'delete-voucher' in request.POST:
-            voucher_used = False
+            current_voucher = [False, '', 0, 0]
             messages.success(request, 'Voucher removed.')
+        total = round((subtotal + selected_delivery_cost - current_voucher[2]), 2)
         return render(
             request,
             self.template_name,
@@ -75,9 +88,8 @@ class CheckoutView(generic.ListView):
                 "order_form": order_form,
                 "standard_delivery_cost": standard_delivery_cost,
                 "express_delivery_cost": express_delivery_cost,
-                "voucher_used": voucher_used,
-                "usable_voucher": usable_voucher,
+                "current_voucher": current_voucher,
                 "total": total,
-                "discount_applied": discount_applied,
+                "selected_delivery_cost": selected_delivery_cost,
             }
         )
