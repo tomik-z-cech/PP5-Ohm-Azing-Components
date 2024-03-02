@@ -45,13 +45,9 @@
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse show" aria-labelledby="panelsStayOpen-headingTwo">
-                        <div class="accordion-body">
+                        <div class="accordion-body d-flex justify-content-center">
                             {{ order_form.delivery_option|as_crispy_field}}
                         </div>
-                        <br>
-                        {{ standard_delivery_cost }}
-                        <br>
-                        {{ express_delivery_cost }}
                         <button type="submit" name="delivery" id="delivery-button"></button>
                     </div>
                 </div>
@@ -130,6 +126,8 @@
     {{ block.super }}
     <script type="text/javascript">
         $(document).ready(function() {
+            $('label[for="id_delivery_option_0"]').html('<strong>Standard Delivery</strong> - {{ standard_delivery_cost }} € - <span class="lower-delivery">( 3 to 5 working days )</span>');
+            $('label[for="id_delivery_option_1"]').html('<strong>Express Delivery</strong> - {{ express_delivery_cost }} € - <span class="lower-delivery">( 2 to 3 working days )</span>');
             $('form').submit(function(){
                 $('#loader-container').css("display", "flex");
             });

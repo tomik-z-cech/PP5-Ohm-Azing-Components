@@ -37,6 +37,7 @@ class CheckoutView(generic.ListView):
         """
         Voucher in use : voucher_used, voucher_code, discount_applied, voucher_discount
         """
+        print(request.POST)
         postage_settings = PostageSettings.objects.filter(pk=1).first()
         order_form = OrderForm(request.POST)
         subtotal = request.session.get('subtotal', 0)
@@ -54,7 +55,12 @@ class CheckoutView(generic.ListView):
             else:
                 selected_delivery_cost = standard_delivery_cost
                 request.session['selected_delivery'] = '0'
-            
+        if request.POST.get('delivery_option') == '1':
+            selected_delivery_cost = express_delivery_cost
+            request.session['selected_delivery'] = '1'
+        else:
+            selected_delivery_cost = standard_delivery_cost
+            request.session['selected_delivery'] = '0'
         if 'check-voucher' in request.POST:
             voucher_code = request.POST.get('voucher','')
             if voucher_code != '':
@@ -69,18 +75,16 @@ class CheckoutView(generic.ListView):
                         messages.success(request, f'Code {usable_voucher.voucher_code} valid. You gained {usable_voucher.discount} % discount.')
                     else:
                         messages.error(request, f"Voucher Code {voucher_code} is not active.")
-                        order_form = OrderForm(initial={'voucher': ''})
                 else:
                     messages.error(request, f"Voucher Code {voucher_code} is not valid.")
-                    order_form = OrderForm(initial={'voucher': ''})
             else:
                 messages.error(request, "Voucher Code can't be empty.")
-                order_form = OrderForm(initial={'voucher': ''})
         request.session['current_voucher'] = current_voucher
         if 'delete-voucher' in request.POST:
             current_voucher = [False, '', 0, 0]
             messages.success(request, 'Voucher removed.')
-        total = round((subtotal + selected_delivery_cost - current_voucher[2]), 2)
+            request.session['current_voucher'] = current_voucher
+        total = round((subtotal + selected_delivery_cost), 2)
         return render(
             request,
             self.template_name,

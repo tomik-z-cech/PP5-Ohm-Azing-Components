@@ -35,3 +35,22 @@
 #delivery-button {
     display: none;
 }
+
+label.requiredField {
+    display: none;
+}
+
+label[for="id_delivery_option_0"],
+label[for="id_delivery_option_1"] {
+    color: var(--light-foreground);
+    transition: color 0.5s ease-in-out;
+}
+
+label[for="id_delivery_option_0"]:hover,
+label[for="id_delivery_option_1"]:hover {
+    color: var(--light-highlight);
+}
+
+.lower-delivery {
+    font-size: 90%;
+}
