@@ -1,0 +1,33 @@
+/* ------------------- CHECKOUT ----------------------- */
+
+.accordion-item {
+    border-radius: 0px!important;
+    background-color: var(--dark-foreground);
+}
+
+.accordion-header {
+    background-color: var(--dark-background);
+    color: var(--light-foreground);
+}
+
+.accordion-collapse {
+    background-color: var(--light-background);
+}
+
+.accordion-button {
+    background-color: var(--dark-background);
+    color: var(--light-foreground);
+}
+
+.accordion-button:hover {
+    text-decoration: underline;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--light-foreground);
+    background-color: var(--dark-background);
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: none;
+}
