@@ -7,13 +7,17 @@ class OrderForm(forms.ModelForm):
     """
     Category form
     """
+    
+    DELIVERY_OPTIONS = ((0, "Standard Delivery"), (1, "Express Delivery"))
+    
     class Meta:
         model = Order
-        exclude = ['order_number', 'user', 'delivery_cost', 'sub_total', 'vat', 'total', 'original_vault', 'stripe_pid']
+        exclude = ['order_number', 'user', 'delivery_cost', 'sub_total', 'vat', 'total', 'original_vault', 'stripe_pid', 'invoice']
         
     address_1 = forms.CharField(label='First Line of Address', required=False)
     address_2 = forms.CharField(label='Second Line of Address', required=False)
     country = forms.ChoiceField(choices=[('', 'Country')] + list(CountryField().choices), required=False)
+    delivery_option = forms.ChoiceField(widget=forms.RadioSelect, choices=DELIVERY_OPTIONS, initial=0)
 
     def __init__(self, *args, **kwargs):
         super(OrderForm, self).__init__(*args, **kwargs)
@@ -29,3 +33,6 @@ class OrderForm(forms.ModelForm):
         self.fields['city'].widget.attrs.update({'placeholder': 'City'})
         self.fields['county'].widget.attrs.update({'placeholder': 'County'})
         self.fields['post_code'].widget.attrs.update({'placeholder': 'Post Code (Eir Code)'})
+        self.fields['voucher'].widget.attrs.update({'placeholder': 'Discount Code'})
+        self.fields['voucher'].label = ''
+        

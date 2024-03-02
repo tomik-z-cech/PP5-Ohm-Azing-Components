@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block nav_name %}Checkout{% endblock %}
@@ -17,7 +18,7 @@
     <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
         <form method="post" enctype="multipart/form-data" id="form" class="w-100">
             {% csrf_token %}
-            <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion" id="accordionPanelsStay-headingOne">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                         <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
@@ -26,7 +27,14 @@
                     </h2>
                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse show" aria-labelledby="panelsStayOpen-headingOne">
                         <div class="accordion-body">
-                            
+                            {{ order_form.first_name|as_crispy_field}}
+                            {{ order_form.last_name|as_crispy_field}}
+                            {{ order_form.address_1|as_crispy_field}}
+                            {{ order_form.address_2|as_crispy_field}}
+                            {{ order_form.city|as_crispy_field}}
+                            {{ order_form.county|as_crispy_field}}
+                            {{ order_form.post_code|as_crispy_field}}
+                            {{ order_form.country|as_crispy_field }}
                         </div>
                     </div>
                 </div>
@@ -36,10 +44,14 @@
                         Delivery Options
                         </button>
                     </h2>
-                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse show" aria-labelledby="panelsStayOpen-headingTwo">
                         <div class="accordion-body">
-
+                            {{ order_form.delivery_option|as_crispy_field}}
                         </div>
+                        <br>
+                        {{ standard_delivery_cost }}
+                        <br>
+                        {{ express_delivery_cost }}
                     </div>
                 </div>
                 <div class="accordion-item">
@@ -48,9 +60,51 @@
                         Redeem Vouchers
                         </button>
                     </h2>
-                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                        <div class="accordion-body">
-
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse show" aria-labelledby="panelsStayOpen-headingThree">
+                        <div class="accordion-body d-flex justify-content-center">
+                            {% if not voucher_used %}
+                                <div class="w-50 text-center">
+                                    <span class="w-50">
+                                        {{ order_form.voucher|as_crispy_field }}
+                                    </span>
+                                    <span>
+                                        <button name="check-voucher" class="custom-button button-shadow mt-3" type="submit">
+                                            <i class="bi bi-check-circle"></i>
+                                            Check code
+                                        </button>
+                                    </span>
+                                </div>
+                            {% else %}
+                                <div class="d-flex flex-column">
+                                    <div>
+                                        <span class="mx-5">
+                                            Code used : 
+                                            <strong>
+                                                {{ usable_voucher.voucher_code }}
+                                            </strong>
+                                        </span>
+                                        <span class="mx-5">
+                                            Voucher Discount : 
+                                            <strong>
+                                                {{ usable_voucher.discount }} %
+                                            </strong>
+                                        </span>
+                                        <span class="mx-5">
+                                            Your Discount : 
+                                            <strong>
+                                                {{ discount_applied }} €
+                                            </strong>
+                                        </span>
+                                    </div>
+                                    <div class="text-center">
+                                        <button name="delete-voucher" class="custom-button button-shadow mt-3" type="submit">
+                                            <i class="bi bi-trash3"></i>
+                                            &nbsp;
+                                            Remove voucher
+                                        </button>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -60,13 +114,27 @@
                         Payment
                         </button>
                     </h2>
-                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse show" aria-labelledby="panelsStayOpen-headingFour">
                         <div class="accordion-body">
-
+                            {{ total }}
                         </div>
                     </div>
                 </div>
             </div>
         </form>
     </div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('form').submit(function(){
+                $('#loader-container').css("display", "flex");
+            });
+            $('#id_delivery_option_0, #id_delivery_option_1').change(function(){
+                $('form').submit();
+            });
+        });
+    </script>
 {% endblock %}

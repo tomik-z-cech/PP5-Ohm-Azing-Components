@@ -28,6 +28,7 @@ def vault_content(request):
     # Free postage maths
     free_postage_point = PostageSettings.objects.filter(pk=1).first()
     free_postage_left = free_postage_point.free_postage - subtotal
+    request.session['subtotal'] = float(subtotal)
     # Set dictionary
     vault_context = {
         "items_in_vault": len(vault),
