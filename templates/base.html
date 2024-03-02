@@ -49,7 +49,7 @@
     {% include 'footer.html' %}
     <!-- Toasts -->
     {% if messages %}
-        <div class="message-container">
+        <div class="message-container" aria-live="polite" aria-atomic="true" >
             {% for message in messages %}
                 {% with message.level as level %}
                     {% if level == 40 %}
@@ -73,7 +73,7 @@
     </div>
     <!-- Block for extra JS scripts -->
     {% block extra_js %}
-            <!-- Toasts -->
+            <!-- Toasts JS logic -->
             <script type="text/javascript">
                 $(document).ready(function() {
                     if ($('.toast').length > 0) {

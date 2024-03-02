@@ -341,7 +341,8 @@ input[type="radio"] {
     border: 1px solid var(--dark-background)!important;
     font-family: var(--main-font);
     max-height: 40vh;
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .toast-header {

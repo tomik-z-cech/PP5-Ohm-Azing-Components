@@ -6,7 +6,7 @@
 {% block nav_name %}Shop{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/items.css' %}">
+    <link rel="stylesheet" href="{% static 'css/items.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -168,30 +168,30 @@
             </div>
         </div>
         <!-- Only for logged in users -->
-            <div class="w-100 p-3 comments-background add-shadow mt-3">
-                    <!-- If no comment submitted yet, display form -->
-                    {% if user.is_authenticated %}
-                        {% if can_comment %}
-                        <div class="col-12 d-flex justify-content-start mb-3">
-                            <strong>Commenting as {{ user.username }} :</strong>
-                        </div>
-                        <form method="POST" id="commentForm" action="{% url 'submit-comment' item_pk=item.pk %}">
-                            {{ item_comment_form | crispy }}
-                            {% csrf_token %}
-                            <div class="col-12 d-flex justify-content-end mt-3">
-                                <button type="Submit" class="custom-button button-shadow mt-2 short-button" name="comment">Comment</button>
-                            </div>
-                        </form>
-                        <!-- If form submitted, display message -->
-                        {% else %}
-                            Hold on tight, your comment is being approved !
-                        {% endif %}
-                    {% else %}
-                    <div class="col-12 d-flex justify-content-center align-items-center">
-                        <strong>Please Log In to comment ;)</strong>
+        <div class="w-100 p-3 comments-background add-shadow mt-3">
+                <!-- If no comment submitted yet, display form -->
+                {% if user.is_authenticated %}
+                    {% if can_comment %}
+                    <div class="col-12 d-flex justify-content-start mb-3">
+                        <strong>Commenting as {{ user.username }} :</strong>
                     </div>
+                    <form method="POST" id="commentForm" action="{% url 'submit-comment' item_pk=item.pk %}">
+                        {{ item_comment_form | crispy }}
+                        {% csrf_token %}
+                        <div class="col-12 d-flex justify-content-end mt-3">
+                            <button type="Submit" class="custom-button button-shadow mt-2 short-button" name="comment">Comment</button>
+                        </div>
+                    </form>
+                    <!-- If form submitted, display message -->
+                    {% else %}
+                        Hold on tight, your comment is being approved !
                     {% endif %}
-            </div>
+                {% else %}
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <strong>Please Log In to comment ;)</strong>
+                </div>
+                {% endif %}
+        </div>
         <div class="w-100 p-3 add-shadow mt-3 comments-background">
             {% if comments|length == 0%}
                 Be first to comment ;)
