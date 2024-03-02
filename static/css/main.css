@@ -336,14 +336,12 @@ input[type="radio"] {
     z-index: 999;
 }
 
-.custom-toast {
-    overflow: visible;
-}
-
 .toast {
     border-radius: 0px;
     border: 1px solid var(--dark-background)!important;
     font-family: var(--main-font);
+    max-height: 40vh;
+    overflow: scroll;
 }
 
 .toast-header {
