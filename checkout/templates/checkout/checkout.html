@@ -6,6 +6,12 @@
 
 {% block extra_css %} 
         <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+        <!-- Local styling to ensure this doesn't interfere with global styling of same class names -->
+        <style>
+            .asteriskField {
+                display: none;
+            }
+        </style> 
 {% endblock %}
 
 {% block content %}

@@ -26,13 +26,13 @@ class OrderForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({
                 'class': 'shadow-none',
             })
-        self.fields['first_name'].widget.attrs.update({'placeholder': 'Your First Name(s)'})
-        self.fields['last_name'].widget.attrs.update({'placeholder': 'Your Last Name'})
-        self.fields['address_1'].widget.attrs.update({'placeholder': 'First Line of Address'})
+        self.fields['first_name'].widget.attrs.update({'placeholder': 'Your First Name(s) (required)'})
+        self.fields['last_name'].widget.attrs.update({'placeholder': 'Your Last Name (required)'})
+        self.fields['address_1'].widget.attrs.update({'placeholder': 'First Line of Address (required)'})
         self.fields['address_2'].widget.attrs.update({'placeholder': 'Second Line of Address'})
-        self.fields['city'].widget.attrs.update({'placeholder': 'City'})
-        self.fields['county'].widget.attrs.update({'placeholder': 'County'})
-        self.fields['post_code'].widget.attrs.update({'placeholder': 'Post Code (Eir Code)'})
+        self.fields['city'].widget.attrs.update({'placeholder': 'City (required)'})
+        self.fields['county'].widget.attrs.update({'placeholder': 'County (required)'})
+        self.fields['post_code'].widget.attrs.update({'placeholder': 'Post Code (Eir Code) (required)'})
         self.fields['voucher'].widget.attrs.update({'placeholder': 'Discount Code'})
         self.fields['voucher'].label = ''
         

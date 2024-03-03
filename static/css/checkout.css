@@ -36,10 +36,6 @@
     display: none;
 }
 
-label.requiredField {
-    display: none;
-}
-
 label[for="id_delivery_option_0"],
 label[for="id_delivery_option_1"] {
     color: var(--light-foreground);
@@ -53,4 +49,8 @@ label[for="id_delivery_option_1"]:hover {
 
 .lower-delivery {
     font-size: 90%;
+}
+
+#div_id_delivery_option > label {
+    display: none;
 }
