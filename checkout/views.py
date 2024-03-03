@@ -1,6 +1,9 @@
+import os
+import stripe
 from django.shortcuts import render
 from django.views import generic
 from django.contrib import messages
+from django.conf import settings
 from checkout.forms import OrderForm
 from owner.models import PostageSettings, Voucher
 
@@ -21,6 +24,17 @@ class CheckoutView(generic.ListView):
         # If User is logged in
         if request.user.is_authenticated:
             order_form = OrderForm(instance=request.user)
+        # Stripe
+        stripe_public_key = settings.STRIPE_PUBLIC_KEY
+        stripe_secret_key = settings.STRIPE_SECRET_KEY
+        stripe_total = int(total * 100)
+        stripe.api_key = stripe_secret_key
+        intent = stripe.PaymentIntent.create(
+            amount = stripe_total,
+            currency = settings.STRIPE_CURRENCY
+        )
+        if not stripe_public_key:
+            messages.error(request, 'Stripe public key missing.')
         return render(
             request,
             self.template_name,
@@ -30,6 +44,8 @@ class CheckoutView(generic.ListView):
                 "express_delivery_cost": express_delivery_cost,
                 "voucher_used": voucher_used,
                 "total": total,
+                "stripe_public_key": stripe_public_key,
+                'client_secret': intent.client_secret
             }
         )
         
@@ -43,7 +59,6 @@ class CheckoutView(generic.ListView):
         # Delivery starting points
         standard_delivery_cost = round((float(postage_settings.standard_delivery) * subtotal / 100), 2)
         express_delivery_cost = round((float(postage_settings.express_delivery) * subtotal / 100), 2)
-        selected_delivery = request.session.get('selected_delivery', 0)
         # Vouchers starting points
         current_voucher = request.session.get('current_voucher', [False, '', 0, 0])
         if 'delivery' in request.POST:
@@ -83,6 +98,7 @@ class CheckoutView(generic.ListView):
             messages.success(request, 'Voucher removed.')
             request.session['current_voucher'] = current_voucher
         total = round((subtotal + selected_delivery_cost), 2)
+        stripe_total = int(total * 100)
         return render(
             request,
             self.template_name,
@@ -93,5 +109,16 @@ class CheckoutView(generic.ListView):
                 "current_voucher": current_voucher,
                 "total": total,
                 "selected_delivery_cost": selected_delivery_cost,
+                "stripe_public_key": os.environ.get('STRIPE_PUBLIC_KEY',''),
             }
+        )
+        
+class CheckCheckoutDataView(generic.ListView):
+    
+    template_name = "checkout/checkout_ok.html"
+    
+    def post(self, request, *args, **kwargs):
+        return render(
+                request,
+                self.template_name,
         )

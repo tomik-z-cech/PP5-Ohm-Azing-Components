@@ -35,6 +35,8 @@
                         <div class="accordion-body">
                             {{ order_form.first_name|as_crispy_field}}
                             {{ order_form.last_name|as_crispy_field}}
+                            {{ order_form.phone_number|as_crispy_field}}
+                            {{ order_form.email|as_crispy_field}}
                             {{ order_form.address_1|as_crispy_field}}
                             {{ order_form.address_2|as_crispy_field}}
                             {{ order_form.city|as_crispy_field}}
@@ -119,7 +121,13 @@
                     </h2>
                     <div id="panelsStayOpen-collapseFour" class="accordion-collapse show" aria-labelledby="panelsStayOpen-headingFour">
                         <div class="accordion-body">
-                            {{ total }}
+                            <div id="card-element"></div>
+                            <div id="card-errors" role="alert"></div>
+                            <button name="submit-payment" class="custom-button button-shadow mt-3" type="submit" id="submit-payment">
+                                Pay
+                                &nbsp;
+                                {{ total }}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -131,29 +139,11 @@
 {% block extra_js %}
     {{ block.super }}
     <script type="text/javascript">
-        $(document).ready(function() {
-            // Save Y Scrolling position
-            let savedYPosition = parseInt(sessionStorage.getItem('yPosition')) || 0;
-            // Scroll to saved position if existant or 0
-            window.scrollTo(0, savedYPosition);
-            // Adjust content of delivery label 0
-            $('label[for="id_delivery_option_0"]').html('<strong>Standard Delivery</strong> - {{ standard_delivery_cost }} € - <span class="lower-delivery">( 3 to 5 working days )</span>');
-            // Adjust content of delivery label 1
-            $('label[for="id_delivery_option_1"]').html('<strong>Express Delivery</strong> - {{ express_delivery_cost }} € - <span class="lower-delivery">( 2 to 3 working days )</span>');
-            // When form submitted ---
-            $('form').submit(function(){
-                // --- display loader 
-                $('#loader-container').css("display", "flex");
-            });
-            // When deliveryy option changed
-            $('#id_delivery_option_0, #id_delivery_option_1').change(function(){
-                // read Y position
-                let yPosition = window.scrollY;
-                // save Y position
-                sessionStorage.setItem('yPosition', yPosition);
-                // submit form by clicking hidden button
-                $('#delivery-button').click();
-            });
-        });
+        let standardDelivery = {{ standard_delivery_cost }};
+        let expressDelivery = {{ express_delivery_cost }};
     </script>
+    <script src="{% static 'js/checkout.js' %}" type="text/javascript"></script>
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'js/stripe_elements.js' %}" type="text/javascript"></script>
 {% endblock %}
