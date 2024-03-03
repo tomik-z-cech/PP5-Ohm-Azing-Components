@@ -1,5 +1,31 @@
 /* ------------------- CHECKOUT ----------------------- */
 
+#id_email_order {
+    font-family: var(--main-font)!important;
+    background-color: var(--light-background)!important;
+    color: var(--light-foreground)!important;
+    border-radius: 0px!important;
+    border: 1px solid var(--light-foreground)!important;
+    transition: border 0.5s;
+}
+
+#id_email_order:focus
+{
+    background-color: var(--light-background)!important;
+    color: var(--light-foreground)!important;
+    border: 1px solid var(--dark-highlight)!important;
+}
+
+#id_email_order:hover
+{
+    background-color: var(--light-background)!important;
+    color: var(--light-foreground)!important;
+    border: 1px solid var(--dark-foreground)!important;
+}
+
+#id_email_order::placeholder {
+    color: var(--dark-foreground)!important;
+}
 .accordion-item {
     border-radius: 0px!important;
     background-color: var(--dark-foreground);

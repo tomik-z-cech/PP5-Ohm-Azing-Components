@@ -78,6 +78,7 @@
             <script type="text/javascript">
                 $(document).ready(function() {
                     if ($('.toast').length > 0) {
+                        $('.toast:not(:first-child)').remove();
                         let newToast = new bootstrap.Toast($('.toast'));
                         newToast.show();
                     };

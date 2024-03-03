@@ -101,6 +101,7 @@ $('#submit-payment').click(function(ev) {
                 $('#submit-button').attr('disabled', false);
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
+                    $("#payment-checker").val("true");
                     form.submit();
                 }
             }

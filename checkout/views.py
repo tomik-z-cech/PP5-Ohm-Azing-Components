@@ -11,22 +11,24 @@ from owner.models import PostageSettings, Voucher
 class CheckoutView(generic.ListView):
     
     template_name = "checkout/checkout.html"
+    success_name = "checkout/checkout_ok.html"
     
     def get(self, request, *args, **kwargs):
         # Starting points
         postage_settings = PostageSettings.objects.filter(pk=1).first()
         order_form = OrderForm()
         subtotal = request.session.get('subtotal', 0)
-        standard_delivery_cost = round((float(postage_settings.standard_delivery) * subtotal / 100), 2)
+        if subtotal < postage_settings.free_postage:
+            standard_delivery_cost = round((float(postage_settings.standard_delivery) * subtotal / 100), 2)
+        else:
+            standard_delivery_cost = 0
         express_delivery_cost = round((float(postage_settings.express_delivery) * subtotal / 100), 2)
-        total = subtotal + standard_delivery_cost
         voucher_used = False
         # If User is logged in
         if request.user.is_authenticated:
-            logged_in_user = request.user
             order_form = OrderForm(instance=request.user.userprofile)
-            order_form.email = logged_in_user.email
-            print(logged_in_user.email)
+        # Total    
+        total = round((subtotal + standard_delivery_cost), 2)
         # Stripe
         stripe_public_key = settings.STRIPE_PUBLIC_KEY
         stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -56,11 +58,15 @@ class CheckoutView(generic.ListView):
         """
         Voucher in use : voucher_used, voucher_code, discount_applied, voucher_discount
         """
+        print(request.POST)
         postage_settings = PostageSettings.objects.filter(pk=1).first()
         order_form = OrderForm(request.POST)
         subtotal = request.session.get('subtotal', 0)
         # Delivery starting points
-        standard_delivery_cost = round((float(postage_settings.standard_delivery) * subtotal / 100), 2)
+        if subtotal < postage_settings.free_postage:
+            standard_delivery_cost = round((float(postage_settings.standard_delivery) * subtotal / 100), 2)
+        else:
+            standard_delivery_cost = 0
         express_delivery_cost = round((float(postage_settings.express_delivery) * subtotal / 100), 2)
         # Vouchers starting points
         current_voucher = request.session.get('current_voucher', [False, '', 0, 0])
@@ -100,6 +106,7 @@ class CheckoutView(generic.ListView):
             current_voucher = [False, '', 0, 0]
             messages.success(request, 'Voucher removed.')
             request.session['current_voucher'] = current_voucher
+        # Total
         total = round((subtotal + selected_delivery_cost), 2)
         # Stripe
         stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -112,6 +119,22 @@ class CheckoutView(generic.ListView):
         )
         if not stripe_public_key:
             messages.error(request, 'Stripe public key missing.')
+        if request.POST.get('payment-checker') == 'true':
+            print('payment-processed')
+            return render(
+            request,
+            self.success_name,
+            {
+                "order_form": order_form,
+                "standard_delivery_cost": standard_delivery_cost,
+                "express_delivery_cost": express_delivery_cost,
+                "current_voucher": current_voucher,
+                "total": total,
+                "selected_delivery_cost": selected_delivery_cost,
+                "stripe_public_key": stripe_public_key,
+                "client_secret": intent.client_secret,
+            }
+        )
         return render(
             request,
             self.template_name,

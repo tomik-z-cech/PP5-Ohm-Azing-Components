@@ -33,15 +33,15 @@
                     </h2>
                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse show" aria-labelledby="panelsStayOpen-headingOne">
                         <div class="accordion-body">
-                            {{ order_form.first_name|as_crispy_field}}
-                            {{ order_form.last_name|as_crispy_field}}
-                            {{ order_form.phone_number|as_crispy_field}}
-                            {{ order_form.email|as_crispy_field}}
-                            {{ order_form.address_1|as_crispy_field}}
-                            {{ order_form.address_2|as_crispy_field}}
-                            {{ order_form.city|as_crispy_field}}
-                            {{ order_form.county|as_crispy_field}}
-                            {{ order_form.post_code|as_crispy_field}}
+                            {{ order_form.first_name|as_crispy_field }}
+                            {{ order_form.last_name|as_crispy_field }}
+                            {{ order_form.phone_number|as_crispy_field }}
+                            {{ order_form.email|as_crispy_field }}
+                            {{ order_form.address_1|as_crispy_field }}
+                            {{ order_form.address_2|as_crispy_field }}
+                            {{ order_form.city|as_crispy_field }}
+                            {{ order_form.county|as_crispy_field }}
+                            {{ order_form.post_code|as_crispy_field }}
                             {{ order_form.country|as_crispy_field }}
                         </div>
                     </div>
@@ -124,14 +124,15 @@
                             <div id="card-element"></div>
                             <div id="card-errors" role="alert"></div>
                             <button name="submit-payment" class="custom-button button-shadow mt-3" type="submit" id="submit-payment">
-                                Pay
-                                &nbsp;
-                                {{ total }}
+                                Pay 
+                                {{ total|floatformat:2 }}
+                                € Now
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="payment-checker" id="payment-checker" value="false">
         </form>
     </div>
 {% endblock %}
