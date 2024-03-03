@@ -33,6 +33,8 @@ class OrderForm(forms.ModelForm):
         self.fields['city'].widget.attrs.update({'placeholder': 'City (required)'})
         self.fields['county'].widget.attrs.update({'placeholder': 'County (required)'})
         self.fields['post_code'].widget.attrs.update({'placeholder': 'Post Code (Eir Code) (required)'})
+        self.fields['email'].widget.attrs.update({'placeholder': 'Your E-Mail address (required)'})
+        self.fields['phone_number'].widget.attrs.update({'placeholder': 'Your Phone Number (required)'})
         self.fields['voucher'].widget.attrs.update({'placeholder': 'Discount Code'})
         self.fields['voucher'].label = ''
         

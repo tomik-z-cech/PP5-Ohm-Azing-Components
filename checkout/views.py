@@ -23,7 +23,10 @@ class CheckoutView(generic.ListView):
         voucher_used = False
         # If User is logged in
         if request.user.is_authenticated:
-            order_form = OrderForm(instance=request.user)
+            logged_in_user = request.user
+            order_form = OrderForm(instance=request.user.userprofile)
+            order_form.email = logged_in_user.email
+            print(logged_in_user.email)
         # Stripe
         stripe_public_key = settings.STRIPE_PUBLIC_KEY
         stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -45,7 +48,7 @@ class CheckoutView(generic.ListView):
                 "voucher_used": voucher_used,
                 "total": total,
                 "stripe_public_key": stripe_public_key,
-                'client_secret': intent.client_secret
+                "client_secret": intent.client_secret,
             }
         )
         
@@ -98,7 +101,17 @@ class CheckoutView(generic.ListView):
             messages.success(request, 'Voucher removed.')
             request.session['current_voucher'] = current_voucher
         total = round((subtotal + selected_delivery_cost), 2)
+        # Stripe
+        stripe_public_key = settings.STRIPE_PUBLIC_KEY
+        stripe_secret_key = settings.STRIPE_SECRET_KEY
         stripe_total = int(total * 100)
+        stripe.api_key = stripe_secret_key
+        intent = stripe.PaymentIntent.create(
+            amount = stripe_total,
+            currency = settings.STRIPE_CURRENCY
+        )
+        if not stripe_public_key:
+            messages.error(request, 'Stripe public key missing.')
         return render(
             request,
             self.template_name,
@@ -109,7 +122,8 @@ class CheckoutView(generic.ListView):
                 "current_voucher": current_voucher,
                 "total": total,
                 "selected_delivery_cost": selected_delivery_cost,
-                "stripe_public_key": os.environ.get('STRIPE_PUBLIC_KEY',''),
+                "stripe_public_key": stripe_public_key,
+                "client_secret": intent.client_secret,
             }
         )
         

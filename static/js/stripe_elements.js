@@ -45,7 +45,7 @@ card.addEventListener('change', function (event) {
 $('#submit-payment').click(function(ev) {
     ev.preventDefault();
     card.update({ 'disabled': true});
-    $('#submit-payment').attr('disabled', true);
+    // $('#submit-payment').attr('disabled', true);
 
     // var saveInfo = Boolean($('#id-save-info').attr('checked'));
     // From using {% csrf_token %} in the form
@@ -62,7 +62,7 @@ $('#submit-payment').click(function(ev) {
             payment_method: {
                 card: card,
                 billing_details: {
-                    name: $.trim(form.first_name.value) + ' ' + $.trim(form.first_name.value),
+                    name: $.trim(form.first_name.value) + ' ' + $.trim(form.last_name.value),
                     phone: $.trim(form.phone_number.value),
                     email: $.trim(form.email.value),
                     address:{
@@ -75,7 +75,7 @@ $('#submit-payment').click(function(ev) {
                 }
             },
             shipping: {
-                name: $.trim(form.first_name.value) + ' ' + $.trim(form.first_name.value),
+                name: $.trim(form.first_name.value) + ' ' + $.trim(form.last_name.value),
                 phone: $.trim(form.phone_number.value),
                 address: {
                     line1: $.trim(form.address_1.value),

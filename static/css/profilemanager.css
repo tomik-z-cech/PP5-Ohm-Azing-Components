@@ -45,7 +45,8 @@ label[for="id_address_2"],
 label[for="id_city"],
 label[for="id_county"],
 label[for="id_post_code"],
-label[for="id_country"] {
+label[for="id_country"],
+label[for="id_phone_number"] {
     font-family: var(--main-font);
     margin-bottom: 1vh;
     margin-top: 1vh;
