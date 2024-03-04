@@ -833,7 +833,6 @@ class NewEmailView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
                 for email_address in email_addresses:
                     recipient = []
                     recipient.append(email_address.newsletter_email)
-                    print(email_address.newsletter_email)
                     html_message = render_to_string(
                         "emails/newsletter_template.html",
                         {
@@ -939,7 +938,6 @@ class EditEmailView(
                 for email_address in email_addresses:
                     recipient = []
                     recipient.append(email_address.newsletter_email)
-                    print(email_address.newsletter_email)
                     html_message = render_to_string(
                         "emails/newsletter_template.html",
                         {
