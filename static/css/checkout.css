@@ -63,14 +63,17 @@
 }
 
 label[for="id_delivery_option_0"],
-label[for="id_delivery_option_1"] {
+label[for="id_delivery_option_1"],
+label[for="save-details"] {
     color: var(--light-foreground);
     transition: color 0.5s ease-in-out;
 }
 
 label[for="id_delivery_option_0"]:hover,
-label[for="id_delivery_option_1"]:hover {
+label[for="id_delivery_option_1"]:hover,
+label[for="save-details"]:hover {
     color: var(--light-highlight);
+    cursor: pointer;
 }
 
 .lower-delivery {

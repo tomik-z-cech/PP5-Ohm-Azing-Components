@@ -44,6 +44,10 @@
                             {{ order_form.post_code|as_crispy_field }}
                             {{ order_form.country|as_crispy_field }}
                         </div>
+                        <div class="w-100 d-flex justify-content-end p-4 form-check">
+                            <input type="checkbox" id="save-details" name="save-details" checked class="me-3 form-check-input shadow-none">
+                            <label for="save-details" class="me-5 form-check-label shadow-none">Save details for later</label>
+                        </div>
                     </div>
                 </div>
                 <div class="accordion-item">
