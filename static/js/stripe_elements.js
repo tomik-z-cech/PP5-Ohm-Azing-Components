@@ -218,21 +218,22 @@ $('#submit-payment').click(function(ev) {
                 },
             // then return result
             }).then(function(result) {
+                console.log('error')
                 // Error result
                 if (result.error) {
                     // Display error message
-                    $('#card-errors').html(
-                        `<span class="icon" role="alert">
-                        <i class="fas fa-times"></i>
-                        </span>
-                        <span>${result.error.message}</span>`
+                    $('#card-errors').html(`
+                        <span role="alert" class="card-error-message">
+                        <i class="bi bi-x-circle"></i>
+                        ${result.error.message}</span>
+                        `
                     );
                     // Hide loader
                     $('#loader-container').css("display", "none");
                     // Enable card input
                     card.update({ 'disabled': false});
                     // Enable submit button
-                    $('#submit-button').attr('disabled', false);
+                    $('#submit-payment').attr('disabled', false);
                 } else {
                     // If payment successful
                     if (result.paymentIntent.status === 'succeeded') {
