@@ -6,17 +6,18 @@ var elements = stripe.elements();
 // Styling
 let style = {
     base: {
-        color: 'black',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        iconColor: '#fafafa',
+        color: '#fafafa',
+        fontFamily: 'Ideal Sans, system-ui, sans-serif',
         fontSmoothing: 'antialiased',
         fontSize: '16px',
         '::placeholder': {
-            color: '#000'
+            color: '#fafafa'
         }
     },
     invalid: {
-        color: '#dc3545',
-        iconColor: '#dc3545'
+        color: '#ff3333',
+        iconColor: '#ff3333'
     }
 };
 
@@ -31,10 +32,9 @@ card.addEventListener('change', function (event) {
     let errorDiv = $('#card-errors');
     if (event.error) {
         var html = `
-            <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-            </span>
-            <span>${event.error.message}</span>
+            <span role="alert" class="card-error-message">
+            <i class="bi bi-x-circle"></i>
+            ${event.error.message}</span>
         `;
         $(errorDiv).html(html);
     } else {
@@ -45,6 +45,7 @@ card.addEventListener('change', function (event) {
 $('#submit-payment').click(function(ev) {
     ev.preventDefault();
     card.update({ 'disabled': true});
+    $('#loader-container').css("display", "flex");
     // $('#submit-payment').attr('disabled', true);
 
     // var saveInfo = Boolean($('#id-save-info').attr('checked'));
@@ -56,7 +57,6 @@ $('#submit-payment').click(function(ev) {
         // 'save_info': saveInfo,
     };
     var url = '/checkout/check-checkout-data/';
-
     $.post(url, postData).done(function () {
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
@@ -95,8 +95,7 @@ $('#submit-payment').click(function(ev) {
                     </span>
                     <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);
-                $('#payment-form').fadeToggle(100);
-                $('#loading-overlay').fadeToggle(100);
+                $('#loader-container').css("display", "none");
                 card.update({ 'disabled': false});
                 $('#submit-button').attr('disabled', false);
             } else {

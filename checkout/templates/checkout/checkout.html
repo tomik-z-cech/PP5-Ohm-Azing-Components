@@ -120,14 +120,20 @@
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseFour" class="accordion-collapse show" aria-labelledby="panelsStayOpen-headingFour">
-                        <div class="accordion-body">
-                            <div id="card-element"></div>
-                            <div id="card-errors" role="alert"></div>
-                            <button name="submit-payment" class="custom-button button-shadow mt-3" type="submit" id="submit-payment">
-                                Pay 
-                                {{ total|floatformat:2 }}
-                                € Now
-                            </button>
+                        <div class="accordion-body d-flex justify-content-center">
+                            <div class="w-75">
+                                <div id="card-element">
+                                </div>
+                                <div id="card-errors" role="alert" class="mt-2">
+                                </div>
+                                <div class="text-center">
+                                    <button name="submit-payment" class="custom-button button-shadow mt-3" type="submit" id="submit-payment">
+                                        Pay 
+                                        {{ total|floatformat:2 }}
+                                        € Now
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
