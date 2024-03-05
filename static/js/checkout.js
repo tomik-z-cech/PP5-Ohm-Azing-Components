@@ -7,12 +7,12 @@ $(document).ready(function() {
     if (standardDelivery == 0 ){
         standardDelivery = 'FREE'
     } else {
-        standardDelivery = standardDelivery + ' €'
+        standardDelivery = standardDelivery.toFixed(2) + ' €'
     };
     // Adjust content of delivery label 0
     $('label[for="id_delivery_option_0"]').html(`<strong>Standard Delivery</strong> - ${standardDelivery} - <span class="lower-delivery">( 3 to 5 working days )</span>`);
     // Adjust content of delivery label 1
-    $('label[for="id_delivery_option_1"]').html(`<strong>Express Delivery</strong> - ${expressDelivery} € - <span class="lower-delivery">( 2 to 3 working days )</span>`);
+    $('label[for="id_delivery_option_1"]').html(`<strong>Express Delivery</strong> - ${expressDelivery.toFixed(2)} € - <span class="lower-delivery">( 2 to 3 working days )</span>`);
     // When form submitted ---
     $('form').submit(function(){
         // --- display loader 

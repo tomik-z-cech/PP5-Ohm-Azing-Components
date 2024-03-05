@@ -1,10 +1,15 @@
+import os
 import json
+import uuid
 import stripe
 from decimal import Decimal
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.views import generic
 from django.contrib import messages
 from django.conf import settings
+from django.core.files.storage import default_storage
+from reportlab.pdfgen import canvas
+from django.template.loader import get_template
 from checkout.forms import OrderForm
 from owner.models import PostageSettings, Voucher
 from items.models import Item
@@ -169,6 +174,7 @@ class CheckoutView(generic.ListView):
                     vat = vat + line_vat
                 # Create new instance of order
                 new_order = order_form.save(commit=False)
+                new_order.order_number = uuid.uuid4().hex.upper()
                 new_order.user = request.user
                 new_order.delivery_option = request.POST.get('delivery_option')
                 new_order.delivery_cost = selected_delivery_cost
@@ -178,7 +184,23 @@ class CheckoutView(generic.ListView):
                 new_order.total = total
                 new_order.stripe_pid = request.POST.get('client_secret')
                 new_order.original_vault = json.dumps(final_vault)
+                # Generate pdf invoice
+                pdf_template = get_template('checkout/invoice_template.html')
+                output_filename = f'{new_order.order_number}.pdf'
+                output_directory = output_directory = 'invoices/'
+                output_filepath = os.path.join(output_directory, output_filename)
+                pdf_context = {'new_order': new_order}
+                pdf_content = pdf_template.render(pdf_context)
+                pdf_file = default_storage.open(output_filepath, 'wb')
+                with default_storage.open(output_filepath, 'wb') as pdf_file:   
+                    pdf = canvas.Canvas(pdf_file)
+                    pdf.drawString(100, 100, pdf_content)
+                    pdf.showPage()
+                    pdf.save()
                 # Save order form
+                with default_storage.open(output_filepath, 'rb') as pdf_file:
+                    pdf_content = pdf_file.read()
+                    new_order.invoice.save(output_filename, pdf_file, save=False)
                 new_order.save()
                 # Reset any voucher in use
                 current_voucher = [False, '', 0, 0]

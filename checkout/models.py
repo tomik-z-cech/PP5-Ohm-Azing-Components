@@ -1,5 +1,4 @@
 # Imports
-import uuid
 from django.db import models
 from django_countries.fields import CountryField
 from django.contrib.auth.models import User
@@ -27,18 +26,8 @@ class Order(models.Model):
     total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     original_vault = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
-    invoice = models.FileField(upload_to='invoices/')
+    invoice = models.FileField(upload_to='media/invoices')
     
     def __str__(self):
         return self.order_number
-    
-    def save(self, *args, **kwargs):
-        if not self.order_number:
-            self.order_number = self._generate_order_number()
-        super().save(*args, **kwargs)
 
-    def _generate_order_number(self):
-        """
-        Generate a random, unique order number using UUID
-        """
-        return uuid.uuid4().hex.upper()

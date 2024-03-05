@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="invoice.css">
+</head>
+<body>
+    <div class="invoice-logo-container">
+        <img src="logo.png" alt="Ohm-Azing Components Logo" id="invoice-logo">
+    </div>
+    <div class="invoice-header">
+        <h1>Invoice # {{  order.invoice_number }}</h1>
+        <h2> Date : {{ order.invoice_date }}</h2>
+    </div>
+    <div class="invoice-frame">
+        <div class="sides-details">
+            <p><strong>Seller : </strong>Ohm-Azing Components</p>
+            <p><strong>Address : </strong>Borrisokane, Co.Tipperary</p>
+            <p><strong>Contact : </strong>ohmazingcomponents@gmail.com</p>
+        </div>
+
+        <div class="sides-details">
+            <p><strong>Customer : </strong>{{ new_order.first_name }} {{ new_order.last_name }}</p>
+            <p><strong>Address : </strong>{{ new_order.address_1 }}, {% if new_order.address_2%} {{ new_order.address_2 }}, {% endif%}{{ new_order.city }}, {{ new_order.county }},{{ new_order.postal_code }}, {{ new_order.country }}</p>
+            <p><strong>Contact : </strong>{{ new_order.email }}, {{ new_order.phone_number }}</p>
+        </div>
+    </div>
+    <table class="invoice-items">
+            <tr>
+                <th>SKU</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Price per Unit</th>
+                <th>VAT Rate</th>
+                <th>Subtotal (ex VAT)</th>
+                <th>Subtotal (inc VAT)</th>
+            </tr>
+            <tr>
+                <td>{{ order.item_sku }}</td>
+                <td>{{ order.item_name }}</td>
+                <td>{{ order.item_quantity }}</td>
+                <td>{{ order.item_price }}</td>
+                <td>{{ order.item_vat_rate }}</td>
+                <td>{{ order.sub_ex_vat }}</td>
+                <td>{{ order.sub_inc_vat }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"></td>
+                <td colspan="2">Total (ex VAT)</td>
+                <td>{{ order.total_ex_vat }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"></td>
+                <td colspan="2">Delivery charge</td>
+                <td>{{ order.delivery_cost }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"></td>
+                <td colspan="2">VAT</td>
+                <td>{{ order.total_vat }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"></td>
+                <td colspan="2"><strong>Total (inc VAT)</strong></td>
+                <td><strong>{{ order.total_inc_vat }}</strong></td>
+            </tr>
+    </table>
+    <div class="invoice-message">
+        <strong>Thank you for your bussiness.</strong>
+    </div>
+</body>
+</html>
