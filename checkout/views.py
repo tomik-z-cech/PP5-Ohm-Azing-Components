@@ -151,9 +151,10 @@ class CheckoutView(generic.ListView):
                     logged_userprofile.post_code = order_form.cleaned_data['post_code']
                     logged_userprofile.country = order_form.cleaned_data['country']
                     logged_userprofile.save()
-                # VAT counter
+                # VAT counter + PDF dictionary creator
                 final_vault = request.session.get('vault','')
                 vat = 0
+                pdf_items = []
                 for final_item in final_vault:
                     current_final_item = get_object_or_404(Item,pk=final_item[0])
                     if current_final_item.item_vat_rate == 0:
@@ -166,12 +167,14 @@ class CheckoutView(generic.ListView):
                         vat_percentage = 1
                     # Check if size is a digit (ie package size or size of different form)
                     if not str(final_item[1]).isdigit():
-                        print('not digit')
                         size_multiplier = 1
                     else:
                         size_multiplier = int(final_item[1])
                     line_vat = round((int(final_item[3]) * size_multiplier * (float(current_final_item.price_per_unit) - (float(current_final_item.price_per_unit) / vat_percentage ))), 2)
                     vat = vat + line_vat
+                    new_pdf_item = [current_final_item.item_name,final_item[3]]
+                    pdf_items.append(new_pdf_item)
+                print(pdf_items)
                 # Create new instance of order
                 new_order = order_form.save(commit=False)
                 new_order.order_number = uuid.uuid4().hex.upper()
@@ -185,21 +188,45 @@ class CheckoutView(generic.ListView):
                 new_order.stripe_pid = request.POST.get('client_secret')
                 new_order.original_vault = json.dumps(final_vault)
                 # Generate pdf invoice
-                pdf_template = get_template('checkout/invoice_template.html')
-                output_filename = f'{new_order.order_number}.pdf'
+                output_filename = f'invoice-{new_order.order_number[:5]}.pdf'
                 output_directory = output_directory = 'invoices/'
                 output_filepath = os.path.join(output_directory, output_filename)
-                pdf_context = {'new_order': new_order}
-                pdf_content = pdf_template.render(pdf_context)
                 pdf_file = default_storage.open(output_filepath, 'wb')
                 with default_storage.open(output_filepath, 'wb') as pdf_file:   
+                    # Line height and character width
+                    line_height = 13
+                    char_width = 5
                     pdf = canvas.Canvas(pdf_file)
-                    pdf.drawString(100, 100, pdf_content)
+                    pdf.setFont("Helvetica-Bold", 12)
+                    pdf.drawString(245, 800, 'Ohm-Azing Components')
+                    pdf.setFont("Helvetica", 12)
+                    pdf.drawString(147, 775, f'INVOICE # {new_order.order_number}')
+                    seller_info = [
+                        "Ohm-Azing Components",
+                        "Borrisokane, Co. Tipperary, ",
+                        "ohmazingcomponents@gmail.com",
+                    ]
+                    x_seller = 20
+                    y_seller = 750 - line_height * 3
+                    pdf.setFont("Helvetica-Bold", 12)
+                    for line in seller_info:
+                        pdf.drawString(x_seller, y_seller, line)
+                        y_seller -= line_height
+                    customer_info = [
+                        f"{new_order.first_name} {new_order.last_name}",
+                        f"{new_order.address_1}, {new_order.city}, {new_order.country}",
+                        f"{new_order.email}, {new_order.phone_number}",
+                    ]
+                    x_customer = 330
+                    y_customer = 750 - line_height * 3
+                    for line in customer_info:
+                        pdf.drawString(x_customer, y_customer, line)
+                        y_customer -= line_height
+                    pdf.setFont("Helvetica", 12)
                     pdf.showPage()
                     pdf.save()
                 # Save order form
                 with default_storage.open(output_filepath, 'rb') as pdf_file:
-                    pdf_content = pdf_file.read()
                     new_order.invoice.save(output_filename, pdf_file, save=False)
                 new_order.save()
                 # Reset any voucher in use
