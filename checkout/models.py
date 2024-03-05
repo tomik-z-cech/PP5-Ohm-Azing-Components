@@ -2,15 +2,12 @@
 import uuid
 from django.db import models
 from django_countries.fields import CountryField
-from profilemanager.models import UserProfile
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Order(models.Model):
-    
-    
-    
     order_number = models.CharField(max_length=32, null=False, editable=False)
-    user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')
     first_name = models.CharField(max_length=50, blank=True, null=True)
     last_name = models.CharField(max_length=50, blank=True, null=True)
     email = models.EmailField(max_length=254, null=True, blank=True)
@@ -31,6 +28,14 @@ class Order(models.Model):
     original_vault = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
     invoice = models.FileField(upload_to='invoices/')
+    
+    def __str__(self):
+        return self.order_number
+    
+    def save(self, *args, **kwargs):
+        if not self.order_number:
+            self.order_number = self._generate_order_number()
+        super().save(*args, **kwargs)
 
     def _generate_order_number(self):
         """

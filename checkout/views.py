@@ -1,11 +1,13 @@
-import stripe
 import json
-from django.shortcuts import render, redirect, HttpResponse
+import stripe
+from decimal import Decimal
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.views import generic
 from django.contrib import messages
 from django.conf import settings
 from checkout.forms import OrderForm
 from owner.models import PostageSettings, Voucher
+from items.models import Item
 
 # Create your views here.
 class CheckoutView(generic.ListView):
@@ -71,7 +73,7 @@ class CheckoutView(generic.ListView):
         if subtotal == 0:
             messages.error(request, "Can't proceed to checkout with empty Vault")
             return redirect('shop', category_pk = 0)
-        else: 
+        else:
             # Delivery starting points
             if subtotal < postage_settings.free_postage:
                 standard_delivery_cost = round((float(postage_settings.standard_delivery) * subtotal / 100), 2)
@@ -129,30 +131,64 @@ class CheckoutView(generic.ListView):
             )
             if not stripe_public_key:
                 messages.error(request, 'Stripe public key missing.')
-            if request.POST.get('payment-checker') == 'true':
-                if order_form.is_valid():
-                    # Reset any voucher in use
-                    current_voucher = [False, '', 0, 0]
-                    if 'save-details' in request.POST:
-                        logged_userprofile = request.user.userprofile
-                        logged_userprofile.first_name = order_form.cleaned_data['first_name']
-                        logged_userprofile.last_name = order_form.cleaned_data['last_name']
-                        logged_userprofile.phone_number = order_form.cleaned_data['phone_number']
-                        logged_userprofile.address_1 = order_form.cleaned_data['address_1']
-                        logged_userprofile.address_2 = order_form.cleaned_data['address_2']
-                        logged_userprofile.city = order_form.cleaned_data['city']
-                        logged_userprofile.county = order_form.cleaned_data['county']
-                        logged_userprofile.post_code = order_form.cleaned_data['post_code']
-                        logged_userprofile.country = order_form.cleaned_data['country']
-                        logged_userprofile.save()
-                    # Get final content of session Vault
-                    request.session['current_voucher'] = current_voucher
-                    final_vault = request.session.get('vault', [])
-                    print(final_vault)
-                    return render(
-                    request,
-                    self.success_name,
-                    )
+            if request.POST.get('payment-checker') == 'true' and order_form.is_valid():
+                # If save details check box is on and user loged in 
+                if 'save-details' in request.POST and request.user.is_authenticated:
+                    # Save all details provided by user
+                    logged_userprofile = request.user.userprofile
+                    logged_userprofile.first_name = order_form.cleaned_data['first_name']
+                    logged_userprofile.last_name = order_form.cleaned_data['last_name']
+                    logged_userprofile.phone_number = order_form.cleaned_data['phone_number']
+                    logged_userprofile.address_1 = order_form.cleaned_data['address_1']
+                    logged_userprofile.address_2 = order_form.cleaned_data['address_2']
+                    logged_userprofile.city = order_form.cleaned_data['city']
+                    logged_userprofile.county = order_form.cleaned_data['county']
+                    logged_userprofile.post_code = order_form.cleaned_data['post_code']
+                    logged_userprofile.country = order_form.cleaned_data['country']
+                    logged_userprofile.save()
+                # VAT counter
+                final_vault = request.session.get('vault','')
+                vat = 0
+                for final_item in final_vault:
+                    current_final_item = get_object_or_404(Item,pk=final_item[0])
+                    if current_final_item.item_vat_rate == 0:
+                        vat_percentage = 1.23
+                    elif current_final_item.item_vat_rate == 1:
+                        vat_percentage = 1.135
+                    elif current_final_item.item_vat_rate == 2:
+                        vat_percentage = 1.09
+                    else:
+                        vat_percentage = 1
+                    # Check if size is a digit (ie package size or size of different form)
+                    if not str(final_item[1]).isdigit():
+                        print('not digit')
+                        size_multiplier = 1
+                    else:
+                        size_multiplier = int(final_item[1])
+                    line_vat = round((int(final_item[3]) * size_multiplier * (float(current_final_item.price_per_unit) - (float(current_final_item.price_per_unit) / vat_percentage ))), 2)
+                    vat = vat + line_vat
+                # Create new instance of order
+                new_order = order_form.save(commit=False)
+                new_order.user = request.user
+                new_order.delivery_option = request.POST.get('delivery_option')
+                new_order.delivery_cost = selected_delivery_cost
+                new_order.sub_total = subtotal
+                new_order.vat = vat
+                new_order.voucher = current_voucher
+                new_order.total = total
+                new_order.stripe_pid = request.POST.get('client_secret')
+                new_order.original_vault = json.dumps(final_vault)
+                # Save order form
+                new_order.save()
+                # Reset any voucher in use
+                current_voucher = [False, '', 0, 0]
+                request.session['current_voucher'] = current_voucher
+                return render(
+                request,
+                self.success_name,
+                )
+            else:
+                messages.error(request, 'There was an error with your order. Please double check your information.')
             return render(
                 request,
                 self.template_name,

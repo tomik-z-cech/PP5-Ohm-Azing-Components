@@ -1,3 +1,8 @@
 from django.contrib import admin
+from checkout.models import Order
 
-# Register your models here.
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    """Class registers Vouchers to Admin"""
+
+    list_display = ("date", "order_number")
