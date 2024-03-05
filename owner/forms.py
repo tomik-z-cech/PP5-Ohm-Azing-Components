@@ -94,6 +94,11 @@ class PostageSettingsForm(forms.ModelForm):
             'step': '0.05',
             'min': '1',
         })
+        self.fields['minimum_order'].widget.attrs.update({
+            'placeholder': 'Minimum order € (required)',
+            'step': '1',
+            'min': '1',
+        })
         
 class VoucherForm(forms.ModelForm):
     """

@@ -9,7 +9,7 @@ $(document).keydown(function(event) {
         // Check if the key sequence matches the specified string
         if (secretCode.includes('ilovetocode')) {
         // Show an alert window
-        alert('Great ! Enjoy 75% discount with code DJANGO75 !');
+        alert('Great ! Enjoy 75% discount with code DJANGO75 valid through 2024 !');
         // Reset the key sequence for the next input
         secretCode = '';
         }

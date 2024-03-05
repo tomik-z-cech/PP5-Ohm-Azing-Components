@@ -21,6 +21,9 @@ class CheckoutView(generic.ListView):
         if subtotal == 0:
             messages.error(request, "Can't proceed to checkout with empty Vault")
             return redirect('shop', category_pk = 0)
+        elif subtotal < postage_settings.minimum_order:
+            messages.error(request, f"Can't proceed to checkout. The minimum order value is {postage_settings.minimum_order} €.")
+            return redirect('shop', category_pk = 0)
         else:
             if subtotal < postage_settings.free_postage:
                 standard_delivery_cost = round((float(postage_settings.standard_delivery) * subtotal / 100), 2)
@@ -127,21 +130,29 @@ class CheckoutView(generic.ListView):
             if not stripe_public_key:
                 messages.error(request, 'Stripe public key missing.')
             if request.POST.get('payment-checker') == 'true':
-                print('payment-processed')
-                return render(
-                request,
-                self.success_name,
-                {
-                    "order_form": order_form,
-                    "standard_delivery_cost": standard_delivery_cost,
-                    "express_delivery_cost": express_delivery_cost,
-                    "current_voucher": current_voucher,
-                    "total": total,
-                    "selected_delivery_cost": selected_delivery_cost,
-                    "stripe_public_key": stripe_public_key,
-                    "client_secret": intent.client_secret,
-                }
-            )
+                if order_form.is_valid():
+                    # Reset any voucher in use
+                    current_voucher = [False, '', 0, 0]
+                    if 'save-details' in request.POST:
+                        logged_userprofile = request.user.userprofile
+                        logged_userprofile.first_name = order_form.cleaned_data['first_name']
+                        logged_userprofile.last_name = order_form.cleaned_data['last_name']
+                        logged_userprofile.phone_number = order_form.cleaned_data['phone_number']
+                        logged_userprofile.address_1 = order_form.cleaned_data['address_1']
+                        logged_userprofile.address_2 = order_form.cleaned_data['address_2']
+                        logged_userprofile.city = order_form.cleaned_data['city']
+                        logged_userprofile.county = order_form.cleaned_data['county']
+                        logged_userprofile.post_code = order_form.cleaned_data['post_code']
+                        logged_userprofile.country = order_form.cleaned_data['country']
+                        logged_userprofile.save()
+                    # Get final content of session Vault
+                    request.session['current_voucher'] = current_voucher
+                    final_vault = request.session.get('vault', [])
+                    print(final_vault)
+                    return render(
+                    request,
+                    self.success_name,
+                    )
             return render(
                 request,
                 self.template_name,

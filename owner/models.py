@@ -16,9 +16,10 @@ class Invoice(models.Model):
     
     
 class PostageSettings(models.Model):
-    free_postage = models.DecimalField(max_digits=5, decimal_places=2, blank=False, help_text='Amount in € that TOTAL needs to be over for free delivery')
-    standard_delivery = models.DecimalField(max_digits=5, decimal_places=2, blank=False, help_text='Cost of standard delivery - % of TOTAL')
-    express_delivery = models.DecimalField(max_digits=5, decimal_places=2, blank=False, help_text='Cost of express delivery - % of TOTAL')
+    free_postage = models.DecimalField(max_digits=5, decimal_places=2, blank=False, help_text='Amount in € that VAULT needs to be over for free delivery')
+    standard_delivery = models.DecimalField(max_digits=5, decimal_places=2, blank=False, help_text='Cost of standard delivery - % of VAULT ')
+    express_delivery = models.DecimalField(max_digits=5, decimal_places=2, blank=False, help_text='Cost of express delivery - % of VAULT ')
+    minimum_order = models.DecimalField(max_digits=5, decimal_places=2, blank=False, help_text='Amount in € that VAULT needs to be over for processing the order')
     
     def __int__(self):
         return self.free_postage
