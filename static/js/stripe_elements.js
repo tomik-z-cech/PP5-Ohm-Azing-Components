@@ -192,6 +192,9 @@ $(document).ready(function() {
             var postData = {
                 'csrfmiddlewaretoken': csrfToken,
                 'client_secret': clientSecret,
+                'delivery_option': $('input[name="delivery_option"]:checked').val(),
+                'subtotal': subtotal,
+                'current_voucher': currentVoucher,
                 'save_info': $('#save-details').val(),
             };
             // URL for postData

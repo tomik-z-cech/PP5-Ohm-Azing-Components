@@ -1,5 +1,6 @@
 import os
 import uuid
+import ast
 import time
 from django.shortcuts import HttpResponse, get_object_or_404
 from django.core.files.storage import default_storage
@@ -24,14 +25,14 @@ class StripeWH_Handler:
             status=200)
         
     def handle_payment_success(self,event):
-        print('got webhook')
+        # Starting points
+        order_exists = False
         intent = event.data.object
         pid = intent.id
         vault = intent.metadata.vault
         save_details = intent.metadata.save_info
         username = intent.metadata.username
         delivery_option = intent.metadata.delivery_option
-        subtotal = intent.metadata.subtotal
         current_voucher = intent.metadata.current_voucher
         stripe_charge = stripe.Charge.retrieve(
             intent.latest_charge
@@ -39,28 +40,22 @@ class StripeWH_Handler:
         billing_details = stripe_charge.billing_details
         shipping_details = intent.shipping
         total = round((stripe_charge.amount / 100), 2)
+        # Create list of lists from string passed from stripe
+        final_vault = ast.literal_eval(vault)
+        # Create a subtotal amount from strinf passed from stripe
+        subtotal = round(float(intent.metadata.subtotal), 2)
         # Clean data in the shipping details
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
         attempt = 1
-        while attempt <= 15:
+        while attempt <= 10:
             try:
-                order = Order.objects.get(
-                        email__iexact=billing_details.email,
-                        phone_number__iexact=shipping_details.phone,
-                        country__iexact=shipping_details.address.country,
-                        post_code__iexact=shipping_details.address.postal_code,
-                        city__iexact=shipping_details.address.city,
-                        address_1__iexact=shipping_details.address.line1,
-                        county__iexact=shipping_details.address.state,
-                        total=total,
-                        original_vault=vault,
-                        stripe_pid=pid,
-                    )
+                order = Order.objects.get(stripe_pid__startswith=pid,)
                 order_exists = True
                 break
             except Order.DoesNotExist:
+                print(attempt)
                 attempt += 1
                 time.sleep(1)
         if order_exists:
@@ -81,10 +76,9 @@ class StripeWH_Handler:
                 profile.county = shipping_details.address.state
                 profile.save()
             # VAT counter + PDF dictionary creator
-            final_vault = vault
             vat = 0
             for final_item in final_vault:
-                current_final_item = get_object_or_404(Item,pk=final_item[0])
+                current_final_item = get_object_or_404(Item,pk=int(final_item[0]))
                 if current_final_item.item_vat_rate == 0:
                     vat_percentage = 1.23
                 elif current_final_item.item_vat_rate == 1:
@@ -111,9 +105,9 @@ class StripeWH_Handler:
             else:
                 selected_delivery_cost = standard_delivery_cost
             # Create new instance of order
-            new_order = Order.objects.create()
+            new_order = Order()
             new_order.order_number = uuid.uuid4().hex.upper()
-            new_order.user = username
+            new_order.user = profile.user
             new_order.delivery_option = delivery_option
             new_order.delivery_cost = selected_delivery_cost
             new_order.sub_total = subtotal
@@ -129,10 +123,11 @@ class StripeWH_Handler:
             pdf_file = default_storage.open(output_filepath, 'wb')
             with default_storage.open(output_filepath, 'wb') as pdf_file:   
                 pdf = canvas.Canvas(pdf_file)
-                today_date = datetime.today()
-                invoice_date = today_date.strftime('%d.%m.%Y')
+                now = datetime.now()
+                invoice_date = now.strftime('%d.%m.%Y')
+                invoice_time = now.strftime("%H:%M")
                 pdf.setFont("Helvetica", 12)
-                pdf.drawString(270,815, f'{invoice_date}')
+                pdf.drawString(245,815, f'{invoice_date} - {invoice_time} - WH')
                 pdf.setFont("Helvetica-Bold", 12)
                 pdf.drawString(240, 795, 'Ohm-Azing Components')
                 pdf.setFont("Helvetica", 12)
@@ -184,7 +179,7 @@ class StripeWH_Handler:
                 pdf.setFont("Helvetica-Bold", 10)
                 pdf.drawString(290, y_anchor, 'Subtotal (excluding VAT) :')
                 pdf.setFont("Helvetica", 10)
-                pdf.drawString(470, y_anchor, f'{subtotal - vat} €')
+                pdf.drawString(470, y_anchor, f'{round((subtotal - vat), 2)} €')
                 y_anchor -= 18
                 pdf.setFont("Helvetica-Bold", 10)
                 pdf.drawString(290, y_anchor, 'VAT :')
@@ -227,14 +222,14 @@ class StripeWH_Handler:
             subject = "New Order at Ohm-Azing Components"  # Subject
             from_address = "ohmazingcomponents@gmail.com"  # From
             if new_order.delivery_option == '0':
-                expected_1 = today_date + timedelta(days=3)
-                expected_2 = today_date + timedelta(days=5)
+                expected_1 = now + timedelta(days=3)
+                expected_2 = now + timedelta(days=5)
             elif new_order.delivery_option == '1':
-                expected_1 = today_date + timedelta(days=2)
-                expected_2 = today_date + timedelta(days=3)
+                expected_1 = now + timedelta(days=2)
+                expected_2 = now + timedelta(days=3)
             else:
-                expected_1 = today_date + timedelta(days=3)
-                expected_2 = today_date + timedelta(days=5)
+                expected_1 = now + timedelta(days=3)
+                expected_2 = now + timedelta(days=5)
             html_message = render_to_string("emails/new_order_template.html",{
                 "user": intent.metadata.username,
                 "order_number": new_order.order_number,

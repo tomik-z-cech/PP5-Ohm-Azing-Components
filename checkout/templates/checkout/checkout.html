@@ -157,6 +157,8 @@
 {% block extra_js %}
     {{ block.super }}
     <script type="text/javascript">
+        const subtotal = {{ subtotal}};
+        const currentVoucher = '{{ current_voucher }}';
         let standardDelivery = {{ standard_delivery_cost|floatformat:2 }};
         let expressDelivery = {{ express_delivery_cost|floatformat:2 }};
     </script>

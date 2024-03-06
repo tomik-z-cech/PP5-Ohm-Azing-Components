@@ -22,7 +22,7 @@ class Order(models.Model):
     delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
     sub_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     vat = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
-    voucher = models.CharField(max_length=20, blank=True, null=True)
+    voucher = models.CharField(max_length=30, blank=True, null=True)
     total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     original_vault = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')

@@ -27,6 +27,7 @@ class CheckoutView(generic.ListView):
         postage_settings = PostageSettings.objects.filter(pk=1).first()
         order_form = OrderForm()
         subtotal = request.session.get('subtotal', 0)
+        current_voucher = [False, '', 0, 0]
         if subtotal == 0:
             messages.error(request, "Can't proceed to checkout with empty Vault")
             return redirect('shop', category_pk = 0)
@@ -67,6 +68,8 @@ class CheckoutView(generic.ListView):
                     "total": total,
                     "stripe_public_key": stripe_public_key,
                     "client_secret": intent.client_secret,
+                    "subtotal": subtotal,
+                    "current_voucher": current_voucher,
                 }
             )
         
@@ -183,7 +186,7 @@ class CheckoutView(generic.ListView):
                 new_order.vat = vat
                 new_order.voucher = current_voucher
                 new_order.total = total
-                new_order.stripe_pid = request.POST.get('client_secret')
+                new_order.stripe_pid = request.POST.get('client_secret')[:27]
                 new_order.original_vault = json.dumps(final_vault)
                 # Generate pdf invoice
                 output_filename = f'invoice-{new_order.order_number[:5]}.pdf'
@@ -192,10 +195,11 @@ class CheckoutView(generic.ListView):
                 pdf_file = default_storage.open(output_filepath, 'wb')
                 with default_storage.open(output_filepath, 'wb') as pdf_file:   
                     pdf = canvas.Canvas(pdf_file)
-                    today_date = datetime.today()
-                    invoice_date = today_date.strftime('%d.%m.%Y')
+                    now = datetime.now()
+                    invoice_date = now.strftime('%d.%m.%Y')
+                    invoice_time = now.strftime("%H:%M")
                     pdf.setFont("Helvetica", 12)
-                    pdf.drawString(270,815, f'{invoice_date}')
+                    pdf.drawString(253,815, f'{invoice_date} - {invoice_time}')
                     pdf.setFont("Helvetica-Bold", 12)
                     pdf.drawString(240, 795, 'Ohm-Azing Components')
                     pdf.setFont("Helvetica", 12)
@@ -247,12 +251,12 @@ class CheckoutView(generic.ListView):
                     pdf.setFont("Helvetica-Bold", 10)
                     pdf.drawString(290, y_anchor, 'Subtotal (excluding VAT) :')
                     pdf.setFont("Helvetica", 10)
-                    pdf.drawString(470, y_anchor, f'{subtotal - vat} €')
+                    pdf.drawString(470, y_anchor, f'{(round((subtotal - vat), 2))} €')
                     y_anchor -= 18
                     pdf.setFont("Helvetica-Bold", 10)
                     pdf.drawString(290, y_anchor, 'VAT :')
                     pdf.setFont("Helvetica", 10)
-                    pdf.drawString(470, y_anchor, f'{vat} €')
+                    pdf.drawString(470, y_anchor, f'{round((vat), 2)} €')
                     y_anchor -= 18
                     pdf.setFont("Helvetica-Bold", 10)
                     pdf.drawString(290, y_anchor, 'Subtotal(including VAT) :')
@@ -280,7 +284,7 @@ class CheckoutView(generic.ListView):
                 # Save order form
                 with default_storage.open(output_filepath, 'rb') as pdf_file:
                     new_order.invoice.save(output_filename, pdf_file, save=False)
-                new_order.save()
+                # new_order.save()
                 # Prefixes for confirmation email
                 recipient = [
                     "ohmazingcomponents@gmail.com"
@@ -290,14 +294,14 @@ class CheckoutView(generic.ListView):
                 subject = "New Order at Ohm-Azing Components"  # Subject
                 from_address = "ohmazingcomponents@gmail.com"  # From
                 if new_order.delivery_option == '0':
-                    expected_1 = today_date + timedelta(days=3)
-                    expected_2 = today_date + timedelta(days=5)
+                    expected_1 = now + timedelta(days=3)
+                    expected_2 = now + timedelta(days=5)
                 elif new_order.delivery_option == '1':
-                    expected_1 = today_date + timedelta(days=2)
-                    expected_2 = today_date + timedelta(days=3)
+                    expected_1 = now + timedelta(days=2)
+                    expected_2 = now + timedelta(days=3)
                 else:
-                    expected_1 = today_date + timedelta(days=3)
-                    expected_2 = today_date + timedelta(days=5)
+                    expected_1 = now + timedelta(days=3)
+                    expected_2 = now + timedelta(days=5)
                 html_message = render_to_string("emails/new_order_template.html",{
                     "user": request.user.username,
                     "order_number": new_order.order_number,
@@ -315,7 +319,7 @@ class CheckoutView(generic.ListView):
                 pdf_filename = os.path.basename(pdf_file_field.name)
                 pdf_data = pdf_file_field.read()
                 email.attach(pdf_filename, pdf_data, 'application/pdf')
-                email.send()
+                # email.send()
                 # Reset any voucher in use
                 current_voucher = [False, '', 0, 0]
                 request.session['current_voucher'] = current_voucher
@@ -323,7 +327,7 @@ class CheckoutView(generic.ListView):
                 for final_item in final_vault:
                     current_final_item = get_object_or_404(Item,pk=final_item[0])
                     current_final_item.item_stock = current_final_item.item_stock - int(final_item[3])
-                    current_final_item.save()
+                    # current_final_item.save()
                 messages.success(request, f'Your order {new_order.order_number} was successfully created.')
                 return redirect('order-success', order_number=new_order.order_number, delivery_option=new_order.delivery_option)
             else:
@@ -335,9 +339,10 @@ class CheckoutView(generic.ListView):
                     "order_form": order_form,
                     "standard_delivery_cost": standard_delivery_cost,
                     "express_delivery_cost": express_delivery_cost,
-                    "current_voucher": current_voucher,
                     "total": total,
                     "selected_delivery_cost": selected_delivery_cost,
+                    "subtotal": subtotal,
+                    "current_voucher": current_voucher,
                     "stripe_public_key": stripe_public_key,
                     "client_secret": intent.client_secret,
                 }
@@ -352,9 +357,9 @@ class CheckCheckoutDataView(generic.ListView):
                 'vault': json.dumps(request.session.get('vault', {})),
                 'save_info': request.POST.get('save_info'),
                 'username': request.user,
-                'delivery_option': request.POST.get('delivery-option'),
+                'delivery_option': request.POST.get('delivery_option'),
                 'subtotal': request.POST.get('subtotal'),
-                'current_voucher': request.POST.get('current-voucher'),
+                'current_voucher': request.POST.get('current_voucher'),
             })
             return HttpResponse(status=200)
         except Exception as e:
@@ -387,7 +392,6 @@ class OrderSuccessView(generic.ListView):
             # Translate each record in vault for template
             translated_vault_item = [vault_item[0],vault_item[1],vault_item[2],vault_item[3], item_per_line.item_name, item_per_line.image_1, item_per_line.price_per_unit, item_per_line.item_stock, price_per_line]
             translated_vault_content.append(translated_vault_item)
-        print(translated_vault_content)
         return render(
                 request,
                 self.template_name,
