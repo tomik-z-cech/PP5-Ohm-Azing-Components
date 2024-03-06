@@ -8,10 +8,8 @@ from django.views import generic
 from django.contrib import messages
 from django.conf import settings
 from django.core.files.storage import default_storage
-from django.utils.html import strip_tags
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
-from django.template import loader, Context
 from reportlab.pdfgen import canvas
 import stripe
 from checkout.forms import OrderForm
@@ -354,6 +352,9 @@ class CheckCheckoutDataView(generic.ListView):
                 'vault': json.dumps(request.session.get('vault', {})),
                 'save_info': request.POST.get('save_info'),
                 'username': request.user,
+                'delivery_option': request.POST.get('delivery-option'),
+                'subtotal': request.POST.get('subtotal'),
+                'current_voucher': request.POST.get('current-voucher'),
             })
             return HttpResponse(status=200)
         except Exception as e:
