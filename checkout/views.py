@@ -321,6 +321,11 @@ class CheckoutView(generic.ListView):
                 # Reset any voucher in use
                 current_voucher = [False, '', 0, 0]
                 request.session['current_voucher'] = current_voucher
+                # Update stock
+                for final_item in final_vault:
+                    current_final_item = get_object_or_404(Item,pk=final_item[0])
+                    current_final_item.item_stock = current_final_item.item_stock - int(final_item[3])
+                    current_final_item.save()
                 messages.success(request, f'Your order {new_order.order_number} was successfully created.')
                 return redirect('order-success', order_number=new_order.order_number, delivery_option=new_order.delivery_option)
             else:
