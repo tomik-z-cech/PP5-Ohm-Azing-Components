@@ -1,1 +1,117 @@
-ok
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block nav_name %}Success{% endblock %}
+
+{% block extra_css %} 
+        <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+        <link rel="stylesheet" href="{% static 'css/wishlist_vault.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container wrapper">
+    <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
+        <h1>
+            Thank you for Your order
+        </h1>
+    </div>
+    <div class="w-100 d-flex p-3 heading add-shadow flex-column">
+        <p class="text-center">
+            <strong>
+                We have received your order 
+                <span class="highlight">
+                    {{ order_number }}
+                </span>
+                .
+            </strong>
+        </p>
+        <p class="text-center">
+            We will process the order as soon as possible and confirmation will be emailed to you shortly.
+        </p>
+        <p class="text-center">
+            <strong>
+                Expected delivery date of your order is between 
+                <span class="highlight">
+                    {{ expected_1|date:"d.m.Y" }} 
+                </span>
+                and
+                <span class="highlight">
+                    {{ expected_2|date:"d.m.Y" }}
+                </span>
+                .
+            </strong>
+        </p>
+        <p class="text-center">
+            The invoice is attached to the confirmation email, alternatively you can view it in "Order History" section.
+        </p>
+    </div>
+    <div class="w-100 d-flex p-3 heading add-shadow flex-column">
+        {% for row in vault_content %}
+        <div class="row">
+            <div class="col-3 d-flex justify-content-center align-items-center">
+                <a href="{% url 'item-detail' item_pk=row.0 %}" aria-label="Details of {{ row.4 }}" class="text-center">
+                    {% if row.5 == '' or row.5 == 'False' %}
+                        <img src="{% static 'images/no_image.png' %}" alt="{{ row.4 }} Preview" class="success-preview">
+                    {% else %}
+                        <img src="{{ row.5.url }}" alt="{{ row.4 }} Preview" class="success-preview">
+                    {% endif %}
+                </a>
+            </div>
+            <div class="col-6 d-flex justify-content-center align-items-center flex-column">
+                <strong class="mb-2">
+                    <a href="{% url 'item-detail' item_pk=row.0 %}" aria-label="Details of {{ row.4 }}" class="heading-link">
+                        {{ row.4 }}
+                    </a>
+                </strong>
+                <div class="w-75 d-flex justify-content-around mt-2">
+                    <span>
+                        {{ row.6 }} €
+                    </span>
+                    {% if row.7 > 0 %}
+                        <span class="badge rounded-pill in-stock">Another {{ row.7 }} available</span>
+                    {% else %}
+                        <span class="badge rounded-pill out-of-stock">Out Of Stock</span>
+                    {% endif %}
+                </div>
+                {% if row.1 != 1 and row.2 != 0 %}
+                <div class="w-75 d-flex justify-content-around mt-2">
+                    {% if row.1 != 1 %}
+                        <span>
+                            <strong>
+                                Size :
+                            </strong>
+                            {{ row.1 }}
+                            &nbsp;
+                            units
+                        </span>
+                    {% endif %}
+                    {% if row.2 != 0 %}
+                    <span>
+                        <strong>
+                            Value :
+                        </strong>
+                        {{ row.2 }}
+                        &nbsp;
+                        units
+                    </span>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-3 d-flex justify-content-center align-items-center flex-column">
+                <span>
+                    <strong>
+                        Subtotal :
+                    </strong>
+                </span>
+                <span>
+                    {{ row.8 }}
+                </span>
+            </div>
+            <hr class="mt-3">
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

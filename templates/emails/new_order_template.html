@@ -1,19 +1,35 @@
 <div style="background-color: #30577b; text-align: center; padding: 20px;">
-    <p style="color: #fafafa;">
-        <img src="https://raw.githubusercontent.com/tomik-z-cech/PP5-Ohm-Azing-Components/main/templates/emails/email_logo.png" alt="Logo" style="width: 80%;" />
+    <p style="color: #fafafa; height: 20vh;">
+        <img src="https://raw.githubusercontent.com/tomik-z-cech/PP5-Ohm-Azing-Components/main/templates/emails/email_logo.png" alt="Logo" />
     </p>
     <p style="color: #fafafa;">
         Hello from Ohm-Azning Components {{ user }},
     </p>
+    <br>
     <p style="color: #fafafa;">
-        We have received your order {{ order_number }}. We will process the order as soon as possible.
+        We have received your order 
+        <span style="color: #fbdb6b;">
+            {{ order_number }}
+        </span>
+        . We will process the order as soon as possible.
     </p>
+    <br>
     <p style="color: #fafafa;">
-        Expected delivery date of your order is between {{ expected_1 }} and {{ expected_2 }}. Your invoice is attached.
+        Expected delivery date of your order is between 
+        <span style="color: #fbdb6b;">
+            {{ expected_1 }} 
+        </span>
+        and
+        <span style="color: #fbdb6b;">
+            {{ expected_2 }}
+        </span>
+        . Your invoice is attached.
     </p>
+    <br>
     <p style="color: #fafafa;">
         Thank you for your order.
     </p>
+    <br>
     <p style="color: #fafafa;">
         <a href="https://ohmazing-components-1a5a0fcb9e95.herokuapp.com/" style="color: #fafafa;">www.ohmazingcomponents.ie</a>
     </p>

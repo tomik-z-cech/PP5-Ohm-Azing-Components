@@ -23,7 +23,6 @@ from items.models import Item
 class CheckoutView(generic.ListView):
     
     template_name = "checkout/checkout.html"
-    success_name = "checkout/checkout_ok.html"
     
     def get(self, request, *args, **kwargs):
         # Starting points
@@ -318,16 +317,12 @@ class CheckoutView(generic.ListView):
                 pdf_filename = os.path.basename(pdf_file_field.name)
                 pdf_data = pdf_file_field.read()
                 email.attach(pdf_filename, pdf_data, 'application/pdf')
-
-                # Attach HTML content as an alternative content type
                 email.send()
                 # Reset any voucher in use
                 current_voucher = [False, '', 0, 0]
                 request.session['current_voucher'] = current_voucher
-                return render(
-                request,
-                self.success_name,
-                )
+                messages.success(request, f'Your order {new_order.order_number} was successfully created.')
+                return redirect('order-success', order_number=new_order.order_number, delivery_option=new_order.delivery_option)
             else:
                 messages.error(request, 'There was an error with your order. Please double check your information.')
             return render(
@@ -359,3 +354,41 @@ class CheckCheckoutDataView(generic.ListView):
         except Exception as e:
             messages.error(request, "Sorry, we can't process your payment right now. Please try again later.")
             return HttpResponse(content=e, status=400)
+        
+class OrderSuccessView(generic.ListView):
+    
+    template_name = "checkout/checkout_ok.html"
+    
+    def get(self, request, order_number, delivery_option, *args, **kwargs):
+        today_date = datetime.today()
+        if delivery_option == '0':
+            expected_1 = today_date + timedelta(days=3)
+            expected_2 = today_date + timedelta(days=5)
+        elif delivery_option == '1':
+            expected_1 = today_date + timedelta(days=2)
+            expected_2 = today_date + timedelta(days=3)
+        else:
+            expected_1 = today_date + timedelta(days=3)
+            expected_2 = today_date + timedelta(days=5)
+        success_vault = request.session.get('vault',[])
+        translated_vault_content = []
+        # For each item in Vault
+        for vault_item in success_vault:
+            # Get item from database
+            item_per_line = get_object_or_404(Item, pk=vault_item[0])
+            # Add price of each item to Subtotal
+            price_per_line = item_per_line.price_per_unit * int(vault_item[1]) * int(vault_item[3])
+            # Translate each record in vault for template
+            translated_vault_item = [vault_item[0],vault_item[1],vault_item[2],vault_item[3], item_per_line.item_name, item_per_line.image_1, item_per_line.price_per_unit, item_per_line.item_stock, price_per_line]
+            translated_vault_content.append(translated_vault_item)
+        print(translated_vault_content)
+        return render(
+                request,
+                self.template_name,
+                {
+                    "order_number": order_number,
+                    "expected_1": expected_1,
+                    "expected_2": expected_2,
+                    "success_vault": translated_vault_content,
+                }
+            )

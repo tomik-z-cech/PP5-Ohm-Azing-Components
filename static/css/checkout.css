@@ -127,3 +127,17 @@ label[for="save-details"]:hover {
     position: relative;
     right: .5rem;
 }
+
+.highlight {
+    color: var(--light-highlight);
+}
+
+.success-preview {
+    width: 40%;
+    border: 2px solid var(--dark-background);
+    transition: border 0.5s ease-in-out;
+}
+
+.success-preview:hover {
+    border: 2px solid var(--light-highlight);
+}
