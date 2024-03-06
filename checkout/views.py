@@ -1,18 +1,23 @@
+# Imports
 import os
 import json
 import uuid
-import stripe
-from decimal import Decimal
+from datetime import datetime, timedelta
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.views import generic
 from django.contrib import messages
 from django.conf import settings
 from django.core.files.storage import default_storage
+from django.utils.html import strip_tags
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.template import loader, Context
 from reportlab.pdfgen import canvas
-from django.template.loader import get_template
+import stripe
 from checkout.forms import OrderForm
 from owner.models import PostageSettings, Voucher
 from items.models import Item
+
 
 # Create your views here.
 class CheckoutView(generic.ListView):
@@ -154,7 +159,6 @@ class CheckoutView(generic.ListView):
                 # VAT counter + PDF dictionary creator
                 final_vault = request.session.get('vault','')
                 vat = 0
-                pdf_items = []
                 for final_item in final_vault:
                     current_final_item = get_object_or_404(Item,pk=final_item[0])
                     if current_final_item.item_vat_rate == 0:
@@ -172,9 +176,6 @@ class CheckoutView(generic.ListView):
                         size_multiplier = int(final_item[1])
                     line_vat = round((int(final_item[3]) * size_multiplier * (float(current_final_item.price_per_unit) - (float(current_final_item.price_per_unit) / vat_percentage ))), 2)
                     vat = vat + line_vat
-                    new_pdf_item = [current_final_item.item_name,final_item[3]]
-                    pdf_items.append(new_pdf_item)
-                print(pdf_items)
                 # Create new instance of order
                 new_order = order_form.save(commit=False)
                 new_order.order_number = uuid.uuid4().hex.upper()
@@ -193,42 +194,133 @@ class CheckoutView(generic.ListView):
                 output_filepath = os.path.join(output_directory, output_filename)
                 pdf_file = default_storage.open(output_filepath, 'wb')
                 with default_storage.open(output_filepath, 'wb') as pdf_file:   
-                    # Line height and character width
-                    line_height = 13
-                    char_width = 5
                     pdf = canvas.Canvas(pdf_file)
+                    today_date = datetime.today()
+                    invoice_date = today_date.strftime('%d.%m.%Y')
+                    pdf.setFont("Helvetica", 12)
+                    pdf.drawString(270,815, f'{invoice_date}')
                     pdf.setFont("Helvetica-Bold", 12)
-                    pdf.drawString(245, 800, 'Ohm-Azing Components')
+                    pdf.drawString(240, 795, 'Ohm-Azing Components')
                     pdf.setFont("Helvetica", 12)
                     pdf.drawString(147, 775, f'INVOICE # {new_order.order_number}')
+                    pdf.line(5, 760, 565, 760)
                     seller_info = [
                         "Ohm-Azing Components",
                         "Borrisokane, Co. Tipperary, ",
                         "ohmazingcomponents@gmail.com",
                     ]
-                    x_seller = 20
-                    y_seller = 750 - line_height * 3
+                    y_seller = 750 - 13 * 3
                     pdf.setFont("Helvetica-Bold", 12)
                     for line in seller_info:
-                        pdf.drawString(x_seller, y_seller, line)
-                        y_seller -= line_height
+                        pdf.drawString(20, y_seller, line)
+                        y_seller -= 13
                     customer_info = [
                         f"{new_order.first_name} {new_order.last_name}",
                         f"{new_order.address_1}, {new_order.city}, {new_order.country}",
                         f"{new_order.email}, {new_order.phone_number}",
                     ]
                     x_customer = 330
-                    y_customer = 750 - line_height * 3
+                    y_customer = 750 - 13 * 3
                     for line in customer_info:
                         pdf.drawString(x_customer, y_customer, line)
-                        y_customer -= line_height
-                    pdf.setFont("Helvetica", 12)
+                        y_customer -= 13
+                    pdf.line(5, 640, 565, 640)
+                    pdf.setFont("Helvetica-Bold", 10)
+                    pdf.drawString(10, 625, 'Item SKU')
+                    pdf.drawString(80, 625, 'Item Name')
+                    pdf.drawString(215, 625, 'Sizes and Values')
+                    pdf.drawString(360, 625, 'Unit Price')
+                    pdf.drawString(420, 625, 'Quantity')
+                    pdf.drawString(480, 625, 'Price')
+                    y_anchor = 600
+                    for line in final_vault:
+                        pdf.setFont("Helvetica-Bold", 8)
+                        invoice_line_item = get_object_or_404(Item, pk=line[0])
+                        pdf.drawString(10, y_anchor, invoice_line_item.item_sku)
+                        pdf.drawString(80, y_anchor, invoice_line_item.item_name)
+                        pdf.setFont("Helvetica", 8)
+                        if not line[1] == 1:
+                            pdf.drawString(215, y_anchor, f'Size : {line[1]} units - Value : {line[2]}')
+                        pdf.drawString(360, y_anchor, f'{round((invoice_line_item.price_per_unit), 2) * int(line[1])} €')
+                        pdf.drawString(420, y_anchor, f'{line[3]}')
+                        pdf.drawString(480, y_anchor, f'{round((invoice_line_item.price_per_unit), 2) * int(line[1]) * int(line[3])} €')
+                        y_anchor -= 13
+                    pdf.line(5, y_anchor, 565, y_anchor)
+                    y_anchor -= 18
+                    pdf.setFont("Helvetica-Bold", 10)
+                    pdf.drawString(290, y_anchor, 'Subtotal (excluding VAT) :')
+                    pdf.setFont("Helvetica", 10)
+                    pdf.drawString(470, y_anchor, f'{subtotal - vat} €')
+                    y_anchor -= 18
+                    pdf.setFont("Helvetica-Bold", 10)
+                    pdf.drawString(290, y_anchor, 'VAT :')
+                    pdf.setFont("Helvetica", 10)
+                    pdf.drawString(470, y_anchor, f'{vat} €')
+                    y_anchor -= 18
+                    pdf.setFont("Helvetica-Bold", 10)
+                    pdf.drawString(290, y_anchor, 'Subtotal(including VAT) :')
+                    pdf.setFont("Helvetica", 10)
+                    pdf.drawString(470, y_anchor, f'{subtotal} €')
+                    y_anchor -= 18
+                    pdf.setFont("Helvetica-Bold", 10)
+                    pdf.drawString(290, y_anchor, 'Delivery :')
+                    pdf.setFont("Helvetica", 10)
+                    pdf.drawString(470, y_anchor, f'{selected_delivery_cost} €')
+                    y_anchor -= 18
+                    pdf.setFont("Helvetica-Bold", 10)
+                    pdf.drawString(290, y_anchor, 'Total :')
+                    pdf.setFont("Helvetica", 10)
+                    pdf.drawString(470, y_anchor, f'{total} €')
+                    y_anchor -= 35
+                    pdf.line(5, y_anchor, 565, y_anchor)
+                    pdf.setFont("Helvetica-Bold", 12)
+                    y_anchor -= 18
+                    pdf.drawString(200, y_anchor, 'THANK YOU FOR YOUR BUSINESS')
+                    y_anchor -= 18
+                    pdf.line(5, y_anchor, 565, y_anchor)
                     pdf.showPage()
                     pdf.save()
                 # Save order form
                 with default_storage.open(output_filepath, 'rb') as pdf_file:
                     new_order.invoice.save(output_filename, pdf_file, save=False)
                 new_order.save()
+                # Prefixes for confirmation email
+                recipient = [
+                    "ohmazingcomponents@gmail.com"
+                ]  # Send the email to myself as confirmation
+                # Add email of user creating booking
+                recipient.append(request.user.email)
+                subject = "New Order at Ohm-Azing Components"  # Subject
+                from_address = "ohmazingcomponents@gmail.com"  # From
+                if new_order.delivery_option == '0':
+                    expected_1 = today_date + timedelta(days=3)
+                    expected_2 = today_date + timedelta(days=5)
+                elif new_order.delivery_option == '1':
+                    expected_1 = today_date + timedelta(days=2)
+                    expected_2 = today_date + timedelta(days=3)
+                else:
+                    expected_1 = today_date + timedelta(days=3)
+                    expected_2 = today_date + timedelta(days=5)
+                html_message = render_to_string("emails/new_order_template.html",{
+                    "user": request.user.username,
+                    "order_number": new_order.order_number,
+                    "expected_1": expected_1.strftime('%d.%m.%Y'),
+                    "expected_2": expected_2.strftime('%d.%m.%Y'),
+                    })
+                email = EmailMessage(
+                    subject,
+                    html_message,
+                    from_address,
+                    recipient,
+                )
+                email.content_subtype = 'html'
+                pdf_file_field = new_order.invoice
+                pdf_filename = os.path.basename(pdf_file_field.name)
+                pdf_data = pdf_file_field.read()
+                email.attach(pdf_filename, pdf_data, 'application/pdf')
+
+                # Attach HTML content as an alternative content type
+                email.send()
                 # Reset any voucher in use
                 current_voucher = [False, '', 0, 0]
                 request.session['current_voucher'] = current_voucher
