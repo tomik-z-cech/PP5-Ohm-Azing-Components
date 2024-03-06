@@ -2,6 +2,7 @@
 import os
 import json
 import uuid
+import copy
 from datetime import datetime, timedelta
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.views import generic
@@ -251,27 +252,27 @@ class CheckoutView(generic.ListView):
                     pdf.setFont("Helvetica-Bold", 10)
                     pdf.drawString(290, y_anchor, 'Subtotal (excluding VAT) :')
                     pdf.setFont("Helvetica", 10)
-                    pdf.drawString(470, y_anchor, f'{(round((subtotal - vat), 2))} €')
+                    pdf.drawString(470, y_anchor, f'{round((subtotal - vat), 2)} €')
                     y_anchor -= 18
                     pdf.setFont("Helvetica-Bold", 10)
                     pdf.drawString(290, y_anchor, 'VAT :')
                     pdf.setFont("Helvetica", 10)
-                    pdf.drawString(470, y_anchor, f'{round((vat), 2)} €')
+                    pdf.drawString(470, y_anchor, f'{round(vat, 2)} €')
                     y_anchor -= 18
                     pdf.setFont("Helvetica-Bold", 10)
                     pdf.drawString(290, y_anchor, 'Subtotal(including VAT) :')
                     pdf.setFont("Helvetica", 10)
-                    pdf.drawString(470, y_anchor, f'{subtotal} €')
+                    pdf.drawString(470, y_anchor, f'{round(subtotal, 2)} €')
                     y_anchor -= 18
                     pdf.setFont("Helvetica-Bold", 10)
                     pdf.drawString(290, y_anchor, 'Delivery :')
                     pdf.setFont("Helvetica", 10)
-                    pdf.drawString(470, y_anchor, f'{selected_delivery_cost} €')
+                    pdf.drawString(470, y_anchor, f'{round(selected_delivery_cost, 2)} €')
                     y_anchor -= 18
                     pdf.setFont("Helvetica-Bold", 10)
                     pdf.drawString(290, y_anchor, 'Total :')
                     pdf.setFont("Helvetica", 10)
-                    pdf.drawString(470, y_anchor, f'{total} €')
+                    pdf.drawString(470, y_anchor, f'{round(total, 2)} €')
                     y_anchor -= 35
                     pdf.line(5, y_anchor, 565, y_anchor)
                     pdf.setFont("Helvetica-Bold", 12)
@@ -284,7 +285,7 @@ class CheckoutView(generic.ListView):
                 # Save order form
                 with default_storage.open(output_filepath, 'rb') as pdf_file:
                     new_order.invoice.save(output_filename, pdf_file, save=False)
-                # new_order.save()
+                new_order.save()
                 # Prefixes for confirmation email
                 recipient = [
                     "ohmazingcomponents@gmail.com"
@@ -319,7 +320,7 @@ class CheckoutView(generic.ListView):
                 pdf_filename = os.path.basename(pdf_file_field.name)
                 pdf_data = pdf_file_field.read()
                 email.attach(pdf_filename, pdf_data, 'application/pdf')
-                # email.send()
+                email.send()
                 # Reset any voucher in use
                 current_voucher = [False, '', 0, 0]
                 request.session['current_voucher'] = current_voucher
@@ -327,7 +328,7 @@ class CheckoutView(generic.ListView):
                 for final_item in final_vault:
                     current_final_item = get_object_or_404(Item,pk=final_item[0])
                     current_final_item.item_stock = current_final_item.item_stock - int(final_item[3])
-                    # current_final_item.save()
+                    current_final_item.save()
                 messages.success(request, f'Your order {new_order.order_number} was successfully created.')
                 return redirect('order-success', order_number=new_order.order_number, delivery_option=new_order.delivery_option)
             else:
@@ -381,8 +382,8 @@ class OrderSuccessView(generic.ListView):
         else:
             expected_1 = today_date + timedelta(days=3)
             expected_2 = today_date + timedelta(days=5)
-        success_vault = request.session.get('vault',[])
-        translated_vault_content = []
+        success_vault = list(request.session.get('vault', []))
+        translated_vault = []
         # For each item in Vault
         for vault_item in success_vault:
             # Get item from database
@@ -391,7 +392,8 @@ class OrderSuccessView(generic.ListView):
             price_per_line = item_per_line.price_per_unit * int(vault_item[1]) * int(vault_item[3])
             # Translate each record in vault for template
             translated_vault_item = [vault_item[0],vault_item[1],vault_item[2],vault_item[3], item_per_line.item_name, item_per_line.image_1, item_per_line.price_per_unit, item_per_line.item_stock, price_per_line]
-            translated_vault_content.append(translated_vault_item)
+            translated_vault.append(translated_vault_item)
+        request.session['vault'] = []
         return render(
                 request,
                 self.template_name,
@@ -399,6 +401,6 @@ class OrderSuccessView(generic.ListView):
                     "order_number": order_number,
                     "expected_1": expected_1,
                     "expected_2": expected_2,
-                    "success_vault": translated_vault_content,
+                    "translated_vault": translated_vault,
                 }
             )

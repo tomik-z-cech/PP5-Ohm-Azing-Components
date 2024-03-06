@@ -47,7 +47,7 @@
         </p>
     </div>
     <div class="w-100 d-flex p-3 heading add-shadow flex-column">
-        {% for row in vault_content %}
+        {% for row in translated_vault %}
         <div class="row">
             <div class="col-3 d-flex justify-content-center align-items-center">
                 <a href="{% url 'item-detail' item_pk=row.0 %}" aria-label="Details of {{ row.4 }}" class="text-center">

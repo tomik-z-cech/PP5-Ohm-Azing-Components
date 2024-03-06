@@ -55,7 +55,6 @@ class StripeWH_Handler:
                 order_exists = True
                 break
             except Order.DoesNotExist:
-                print(attempt)
                 attempt += 1
                 time.sleep(1)
         if order_exists:
@@ -104,6 +103,8 @@ class StripeWH_Handler:
                 selected_delivery_cost = express_delivery_cost
             else:
                 selected_delivery_cost = standard_delivery_cost
+            # Split name from stripe billing details at last space " "
+            first_name, last_name = billing_details.name.rsplit(' ', 1)
             # Create new instance of order
             new_order = Order()
             new_order.order_number = uuid.uuid4().hex.upper()
@@ -116,6 +117,16 @@ class StripeWH_Handler:
             new_order.total = total
             new_order.stripe_pid = pid
             new_order.original_vault = final_vault
+            new_order.first_name = first_name
+            new_order.last_name = last_name
+            new_order.email = billing_details.email
+            new_order.phone_number = shipping_details.phone
+            new_order.address_1 = shipping_details.address.line1
+            new_order.address_2 = shipping_details.address.line2
+            new_order.city = shipping_details.address.city
+            new_order.county = shipping_details.address.state
+            new_order.post_code = shipping_details.address.postal_code
+            new_order.country = shipping_details.address.country
             # Generate pdf invoice
             output_filename = f'invoice-{new_order.order_number[:5]}.pdf'
             output_directory = output_directory = 'invoices/'
@@ -184,22 +195,22 @@ class StripeWH_Handler:
                 pdf.setFont("Helvetica-Bold", 10)
                 pdf.drawString(290, y_anchor, 'VAT :')
                 pdf.setFont("Helvetica", 10)
-                pdf.drawString(470, y_anchor, f'{vat} €')
+                pdf.drawString(470, y_anchor, f'{round(vat, 2)} €')
                 y_anchor -= 18
                 pdf.setFont("Helvetica-Bold", 10)
                 pdf.drawString(290, y_anchor, 'Subtotal(including VAT) :')
                 pdf.setFont("Helvetica", 10)
-                pdf.drawString(470, y_anchor, f'{subtotal} €')
+                pdf.drawString(470, y_anchor, f'{round(subtotal, 2)} €')
                 y_anchor -= 18
                 pdf.setFont("Helvetica-Bold", 10)
                 pdf.drawString(290, y_anchor, 'Delivery :')
                 pdf.setFont("Helvetica", 10)
-                pdf.drawString(470, y_anchor, f'{selected_delivery_cost} €')
+                pdf.drawString(470, y_anchor, f'{round(selected_delivery_cost, 2)} €')
                 y_anchor -= 18
                 pdf.setFont("Helvetica-Bold", 10)
                 pdf.drawString(290, y_anchor, 'Total :')
                 pdf.setFont("Helvetica", 10)
-                pdf.drawString(470, y_anchor, f'{total} €')
+                pdf.drawString(470, y_anchor, f'{round(total, 2)} €')
                 y_anchor -= 35
                 pdf.line(5, y_anchor, 565, y_anchor)
                 pdf.setFont("Helvetica-Bold", 12)
