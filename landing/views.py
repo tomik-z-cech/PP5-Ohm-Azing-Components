@@ -1,5 +1,5 @@
 # Imports
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib import messages
 from owner.models import PostageSettings, Newsletter
@@ -61,3 +61,17 @@ class LandingPageView(generic.ListView):
             },
         )
         
+class SearchView(generic.ListView):
+
+    template_name = "landing/search_results.html"
+
+    def post(self, request, *args, **kwargs):
+        search_term = request.POST.get('search-query')
+        print(search_term)
+        return render(
+            request,
+            self.template_name,
+            {
+                "search_term": search_term,
+            },
+        )

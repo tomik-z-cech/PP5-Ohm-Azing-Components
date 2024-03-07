@@ -12,7 +12,17 @@
       </a>
     </div>
     <div class="col-12 col-lg-6 header-height">
-      Search
+      <form method="POST" action="search">
+        {% csrf_token %}
+        <label for="search-query" class="form-label">
+          Kokot
+        </label>
+        <input type="text" name="search-query" placeholder="Search..." id="search-query" class="form-control">
+        <button type="submit" class="custom-button">
+          <i class="bi bi-search"></i>
+          Search
+        </button>
+    </form>
     </div>
     <div class="col-4 col-lg-1 d-flex justify-content-center header-height">
       {% if user.is_authenticated %}
@@ -63,38 +73,43 @@
                   </span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li>
+                    <a class="dropdown-item" href="{% url 'shop' category_pk=0 %}" aria-label="Logout">
+                      <i class="bi bi-shop"></i>
+                      &nbsp;
+                      Visit Shop
+                    </a>
+                  </li>
                   {% if user.is_authenticated %}
-                    {% if user.is_superuser %}
-                    <li>
-                      <a class="dropdown-item" href="{% url 'owner' %}" aria-label="Admin Tools">
-                        <i class="bi bi-journals"></i>
-                        Admin Tools
-                      </a>
-                    </li>
-                    {% endif %}
-                    <li>
-                      <a class="dropdown-item" href="{% url 'shop' category_pk=0 %}" aria-label="Logout">
-                        <i class="bi bi-shop"></i>
-                        Visit Shop
-                      </a>
-                    </li>
                     <li>
                       <a class="dropdown-item" href="{% url 'order-history' %}" aria-label="Logout">
                         <i class="bi bi-book"></i>
+                        &nbsp;
                         Order History
                       </a>
                     </li>
                     <li>
                       <a class="dropdown-item" href="{% url 'profile-manager' %}" aria-label="Logout">
                         <i class="bi bi-person-lines-fill"></i>
+                        &nbsp;
                         My Details
                       </a>
                     </li>
+                    {% if user.is_superuser %}
+                    <li>
+                      <a class="dropdown-item" href="{% url 'owner' %}" aria-label="Admin Tools">
+                        <i class="bi bi-journals"></i>
+                        &nbsp;
+                        Admin Tools
+                      </a>
+                    </li>
+                    {% endif %}
                     <li class="dropdown-divider">
                     </li>
                     <li>
                       <a class="dropdown-item" href="{% url 'account_logout' %}" aria-label="Logout">
                         <i class="bi bi-box-arrow-right"></i>
+                        &nbsp;
                         Logout
                       </a>
                     </li>
@@ -102,12 +117,14 @@
                     <li>
                       <a class="dropdown-item" href="{% url 'account_signup' %}" aria-label="Register">
                         <i class="bi bi-key-fill"></i>
+                        &nbsp;
                         Register
                       </a>
                     </li>
                     <li>
                       <a class="dropdown-item" href="{% url 'account_login' %}" aria-label="Login">
                         <i class="bi bi-house-lock-fill"></i>
+                        &nbsp;
                         Login
                       </a>
                     </li>
