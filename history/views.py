@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import (
     UserPassesTestMixin,
 )
 from django.core.paginator import Paginator
+from django.http import FileResponse
 from checkout.models import Order
 
 # Create your views here.
@@ -50,11 +51,12 @@ class UserInvoicesView(LoginRequiredMixin, generic.ListView):
                 "page_length":page_length,
             },
         )
-class ViewInvoiceView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
+class UserViewInvoiceView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
     
     def test_func(self):
         """Test function to ensure user is superuser"""
-        return self.request.user.is_superuser
+        requested_invoice = get_object_or_404(Order, pk=self.kwargs["invoice_pk"])
+        return self.request.user == requested_invoice.user
     
     def get(self, request, invoice_pk, *args, **kwargs):
         requested_invoice = get_object_or_404(Order, pk=invoice_pk)
@@ -62,16 +64,15 @@ class ViewInvoiceView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView)
         response['Content-Disposition'] = f'filename="{requested_invoice.invoice.name}"'
         return response
         
-class DownloadInvoiceView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
+class UserDownloadInvoiceView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
     """
     View generates main view for owner (site admin)
     """
     
-    template_name = "owner/categories.html"  # Template
-    
     def test_func(self):
         """Test function to ensure user is superuser"""
-        return self.request.user.is_superuser
+        requested_invoice = get_object_or_404(Order, pk=self.kwargs["invoice_pk"])
+        return self.request.user == requested_invoice.user
 
     def get(self, request, invoice_pk, *args, **kwargs):
         requested_invoice = get_object_or_404(Order, pk=invoice_pk)

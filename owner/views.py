@@ -420,8 +420,6 @@ class DownloadInvoiceView(UserPassesTestMixin, LoginRequiredMixin, generic.ListV
     View generates main view for owner (site admin)
     """
     
-    template_name = "owner/categories.html"  # Template
-    
     def test_func(self):
         """Test function to ensure user is superuser"""
         return self.request.user.is_superuser

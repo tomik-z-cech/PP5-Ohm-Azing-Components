@@ -1,0 +1,23 @@
+.items-table {
+    width: 95%;
+    margin-left: 2.5%;
+    font-family: var(--main-font);
+    text-align: center;
+}
+
+.custom-button-table {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background: var(--dark-background);
+    color: var(--light-foreground);
+    padding: 0.1vh;
+    font-family: var(--main-font);
+    width: 40%;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.custom-button-table:hover {
+    background-color: var(--light-background);
+    color: var(--light-highlight);
+}

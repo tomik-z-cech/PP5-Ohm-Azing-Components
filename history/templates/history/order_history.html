@@ -4,6 +4,10 @@
 
 {% block nav_name %}Order History{% endblock %}
 
+{% block extra_css %} 
+        <link rel="stylesheet" href="{% static 'css/history.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container wrapper">
     <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
@@ -11,7 +15,7 @@
             Order History
         </h2>
     </div>
-    <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
+    <div class="w-100 d-flex justify-content-center p-3 heading add-shadow text-center">
         <div class="col-12 d-flex flex-column">
             <div class="w-100 d-flex justify-content-around">
                 <select id="sortingOptions" class="form-control w-25 shadow-none">
@@ -19,10 +23,10 @@
                     <option value="1" {% if page_sort == 1 %}selected{% endif %}>Newest first</option>
                 </select>
                 <select id="lengthOptions" class="form-control w-25 shadow-none">
-                    <option value="5" {% if page_length == 5 %}selected{% endif %}>5 invoices per page</option>
-                    <option value="10" {% if page_length == 10 %}selected{% endif %}>10 invoices per page</option>
-                    <option value="20" {% if page_length == 20 %}selected{% endif %}>20 invoices per page</option>
-                    <option value="0" {% if page_length == 0 %}selected{% endif %}>All invoices</option>
+                    <option value="5" {% if page_length == 5 %}selected{% endif %}>5 orders per page</option>
+                    <option value="10" {% if page_length == 10 %}selected{% endif %}>10 orders per page</option>
+                    <option value="20" {% if page_length == 20 %}selected{% endif %}>20 orders per page</option>
+                    <option value="0" {% if page_length == 0 %}selected{% endif %}>All orders</option>
                 </select>
             </div>
             {% if invoices|length > 0 %}
@@ -52,8 +56,8 @@
                                 {{ invoice.order_number }}
                             </td>
                             <td>
-                                <a href="{% url 'view-invoice' invoice_pk=invoice.pk %}" target="_blank" aria-label="View Invoice" class="custom-button-table button-shadow">View</a>
-                                <a href="{% url 'download-invoice' invoice_pk=invoice.pk %}" download aria-label="Download Invoice" class="custom-button-table button-shadow">Download</a>
+                                <a href="{% url 'user-invoice-view' invoice_pk=invoice.pk %}" target="_blank" aria-label="View Invoice" class="custom-button-table button-shadow">View</a>
+                                <a href="{% url 'user-invoice-download' invoice_pk=invoice.pk %}" download aria-label="Download Invoice" class="custom-button-table button-shadow">Download</a>
                             </td>
                         <tr>
                     {% endfor %}
