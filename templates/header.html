@@ -73,6 +73,12 @@
                     </li>
                     {% endif %}
                     <li>
+                      <a class="dropdown-item" href="{% url 'shop' category_pk=0 %}" aria-label="Logout">
+                        <i class="bi bi-shop"></i>
+                        Visit Shop
+                      </a>
+                    </li>
+                    <li>
                       <a class="dropdown-item" href="{% url 'order-history' %}" aria-label="Logout">
                         <i class="bi bi-book"></i>
                         Order History
