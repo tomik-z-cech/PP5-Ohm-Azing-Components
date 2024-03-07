@@ -1,7 +1,4 @@
 # Imports
-import io
-import os
-import zipfile
 from datetime import date
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect  # Responses
@@ -16,7 +13,7 @@ from django.contrib.auth.mixins import (
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Count, F, ExpressionWrapper, fields
-from django.http import HttpResponse
+from django.http import FileResponse
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import send_mail
@@ -406,13 +403,23 @@ class OwnerInvoicesView(
                 "page_length":page_length,
             },
         )
-        
+class ViewInvoiceView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
+    
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+    
+    def get(self, request, invoice_pk, *args, **kwargs):
+        requested_invoice = get_object_or_404(Order, pk=invoice_pk)
+        response = FileResponse(requested_invoice.invoice, content_type='application/pdf')
+        response['Content-Disposition'] = f'filename="{requested_invoice.invoice.name}"'
+        return response
         
 class DownloadInvoiceView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
     """
     View generates main view for owner (site admin)
     """
-
+    
     template_name = "owner/categories.html"  # Template
     
     def test_func(self):
@@ -421,14 +428,8 @@ class DownloadInvoiceView(UserPassesTestMixin, LoginRequiredMixin, generic.ListV
 
     def get(self, request, invoice_pk, *args, **kwargs):
         requested_invoice = get_object_or_404(Order, pk=invoice_pk)
-        file_name = os.path.basename(requested_invoice.invoice.name)[:-4]
-        with requested_invoice.invoice.open(mode='rb') as pdf_file:
-            pdf_content = pdf_file.read()
-        zip_buffer = io.BytesIO()
-        with zipfile.ZipFile(zip_buffer, 'w') as zip_file:
-            zip_file.writestr(f'{file_name}.pdf', pdf_content)
-        response = HttpResponse(zip_buffer.getvalue(), content_type='application/zip')
-        response['Content-Disposition'] = f'attachment; filename={file_name}.zip'
+        response = FileResponse(requested_invoice.invoice, content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="{requested_invoice.invoice.name}"'
         return response
     
     

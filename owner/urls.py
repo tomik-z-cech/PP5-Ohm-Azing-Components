@@ -15,6 +15,7 @@ urlpatterns = [
     path("edit-item/<int:item_pk>/", login_required(views.EditItemView.as_view()), name="edit-item"),
     path("delete-item/<int:item_pk>/", login_required(views.DeleteItemView.as_view()), name="delete-item"),
     path("invoices/", login_required(views.OwnerInvoicesView.as_view()), name="invoices"),
+    path("view-invoice/<int:invoice_pk>/", login_required(views.ViewInvoiceView.as_view()), name="view-invoice"),
     path("download-invoice/<int:invoice_pk>/", login_required(views.DownloadInvoiceView.as_view()), name="download-invoice"),
     path("postage-settings/", login_required(views.PostageSettingsView.as_view()), name="postage-settings"),
     path("comments/", login_required(views.CommentsOwnerView.as_view()), name="comments-owner"),
