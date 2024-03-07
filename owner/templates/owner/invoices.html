@@ -23,10 +23,10 @@
         <table class="items-table mt-4">
             <tr>
                 <th>
-                    Number
+                    Date
                 </th>
                 <th>
-                    Date
+                    Number
                 </th>
                 <th>
                     Action
@@ -40,13 +40,13 @@
                 </tr>
                 <tr>
                     <td>
-                        {{ invoice.invoice_number }}
+                        {{ invoice.date|date:"d.m.Y" }}
                     </td>
                     <td>
-                        {{ invoice.date_added|date:"d.m.Y" }}
+                        {{ invoice.order_number }}
                     </td>
                     <td>
-                        <a href="{{invoice.pdf_invoice.url}}" target="_blank" aria-label="View Invoice" class="custom-button-table button-shadow">View</a>
+                        <a href="{{invoice.invoice.url}}" target="_blank" aria-label="View Invoice" class="custom-button-table button-shadow">View</a>
                         <a href="{% url 'download-invoice' invoice_pk=invoice.pk %}" download aria-label="Download Invoice" class="custom-button-table button-shadow">Download ZIP</a>
                     </td>
                 <tr>

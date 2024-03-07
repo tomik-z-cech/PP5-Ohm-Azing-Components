@@ -1,12 +1,5 @@
 from django.contrib import admin
-from owner.models import Invoice, PostageSettings, Voucher, Newsletter, NewsletterEmail
-
-# Register your models here.
-@admin.register(Invoice)
-class InvoiceAdmin(admin.ModelAdmin):
-    """Class registers Invoices to Admin"""
-
-    list_display = ("invoice_number","date_added",)
+from owner.models import PostageSettings, Voucher, Newsletter, NewsletterEmail
 
 @admin.register(PostageSettings)
 class PostageSettingsAdmin(admin.ModelAdmin):

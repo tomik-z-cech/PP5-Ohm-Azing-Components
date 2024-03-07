@@ -1,5 +1,6 @@
 # Imports
 import io
+import os
 import zipfile
 from datetime import date
 from django.contrib import messages
@@ -21,7 +22,8 @@ from django.utils.html import strip_tags
 from django.core.mail import send_mail
 from items.models import Category, Item, ItemComments
 from owner.forms import CategoryForm, ItemForm, PostageSettingsForm, VoucherForm, NewsletterEmailForm
-from owner.models import Invoice, PostageSettings, Voucher, Newsletter, NewsletterEmail
+from owner.models import PostageSettings, Voucher, Newsletter, NewsletterEmail
+from checkout.models import Order
 
 
 class OwnerMainView(UserPassesTestMixin, LoginRequiredMixin, generic.ListView):
@@ -379,20 +381,20 @@ class OwnerInvoicesView(
         current_page = request.GET.get('page', 1)
         if page_length != 0:
             if page_sort == 1:
-                paginated_items = Paginator(Invoice.objects.all().order_by('-date_added'), page_length)
+                paginated_items = Paginator(Order.objects.all().order_by('-date'), page_length)
             elif page_sort == 0:
-                paginated_items = Paginator(Invoice.objects.all().order_by('date_added'), page_length)
+                paginated_items = Paginator(Order.objects.all().order_by('date'), page_length)
             else:
-                paginated_items = Paginator(Invoice.objects.all().order_by('-date_added'), page_length)
+                paginated_items = Paginator(Order.objects.all().order_by('-date'), page_length)
             page_obj = paginated_items.get_page(current_page)
             paginator_nav = True
         else:
             if page_sort == 1:
-                page_obj = Invoice.objects.all().order_by('date_added')
+                page_obj = Order.objects.all().order_by('date')
             elif page_sort == 0:
-                page_obj = Invoice.objects.all().order_by('-date_added')
+                page_obj = Order.objects.all().order_by('-date')
             else:
-                page_obj = Invoice.objects.all().order_by('date_added')
+                page_obj = Order.objects.all().order_by('date')
             paginator_nav = False
         return render(
             request,
@@ -418,15 +420,15 @@ class DownloadInvoiceView(UserPassesTestMixin, LoginRequiredMixin, generic.ListV
         return self.request.user.is_superuser
 
     def get(self, request, invoice_pk, *args, **kwargs):
-        requested_invoice = get_object_or_404(Invoice, pk=invoice_pk)
-        with requested_invoice.pdf_invoice.open(mode='rb') as pdf_file:
+        requested_invoice = get_object_or_404(Order, pk=invoice_pk)
+        file_name = os.path.basename(requested_invoice.invoice.name)[:-4]
+        with requested_invoice.invoice.open(mode='rb') as pdf_file:
             pdf_content = pdf_file.read()
         zip_buffer = io.BytesIO()
         with zipfile.ZipFile(zip_buffer, 'w') as zip_file:
-            zip_file.writestr(f'{requested_invoice.invoice_number}.pdf', pdf_content)
+            zip_file.writestr(f'{file_name}.pdf', pdf_content)
         response = HttpResponse(zip_buffer.getvalue(), content_type='application/zip')
-        response['Content-Disposition'] = f'attachment; filename={requested_invoice.invoice_number}.zip'
-
+        response['Content-Disposition'] = f'attachment; filename={file_name}.zip'
         return response
     
     
