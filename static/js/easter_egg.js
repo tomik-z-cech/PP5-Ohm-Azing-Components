@@ -8,8 +8,9 @@ $(document).keydown(function(event) {
         secretCode += event.key;
         // Check if the key sequence matches the specified string
         if (secretCode.includes('ilovetocode')) {
-        // Show an alert window
-        alert('Great ! Enjoy 75% discount with code DJANGO75 valid through 2024 !');
+        // Define and show modal
+        const easterEggModal = new bootstrap.Modal($('#easterEggModal'));
+        easterEggModal.show();
         // Reset the key sequence for the next input
         secretCode = '';
         }
