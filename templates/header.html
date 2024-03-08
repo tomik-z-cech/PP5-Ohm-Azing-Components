@@ -12,17 +12,15 @@
       </a>
     </div>
     <div class="col-12 col-lg-6 header-height">
-      <form method="POST" action="search">
-        {% csrf_token %}
-        <label for="search-query" class="form-label">
-          Kokot
-        </label>
-        <input type="text" name="search-query" placeholder="Search..." id="search-query" class="form-control">
-        <button type="submit" class="custom-button">
-          <i class="bi bi-search"></i>
-          Search
-        </button>
-    </form>
+      <nav class="navbar d-flex align-items-center h-100 w-100">
+        <form class="form-inline d-flex flex-row w-100" action="search" method="POST">
+          {% csrf_token %}
+          <input class="form-control mr-sm-2 me-5 shadow-none" type="text" placeholder="Search in categories and products" aria-label="Search" name="search-query" required>
+          <button class="custom-button button-shadow my-2 my-sm-0" type="submit" id="search-button">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+      </nav>
     </div>
     <div class="col-4 col-lg-1 d-flex justify-content-center header-height">
       {% if user.is_authenticated %}

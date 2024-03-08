@@ -99,3 +99,7 @@ header {
     color: var(--dark-foreground);
     font-size: 50%;
 }
+
+#search-button {
+    width: 10%!important;
+}

@@ -7,7 +7,6 @@ from owner.forms import NewsletterForm
 from items.models import Item
 
 
-
 class LandingPageView(generic.ListView):
     """
     Class generates view of landing page
