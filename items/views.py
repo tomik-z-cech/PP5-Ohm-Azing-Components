@@ -5,6 +5,7 @@ from django.db.models import Count, Q
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Count, F, ExpressionWrapper, fields
 from items.models import Category, Item, ItemComments
 from items.forms import ItemCommentForm
 
@@ -26,7 +27,13 @@ class ShopView(generic.ListView):
             queryset = Item.objects.all().order_by('item_name').annotate(
             item_comments_num=Count(
                 "item_comments", filter=Q(item_comments__approved=1)
-            )
+            )).annotate(
+            like=Count("item_likes"),
+            dislike=Count("item_dislikes"),
+            item_likes_num=ExpressionWrapper(
+                F('like') - F('dislike'),
+                output_field=fields.IntegerField()
+                )
         )
             selected_category = 'All Products'
         else:
