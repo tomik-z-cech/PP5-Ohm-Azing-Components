@@ -1,0 +1,44 @@
+.folder {
+    width: 11rem;
+    height: 11rem;
+    display: inline-block;
+    margin: auto;
+    position: relative;
+    background-color: var(--dark-background);
+    border-radius: 0 3px 3px 3px;
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+}
+
+.folder:before {
+    content: '';
+    width: 40%;
+    height: 1em;
+    border-radius: 20px 20px 0 0;
+    background-color: var(--dark-background);
+    position: absolute;
+    top: -1em;
+    left: 0px;
+}
+
+.category-preview {
+    width: 60%;
+    border: 2px solid var(--dark-foreground);
+}
+
+.category-container {
+    scale: 1;
+    transition: scale 0.5s ease-in-out;
+}
+
+.category-container:hover {
+    scale: 1.1;
+}
+
+.category-heading {
+    color: var(--light-foreground);
+}
+
+.search-result-link {
+    text-decoration: none;
+}

@@ -2,9 +2,10 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib import messages
+from django.db.models import Q
 from owner.models import PostageSettings, Newsletter
 from owner.forms import NewsletterForm
-from items.models import Item
+from items.models import Item, Category
 
 
 class LandingPageView(generic.ListView):
@@ -65,12 +66,17 @@ class SearchView(generic.ListView):
     template_name = "landing/search_results.html"
 
     def post(self, request, *args, **kwargs):
-        search_term = request.POST.get('search-query')
-        print(search_term)
+        search_term = request.POST.get('search-query','')
+        if search_term:
+                categories_results = Category.objects.filter(category_name__icontains=search_term)
+                items_results = Item.objects.filter(Q(item_name__icontains=search_term) | Q(item_description__icontains=search_term))
         return render(
             request,
             self.template_name,
             {
                 "search_term": search_term,
+                "categories_results": categories_results,
+                "items_results": items_results,
+                "total_results": len(items_results) + len(categories_results)
             },
         )

@@ -4,8 +4,82 @@
 
 {% block nav_name %}Search results{% endblock %}
 
+{% block extra_css %} 
+        <link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+
 {% block content%}
     <div class="container wrapper">
-        {{ search_term }}
+        <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
+            <h1>
+                Search Results
+            </h1>
+        </div>
+        <div class="col-12 heading add-shadow p-3">
+            {% if total_results == 0 %}
+            <h2 class="w-100 text-center">
+                Uh - oh 
+            </h2>
+            <p class="w-100 text-center">
+                No components found matching your query {{ search_term }}. Give it another go or explore our catalog for electrifying options !
+            </p>
+            <div class="w-100 d-flex justify-content-center">
+                <a href="{% url 'shop' category_pk=0 %}" class="custom-button button-shadow mt-3" aria-label="Shop Now">Visit the Shop</a>
+            </div>
+            {% else %}
+                <p class="w-100 text-center">
+                    {% if total_results > 1 %}
+                    We found {{ total_results }} results for your query {{ search_term }}.
+                    {% else %}
+                    We found {{ total_results }} result for your query {{ search_term }}.
+                    {% endif %}
+                </p>
+                {% if categories_results|length > 0 %}
+                    <hr>
+                    <h2 class="w-100 text-center mb-5">
+                        {% if categories_results|length > 1 %}
+                            Results
+                        {% else %}
+                            Result
+                        {% endif %}
+                        in Categories
+                    </h2>
+                    {% for category in categories_results %}
+                        {% if forloop.first or forloop.counter == 4 or forloop.counter|add:"-1"|divisibleby:3 %}
+                        <div class="row">
+                        {% endif %}
+                        <div class="col-12 col-xl-4 text-center">
+                            <a href="{% url 'shop' category_pk=category.pk %}" aria-label="{{ category.category_name }}" class="search-result-link">
+                                <div class="folder d-flex justify-content-center align-items-center flex-column category-container">
+                                    <h3 class="category-heading">
+                                        {{ category.category_name }}
+                                    </h3>
+                                    {% if category.category_image == '' or category.category_image == 'False' %}
+                                        <img src="{% static 'images/no_image.png' %}" alt="{{ category.category_name }} preview" class="category-preview">
+                                    {% else %}
+                                        <img src="{{ category.category_image.url }}" alt="{{ category.category_name }} preview" class="category-preview">
+                                    {% endif %}
+                                </div>
+                            </a>
+                        </div>
+                        {% if forloop.counter|divisibleby:3 or forloop.last %}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if items_results|length > 0 %}
+                    <hr>
+                    <h2 class="w-100 text-center">
+                        {% if items_results|length > 1 %}
+                            Results
+                        {% else %}
+                            Result
+                        {% endif %}
+                        in Items
+                    </h2>
+                {% endif %}
+                <hr>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

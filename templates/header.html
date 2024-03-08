@@ -13,9 +13,9 @@
     </div>
     <div class="col-12 col-lg-6 header-height">
       <nav class="navbar d-flex align-items-center h-100 w-100">
-        <form class="form-inline d-flex flex-row w-100" action="search" method="POST">
+        <form class="form-inline d-flex flex-row w-100" action="{% url 'search' %}" method="POST">
           {% csrf_token %}
-          <input class="form-control mr-sm-2 me-5 shadow-none" type="text" placeholder="Search in categories and products" aria-label="Search" name="search-query" required>
+          <input class="form-control mr-sm-2 me-5 shadow-none" type="text" placeholder="Search in categories and items" aria-label="Search" name="search-query" required>
           <button class="custom-button button-shadow my-2 my-sm-0" type="submit" id="search-button">
             <i class="bi bi-search"></i>
           </button>
