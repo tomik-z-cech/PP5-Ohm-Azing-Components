@@ -65,6 +65,26 @@
                                 {% endif %}
                             </a>
                         </form>
+                        <span class="like-link-container">
+                            <a href="{% url 'item-like' item_pk=item.pk %}" class="ms-3 like-link">
+                                {% if liked %}
+                                    <i class="bi bi-hand-thumbs-up-fill"></i>
+                                    Liked
+                                {% else %}
+                                    <i class="bi bi-hand-thumbs-up"></i>
+                                    Like
+                                {% endif %}
+                            </a>
+                            <a href="{% url 'item-dislike' item_pk=item.pk %}" class="ms-3 like-link">
+                                {% if disliked %}
+                                    <i class="bi bi-hand-thumbs-down-fill"></i>
+                                    Disliked
+                                {% else %}
+                                    <i class="bi bi-hand-thumbs-down"></i>
+                                    Dislike
+                                {% endif %}
+                            </a>
+                        </span>
                         {% endif %}
                     </div>
                     <p>

@@ -265,3 +265,18 @@
 .wishlist-link:hover {
     color: var(--light-highlight);
 }
+
+.like-link {
+    text-decoration: none;
+    color: var(--light-foreground);
+    transition: color 0.5s ease-in-out;
+}
+
+.like-link:hover {
+    color: var(--light-highlight);
+}
+
+.like-link-container {
+    position: relative;
+    right: 0px;
+}

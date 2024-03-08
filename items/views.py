@@ -1,9 +1,10 @@
 # Imports
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.db.models import Count, Q
 from django.core.paginator import Paginator
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from items.models import Category, Item, ItemComments
 from items.forms import ItemCommentForm
 
@@ -92,6 +93,8 @@ class ItemDetailView(generic.ListView):
     template_name = "items/item_detail.html"
     
     def get(self, request, item_pk, *args, **kwargs):
+        liked = False
+        disliked = False
         item_comment_form = ItemCommentForm()
         item_to_view = get_object_or_404(Item.objects.annotate(
             item_comments_num=Count("item_comments", filter=Q(item_comments__approved=1))
@@ -109,6 +112,10 @@ class ItemDetailView(generic.ListView):
                 in_wishlist = False
         else:
             in_wishlist = False
+        if item_to_view.item_likes.filter(id=self.request.user.id).exists():
+            liked = True
+        if item_to_view.item_dislikes.filter(id=self.request.user.id).exists():
+            disliked = True
         # Render template
         return render(
             request,
@@ -119,6 +126,8 @@ class ItemDetailView(generic.ListView):
                 "can_comment": True,
                 "item_comment_form": item_comment_form,
                 "in_wishlist": in_wishlist,
+                "liked": liked,
+                "disliked": disliked,
             },
         )
 
@@ -157,3 +166,32 @@ class ItemDetailView(generic.ListView):
             }
         )
     
+    
+class ItemLikeView(LoginRequiredMixin, generic.ListView):
+
+    def get(self, request, item_pk, *args, **kwargs):
+        selected_item = get_object_or_404(Item, pk=item_pk)
+        if not selected_item.item_likes.filter(id=request.user.id).exists():
+            selected_item.item_likes.add(request.user)
+            if selected_item.item_dislikes.filter(id=request.user.id).exists():
+                selected_item.item_dislikes.remove(request.user)
+            messages.success(request, f"You like {selected_item.item_name} :)")
+        else:
+            selected_item.item_likes.remove(request.user)
+            messages.success(request, f"You don't like {selected_item.item_name} anymore :(")
+        return redirect('item-detail', item_pk=item_pk)
+    
+
+class ItemDislikeView(LoginRequiredMixin, generic.ListView):
+
+    def get(self, request, item_pk, *args, **kwargs):
+        selected_item = get_object_or_404(Item, pk=item_pk)
+        if not selected_item.item_dislikes.filter(id=request.user.id).exists():
+            selected_item.item_dislikes.add(request.user)
+            if selected_item.item_likes.filter(id=request.user.id).exists():
+                selected_item.item_likes.remove(request.user)
+            messages.success(request, f"You dislike {selected_item.item_name} :(")
+        else:
+            selected_item.item_dislikes.remove(request.user)
+            messages.success(request, f"You don't dislike {selected_item.item_name} anymore :)")
+        return redirect('item-detail', item_pk=item_pk)
