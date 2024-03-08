@@ -42,3 +42,48 @@
 .search-result-link {
     text-decoration: none;
 }
+
+.rounded-pill {
+    border: 1px solid var(--dark-foreground);
+    font-family: var(--main-font);
+}
+
+.out-of-stock {
+    background-color: var(--negative-background);
+}
+
+.in-stock {
+    background-color: var(--positive-background);
+}
+
+.item-heading {
+    color: var(--light-foreground);
+    font-size: 110%;
+}
+
+.item-folder {
+    width: 18rem;
+    height: 18rem;
+    display: inline-block;
+    margin: auto;
+    position: relative;
+    background-color: var(--dark-background);
+    border-radius: 0 3px 3px 3px;
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+}
+
+.item-folder:before {
+    content: '';
+    width: 40%;
+    height: 1em;
+    border-radius: 20px 20px 0 0;
+    background-color: var(--dark-background);
+    position: absolute;
+    top: -1em;
+    left: 0px;
+}
+
+.search-result-price {
+    color: var(--light-foreground);
+}

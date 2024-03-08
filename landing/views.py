@@ -64,6 +64,9 @@ class LandingPageView(generic.ListView):
 class SearchView(generic.ListView):
 
     template_name = "landing/search_results.html"
+    
+    def get(self, request, *args, **kwargs):
+        return redirect('home')
 
     def post(self, request, *args, **kwargs):
         search_term = request.POST.get('search-query','')
