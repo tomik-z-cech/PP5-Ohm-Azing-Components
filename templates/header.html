@@ -24,8 +24,8 @@
     </div>
     <div class="col-4 col-lg-1 d-flex justify-content-center header-height">
       {% if user.is_authenticated %}
-      <nav class="navbar">
-        <a class="nav-link header-link text-center" href="{% url 'show-wishlist' %}" aria-label="Wishlist">
+      <nav class="navbar p-0">
+        <a class="nav-link header-link text-center p-0" href="{% url 'show-wishlist' %}" aria-label="Wishlist">
           <i class="bi bi-star"></i>
           <br>
           <span class="hide-less-991px">
@@ -41,8 +41,8 @@
       {% endif %}
     </div>
     <div class="col-4 col-lg-1  d-flex justify-content-center header-height">
-      <nav class="navbar">
-        <a class="nav-link header-link text-center" href="{% url 'vault' %}" aria-label="Vault">
+      <nav class="navbar p-0">
+        <a class="nav-link header-link text-center p-0" href="{% url 'vault' %}" aria-label="Vault">
           <i class="bi bi-safe"></i>
           <br>
           <span class="hide-less-991px">
@@ -61,9 +61,9 @@
       </nav>
     </div>
     <div class="col-4 col-lg-1 d-flex justify-content-center header-height">
-      <nav class="navbar navbar-expand d-flex justify-content-center">
+      <nav class="navbar navbar-expand d-flex justify-content-center p-0">
           <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-                <a class="nav-link header-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu">
+                <a class="nav-link header-link p-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu">
                   <i class="bi bi-person-circle"></i>
                   <br>
                   <span class="hide-less-991px">
