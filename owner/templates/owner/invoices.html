@@ -26,6 +26,9 @@
                     Date
                 </th>
                 <th>
+                    User
+                </th>
+                <th>
                     Number
                 </th>
                 <th>
@@ -41,6 +44,9 @@
                 <tr>
                     <td>
                         {{ invoice.date|date:"d.m.Y" }}
+                    </td>
+                    <td>
+                        {{ invoice.user }}
                     </td>
                     <td>
                         {{ invoice.order_number }}
