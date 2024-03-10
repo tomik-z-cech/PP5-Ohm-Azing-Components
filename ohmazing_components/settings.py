@@ -1,3 +1,4 @@
+# PEP8
 # Imports
 from pathlib import Path
 import os
@@ -42,14 +43,12 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    
-    # Other    
+    # Other
     "crispy_forms",
     "storages",
     "mathfilters",
     "ckeditor",
-    
-    # Apps    
+    # Apps
     "landing",
     "items",
     "owner",
@@ -218,18 +217,18 @@ if 'USE_AWS' in os.environ:
     # Override static and media URLs in production
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
-    
+
 
 # Django Countries settings - Frequent Countries
 FREQUENT_COUNTRIES = [
-'IE',
-'GB',
-]
+    'IE',
+    'GB',
+    ]
 COUNTRIES_FIRST = FREQUENT_COUNTRIES
 
 
 # Stripe
 STRIPE_CURRENCY = 'eur'
-STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY','')
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY','')
-STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET','')
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
+STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')

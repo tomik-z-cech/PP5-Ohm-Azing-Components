@@ -59,7 +59,7 @@ def add_to_vault(request, item_pk):
                 messages.error(
                     request,
                     f"The amount of {item_selected.item_name} you trying \
-                    to add to vault is higher than the stock amount.",
+                        to add to vault is higher than the stock amount.",
                 )
             # If sufficient amount of item in stock
             else:
