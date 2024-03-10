@@ -108,3 +108,30 @@ label[for="id_newsletter_email"] {
     text-decoration: none;
     font-family: var(--main-font);
 }
+
+/* ---------------------- MEDIA QUERIES ------------------------ */
+
+@media screen and (max-width: 1400px) {
+    .main-banner-message-text {
+        font-size: 100%;
+        margin-bottom: 0px;
+    }
+
+    .main-banner-message {
+        height: 55%;
+    }
+
+    .email-message {
+        height: 37%;
+        margin-top: 2%;
+    }
+
+    .carousel {
+        height: 24vh;
+        width: 24vh;
+    }
+
+    .carousel-caption {
+        width: 75%;
+    }
+}

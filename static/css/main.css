@@ -193,12 +193,6 @@ p, th {
     
 }
 
-@media screen and (max-width: 991px) {
-    .form-background {
-        width: 80%;
-    }
-}
-
 .form-background label {
     font-family: var(--main-font);
     width: 40%;
@@ -560,4 +554,16 @@ input[type="radio"] {
     border: 1px solid var(--dark-foreground)!important;
 }
 
+/* ---------------------- MEDIA QUERIES ------------------------ */
 
+@media screen and (max-width: 1400px) {
+    .short-button {
+        width: 40%!important;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .form-background {
+        width: 80%;
+    }
+}

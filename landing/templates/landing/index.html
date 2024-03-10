@@ -24,9 +24,9 @@
                     Empower Your Creations with Ohm-Azing Components - Where Innovation Meets Circuitry ! Unleash your imagination and illuminate your designs with quality electronic components. Join us at Ohm-Azing Components, where innovation resonates in every piece. Spark the future of electronics – your circuit dreams begin here !
                 </p>
                 <a href="{% url 'shop' category_pk=0 %}" class="custom-button button-shadow mt-3" aria-label="Shop Now">Shop Now</a>
-                <p class="free-shipping-message mt-4">
+                <span class="free-shipping-message mt-lg-2 mt-4">
                     Enjoy free shipping on orders over {{ free_postage|floatformat:0 }} €
-                </p>
+                </span>
             </div>
             <div class="email-message add-shadow p-3">
                 <p class="text-center main-banner-message-text">
@@ -49,10 +49,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-4">
+        <div class="col-12 col-lg-4 hide-less-991px">
             <div class="row">
                 <div class="col-12 side-banner d-flex justify-content-center align-items-center">
-                    <div class="p-3 side-banner-message add-shadow">
+                    <div class="p-lg-1 p-3 side-banner-message add-shadow">
                         {% if favourites|length == 0 %}
                             <div class="w-100 h-100 d-flex align-items-center justify-content-center">
                                 <p class="main-banner-message-text text-center">
@@ -86,7 +86,10 @@
                                             <div class="carousel-caption">
                                                 <a href="{% url 'item-detail' item_pk=favourite.pk %}" aria-label="favourite.item_name">
                                                     <span class="news-carousel-heading">
-                                                        {{ favourite.item_name }}
+                                                        {{ favourite.item_name|slice:":20" }}
+                                                        {% if favourite.item_name|length > 20 %}
+                                                        ...
+                                                        {% endif %}
                                                         <br>
                                                         {{ favourite.price_per_unit }} €
                                                     </span>
@@ -103,7 +106,10 @@
                                             <div class="carousel-caption d-md-block add-shadow px-1">
                                                 <a href="{% url 'item-detail' item_pk=favourite.pk %}" aria-label="favourite.item_name">
                                                     <span class="news-carousel-heading">
-                                                        {{ favourite.item_name }}
+                                                        {{ favourite.item_name|slice:":20" }}
+                                                        {% if favourite.item_name|length > 20 %}
+                                                        ...
+                                                        {% endif %}
                                                         <br>
                                                         {{ favourite.price_per_unit }} €
                                                     </span>
@@ -121,7 +127,7 @@
             </div>
             <div class="row">
                 <div class="col-12 side-banner d-flex justify-content-center align-items-center">
-                    <div class="p-3 side-banner-message add-shadow">
+                    <div class="p-lg-1 p-3  side-banner-message add-shadow">
                         {% if new_arrivals|length == 0 %}
                         <div class="w-100 h-100 d-flex align-items-center justify-content-center">
                             <p class="main-banner-message-text text-center">
@@ -155,7 +161,10 @@
                                             <div class="carousel-caption">
                                                 <a href="{% url 'item-detail' item_pk=arrival.pk %}" aria-label="arrival.item_name">
                                                     <span class="news-carousel-heading">
-                                                        {{ arrival.item_name }}
+                                                        {{ arrival.item_name|slice:":20" }}
+                                                        {% if arrival.item_name|length > 20 %}
+                                                        ...
+                                                        {% endif %}
                                                         <br>
                                                         {{ arrival.price_per_unit }} €
                                                     </span>
@@ -172,7 +181,10 @@
                                             <div class="carousel-caption d-md-block add-shadow px-1">
                                                 <a href="{% url 'item-detail' item_pk=arrival.pk %}" aria-label="arrival.item_name">
                                                     <span class="news-carousel-heading">
-                                                        {{ arrival.item_name }}
+                                                        {{ arrival.item_name|slice:":20" }}
+                                                        {% if arrival.item_name|length > 20 %}
+                                                        ...
+                                                        {% endif %}
                                                         <br>
                                                         {{ arrival.price_per_unit }} €
                                                     </span>

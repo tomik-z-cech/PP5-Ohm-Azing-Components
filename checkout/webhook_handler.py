@@ -278,7 +278,7 @@ class StripeWH_Handler:
                 pdf.drawString(470, y_anchor, f"{round(vat, 2)} €")
                 y_anchor -= 18
                 pdf.setFont("Helvetica-Bold", 10)
-                pdf.drawString(290, y_anchor, "Subtotal(including VAT) :")
+                pdf.drawString(290, y_anchor, "Subtotal (including VAT) :")
                 pdf.setFont("Helvetica", 10)
                 pdf.drawString(470, y_anchor, f"{round(subtotal, 2)} €")
                 y_anchor -= 18
@@ -324,7 +324,7 @@ class StripeWH_Handler:
                 expected_2 = now + timedelta(days=5)
             # Generate HTML message from context
             html_message = render_to_string(
-                "emails/n_o_template.html",
+                "emails/new_order_template.html",
                 {
                     "user": intent.metadata.username,
                     "order_number": n_o.order_number,

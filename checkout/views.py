@@ -523,7 +523,7 @@ class CheckoutView(generic.ListView):
                         expected_2 = now + timedelta(days=5)
                     # HTML message
                     html_message = render_to_string(
-                        "emails/n_o_template.html",
+                        "emails/new_order_template.html",
                         {
                             "user": request.user.username,
                             "order_number": n_o.order_number,
