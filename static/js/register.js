@@ -60,7 +60,7 @@ $(document).ready(function () {
                 // Make condition not highlighted and unset checker
                 $(".form-background ul li:nth-child(2)").css("color", "var(--light-foreground)");
                 passOK1 = false;
-            };
+            }
             // If password contains at least one letter
             if (/[a-zA-Z]/.test($("#id_password1").val())) {
                 // Highlight condition passed and set checker
@@ -70,7 +70,7 @@ $(document).ready(function () {
                 // Make condition not highlighted and unset checker
                 $(".form-background ul li:nth-child(4)").css("color", "var(--light-foreground)");
                 passOK2 = false;
-            };
+            }
             // If username not included in password
             if ($("#id_password1").val().toLowerCase().includes($("#id_username").val().toLowerCase()) && $("#id_username").val().length > 0 ) {
                 // Make condition not highlighted and unset checker
@@ -80,7 +80,7 @@ $(document).ready(function () {
                 // Highlight condition passed and set checker
                 $(".form-background ul li:nth-child(1)").css("color", "var(--light-highlight)");
                 passOK3 = true;
-            };
+            }
             // If passsword not included in common passwords above
             if (tooCommonPass.includes($("#id_password1").val().toLowerCase())) {
                 // Make condition not highlighted and unset checker
@@ -90,8 +90,8 @@ $(document).ready(function () {
                 // Highlight condition passed and set checker
                 $(".form-background ul li:nth-child(3)").css("color", "var(--light-highlight)");
                 passOK4 = true;
-            };
-        };
+            }
+        }
         // All 4 conditions are true and other fields are not empty
         if (passOK1 == true && passOK1 == true && passOK1 == true && passOK1 == true && $("#id_username").val().length > 0 && $("#id_email").val().length > 0 && $("#id_email2").val().length > 0 && $("#id_password2").val().length > 0 && $("#id_password2").val() == $("#id_password1").val()){
             // Show register buttton
@@ -99,6 +99,6 @@ $(document).ready(function () {
         } else {
             // Hide regisater button
             $(".register-submit-item").css("opacity", "0").css("pointer-events", "none");
-        };
+        }
     });
 });

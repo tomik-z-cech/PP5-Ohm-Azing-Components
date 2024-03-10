@@ -32,7 +32,6 @@ $(document).ready(function() {
         // Check if the pressed key is Enter (key code 13)
         if (event.which === 13) {
             // act as submit payment button clicked
-            console.log('enter')
             $('#submit-payment').click();
         }
     });
@@ -60,10 +59,7 @@ $(document).ready(function() {
         // disable card panel
         card.update({ 'disabled': true});
         // if any required fields are empty or in incorrect format 
-        if ($('#id_first_name').val() === '' || $('#id_last_name').val() === '' || $('#id_phone_number').val() === '' 
-        || !/^\d+$/.test($('#id_phone_number').val()) || $('#id_email_order').val() === '' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('#id_email_order').val())
-        || $('#id_address_1').val() === '' || $('#id_city').val() === '' || $('#id_county').val() === '' || $('#id_post_code').val() === ''
-        || $('#id_address_1').val() === '') {
+        if ($('#id_first_name').val() === '' || $('#id_last_name').val() === '' || $('#id_phone_number').val() === '' || !/^\d+$/.test($('#id_phone_number').val()) || $('#id_email_order').val() === '' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('#id_email_order').val()) || $('#id_address_1').val() === '' || $('#id_city').val() === '' || $('#id_county').val() === '' || $('#id_post_code').val() === '' || $('#id_address_1').val() === '') {
             // if first name field empty
             if ($('#id_first_name').val() === '') {
                 // highlight the incorrect field
@@ -76,7 +72,7 @@ $(document).ready(function() {
                 setTimeout(function() {
                     $('#id_first_name').removeAttr('style');
                 }, 3000);
-            };
+            }
             // if last name field empty
             if ($('#id_last_name').val() === '') {
                 // highlight the incorrect field
@@ -89,7 +85,7 @@ $(document).ready(function() {
                 setTimeout(function() {
                     $('#id_last_name').removeAttr('style');
                 }, 3000);
-            };
+            }
             // if phone number field empty or doesn't contain only numbers
             if ($('#id_phone_number').val() === '' || !/^\d+$/.test($('#id_phone_number').val())) {
                 // highlight the incorrect field
@@ -102,7 +98,7 @@ $(document).ready(function() {
                 setTimeout(function() {
                     $('#id_phone_number').removeAttr('style');
                 }, 3000);
-            };
+            }
             // if email field empty or contains incorrect email address format
             if ($('#id_email_order').val() === '' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('#id_email_order').val())){
                 // highlight the incorrect field
@@ -115,7 +111,7 @@ $(document).ready(function() {
                 setTimeout(function() {
                     $('#id_email_order').removeAttr('style');
                 }, 3000);
-            };
+            }
             // if first line of address field empty
             if ($('#id_address_1').val() === '') {
                 // highlight the incorrect field
@@ -128,7 +124,7 @@ $(document).ready(function() {
                 setTimeout(function() {
                     $('#id_address_1').removeAttr('style');
                 }, 3000);
-            };
+            }
             // if city field empty
             if ($('#id_city').val() === '') {
                 // highlight the incorrect field
@@ -141,7 +137,7 @@ $(document).ready(function() {
                 setTimeout(function() {
                     $('#id_city').removeAttr('style');
                 }, 3000);
-            };
+            }
             // if county field empty
             if ($('#id_county').val() === '') {
                 // highlight the incorrect field
@@ -154,7 +150,7 @@ $(document).ready(function() {
                 setTimeout(function() {
                     $('#id_county').removeAttr('style');
                 }, 3000);
-            };
+            }
             // if post code field empty
             if ($('#id_post_code').val() === '') {
                 // highlight the incorrect field
@@ -167,7 +163,7 @@ $(document).ready(function() {
                 setTimeout(function() {
                     $('#id_post_code').removeAttr('style');
                 }, 3000);
-            };
+            }
             // if country field empty
             if ($('#id_country').val() === '') {
                 // highlight the incorrect field
@@ -180,7 +176,7 @@ $(document).ready(function() {
                 setTimeout(function() {
                     $('#id_country').removeAttr('style');
                 }, 3000);
-            };
+            }
         } else {
         // All field filled in correctly
             // Display loader
@@ -232,7 +228,6 @@ $(document).ready(function() {
                     },
                 // then return result
                 }).then(function(result) {
-                    console.log('error')
                     // Error result
                     if (result.error) {
                         // Display error message
@@ -263,6 +258,6 @@ $(document).ready(function() {
                 // reload the page
                 location.reload();
             });
-        };
+        }
     });
 });

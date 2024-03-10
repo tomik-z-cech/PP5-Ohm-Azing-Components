@@ -5,10 +5,10 @@ $(document).ready(function() {
     window.scrollTo(0, savedYPosition);
     // Free delivery text adjustment
     if (standardDelivery == 0 ){
-        standardDelivery = 'FREE'
+        standardDelivery = 'FREE';
     } else {
-        standardDelivery = standardDelivery.toFixed(2) + ' €'
-    };
+        standardDelivery = standardDelivery.toFixed(2) + ' €';
+    }
     // Adjust content of delivery label 0
     $('label[for="id_delivery_option_0"]').html(`<strong>Standard Delivery</strong> - ${standardDelivery} - <span class="lower-delivery">( 3 to 5 working days )</span>`);
     // Adjust content of delivery label 1

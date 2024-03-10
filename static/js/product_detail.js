@@ -4,20 +4,20 @@ $(document).ready(function() {
     // if empty assign value 1
     if (inputField.val() == '') {
         inputField.val(1);
-    };
+    }
     // if plus clicked
     $('.plus').click(function() {
         // quantity ++ max stockAmount
         if (parseInt(inputField.val()) < stockAmount ){
             inputField.val(parseInt(inputField.val(), 10) + 1);
-        };
+        }
     });
     // if minus clicked
     $('.minus').click(function() {
         // quantity -- min 0 
         if (parseInt(inputField.val()) > 1 ){
             inputField.val(parseInt(inputField.val(), 10) - 1);
-        };
+        }
     });
     // If second image hovered
     $('#img2').hover(function() {

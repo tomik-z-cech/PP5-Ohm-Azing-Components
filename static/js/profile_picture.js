@@ -23,6 +23,6 @@ $(document).ready(function() {
                 $("#profile-picture-preview").attr("src", e.target.result);
             };
             reader.readAsDataURL(file);
-        };
+        }
     });
 });
