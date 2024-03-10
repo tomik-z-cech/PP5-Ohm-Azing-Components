@@ -1,3 +1,6 @@
+# PEP8
+
+
 def wishlist_content(request):
     """
     Method returns amount of items in wishlist
