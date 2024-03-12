@@ -29,7 +29,7 @@
         <a class="nav-link header-link text-center p-0" href="{% url 'show-wishlist' %}" aria-label="Wishlist">
           <i class="bi bi-star"></i>
           <br>
-          <span class="hide-less-991px">
+          <span>
             Wishlist
           </span>
           <!-- If items in wishlist, display bubble -->
@@ -47,7 +47,7 @@
         <a class="nav-link header-link text-center p-0" href="{% url 'vault' %}" aria-label="Vault">
           <i class="bi bi-safe"></i>
           <br>
-          <span class="hide-less-991px">
+          <span>
             {% if subtotal > 0 %}
               {{ subtotal|floatformat:2 }} €
             {% else %}
@@ -70,7 +70,7 @@
                 <a class="nav-link header-link p-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu">
                   <i class="bi bi-person-circle"></i>
                   <br>
-                  <span class="hide-less-991px">
+                  <span>
                     Menu
                   </span>
                 </a>

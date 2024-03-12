@@ -99,7 +99,9 @@ p, th {
 .w-20 {
     width: 20%;
 }
-
+.show-less-768px {
+    display: none;
+}
 @media screen and (max-width: 991px) {
     .hide-less-991px {
         display: none;
@@ -109,6 +111,9 @@ p, th {
 @media screen and (max-width: 768px) {
     .hide-less-768px {
         display: none;
+    }
+    .show-less-768px {
+        display: block;
     }
 }
 
