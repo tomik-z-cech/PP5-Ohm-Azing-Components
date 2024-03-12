@@ -23,6 +23,7 @@
       </nav>
     </div>
     <div class="col-4 col-lg-1 d-flex justify-content-center header-height">
+      <!-- If user loged in, display wishlist option -->
       {% if user.is_authenticated %}
       <nav class="navbar p-0">
         <a class="nav-link header-link text-center p-0" href="{% url 'show-wishlist' %}" aria-label="Wishlist">
@@ -31,6 +32,7 @@
           <span class="hide-less-991px">
             Wishlist
           </span>
+          <!-- If items in wishlist, display bubble -->
           {% if items_in_wishlist != 0 %}
             <div class="header-bubble d-flex justify-content-center align-items-center">
               {{ items_in_wishlist }}
@@ -52,6 +54,7 @@
               0.00 €
             {% endif %}
           </span>
+          <!-- If any items in vault, display bubble -->
           {% if items_in_vault != 0 %}
             <div class="header-bubble d-flex justify-content-center align-items-center">
               {{ items_in_vault }}
@@ -60,6 +63,7 @@
         </a>
       </nav>
     </div>
+    <!-- Menu -->
     <div class="col-4 col-lg-1 d-flex justify-content-center header-height">
       <nav class="navbar navbar-expand d-flex justify-content-center p-0">
           <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
@@ -78,6 +82,7 @@
                       Visit Shop
                     </a>
                   </li>
+                  <!-- If user loged in, display loged in user options -->
                   {% if user.is_authenticated %}
                     <li>
                       <a class="dropdown-item" href="{% url 'order-history' %}" aria-label="Logout">
@@ -93,6 +98,7 @@
                         My Details
                       </a>
                     </li>
+                    <!-- If user is a superuser, display admin tools option -->
                     {% if user.is_superuser %}
                     <li>
                       <a class="dropdown-item" href="{% url 'owner' %}" aria-label="Admin Tools">
@@ -111,6 +117,7 @@
                         Logout
                       </a>
                     </li>
+                  <!-- User not loged in, display login and register options -->
                   {% else %}
                     <li>
                       <a class="dropdown-item" href="{% url 'account_signup' %}" aria-label="Register">

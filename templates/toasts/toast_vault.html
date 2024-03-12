@@ -1,3 +1,4 @@
+<!-- Vault toast template - danger level toast devoted to Vault -->
 {% load static %}
 
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000">
@@ -10,8 +11,10 @@
         <button type="button" class="btn-close shadow-none" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body">
+        <!-- If any items present in vault -->
         {% if vault_content|length > 0 %}
             <div class="text-center w-100 vault-toast-postage">
+                <!-- Free postage message -->
                 {% if free_postage_left > 0 %}
                     Spend
                     <strong>
@@ -33,15 +36,18 @@
                 {% endif %}
             </div>
         {% endif %}
+        <!-- Actual toast message -->
         <div class="w-100 d-flex justify-content-center align-items-center pt-3">
             <span class="text-center">
                 {{ message }}
             </span>
         </div>
+        <!-- If nothing in vault, display message -->
         {% if vault_content|length == 0 %}
             <div class="heading w-100 p-3 text-center">
                 You have nothing in your Vault .
             </div>
+        <!-- If items in vault, display each item -->
         {% else %}
             {% for row in vault_content %}
             <div class="heading w-100 d-flex flex-row p-1">

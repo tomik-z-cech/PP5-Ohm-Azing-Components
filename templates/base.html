@@ -97,9 +97,13 @@
             <!-- Toasts JS logic -->
             <script type="text/javascript">
                 $(document).ready(function() {
+                    // if any toasts exist
                     if ($('.toast').length > 0) {
+                        // clear all previous tosts
                         $('.toast:not(:first-child)').remove();
+                        // set new toast
                         let newToast = new bootstrap.Toast($('.toast'));
+                        // display new toast
                         newToast.show();
                     };
                 });
