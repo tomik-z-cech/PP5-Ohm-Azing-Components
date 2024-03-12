@@ -14,8 +14,10 @@
             Vault
         </h1>
     </div>
+    <!-- If vault contain any items -->
     {% if vault_content|length > 0 %}
         <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
+            <!-- Free shipping message -->
             {% if free_postage_left > 0 %}
                 Power up your Vault with just
                 &nbsp;
@@ -47,6 +49,7 @@
     {% endif %}
     <div class="col-12 heading add-shadow">
         <div class="row p-3">
+            <!-- Display message if nothing in vault -->
             {% if vault_content|length == 0 %}
                 <div class="w-100 text-center no-items-wishlist">
                     You have nothing in your Vault yet, why not to visit our shop ?
@@ -54,6 +57,7 @@
                 <div class="w-100 d-flex justify-content-center">
                     <a href="{% url 'shop' category_pk=0 %}" class="custom-button button-shadow mt-3" aria-label="Shop Now">Visit the Shop</a>
                 </div>
+            <!-- Display details of vault -->
             {% else %}
                 <hr>
                 {% for row in vault_content %}
@@ -74,6 +78,7 @@
                             </a>
                         </strong>
                         <div class="w-75 d-flex justify-content-around mt-2">
+                            <!-- Stock pill -->
                             <span>
                                 {{ row.6 }} €
                             </span>
@@ -83,6 +88,7 @@
                                 <span class="badge rounded-pill out-of-stock">Out Of Stock</span>
                             {% endif %}
                         </div>
+                        <!-- If sizes and values within the item -->
                         {% if row.1 != 1 and row.2 != 0 %}
                         <div class="w-75 d-flex justify-content-around mt-2">
                             {% if row.1 != 1 %}
@@ -109,6 +115,7 @@
                         {% endif %}
                     </div>
                     <div class="col-2 d-flex align-items-center">
+                        <!-- Adjust quantity form -->
                         <span class="product-detail-input w-100">
                             <form method="post" id="item-{{ forloop.counter0 }}">
                                 {% csrf_token %}
@@ -140,6 +147,7 @@
                     <hr class="mt-3">
                 </div>
                 {% endfor %}
+                <!-- Vault total -->
                 <div class="mb-3 d-flex justify-content-end align-items-center w-100">
                     <span class="me-5 vault-total">
                         <strong>
@@ -150,6 +158,7 @@
                     </span>
                 </div>
                 <hr>
+                <!-- Vault actions -->
                 <div class="d-flex justify-content-around align-items-center w-100">
                     <a href="#" class="custom-button button-shadow" aria-label="Clear Vault" data-bs-toggle="modal" data-bs-target="#clearVaultModal">
                         <i class="bi bi-trash3"></i>
@@ -166,7 +175,7 @@
         </div>
     </div>
 </div>
-<!-- Modal -->
+<!-- Clear Vault Modal -->
 <div class="modal fade" id="clearVaultModal" tabindex="-1" aria-labelledby="clearVaultModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -191,6 +200,7 @@
     <script src="{% static 'js/vault.js' %}" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            // if clear button or remove button are pressed, display loader
             $('#clearButton, .deleteButton').click(function(){
                 $('.modal').hide();
                 $('#loader-container').css("display", "flex");
