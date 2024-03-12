@@ -44,6 +44,18 @@
                             Follow us on Facebook !
                         </span>
                     </a>
+                    <br>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">
+                        Terms &#38; Conditions
+                    </a>
+                    <span class="white-text">
+                        &nbsp;
+                        -
+                        &nbsp;
+                    </span>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">
+                        Privacy Policy
+                    </a>
                 </p>
             </div>
             <div class="col-4">
@@ -81,3 +93,37 @@
         </div>
     </div>
 </footer>
+<!-- T&C Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog w-75">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="termsModalLabel">Terms &#38; Conditions</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                {% include 'terms.html' %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="custom-button button-shadow" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Privacy Modal -->
+<div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+    <div class="modal-dialog w-75">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="privacyModalLabel">Privacy Policy</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                {% include 'privacy.html' %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="custom-button button-shadow" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

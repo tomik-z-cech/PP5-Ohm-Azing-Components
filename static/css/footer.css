@@ -31,6 +31,10 @@ footer hr {
     border: 1px solid var(--light-foreground);
 }
 
+.white-text {
+    color: var(--light-foreground);
+}
+
 @media screen and (max-width: 768px) {
 
     footer {
