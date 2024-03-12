@@ -13,7 +13,7 @@
 }
 
 #items-container {
-    height: 73vh;
+    min-height: 73vh;
 }
 
 #no-categories {

@@ -571,4 +571,8 @@ input[type="radio"] {
     .form-background {
         width: 80%;
     }
+    .loader {
+        width: 20vw;
+        height: 20vw;
+    }
 }
