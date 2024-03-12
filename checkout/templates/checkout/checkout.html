@@ -1,3 +1,4 @@
+<!-- Commented -->
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
@@ -24,6 +25,7 @@
     <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
         <form method="post" enctype="multipart/form-data" id="form" class="w-100">
             {% csrf_token %}
+            <!-- Payment accordion -->
             <div class="accordion" id="accordionPanelsStay-headingOne">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -33,6 +35,7 @@
                     </h2>
                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse show" aria-labelledby="panelsStayOpen-headingOne">
                         <div class="accordion-body">
+                            <!-- Customer details -->
                             {{ order_form.first_name|as_crispy_field }}
                             {{ order_form.last_name|as_crispy_field }}
                             {{ order_form.phone_number|as_crispy_field }}
@@ -44,6 +47,7 @@
                             {{ order_form.post_code|as_crispy_field }}
                             {{ order_form.country|as_crispy_field }}
                         </div>
+                        <!-- Display save function if user loged in -->
                         {% if user.is_authenticated %}
                         <div class="w-100 d-flex justify-content-end p-4 form-check">
                             <input type="checkbox" id="save-details" name="save-details" checked class="me-3 form-check-input shadow-none">
@@ -55,6 +59,7 @@
                     </div>
                 </div>
                 <div class="accordion-item">
+                    <!-- Delivery options -->
                     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                         <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
                         Delivery Options
@@ -68,6 +73,7 @@
                     </div>
                 </div>
                 <div class="accordion-item">
+                    <!-- Vouchers -->
                     <h2 class="accordion-header" id="panelsStayOpen-headingThree">
                         <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                         Redeem Vouchers
@@ -75,6 +81,7 @@
                     </h2>
                     <div id="panelsStayOpen-collapseThree" class="accordion-collapse show" aria-labelledby="panelsStayOpen-headingThree">
                         <div class="accordion-body d-flex justify-content-center">
+                            <!-- Voucher not in use -->
                             {% if not current_voucher.0 %}
                                 <div class="w-50 text-center">
                                     <span class="w-50">
@@ -87,7 +94,8 @@
                                         </button>
                                     </span>
                                 </div>
-                            {% else %}
+                                <!-- Voucher in use -->
+                                {% else %}
                                 <div class="d-flex flex-column">
                                     <div>
                                         <span class="mx-5">
@@ -122,6 +130,7 @@
                     </div>
                 </div>
                 <div class="accordion-item">
+                    <!-- Payment -->
                     <h2 class="accordion-header" id="panelsStayOpen-headingFour">
                         <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
                         Payment
@@ -148,6 +157,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Hidden flags -->
             <input type="hidden" name="payment-checker" id="payment-checker" value="false">
             <input type="hidden" value="{{ client_secret }}" name="client_secret">
         </form>
@@ -157,6 +167,7 @@
 {% block extra_js %}
     {{ block.super }}
     <script type="text/javascript">
+        // Delivery variables
         const subtotal = {{ subtotal}};
         const currentVoucher = '{{ current_voucher }}';
         let standardDelivery = {{ standard_delivery_cost|floatformat:2 }};
