@@ -25,7 +25,7 @@
                     Empower Your Creations with Ohm-Azing Components - Where Innovation Meets Circuitry ! Unleash your imagination and illuminate your designs with quality electronic components. Join us at Ohm-Azing Components, where innovation resonates in every piece. Spark the future of electronics – your circuit dreams begin here !
                 </p>
                 <a href="{% url 'shop' category_pk=0 %}" class="custom-button button-shadow mt-3" aria-label="Shop Now">Shop Now</a>
-                <span class="free-shipping-message mt-lg-2 mt-4">
+                <span class="text-center free-shipping-message mt-lg-2 mt-4">
                     Enjoy free shipping on orders over {{ free_postage|floatformat:0 }} €
                 </span>
             </div>
@@ -51,173 +51,169 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-4 hide-less-991px">
-            <div class="row">
-                <div class="col-12 side-banner d-flex justify-content-center align-items-center">
-                    <!-- Favourites side banner  -->
-                    <div class="p-lg-1 p-3 side-banner-message add-shadow">
-                        <!-- If no afvourites to display, show message  -->
-                        {% if favourites|length == 0 %}
-                            <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                                <p class="main-banner-message-text text-center">
-                                    Favourites
-                                    <br>
-                                    No products to show.
-                                </p>
-                            </div>
-                        <!-- If favourites exist, display them as carousel -->
-                        {% else %}
-                        <p class="text-center side-banner-heading">
-                            <strong>
-                                Favourites
-                            </strong>
-                        </p>
-                        <div class="w-100 text-center d-flex justify-content-center">
-                            <div id="carousel-favourites" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                </div>
-                                <div class="carousel-inner">
-                                {% for favourite in favourites %}
-                                    <!-- First item of carousel -->
-                                    {% if  forloop.counter == 1 %}
-                                        <div class="carousel-item active">
-                                            <!-- Display image 1 or default -->
-                                            {% if favourite.image_1 == '' or favourite.image_1 == 'False' %}
-                                                <img src="{% static 'images/no_image.png' %}" class="d-block w-100 carousel-picture" alt="{{ favourite.item_name }}">
-                                            {% else %}
-                                                <img src="{{ favourite.image_1.url }}" class="d-block w-100 carousel-picture" alt="{{ favourite.item_name }}">
-                                            {% endif %}
-                                            <div class="carousel-caption">
-                                                <a href="{% url 'item-detail' item_pk=favourite.pk %}" aria-label="favourite.item_name">
-                                                    <!-- Ensure title not too long -->
-                                                    <span class="news-carousel-heading">
-                                                        {{ favourite.item_name|slice:":20" }}
-                                                        {% if favourite.item_name|length > 20 %}
-                                                        ...
-                                                        {% endif %}
-                                                        <br>
-                                                        {{ favourite.price_per_unit }} €
-                                                    </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    <!-- Subsequent favourite items -->
-                                    {% else %}
-                                        <div class="carousel-item">
-                                            <!-- If image exists display, otherwise default -->
-                                            {% if favourite.image_1 == '' or favourite.image_1 == 'False' %}
-                                                <img src="{% static 'images/no_image.png' %}" class="d-block w-100 carousel-picture" alt="{{ favourite.item_name }}">
-                                            {% else %}
-                                                <img src="{{ favourite.image_1.url }}" class="d-block w-100 carousel-picture" alt="{{ favourite.item_name }}">
-                                            {% endif %}
-                                            <div class="carousel-caption d-md-block add-shadow px-1">
-                                                <a href="{% url 'item-detail' item_pk=favourite.pk %}" aria-label="favourite.item_name">
-                                                    <!-- Ensure text not too long -->
-                                                    <span class="news-carousel-heading">
-                                                        {{ favourite.item_name|slice:":20" }}
-                                                        {% if favourite.item_name|length > 20 %}
-                                                        ...
-                                                        {% endif %}
-                                                        <br>
-                                                        {{ favourite.price_per_unit }} €
-                                                    </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    {% endif %}
-                                {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 side-banner d-flex justify-content-center align-items-center">
-                    <!-- Container for displaying new arrivals -->
-                    <div class="p-lg-1 p-3  side-banner-message add-shadow">
-                        <!-- If arrivals dont exist display message -->
-                        {% if new_arrivals|length == 0 %}
+        <div class="col-12 col-lg-4 order-lg-last order-first d-flex justify-content-center align-items-center flex-column">
+            <div class="w-100 side-banner d-flex justify-content-center align-items-center">
+                <!-- Favourites side banner  -->
+                <div class="p-lg-1 p-3 side-banner-message add-shadow">
+                    <!-- If no afvourites to display, show message  -->
+                    {% if favourites|length == 0 %}
                         <div class="w-100 h-100 d-flex align-items-center justify-content-center">
                             <p class="main-banner-message-text text-center">
-                                New Arrivals
+                                Favourites
                                 <br>
                                 No products to show.
                             </p>
                         </div>
-                        <!-- If exist, display arrivals -->
-                        {% else %}
-                        <p class="text-center side-banner-heading">
-                            <strong>
-                                New Arrivals
-                            </strong>
-                        </p>
-                        <div class="w-100 text-center d-flex justify-content-center">
-                            <div id="carousel-new-arrivals" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                </div>
-                                <div class="carousel-inner">
-                                {% for arrival in new_arrivals %}
-                                    <!-- First item of arrivals -->
-                                    {% if  forloop.counter == 1 %}
-                                        <div class="carousel-item active">
-                                            <!-- If image exist display, otherwise default -->
-                                            {% if arrival.image_1 == '' or arrival.image_1 == 'False' %}
-                                                <img src="{% static 'images/no_image.png' %}" class="d-block w-100 carousel-picture" alt="{{ arrival.item_name }}">
-                                            {% else %}
-                                                <img src="{{ arrival.image_1.url }}" class="d-block w-100 carousel-picture" alt="{{ arrival.item_name }}">
-                                            {% endif %}
-                                            <div class="carousel-caption">
-                                                <a href="{% url 'item-detail' item_pk=arrival.pk %}" aria-label="arrival.item_name">
-                                                    <!-- Ensure text not too long -->
-                                                    <span class="news-carousel-heading">
-                                                        {{ arrival.item_name|slice:":20" }}
-                                                        {% if arrival.item_name|length > 20 %}
-                                                        ...
-                                                        {% endif %}
-                                                        <br>
-                                                        {{ arrival.price_per_unit }} €
-                                                    </span>
-                                                </a>
-                                            </div>
+                    <!-- If favourites exist, display them as carousel -->
+                    {% else %}
+                    <p class="text-center side-banner-heading">
+                        <strong>
+                            Favourites
+                        </strong>
+                    </p>
+                    <div class="w-100 text-center d-flex justify-content-center">
+                        <div id="carousel-favourites" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                            {% for favourite in favourites %}
+                                <!-- First item of carousel -->
+                                {% if  forloop.counter == 1 %}
+                                    <div class="carousel-item active">
+                                        <!-- Display image 1 or default -->
+                                        {% if favourite.image_1 == '' or favourite.image_1 == 'False' %}
+                                            <img src="{% static 'images/no_image.png' %}" class="d-block w-100 carousel-picture" alt="{{ favourite.item_name }}">
+                                        {% else %}
+                                            <img src="{{ favourite.image_1.url }}" class="d-block w-100 carousel-picture" alt="{{ favourite.item_name }}">
+                                        {% endif %}
+                                        <div class="carousel-caption">
+                                            <a href="{% url 'item-detail' item_pk=favourite.pk %}" aria-label="favourite.item_name">
+                                                <!-- Ensure title not too long -->
+                                                <span class="news-carousel-heading">
+                                                    {{ favourite.item_name|slice:":20" }}
+                                                    {% if favourite.item_name|length > 20 %}
+                                                    ...
+                                                    {% endif %}
+                                                    <br>
+                                                    {{ favourite.price_per_unit }} €
+                                                </span>
+                                            </a>
                                         </div>
-                                    <!-- Subsequent arrivals -->
-                                    {% else %}
-                                        <div class="carousel-item">
-                                            <!-- If image exists display, otherwise default -->
-                                            {% if 'default_heading_image' in news.heading_image.url %}
-                                                <img src="{% static 'images/default_news.png' %}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
-                                            {% else %}
-                                                <img src="{{ arrival.image_1.url }}" class="d-block w-100 carousel-picture" alt="{{ arrival.item_name }}">
-                                            {% endif %}
-                                            <div class="carousel-caption d-md-block add-shadow px-1">
-                                                <a href="{% url 'item-detail' item_pk=arrival.pk %}" aria-label="arrival.item_name">
-                                                    <!-- Ensure text not too long -->
-                                                    <span class="news-carousel-heading">
-                                                        {{ arrival.item_name|slice:":20" }}
-                                                        {% if arrival.item_name|length > 20 %}
-                                                        ...
-                                                        {% endif %}
-                                                        <br>
-                                                        {{ arrival.price_per_unit }} €
-                                                    </span>
-                                                </a>
-                                            </div>
+                                    </div>
+                                <!-- Subsequent favourite items -->
+                                {% else %}
+                                    <div class="carousel-item">
+                                        <!-- If image exists display, otherwise default -->
+                                        {% if favourite.image_1 == '' or favourite.image_1 == 'False' %}
+                                            <img src="{% static 'images/no_image.png' %}" class="d-block w-100 carousel-picture" alt="{{ favourite.item_name }}">
+                                        {% else %}
+                                            <img src="{{ favourite.image_1.url }}" class="d-block w-100 carousel-picture" alt="{{ favourite.item_name }}">
+                                        {% endif %}
+                                        <div class="carousel-caption d-md-block add-shadow px-1">
+                                            <a href="{% url 'item-detail' item_pk=favourite.pk %}" aria-label="favourite.item_name">
+                                                <!-- Ensure text not too long -->
+                                                <span class="news-carousel-heading">
+                                                    {{ favourite.item_name|slice:":20" }}
+                                                    {% if favourite.item_name|length > 20 %}
+                                                    ...
+                                                    {% endif %}
+                                                    <br>
+                                                    {{ favourite.price_per_unit }} €
+                                                </span>
+                                            </a>
                                         </div>
-                                    {% endif %}
-                                {% endfor %}
-                                </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                             </div>
                         </div>
-                        {% endif %}
                     </div>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Container for displaying new arrivals -->
+            <div class="w-100 side-banner d-flex justify-content-center align-items-center">
+                <div class="p-lg-1 p-3  side-banner-message add-shadow">
+                    <!-- If arrivals dont exist display message -->
+                    {% if new_arrivals|length == 0 %}
+                    <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+                        <p class="main-banner-message-text text-center">
+                            New Arrivals
+                            <br>
+                            No products to show.
+                        </p>
+                    </div>
+                    <!-- If exist, display arrivals -->
+                    {% else %}
+                    <p class="text-center side-banner-heading">
+                        <strong>
+                            New Arrivals
+                        </strong>
+                    </p>
+                    <div class="w-100 text-center d-flex justify-content-center">
+                        <div id="carousel-new-arrivals" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                            {% for arrival in new_arrivals %}
+                                <!-- First item of arrivals -->
+                                {% if  forloop.counter == 1 %}
+                                    <div class="carousel-item active">
+                                        <!-- If image exist display, otherwise default -->
+                                        {% if arrival.image_1 == '' or arrival.image_1 == 'False' %}
+                                            <img src="{% static 'images/no_image.png' %}" class="d-block w-100 carousel-picture" alt="{{ arrival.item_name }}">
+                                        {% else %}
+                                            <img src="{{ arrival.image_1.url }}" class="d-block w-100 carousel-picture" alt="{{ arrival.item_name }}">
+                                        {% endif %}
+                                        <div class="carousel-caption">
+                                            <a href="{% url 'item-detail' item_pk=arrival.pk %}" aria-label="arrival.item_name">
+                                                <!-- Ensure text not too long -->
+                                                <span class="news-carousel-heading">
+                                                    {{ arrival.item_name|slice:":20" }}
+                                                    {% if arrival.item_name|length > 20 %}
+                                                    ...
+                                                    {% endif %}
+                                                    <br>
+                                                    {{ arrival.price_per_unit }} €
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                <!-- Subsequent arrivals -->
+                                {% else %}
+                                    <div class="carousel-item">
+                                        <!-- If image exists display, otherwise default -->
+                                        {% if 'default_heading_image' in news.heading_image.url %}
+                                            <img src="{% static 'images/default_news.png' %}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
+                                        {% else %}
+                                            <img src="{{ arrival.image_1.url }}" class="d-block w-100 carousel-picture" alt="{{ arrival.item_name }}">
+                                        {% endif %}
+                                        <div class="carousel-caption d-md-block add-shadow px-1">
+                                            <a href="{% url 'item-detail' item_pk=arrival.pk %}" aria-label="arrival.item_name">
+                                                <!-- Ensure text not too long -->
+                                                <span class="news-carousel-heading">
+                                                    {{ arrival.item_name|slice:":20" }}
+                                                    {% if arrival.item_name|length > 20 %}
+                                                    ...
+                                                    {% endif %}
+                                                    <br>
+                                                    {{ arrival.price_per_unit }} €
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -132,6 +132,9 @@ header {
     .dropdown-menu {
         width: 65vw!important;
     }
+    .header-link {
+        font-size: 130%!important;
+    }
 }
 
 @media screen and (max-height: 500px) {

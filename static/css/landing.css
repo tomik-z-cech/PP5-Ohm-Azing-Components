@@ -1,7 +1,7 @@
 /** ------------------------------- LANDING ---------------------------- **/
 
 .jumbotron-wrapper {
-    height: 74vh;
+    min-height: 74vh;
     background-color: var(--light-background-opaque);
 }
 
@@ -13,6 +13,7 @@
     height: 55%;
     width: 75%;
     background-color: var(--light-background-opaque);
+    margin-top: 2%;
 }
 
 .main-banner-message-text {
@@ -52,7 +53,7 @@
 }
 
 .email-message {
-    margin-top: 10%;
+    margin-top: 16%;
     height: 28%;
     width: 75%;
     background-color: var(--light-background-opaque);
@@ -133,5 +134,47 @@ label[for="id_newsletter_email"] {
 
     .carousel-caption {
         width: 75%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .side-banner {
+        min-height: 40vh;
+    }
+    .side-banner-message {
+        width: 50%;
+    }
+
+}
+
+@media screen and (max-width: 576px) {
+    .side-banner-message {
+        width: 80%;
+    }
+    .side-banner {
+        height: 60vh;
+        margin-bottom: 3vh;
+    }
+    .carousel{
+        height: 39vh;
+        width: 39vh;
+    }
+    .email-message{
+        margin-top: 8%;
+    }
+}
+
+@media screen and (max-height: 500px) {
+    .side-banner-message{
+        width: 60%;
+        height: 100%;
+    }
+    .side-banner {
+        height: 80vh;
+        margin-bottom: 10vh;
+    }
+    .carousel{
+        height: 60vh;
+        width: 60vh;
     }
 }
