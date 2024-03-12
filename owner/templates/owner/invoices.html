@@ -7,6 +7,7 @@
     <h2 class="my-2 text-center">
         Invoices
     </h2>
+    <!-- Sorting and pagination options for invoices -->
     <div class="w-100 d-flex justify-content-around">
         <select id="sortingOptions" class="form-control w-25 shadow-none">
             <option value="0" {% if page_sort == 0 %}selected{% endif %}>Oldest first</option>
@@ -19,6 +20,7 @@
             <option value="0" {% if page_length == 0 %}selected{% endif %}>All invoices</option>
         </select>
     </div>
+    <!-- If any invoices exist, display details -->
     {% if invoices|length > 0 %}
         <table class="items-table mt-4">
             <tr>
@@ -51,6 +53,7 @@
                     <td>
                         {{ invoice.order_number }}
                     </td>
+                    <!-- Actions for invoices -->
                     <td>
                         <a href="{% url 'view-invoice' invoice_pk=invoice.pk %}" target="_blank" aria-label="View Invoice" class="custom-button-table button-shadow">View</a>
                         <a href="{% url 'download-invoice' invoice_pk=invoice.pk %}" download aria-label="Download Invoice" class="custom-button-table button-shadow">Download</a>
@@ -63,11 +66,13 @@
                 </td>
             </tr>
         </table>
+    <!-- If invoices don't exist -->
     {% else %}
         <p class="text-center mt-5">
             No items to display.
         </p>
     {% endif %}
+    <!-- Sorting and pagination -->
     {% if paginator_nav %}
         <div class="w-100 d-flex justify-content-center my-4 pagination-nav">
             <span class="step-links">
@@ -98,6 +103,7 @@
 
 {% block extra_js %}
 <script type="text/javascript">
+    // prepare new URL function
     function prepareNewUrl(currentUrl, parameters) {
         for (let i = 0; i < parameters.length; i += 2) {
             let key = parameters[i];
@@ -107,6 +113,7 @@
         return currentUrl;
     }
     
+    // clean current URL function
     function cleanseUrl(uri, key, value) {
         let re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
         if (uri.match(re)) {
@@ -119,12 +126,16 @@
 
     $(document).ready(function() {
         $('#sortingOptions, #lengthOptions').change(function(){
+            // variables for crating new URL
             let currentUrl = window.location.href;
             let sortOption = $('#sortingOptions').val();
             let lengthOption = $('#lengthOptions').val();
             let newUrl = prepareNewUrl(currentUrl, ["page_sort", sortOption, "page_length", lengthOption]);
-            window.location.href = newUrl;
+            // display loader
             $('#loader-container').css("display", "flex");
+            // reaload with new URL
+            window.location.href = newUrl;
+            
         });
     });
 </script>

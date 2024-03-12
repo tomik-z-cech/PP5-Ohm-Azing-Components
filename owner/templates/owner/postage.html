@@ -28,6 +28,7 @@
         <form method="post" enctype="multipart/form-data" id="form">
             {% csrf_token %}
             {{ postage_settings_form|crispy }}
+            <!-- Postage settings submit -->
             <div class="container d-flex justify-content-around">
                 <button type="submit" value="Submit" class="custom-button button-shadow mt-4">Save</button>
             </div>
@@ -40,6 +41,7 @@
     {{ block.super }}
     <script type="text/javascript">
         $(document).ready(function() {
+            // if form submitted, display loader
             $('#form').submit(function(){
                 $('#loader-container').css("display", "flex");
             });

@@ -10,6 +10,7 @@
 {% block content %}
 <div class="container wrapper d-flex justify-content-center align-items-center">
     <div class="form-background add-shadow">
+        <!-- Display details of requested comment -->
         <div class="w-100 d-flex justify-content-end">
             <a href="{% url 'comments-owner' %}" aria-label="Close" class="close-form">
                 <i class="bi bi-x"></i>
@@ -29,6 +30,7 @@
             </strong>
             .
         </p>
+        <!-- Comment deletition options -->
         <div class="w-100 d-flex justify-content-around p-3">
             <a href="{% url 'comments-owner' %}" aria-label="No, take me back" class="custom-button button-shadow">
                 No, take me back
@@ -45,6 +47,7 @@
     {{ block.super }}
     <script type="text/javascript">
         $(document).ready(function() {
+            // display loader if delete button clicked
             $('#deleteButton').click(function(){
                 $('#loader-container').css("display", "flex");
             });

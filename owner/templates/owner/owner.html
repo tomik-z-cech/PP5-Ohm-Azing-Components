@@ -15,21 +15,25 @@
         </h1>
     </div>
     <div class="col-12 heading add-shadow">
-        <div class="row">
-            <div class="d-flex justify-content-around py-2 owner-menu">
-                <a href="{% url 'owner' %}" aria-label="Categories">Categories</a>
-                <a href="{% url 'items' %}" aria-label="Items">Items</a>
-                <a href="{% url 'invoices' %}" aria-label="Invoices">Invoices</a>
-                <a href="{% url 'vouchers-owner' %}" aria-label="Vouchers">Vouchers</a>
-                <a href="{% url 'comments-owner' %}" aria-label="Comments">Comments</a>
-                <a href="{% url 'postage-settings' %}" aria-label="Postage Settings">Postage settings</a>
-                <a href="{% url 'emails-owner' %}" aria-label="Emails">Emails</a>
+        <nav>
+            <div class="row">
+                <!-- Owner's menu -->
+                <div class="d-flex justify-content-around py-2 owner-menu">
+                    <a href="{% url 'owner' %}" aria-label="Categories">Categories</a>
+                    <a href="{% url 'items' %}" aria-label="Items">Items</a>
+                    <a href="{% url 'invoices' %}" aria-label="Invoices">Invoices</a>
+                    <a href="{% url 'vouchers-owner' %}" aria-label="Vouchers">Vouchers</a>
+                    <a href="{% url 'comments-owner' %}" aria-label="Comments">Comments</a>
+                    <a href="{% url 'postage-settings' %}" aria-label="Postage Settings">Postage settings</a>
+                    <a href="{% url 'emails-owner' %}" aria-label="Emails">Emails</a>
+                </div>
             </div>
-        </div>
+        </nav>
         <div class="row d-flex justify-content-center">
             <hr class="admin-hr">
         </div>
         <div class="row">
+            <!-- Block for displaying owner subpages -->
             {% block owner_admin %}
             {% endblock %}
         </div>

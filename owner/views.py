@@ -628,7 +628,7 @@ class CommentsOwnerView(
     Class for managing users comments
     """
 
-    template_name = "owner/comments-owner.html"
+    template_name = "owner/comments_owner.html"
 
     def test_func(self):
         """Test function to ensure user is superuser"""

@@ -10,6 +10,7 @@
     <div class="d-flex justify-content-center p-3 w-100">
         <a href="{% url 'add-item' %}" aria-label="Add New Item" class="custom-button button-shadow">Add New Item</a>
     </div>
+    <!-- Sorting and pagination options for items -->
     <div class="w-100 d-flex justify-content-around">
         <select id="sortingOptions" class="form-control w-25 shadow-none">
             <option value="0" {% if page_sort == 0 %}selected{% endif %}>Name A-Z</option>
@@ -28,6 +29,7 @@
             <option value="0" {% if page_length == 0 %}selected{% endif %}>All items</option>
         </select>
     </div>
+    <!-- If any item does exist, display details -->
     {% if items|length > 0 %}
         <table class="items-table mt-4">
             <tr>
@@ -70,6 +72,7 @@
                         {{ item.item_stock}}
                     </td>
                     <td>
+                        <!-- Display color of rating accordingly -->
                         {% if item.item_likes_num > 0 %}
                         <span class="pos-rating">
                             {{ item.item_likes_num }}
@@ -82,6 +85,7 @@
                         {% endif %}
                         </span>
                     </td>
+                    <!-- Item actions -->
                     <td>
                         <a href="{% url 'edit-item' item_pk=item.pk %}" aria-label="Edit Item" class="custom-button-table button-shadow">Edit</a>
                         <a href="{% url 'item-delete-request' item_pk=item.pk %}" aria-label="Delete Item" class="custom-button-table button-shadow">Delete</a>
@@ -94,11 +98,13 @@
                 </td>
             </tr>
         </table>
+    <!-- If no items exist -->
     {% else %}
         <p class="text-center mt-5">
             No items to display.
         </p>
     {% endif %}
+    <!-- Pagination Nav -->
     {% if paginator_nav %}
         <div class="w-100 d-flex justify-content-center my-4 pagination-nav">
             <span class="step-links">
@@ -130,6 +136,7 @@
 {% block extra_js %}
 {{block.super}}
 <script type="text/javascript">
+    // prepare new URL function
     function prepareNewUrl(currentUrl, parameters) {
         for (let i = 0; i < parameters.length; i += 2) {
             let key = parameters[i];
@@ -139,6 +146,7 @@
         return currentUrl;
     }
     
+    // clean current URL function
     function cleanseUrl(uri, key, value) {
         let re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
         if (uri.match(re)) {
@@ -150,13 +158,18 @@
     }
 
     $(document).ready(function() {
+        // if sorting or pagination change
         $('#sortingOptions, #lengthOptions').change(function(){
+            // prepare new URL
             let currentUrl = window.location.href;
             let sortOption = $('#sortingOptions').val();
             let lengthOption = $('#lengthOptions').val();
             let newUrl = prepareNewUrl(currentUrl, ["page_sort", sortOption, "page_length", lengthOption]);
-            window.location.href = newUrl;
+            // display loader
             $('#loader-container').css("display", "flex");
+            // reload with new URL
+            window.location.href = newUrl;
+            
         });
     });
 </script>

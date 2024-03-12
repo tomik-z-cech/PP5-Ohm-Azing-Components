@@ -9,12 +9,15 @@
         <div class="d-flex justify-content-center p-3 w-100">
             <a href="{% url 'add-category' %}" aria-label="Add New Category" class="custom-button button-shadow">Add New Category</a>
         </div>
+        <!-- If categories don't exist display message, row wrap = 3 -->
         {% if all_categories|length == 0 %}
             <p class="text-center">
                 No categories to display.
             </p>
+        <!-- Categories exist -->
         {% else %}
             <div>
+            <!-- For each category -->
             {% for category in all_categories%}
                 {% if forloop.first or forloop.counter == 4 or forloop.counter|add:"-1"|divisibleby:3 %}
                 <div class="row">
@@ -24,12 +27,14 @@
                         <h3 class="category-heading">
                             {{ category.category_name }}
                         </h3>
+                        <!-- Display image if exists otherwise default -->
                         {% if category.category_image == '' or category.category_image == 'False' %}
                             <img src="{% static 'images/no_image.png' %}" alt="{{ category.category_name }} preview" class="category-preview">
                         {% else %}
                             <img src="{{ category.category_image.url }}" alt="{{ category.category_name }} preview" class="category-preview">
                         {% endif %}
                         <div class="row">
+                            <!-- Category actions -->
                             <div class="col-12 d-flex justify-content-around my-2">
                                 <a href="{% url 'edit-category' category_pk=category.pk %}" aria-label="Edit Category" class="custom-button button-shadow">Edit</a>
                                 <a href="{% url 'category-delete-request' category_pk=category.pk %}" aria-label="Delete Category" class="custom-button button-shadow">Delete</a>

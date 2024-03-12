@@ -7,6 +7,7 @@
     <h2 class="my-2 text-center">
         Comments
     </h2>
+    <!-- Sorting and pagination options -->
     <div class="w-100 d-flex justify-content-around">
         <select id="sortingOptions" class="form-control w-25 shadow-none">
             <option value="0" {% if page_sort == 0 %}selected{% endif %}>All Comments</option>
@@ -20,6 +21,7 @@
             <option value="0" {% if page_length == 0 %}selected{% endif %}>All items</option>
         </select>
     </div>
+    <!-- Display details for each submitted comment if comments exist -->
     {% if comments|length > 0 %}
         <table class="items-table mt-4">
             <tr>
@@ -54,6 +56,7 @@
                             <div class="comment-text">
                                 {{ comment.comment_body}}
                             </div>
+                        <!-- If comment too long, wrap into long-text container -->
                         {% if comment.comment_body|length > 60 %}
                             <div class="more-text">
                                 ...
@@ -76,6 +79,7 @@
                         {% endif %}
                     </td>
                     <td>
+                        <!-- Comment status -->
                         {% if not comment.approved %}
                         <a href="{% url 'approve-comment' comment_pk=comment.pk %}" aria-label="Approve Comment" class="custom-button button-shadow" id="approveButton">Approve</a>
                         {% endif %}
@@ -89,11 +93,13 @@
                 </td>
             </tr>
         </table>
+    <!-- If comments don't exist display message -->
     {% else %}
         <p class="text-center mt-5">
             No items to display.
         </p>
     {% endif %}
+    <!-- Pagination Nav -->
     {% if paginator_nav %}
         <div class="w-100 d-flex justify-content-center my-4 pagination-nav">
             <span class="step-links">
@@ -125,6 +131,7 @@
 {% block extra_js %}
 {{block.super}}
 <script type="text/javascript">
+    // prepare new URL function
     function prepareNewUrl(currentUrl, parameters) {
         for (let i = 0; i < parameters.length; i += 2) {
             let key = parameters[i];
@@ -133,7 +140,8 @@
         }
         return currentUrl;
     }
-    
+
+    // prepare new URL function
     function cleanseUrl(uri, key, value) {
         let re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
         if (uri.match(re)) {
@@ -145,17 +153,22 @@
     }
 
     $(document).ready(function() {
+        // if sorting or pagination options change
         $('#sortingOptions, #lengthOptions').change(function(){
             let currentUrl = window.location.href;
             let sortOption = $('#sortingOptions').val();
             let lengthOption = $('#lengthOptions').val();
             let newUrl = prepareNewUrl(currentUrl, ["page_sort", sortOption, "page_length", lengthOption]);
-            window.location.href = newUrl;
+            // display loader
             $('#loader-container').css("display", "flex");
+            // redirect
+            window.location.href = newUrl;
         });
+        // if approve button clicked, display loader
         $('#approveButton').click(function(){
             $('#loader-container').css("display", "flex");
         });
+        // if text too long, display conatiner
         $('.more-text').click(function() {
             $(this).parent('.comment-text-container').toggleClass('expand-box');
         });
