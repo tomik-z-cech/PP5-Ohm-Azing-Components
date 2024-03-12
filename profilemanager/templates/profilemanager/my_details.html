@@ -15,6 +15,7 @@
             My Details
         </h1>
     </div>
+    <!-- My details accordion -->
     <div class="col-12 heading add-shadow p-3">
         <div class="w-100 d-flex justify-content-end">
             <a href="{% url 'home' %}" aria-label="Close" class="close-form">
@@ -25,6 +26,7 @@
             {% csrf_token %}
             <div class="accordion" id="accordionPanelsStayOpenExample">
                 <div class="accordion-item">
+                    <!-- Pesonal details -->
                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                         <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
                         Personal Details
@@ -36,6 +38,7 @@
                                 <div class="col-12 col-lg-4">
                                     {{ profile_form.profile_picture|as_crispy_field}}
                                     <div class="w-100 d-flex justify-content-center">
+                                        <!-- Profile picture -->
                                         <div id="profile-picture-handler">
                                             {% if profile_picture == '' or 'False' in profile_picture %}
                                                 <img id="profile-picture-preview" src="#" alt="Profile Picture Preview" style="display: none">
@@ -63,6 +66,7 @@
                     </div>
                 </div>
                 <div class="accordion-item">
+                    <!-- Shipping details -->
                     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                         <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
                         Shipping Details
@@ -83,6 +87,7 @@
                     </div>
                 </div>
                 <div class="accordion-item">
+                    <!-- Marketing options -->
                     <h2 class="accordion-header" id="panelsStayOpen-headingThree">
                         <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                         Marketing Preferences
@@ -104,6 +109,7 @@
                     </div>
                 </div>
                 <div class="accordion-item">
+                    <!-- Account settings (change password, manage emails) -->
                     <h2 class="accordion-header" id="panelsStayOpen-headingFour">
                         <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
                         Account Settings
@@ -119,6 +125,7 @@
                     </div>
                 </div>
                 <div class="accordion-item">
+                    <!-- Delete account -->
                     <h2 class="accordion-header" id="panelsStayOpen-headingFive">
                         <button class="accordion-button collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
                         Account Cesation
@@ -151,7 +158,7 @@
         </form>
     </div>
 </div>
-<!-- Modal -->
+<!-- Delete Account Modal -->
 <div class="modal fade" id="deleteProfileModal" tabindex="-1" aria-labelledby="deleteProfileModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -175,6 +182,7 @@
     {{ block.super }}
     <script type="text/javascript">
         $(document).ready(function() {
+            // if form submitted, display loader
             $('#form').submit(function(){
                 $('#loader-container').css("display", "flex");
             });
