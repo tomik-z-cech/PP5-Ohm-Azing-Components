@@ -42,7 +42,7 @@
                     Body
                 </th>
                 <th colspan="2">
-                    Action
+                    Actions
                 </th>
             </tr>
             {% for email in emails %}
@@ -86,6 +86,8 @@
                     <td>
                         {% if email.status == 0 %}
                             <a href="{% url 'edit-email' email_pk=email.pk %}" aria-label="Edit" class="custom-button-table button-shadow full-button">Edit</a>
+                        {% else %}
+                            <span> No actions for sent email !</span>
                         {% endif %}
                     </td>
                     <td>

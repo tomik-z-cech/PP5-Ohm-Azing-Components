@@ -148,3 +148,38 @@
 .tinymce {
     border-radius: 0px!important;
 }
+
+#owner-error-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--light-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    display: none;
+}
+
+.owner-error-text {
+    color: var(--light-foreground);
+    font-size: 150%;
+}
+
+@media screen and (max-width: 1199px) {
+    #owner-error-container {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .custom-button-table {
+        width: 48%;
+    }
+    .form-background {
+        width: 75%;
+    }
+}
