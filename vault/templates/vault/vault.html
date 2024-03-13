@@ -16,8 +16,9 @@
     </div>
     <!-- If vault contain any items -->
     {% if vault_content|length > 0 %}
-        <div class="w-100 d-flex justify-content-center p-3 heading add-shadow">
+        <div class="w-100 p-3 heading add-shadow d-flex">
             <!-- Free shipping message -->
+            <p class="w-100 text-center">
             {% if free_postage_left > 0 %}
                 Power up your Vault with just
                 &nbsp;
@@ -45,10 +46,11 @@
                 &nbsp;
                 !
             {% endif %}
+            </p>
         </div>
     {% endif %}
     <div class="col-12 heading add-shadow">
-        <div class="row p-3">
+        <div class="row p-3 justify-content-center">
             <!-- Display message if nothing in vault -->
             {% if vault_content|length == 0 %}
                 <div class="w-100 text-center no-items-wishlist">
@@ -62,16 +64,16 @@
                 <hr>
                 {% for row in vault_content %}
                 <div class="row">
-                    <div class="col-2 d-flex justify-content-center align-items-center">
-                        <a href="{% url 'item-detail' item_pk=row.0 %}" aria-label="Details of {{ row.4 }}">
+                    <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center">
+                        <a href="{% url 'item-detail' item_pk=row.0 %}" aria-label="Details of {{ row.4 }}" class="w-100 text-center">
                             {% if row.5 == '' or row.5 == 'False' %}
-                                <img src="{% static 'images/no_image.png' %}" alt="{{ row.4 }} Preview" class="wishlist-preview">
+                                <img src="{% static 'images/no_image.png' %}" alt="{{ row.4 }} Preview" class="vault-preview">
                             {% else %}
-                                <img src="{{ row.5.url }}" alt="{{ row.4 }} Preview" class="wishlist-preview">
+                                <img src="{{ row.5.url }}" alt="{{ row.4 }} Preview" class="vault-preview">
                             {% endif %}
                         </a>
                     </div>
-                    <div class="col-5 d-flex justify-content-center align-items-center flex-column">
+                    <div class="col-lg-5 col-12 d-flex justify-content-center align-items-center flex-column top-margin">
                         <strong class="mb-2">
                             <a href="{% url 'item-detail' item_pk=row.0 %}" aria-label="Details of {{ row.4 }}" class="heading-link">
                                 {{ row.4 }}
@@ -107,14 +109,12 @@
                                     Value :
                                 </strong>
                                 {{ row.2 }}
-                                &nbsp;
-                                units
                             </span>
                             {% endif %}
                         </div>
                         {% endif %}
                     </div>
-                    <div class="col-2 d-flex align-items-center">
+                    <div class="col-lg-2 col-6 d-flex align-items-center top-margin">
                         <!-- Adjust quantity form -->
                         <span class="product-detail-input w-100">
                             <form method="post" id="item-{{ forloop.counter0 }}">
@@ -127,17 +127,17 @@
                             </form>
                         </span>
                     </div>
-                    <div class="col-1 d-flex justify-content-center align-items-center flex-column">
-                        <span>
+                    <div class="col-lg-1 col-6 d-flex justify-content-center align-items-center flex-column top-margin">
+                        <span class="text-center">
                             <strong>
-                                Subtotal :
+                                Subtotal
                             </strong>
                         </span>
                         <span>
                             {{ row.8 }}
                         </span>
                     </div>
-                    <div class="col-2 d-flex justify-content-around align-items-center flex-column">
+                    <div class="col-lg-2 col-12 d-flex justify-content-around align-items-center flex-column top-margin">
                         <a href="{% url 'remove-from-vault' vault_item=forloop.counter0 %}" class="custom-button button-shadow wishlist-button deleteButton">
                             <i class="bi bi-trash3"></i>
                             &nbsp;
@@ -149,7 +149,7 @@
                 {% endfor %}
                 <!-- Vault total -->
                 <div class="mb-3 d-flex justify-content-end align-items-center w-100">
-                    <span class="me-5 vault-total">
+                    <span class="vault-total">
                         <strong>
                             Vault total : 
                         </strong>
@@ -159,7 +159,7 @@
                 </div>
                 <hr>
                 <!-- Vault actions -->
-                <div class="d-flex justify-content-around align-items-center w-100">
+                <div class="d-flex justify-content-around align-items-center w-100 vault-actions">
                     <a href="#" class="custom-button button-shadow" aria-label="Clear Vault" data-bs-toggle="modal" data-bs-target="#clearVaultModal">
                         <i class="bi bi-trash3"></i>
                         &nbsp;

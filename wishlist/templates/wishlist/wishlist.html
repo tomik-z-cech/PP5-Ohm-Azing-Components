@@ -15,7 +15,7 @@
         </h1>
     </div>
     <div class="col-12 heading add-shadow">
-        <div class="row p-3">
+        <div class="row p-3 justify-content-center">
             <!-- If no items in wishlist, display message -->
             {% if user_wishlist|length == 0 %}
                 <div class="w-100 text-center no-items-wishlist">
@@ -28,9 +28,9 @@
             {% else %}
                 <hr>
                 {% for row in user_wishlist %}
-                    <div class="row">
-                        <div class="col-2 d-flex justify-content-center align-items-center">
-                            <a href="{% url 'item-detail' item_pk=row.pk %}" aria-label="Details of {{ row.item_name }}">
+                    <div class="row wishlist-details">
+                        <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center">
+                            <a href="{% url 'item-detail' item_pk=row.pk %}" aria-label="Details of {{ row.item_name }}" class="w-100 text-center">
                                 <!-- Display image if exists, otherwise default -->
                                 {% if row.image_1 == '' or row.image_1 == 'False' %}
                                     <img src="{% static 'images/no_image.png' %}" alt="{{ row.item_name }} Preview" class="wishlist-preview">
@@ -39,25 +39,27 @@
                                 {% endif %}
                             </a>
                         </div>
-                        <div class="col-7 d-flex justify-content-center align-items-center flex-column">
+                        <div class="col-lg-7 col-6 d-flex text-center wishlist-description">
                             <strong class="mb-2">
                                 <a href="{% url 'item-detail' item_pk=row.pk %}" aria-label="Details of {{ row.item_name }}" class="heading-link">
                                     {{ row.item_name }}
                                 </a>
                             </strong>
-                            <p>
+                            <p class="hide-less-991px">
                                 {{ row.item_description }}
                             </p>
                         </div>
-                        <div class="col-1 d-flex justify-content-center align-items-center">
+                        <div class="col-lg-1 col-6 d-flex text-center wishlist-description">
                             <strong>
                                 {{ row.price_per_unit }}
-                                &nbsp;
+                                <span class="hide-less-768px">
+                                    &nbsp;
+                                </span>
                                 €
                             </strong>
                         </div>
                         <!-- Remove button -->
-                        <div class="col-2 d-flex justify-content-center align-items-center">
+                        <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center">
                             <a href="{% url 'delete-wishlist-item' item_pk=row.pk %}" class="custom-button button-shadow wishlist-button deleteButton">
                                 <i class="bi bi-trash3"></i>
                                 &nbsp;
@@ -69,7 +71,7 @@
                 {% endfor %}
                 <!-- Clear wishlist -->
                 <div class="col-2 d-flex justify-content-center align-items-center w-100">
-                    <a href="#" class="custom-button button-shadow" aria-label="Clear Wishlist" data-bs-toggle="modal" data-bs-target="#clearWishlistModal">
+                    <a href="#" id="clear-all" class="custom-button button-shadow" aria-label="Clear Wishlist" data-bs-toggle="modal" data-bs-target="#clearWishlistModal">
                         <i class="bi bi-trash3"></i>
                         &nbsp;
                         Remove All Items

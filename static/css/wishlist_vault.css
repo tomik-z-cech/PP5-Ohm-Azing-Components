@@ -1,5 +1,11 @@
+/* ---------------- WISHLIST AND VAULT ------------- */
+
 .no-items-wishlist {
     font-size: 150%;
+}
+
+.wishlist-button {
+    width: 80%;
 }
 
 .wishlist-preview {
@@ -12,8 +18,14 @@
     border: 2px solid var(--light-highlight);
 }
 
-.wishlist-button {
-    width: 90%;
+.vault-preview {
+    width: 75%;
+    border: 2px solid var(--dark-background);
+    transition: border 0.5s ease-in-out;
+}
+
+.vault-preview:hover {
+    border: 2px solid var(--light-highlight);
 }
 
 .minus {
@@ -75,6 +87,7 @@ label[for="quantity"] {
 
 .vault-total {
     font-size: 130%;
+    margin-right: 3rem;
 }
 
 .heading-link {
@@ -85,4 +98,57 @@ label[for="quantity"] {
 
 .heading-link:hover {
     color: var(--light-highlight);
+}
+
+.wishlist-description {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.vault-actions {
+    flex-direction: row;
+}
+
+@media screen and (max-width: 991px) {
+    .wishlist-description {
+        flex-direction: row;
+    }
+    .wishlist-preview {
+        width: 45%;
+    }
+    .vault-preview {
+        width: 45%;
+    }
+    .top-margin {
+        margin-top: 2vh;
+    }
+    .wishlist-button {
+        width: 50%;
+    }
+    .vault-total {
+        margin-right: 1rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #clear-all {
+        width: 80%;
+    }
+    .wishlist-details {
+        font-size: 100%;
+        font-weight: 400;
+        align-self: center;
+    }
+    .vault-actions {
+        flex-direction: column;
+        gap: 3vh;
+    }
+}
+
+@media screen and (max-height: 500px) {
+    .vault-preview,
+    .wishlist-preview {
+        width: 30%;
+    }
 }
