@@ -21,3 +21,20 @@
     background-color: var(--light-background);
     color: var(--light-highlight);
 }
+
+.history-sort {
+    width: 25%;
+}
+
+@media screen and (max-width: 768px) {
+    .history-sort {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .custom-button-table {
+        width: 48%!important;
+        font-size: 80%!important;
+    }
+}

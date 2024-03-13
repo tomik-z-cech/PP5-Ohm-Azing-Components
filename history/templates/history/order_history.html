@@ -19,11 +19,11 @@
         <div class="col-12 d-flex flex-column">
             <div class="w-100 d-flex justify-content-around">
                 <!-- Sorting and paginating options for order history -->
-                <select id="sortingOptions" class="form-control w-25 shadow-none">
+                <select id="sortingOptions" class="form-control history-sort shadow-none">
                     <option value="0" {% if page_sort == 0 %}selected{% endif %}>Oldest first</option>
                     <option value="1" {% if page_sort == 1 %}selected{% endif %}>Newest first</option>
                 </select>
-                <select id="lengthOptions" class="form-control w-25 shadow-none">
+                <select id="lengthOptions" class="form-control history-sort shadow-none">
                     <option value="5" {% if page_length == 5 %}selected{% endif %}>5 orders per page</option>
                     <option value="10" {% if page_length == 10 %}selected{% endif %}>10 orders per page</option>
                     <option value="20" {% if page_length == 20 %}selected{% endif %}>20 orders per page</option>
@@ -37,7 +37,7 @@
                         <th>
                             Date
                         </th>
-                        <th>
+                        <th class="hide-less-991px">
                             Number
                         </th>
                         <th>
@@ -54,7 +54,7 @@
                             <td>
                                 {{ invoice.date|date:"d.m.Y" }}
                             </td>
-                            <td>
+                            <td class="hide-less-991px">
                                 {{ invoice.order_number }}
                             </td>
                             <td>
