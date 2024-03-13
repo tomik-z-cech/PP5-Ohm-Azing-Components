@@ -141,3 +141,23 @@ label[for="save-details"]:hover {
 .success-preview:hover {
     border: 2px solid var(--light-highlight);
 }
+
+.card-container {
+    width: 75%;
+}
+
+.voucher-container {
+    width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .card-container {
+        width: 100%;
+    }
+    .custom-button {
+        width: 80%;
+    }
+    .voucher-container {
+        width: 75%;
+    }
+}

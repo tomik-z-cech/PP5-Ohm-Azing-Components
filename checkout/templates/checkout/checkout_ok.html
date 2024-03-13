@@ -51,7 +51,7 @@
     <div class="w-100 d-flex p-3 heading add-shadow flex-column">
         {% for row in translated_vault %}
         <div class="row">
-            <div class="col-3 d-flex justify-content-center align-items-center">
+            <div class="col-lg-3 col-12 d-flex justify-content-center align-items-center">
                 <a href="{% url 'item-detail' item_pk=row.0 %}" aria-label="Details of {{ row.4 }}" class="text-center">
                     {% if row.5 == '' or row.5 == 'False' %}
                         <img src="{% static 'images/no_image.png' %}" alt="{{ row.4 }} Preview" class="success-preview">
@@ -60,7 +60,7 @@
                     {% endif %}
                 </a>
             </div>
-            <div class="col-6 d-flex justify-content-center align-items-center flex-column">
+            <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center flex-column">
                 <strong class="mb-2">
                     <a href="{% url 'item-detail' item_pk=row.0 %}" aria-label="Details of {{ row.4 }}" class="heading-link">
                         {{ row.4 }}
@@ -101,7 +101,7 @@
                 </div>
                 {% endif %}
             </div>
-            <div class="col-3 d-flex justify-content-center align-items-center flex-column">
+            <div class="col-lg-3 col-12 d-flex justify-content-center align-items-center flex-column">
                 <span>
                     <strong>
                         Subtotal :

@@ -82,8 +82,8 @@
                         <div class="accordion-body d-flex justify-content-center">
                             <!-- Voucher not in use -->
                             {% if not current_voucher.0 %}
-                                <div class="w-50 text-center">
-                                    <span class="w-50">
+                                <div class="voucher-container text-center">
+                                    <span>
                                         {{ order_form.voucher|as_crispy_field }}
                                     </span>
                                     <span>
@@ -112,7 +112,7 @@
                                         <span class="mx-5">
                                             Your Discount : 
                                             <strong>
-                                                {{ current_voucher.2 }} €
+                                                {{ current_voucher.2|floatformat:2 }} €
                                             </strong>
                                         </span>
                                     </div>
@@ -137,7 +137,7 @@
                     </h2>
                     <div id="panelsStayOpen-collapseFour" class="accordion-collapse show" aria-labelledby="panelsStayOpen-headingFour">
                         <div class="accordion-body d-flex justify-content-center">
-                            <div class="w-75">
+                            <div class="card-container">
                                 <div id="card-element">
                                 </div>
                                 <div id="card-errors" role="alert" class="mt-2">

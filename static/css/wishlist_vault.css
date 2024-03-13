@@ -144,6 +144,9 @@ label[for="quantity"] {
         flex-direction: column;
         gap: 3vh;
     }
+    .custom-button {
+        width: 80%!important;
+    }
 }
 
 @media screen and (max-height: 500px) {
