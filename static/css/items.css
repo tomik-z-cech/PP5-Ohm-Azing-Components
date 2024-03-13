@@ -53,6 +53,11 @@
     border: 2px solid var(--dark-foreground);
 }
 
+.item-preview {
+    width: 60%;
+    border: 2px solid var(--dark-foreground);
+}
+
 .category-container {
     scale: 1;
     transition: scale 0.5s ease-in-out;
@@ -160,12 +165,15 @@
 }
 
 .image-large {
+    justify-content: center;
     width: 70%;
+    background-color: var(--light-foreground);
     transition: width 0.5s ease-in-out;
 }
 
 .image-small {
     width: 10%;
+    background-color: var(--light-foreground);
     transition: width 0.5s ease-in-out;
 }
 
@@ -279,4 +287,94 @@
 .like-link-container {
     position: relative;
     right: 0px;
+}
+
+#item-action-container {
+    flex-direction: row;
+    justify-content: start;
+}
+
+.quantity-input-container {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.rating-comments-container {
+    justify-content: end;
+    align-items: center;
+}
+
+@media screen and (max-width: 991px) {
+    #categories-menu {
+        height: 40vh;
+        margin-bottom: 5vh;
+    }
+    .folder {
+        width: 10rem;
+        height: 10rem;
+    }
+    .product-container {
+        font-size: 130%;
+    }
+    .category-preview {
+        width: 65%;
+    }
+    .item-preview {
+        width: 80%;
+    }
+    .image-large {
+        background-color: var(--light-foreground);
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #categories-menu {
+        height: 40vh;
+        margin-bottom: 5vh;
+    }
+    .folder {
+        width: 10rem;
+        height: 10rem;
+    }
+    .product-container {
+        font-size: 130%;
+    }
+    .category-preview {
+        width: 65%;
+    }
+    .item-preview {
+        width: 100%;
+    }
+    #item-action-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .quantity-input-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #add-button {
+        width: 100%;
+        margin-top: 1vh;
+    }
+    .rating-comments-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .rating-comments-container-item {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-height: 500px) {
+    .comments-profile-picture {
+        width: 17vh;
+        height: 17vh;
+    }
 }

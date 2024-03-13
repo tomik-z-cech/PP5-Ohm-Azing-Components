@@ -12,8 +12,8 @@
 {% block content %}
     <div class="container wrapper d-flex justify-content-center flex-column">
         <div class="w-100 d-flex justify-content-center align-items-center p-3 item-detail-background add-shadow">
-            <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-6">
+            <div class="row d-flex justify-content-center align-items-center w-100">
+                <div class="col-12 col-lg-6">
                     <!-- Product slider conatiner -->
                     <div class="product-gallery-container">
                         <!-- Show images if they exist, else show default -->
@@ -40,12 +40,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-lg-6">
                     <h3>
                         {{ item.item_name }}
                     </h3>
                     <!-- Show item stock otherwise message "out of stock" -->
-                    <div class="mb-3 w-100 d-flex justify-content-start">
+                    <div class="mb-3 w-100 d-flex" id="item-action-container">
                         {% if item.item_stock > 0 %}
                             <span class="badge rounded-pill in-stock">{{ item.item_stock }} available</span>
                         {% else %}
@@ -110,11 +110,11 @@
                         {% csrf_token %}
                         <!-- If item has values and sizes, display inputs -->
                         {% if item.different_sizes and item.different_values %}
-                            <div class="d-flex justify-content-around mb-3">
+                            <div class="d-flex justify-content-around mb-3 quantity-input-container">
                                 <span class="product-detail-input">
                                     {% if item.different_sizes %}
                                         <label for="size">
-                                            Select package size
+                                            Select size
                                         </label>
                                         <select class="form-control shadow-none" id="size" name="size">
                                         {% for size in item.sizes %}
@@ -138,7 +138,7 @@
                             </div>
                         {% endif %}
                         <!-- Quantity input -->
-                        <div class="d-flex justify-content-around">
+                        <div class="d-flex quantity-input-container">
                             <span class="product-detail-input">
                                 <label for="quantity">Quantity :</label>
                                 <span>
@@ -154,8 +154,8 @@
                     </form>
                     {% endif %}
                     <!-- Rating, Ammount of comments -->
-                    <div class="scroll-up row">
-                        <div class="col-4 d-flex align-items-end">
+                    <div class="scroll-up row rating-comments-container">
+                        <div class="col-4 d-flex text-center rating-comments-container-item">
                             <i class="bi bi-award"></i>
                             &nbsp;
                             Rating
@@ -174,7 +174,7 @@
                             {% endif %}
                             </span>
                         </div>
-                        <div class="col-4 d-flex align-items-end">
+                        <div class="col-4 d-flex text-center rating-comments-container-item">
                             <i class="bi bi-chat-left-text"></i>
                             &nbsp;
                             {{ item.item_comments_num }}
@@ -185,7 +185,7 @@
                             {% endif %}
                         </div>
                         <!-- Back to shop link -->
-                        <div class="col-4">
+                        <div class="col-4 text-center rating-comments-container-item">
                             <a href="{% url 'shop' category_pk=0 %}" aria-label="Continue Shopping" id="back-to-shop">
                                 <i class="bi bi-arrow-left-square"></i>
                                 &nbsp;
@@ -232,14 +232,14 @@
                     <hr>
                     {% endif %}
                     <div class="row">
-                        <div class="col-1">
+                        <div class="col-lg-1 col-2">
                             {% if comment.comment_author.userprofile.profile_picture %}
                                 <img src="{{ comment.comment_author.userprofile.profile_picture.url }}" alt="Profile Picture of {{ comment.comment_author }}" class="comments-profile-picture">
                             {% else %}
                                 <img src="{% static 'images/blank_profile_picture.png' %}" alt="Profile Picture of {{ comment.comment_author }}" class="comments-profile-picture">
                             {% endif %}
                         </div>
-                        <div class="col-11">
+                        <div class="col-lg-11 col-8">
                             <strong>
                                 Comment by {{ comment.comment_author }} - {{ comment.created_on|date:"d.m.Y" }}
                             </strong> 

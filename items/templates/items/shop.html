@@ -12,71 +12,68 @@
 {% block content %}
 <div class="wrapper w-100 overflow-hidden">
     <div class="row d-flex justify-content-around" id="items-container">
-            <!-- Conatiner for displaying categories, only if any to display -->
-            {% if all_categories|length > 0 %}
-            <div class="col-2 add-shadow text-center" id="categories-menu">
-                <h3 class="category-heading">
-                    Shop by Category
-                </h3>
-                <hr>
-                <div class="row">
-                    <div class="col-12 category-container">
-                        <a href="{% url 'shop' category_pk=0 %}" aria-label="{{ category.category_name }}">
-                            <div class="folder">
-                                <h4 class="category-heading">
-                                    All Products
-                                </h4>
-                                    <img src="{% static 'images/all_image.png' %}" alt="All Products" class="category-preview">
-                                </div>
-                            </div>
-                        </a>
+        <!-- Conatiner for displaying categories, only if any to display -->
+        {% if all_categories|length > 0 %}
+        <div class="col-lg-2 col-10 add-shadow text-center" id="categories-menu">
+            <h3 class="category-heading">
+                Shop by Category
+            </h3>
+            <hr>
+            <div class="col-12 category-container">
+                <a href="{% url 'shop' category_pk=0 %}" aria-label="{{ category.category_name }}">
+                    <div class="folder">
+                        <h4 class="category-heading">
+                            All Products
+                        </h4>
+                        <img src="{% static 'images/all_image.png' %}" alt="All Products" class="category-preview">
                     </div>
-                {% for category in all_categories %}
-                    <div class="row">
-                        <!-- Category conatiner, if image exist display, otherwise default -->
-                        <div class="col-12 category-container">
-                            <a href="{% url 'shop' category_pk=category.pk %}" aria-label="{{ category.category_name }}">
-                                <div class="folder">
-                                    <h4 class="category-heading">
-                                        {{ category.category_name }}
-                                    </h4>
-                                    {% if category.category_image == '' or category.category_image == 'False' %}
-                                        <img src="{% static 'images/no_image.png' %}" alt="{{ category.category_name }} preview" class="category-preview">
-                                    {% else %}
-                                        <img src="{{ category.category_image.url }}" alt="{{ category.category_name }} preview" class="category-preview">
-                                    {% endif %}
-                                </div>
-                            </a>
-                        </div>
+                </a>
+            </div>
+            {% for category in all_categories %}
+            <!-- Category conatiner, if image exist display, otherwise default -->
+            <div class="col-12 category-container">
+                <a href="{% url 'shop' category_pk=category.pk %}" aria-label="{{ category.category_name }}">
+                    <div class="folder">
+                        <h4 class="category-heading">
+                            {{ category.category_name }}
+                        </h4>
+                        {% if category.category_image == '' or category.category_image == 'False' %}
+                            <img src="{% static 'images/no_image.png' %}" alt="{{ category.category_name }} preview" class="category-preview">
+                        {% else %}
+                            <img src="{{ category.category_image.url }}" alt="{{ category.category_name }} preview" class="category-preview">
+                        {% endif %}
                     </div>
-                {% endfor %}
-                <hr>
-                <!-- Scroll up button -->
-                <div class="scroll-up">
-                    <span id="scroll-up-categories">
-                        <i class="bi bi-arrow-up-square"></i>
-                        &nbsp;
-                        Back to Top
-                    </span>
-                </div>
-            <!-- Message to display if no categories -->
-            {% else %}
-            <div class="col-2 add-shadow d-flex justify-content-center align-items-center" id="categories-menu">
-                <p id="no-categories">
-                    Something went wrong !
-                    <br>
-                    No categories to display.
-                </p>
-            {% endif %}
+                </a>
+            </div>
+            {% endfor %}
+            <hr>
+            <!-- Scroll up button -->
+            <div class="scroll-up">
+                <span id="scroll-up-categories">
+                    <i class="bi bi-arrow-up-square"></i>
+                    &nbsp;
+                    Back to Top
+                </span>
+            </div>
         </div>
-        <div class="col-8 add-shadow" id="items-menu">
+        <!-- Message to display if no categories -->
+        {% else %}
+        <div class="col-lg-2 col-10 add-shadow d-flex justify-content-center align-items-center" id="categories-menu">
+            <p id="no-categories">
+                Something went wrong !
+                <br>
+                No categories to display.
+            </p>
+        </div>
+        {% endif %}
+        <div class="col-lg-8 col-10 add-shadow" id="items-menu">
             <h3 class="text-center category-heading">
                 {{ selected_category }}
             </h3>
             <hr>
             <div class="w-100 d-flex justify-content-around">
                 <!-- Sorting and pagination options for items -->
-                <select id="sortingOptions" class="form-control w-25 shadow-none">
+                <select id="sortingOptions" class="form-control dynamic-width-25 shadow-none">
                     <option value="0" {% if page_sort == 0 %}selected{% endif %}>Name A-Z</option>
                     <option value="1" {% if page_sort == 1 %}selected{% endif %}>Name Z-A</option>
                     <option value="2" {% if page_sort == 2 %}selected{% endif %}>Price Low - High</option>
@@ -84,7 +81,7 @@
                     <option value="4" {% if page_sort == 4 %}selected{% endif %}>Best Rated</option>
                     <option value="5" {% if page_sort == 5 %}selected{% endif %}>Worst Rated</option>
                 </select>
-                <select id="lengthOptions" class="form-control w-25 shadow-none">
+                <select id="lengthOptions" class="form-control dynamic-width-25 shadow-none">
                     <option value="4" {% if page_length == 4 %}selected{% endif %}>4 items per page</option>
                     <option value="8" {% if page_length == 8 %}selected{% endif %}>8 items per page</option>
                     <option value="12" {% if page_length == 12 %}selected{% endif %}>12 items per page</option>
@@ -97,19 +94,25 @@
                 {% if forloop.first or forloop.counter == 5 or forloop.counter|add:"-1"|divisibleby:4 %}
                     <div class="row">
                         {% endif %}
-                            <div class="col-12 col-xl-3 text-center">
+                            <div class="col-12 col-xl-3 text-center mb-2">
                                 <a href="{% url 'item-detail' item_pk=item.pk %}" aria-label="{{ category.category_name }}" class="item-link">
                                     <div class="product-container p-3">
                                         <div class="item-name">
                                             <strong>
-                                                {{ item.item_name }}
+                                                <!-- Ensure name isn't too long -->
+                                                {% if item.item_name|length > 20 %}
+                                                    {{ item.item_name|slice:":17" }}
+                                                    ...
+                                                {% else %}
+                                                    {{ item.item_name }}
+                                                {% endif %}
                                             </strong>
                                         </div>
                                         <!-- Image if any, otherwise default -->
                                         {% if item.image_1 == '' or item.image_1 == 'False' %}
-                                            <img src="{% static 'images/no_image.png' %}" alt="{{ item.item_name }} preview" class="category-preview">
+                                            <img src="{% static 'images/no_image.png' %}" alt="{{ item.item_name }} preview" class="item-preview">
                                         {% else %}
-                                            <img src="{{ item.image_1.url }}" alt="{{ item.item_name }} preview" class="category-preview">
+                                            <img src="{{ item.image_1.url }}" alt="{{ item.item_name }} preview" class="item-preview">
                                         {% endif %}
                                         <!-- Stats of item container -->
                                         <div class="item-stats">
