@@ -1,3 +1,5 @@
+/* --------------- ERROR PAGES ---------------- */
+
 .error-background a {
     color: var(--light-foreground);
     text-decoration: none;
@@ -13,5 +15,11 @@
     background-color: var(--light-background);
     color: var(--light-foreground);
     padding: 2vh;
-    width: 50%;
+    width: 70%;
+}
+
+@media screen and (max-width: 991px) {
+    .error-background {
+        width: 90%;
+    }
 }
