@@ -570,6 +570,9 @@ input[type="radio"] {
     .short-button {
         width: 40%!important;
     }
+    #register-submit-container {
+        height: 18vh;
+    }
 }
 
 @media screen and (max-width: 991px) {
@@ -582,5 +585,17 @@ input[type="radio"] {
     }
     .dynamic-width-25 {
         width: 48%;
+    }
+    #register-submit-container {
+        height: 20vh;
+    }
+    .form-background {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #register-submit-container {
+        height: 25vh;
     }
 }
