@@ -29,12 +29,12 @@
 }
 
 .category-container {
-    scale: 1;
-    transition: scale 0.5s ease-in-out;
+    transform: scale(1.0);
+    transition: transform 0.5s ease-in-out;
 }
 
 .category-container:hover {
-    scale: 1.1;
+    transform: scale(1.1);
 }
 
 .category-heading {

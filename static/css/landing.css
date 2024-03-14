@@ -33,15 +33,15 @@
 
 @keyframes free-shipping-change {
     0% {
-        scale: 1.0;
+        transform: scale(1.0);
         color: var(--light-foreground);
     }
     50% {
-        scale: 1.1;
+        transform: scale(1.1);
         color: var(--light-highlight);
     }
     100% {
-        scale: 1.0;
+        transform: scale(1.0);
         color: var(--light-foreground);
     }
 }
