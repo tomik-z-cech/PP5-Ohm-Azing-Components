@@ -133,7 +133,7 @@
                     </h2>
                     <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
                         <div class="accordion-body">
-                            <p>
+                            <div>
                                 <ul id="cessation-list">
                                     <li>
                                         <strong>Account Access :</strong> You will no longer be able to log in and access your account information, preferences, and saved details.
@@ -145,7 +145,7 @@
                                         <strong>Preferences and Settings :</strong> Any personalized preferences and settings associated with your account will be lost.
                                     </li>
                                 </ul>
-                            </p>
+                            </div>
                             <div class="text-center mt-4 w-100">
                                 <button type="button" class="custom-button button-shadow" data-bs-toggle="modal" data-bs-target="#deleteProfileModal" aria-label="Delete account">
                                     Delete account
@@ -180,7 +180,7 @@
 
 {% block extra_js %}
     {{ block.super }}
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
             // if form submitted, display loader
             $('#form').submit(function(){
@@ -188,5 +188,5 @@
             });
         });
     </script>
-    <script src="{% static 'js/profile_picture.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/profile_picture.js' %}"></script>
 {% endblock %}

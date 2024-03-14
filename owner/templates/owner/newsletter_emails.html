@@ -95,7 +95,7 @@
                         <span> No actions for sent email !</span>
                     </td>
                     {% endif %}
-                <tr>
+                </tr>
             {% endfor %}
             <tr>
                 <td colspan="6">
@@ -114,10 +114,10 @@
         <div class="w-100 d-flex justify-content-center my-4 pagination-nav">
             <span class="step-links">
                 {% if emails.has_previous %}
-                    <a href="?page=1&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-left"></i></a>
+                    <a href="?page=1&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-left"></i><span class="hide">First</span></a>
                     <a href="?page={{ items.previous_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-left"></i><span class="hide">Previous</span></a>
                 {% else %}
-                    <i class="bi bi-chevron-bar-left"></i>
+                    <i class="bi bi-chevron-bar-left"></i><span class="hide">First</span>
                     <i class="bi bi-chevron-left"></i><span class="hide">Previous</span>
                 {% endif %}
         
@@ -126,10 +126,10 @@
                 </span>
         
                 {% if emails.has_next %}
-                    <a href="?page={{ items.next_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-right"><span class="hide">Next</span></i></a>
+                    <a href="?page={{ items.next_page_number }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-right"></i><span class="hide">Next</span></a>
                     <a href="?page={{ items.paginator.num_pages }}&page_sort={{ page_sort }}&page_length={{ page_length }}"><i class="bi bi-chevron-bar-right"></i><span class="hide">End</span></a>
                 {% else %}
-                    <i class="bi bi-chevron-right"><span class="hide">Next</span></i>
+                    <i class="bi bi-chevron-right"></i><span class="hide">Next</span>
                     <i class="bi bi-chevron-bar-right"></i><span class="hide">End</span>
                 {% endif %}
             </span>
@@ -140,7 +140,7 @@
 
 {% block extra_js %}
 {{block.super}}
-<script type="text/javascript">
+<script>
     // prepare new URL function
     function prepareNewUrl(currentUrl, parameters) {
         for (let i = 0; i < parameters.length; i += 2) {

@@ -116,16 +116,16 @@
                     </div>
                     <div class="col-lg-2 col-6 d-flex align-items-center top-margin">
                         <!-- Adjust quantity form -->
-                        <span class="product-detail-input w-100">
-                            <form method="post" id="item-{{ forloop.counter0 }}">
-                                {% csrf_token %}
+                        <form method="post" id="item-{{ forloop.counter0 }}" class="w-100">
+                            {% csrf_token %}
+                            <span class="product-detail-input w-100">
                                 <label for="quantity">Quantity :</label>
                                 <input type="number" class="form-control shadow-none quantity" min="0" max="{{ row.7 }}" value="{{ row.3 }}" name="quantity" id="quantity">
                                 <span class="minus">-</span>
                                 <span class="plus">+</span>
                                 <input type="hidden" name="vault-item" value="{{ forloop.counter0}}">
-                            </form>
-                        </span>
+                            </span>
+                        </form>
                     </div>
                     <div class="col-lg-1 col-6 d-flex justify-content-center align-items-center flex-column top-margin">
                         <span class="text-center">
@@ -197,8 +197,8 @@
 
 {% block extra_js %}
     {{ block.super }}
-    <script src="{% static 'js/vault.js' %}" type="text/javascript"></script>
-    <script type="text/javascript">
+    <script src="{% static 'js/vault.js' %}"></script>
+    <script>
         $(document).ready(function() {
             // if clear button or remove button are pressed, display loader
             $('#clearButton, .deleteButton').click(function(){

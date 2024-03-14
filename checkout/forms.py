@@ -41,7 +41,11 @@ class OrderForm(forms.ModelForm):
         Initail method to set all fileds attributes
         """
         super(OrderForm, self).__init__(*args, **kwargs)
-        fields_to_add_class = self.fields.keys()
+        fields_to_add_class = [
+            field_name
+            for field_name in self.fields.keys()
+            if field_name != "delivery_option"
+        ]
         for field in fields_to_add_class:
             self.fields[field].widget.attrs.update(
                 {
@@ -79,8 +83,7 @@ class OrderForm(forms.ModelForm):
             {"placeholder": "Your Phone Number (required)"}
         )
         self.fields["voucher"].widget.attrs.update(
-            {"placeholder": "Discount Code",
-             "aria-label": "Discount Code"}
+            {"placeholder": "Discount Code", "aria-label": "Discount Code"}
         )
         self.fields["voucher"].label = ""
         if "instance" in kwargs:

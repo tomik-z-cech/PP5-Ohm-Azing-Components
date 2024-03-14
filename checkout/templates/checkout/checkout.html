@@ -87,15 +87,15 @@
                             <!-- Voucher not in use -->
                             {% if not current_voucher.0 %}
                                 <div class="voucher-container text-center">
-                                    <span>
+                                    <div>
                                         {{ order_form.voucher|as_crispy_field }}
-                                    </span>
-                                    <span>
+                                    </div>
+                                    <div>
                                         <button name="check-voucher" class="custom-button button-shadow mt-3" type="submit">
                                             <i class="bi bi-check-circle"></i>
                                             Check code
                                         </button>
-                                    </span>
+                                    </div>
                                 </div>
                                 <!-- Voucher in use -->
                                 {% else %}
@@ -165,19 +165,20 @@
             <input type="hidden" value="{{ client_secret }}" name="client_secret">
         </form>
     </div>
+</div>
 {% endblock %}
 
 {% block extra_js %}
     {{ block.super }}
-    <script type="text/javascript">
+    <script>
         // Delivery variables
         const subtotal = {{ subtotal}};
         const currentVoucher = '{{ current_voucher }}';
         let standardDelivery = {{ standard_delivery_cost|floatformat:2 }};
         let expressDelivery = {{ express_delivery_cost|floatformat:2 }};
     </script>
-    <script src="{% static 'js/checkout.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/checkout.js' %}"></script>
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
-    <script src="{% static 'js/stripe_elements.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/stripe_elements.js' %}"></script>
 {% endblock %}
