@@ -1,3 +1,7 @@
 User-agent: *
-Disallow: 
+Disallow: /accounts/
+Disallow: /admin/
+Disallow: /vault/
+Disallow: /checkout/
+Disallow: /profilemanager/ 
 Sitemap: https://ohmazing-components-1a5a0fcb9e95.herokuapp.com/sitemap.xml
