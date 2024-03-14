@@ -79,7 +79,8 @@ class OrderForm(forms.ModelForm):
             {"placeholder": "Your Phone Number (required)"}
         )
         self.fields["voucher"].widget.attrs.update(
-            {"placeholder": "Discount Code"}
+            {"placeholder": "Discount Code",
+             "aria-label": "Discount Code"}
         )
         self.fields["voucher"].label = ""
         if "instance" in kwargs:

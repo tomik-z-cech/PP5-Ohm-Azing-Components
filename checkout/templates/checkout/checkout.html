@@ -68,7 +68,11 @@
                         <div class="accordion-body d-flex justify-content-center">
                             {{ order_form.delivery_option|as_crispy_field}}
                         </div>
-                        <button type="submit" name="delivery" id="delivery-button"></button>
+                        <button type="submit" name="delivery" id="delivery-button">
+                            <span class="hide">
+                                Change delivery option
+                            </span>
+                        </button>
                     </div>
                 </div>
                 <div class="accordion-item">

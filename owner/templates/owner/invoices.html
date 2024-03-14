@@ -78,10 +78,10 @@
             <span class="step-links">
                 {% if invoices.has_previous %}
                     <a href="?page=1"><i class="bi bi-chevron-bar-left"></i></a>
-                    <a href="?page={{ invoices.previous_page_number }}"><i class="bi bi-chevron-left"></i></a>
+                    <a href="?page={{ invoices.previous_page_number }}"><i class="bi bi-chevron-left"></i><span class="hide">Previous</span></a>
                 {% else %}
                     <i class="bi bi-chevron-bar-left"></i>
-                    <i class="bi bi-chevron-left"></i>
+                    <i class="bi bi-chevron-left"></i><span class="hide">Previous</span>
                 {% endif %}
         
                 <span class="current-page">
@@ -89,11 +89,11 @@
                 </span>
         
                 {% if invoices.has_next %}
-                    <a href="?page={{ invoices.next_page_number }}"><i class="bi bi-chevron-right"></i></a>
-                    <a href="?page={{ invoices.paginator.num_pages }}"><i class="bi bi-chevron-bar-right"></i></a>
+                    <a href="?page={{ invoices.next_page_number }}"><i class="bi bi-chevron-right"><span class="hide">Next</span></i></a>
+                    <a href="?page={{ invoices.paginator.num_pages }}"><i class="bi bi-chevron-bar-right"></i><span class="hide">End</span></a>
                 {% else %}
-                    <i class="bi bi-chevron-right"></i>
-                    <i class="bi bi-chevron-bar-right"></i>
+                    <i class="bi bi-chevron-right"><span class="hide">Next</span></i>
+                    <i class="bi bi-chevron-bar-right"></i><span class="hide">End</span>
                 {% endif %}
             </span>
         </div>

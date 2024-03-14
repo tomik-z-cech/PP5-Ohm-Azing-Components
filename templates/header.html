@@ -18,6 +18,9 @@
           <input class="form-control mr-sm-2 me-5 shadow-none" type="text" placeholder="Search in categories and items" aria-label="Search" name="search-query" required>
           <button class="custom-button button-shadow my-2 my-sm-0" type="submit" id="search-button">
             <i class="bi bi-search"></i>
+            <span class="hide-less-768px">
+              Search
+            </span>
           </button>
         </form>
       </nav>
@@ -74,7 +77,7 @@
                     Menu
                   </span>
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <ul class="dropdown-menu">
                   <li>
                     <a class="dropdown-item" href="{% url 'shop' category_pk=0 %}" aria-label="Logout">
                       <i class="bi bi-shop"></i>

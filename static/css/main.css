@@ -10,14 +10,14 @@
     --dark-foreground: #142331;
     --light-foreground: #fafafa;
     --positive-foreground: #b0fc38;
-    --negative-foreground: #ff3333;
+    --negative-foreground: #fafafa;
     --neutral-foreground: #fee12b;
     
     --light-background: #30577b;
     --light-background-opaque: rgba(48,87,123,0.75);
     --dark-background: #223d56;
     --negative-background: #c0392b;
-    --positive-background: #218c54;    
+    --positive-background: #166038;    
     
     --light-highlight: #fbdb6b;
     --dark-highlight: #facf39;
@@ -107,6 +107,11 @@ p, th {
 .show-less-768px {
     display: none;
 }
+
+.hide {
+    display: none;
+}
+
 @media screen and (max-width: 991px) {
     .hide-less-991px {
         display: none;

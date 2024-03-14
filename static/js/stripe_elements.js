@@ -16,8 +16,8 @@ let style = {
         }
     },
     invalid: {
-        color: '#ff3333',
-        iconColor: '#ff3333'
+        color: '#fafafa',
+        iconColor: '#fafafa'
     }
 };
 

@@ -207,7 +207,9 @@ class NewsletterForm(forms.ModelForm):
         fields = "__all__"
         widgets = {
             "newsletter_email": forms.DateInput(
-                attrs={"type": "email", "placeholder": "your@email.ie"}
+                attrs={"type": "email",
+                       "placeholder": "your@email.ie",
+                       "aria-label": "Newsletter Sign-Up"}
             ),
         }
 

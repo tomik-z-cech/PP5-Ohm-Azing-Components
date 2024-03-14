@@ -1,14 +1,14 @@
 {% load static %}
 
 <span class="custom-button button-shadow btn-file">
-    Select Image <input id="new-image-2" type="{{ widget.type }}" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>
+    Select Image <input id="id_image_2" type="{{ widget.type }}" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>
 </span>
 <p class="mt-3" id="filename-2"></p>
 {% if widget.is_initial %}
     {% if widget.value.url == '' or 'False' in widget.value.url %}
-        <img id="image-preview" src="{% static 'images/no_image.png' %}" alt="{{ item_name }} preview" class="category-preview-crud">
+        <img id="image-preview" src="{% static 'images/no_image.png' %}" alt="{{ item_name }} preview 2" class="category-preview-crud">
     {% else %}
-        <img  id="image-preview" class="category-preview-crud" src="{{ widget.value.url }}">
+        <img  id="image-preview" class="category-preview-crud" src="{{ widget.value.url }}" alt="{{ item_name }} preview 2">
         <div class="mt-2">
             <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}">
             <label for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
