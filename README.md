@@ -8,7 +8,7 @@
 - **Live version :** Live version of **Ohm-Azing Components** e-shop page can be viewed at [https://ohmazing-components-1a5a0fcb9e95.herokuapp.com/](https://ohmazing-components-1a5a0fcb9e95.herokuapp.com/).
 - **Developer :** [Tomas Kubancik](https://github.com/tomik-z-cech/)
 
-
+![Mockup](/docs/mockup.png)
 
 
 
@@ -27,4 +27,270 @@ The target audience are individuals or groups such as rookies that are seeking i
 - Ideal user creates electronic projects
 - Ideal user likes to shop online
 - Ideal user likes to explore new trends and ideas in the electronics field
-- Ideal user likes to share their opinion in form if likes/dislikes and comments
+- Ideal user likes to share their opinion in form if **likes/dislikes** and **comments**
+
+### **3.1.3 Site Goals**
+
+- Offer users ability of shopping online without leaving their home
+- Offer users ability of reading other people comments on products
+- Offer users ability to add items to their **Wishlist** if they want to save the item for later
+- Offer users the ability to see details of each item in shop (ie. stock, price, description, etc. ) 
+- Offer users inspiration in electronics field
+
+### **3.1.4 Epics**
+
+As a thought process of the strategy plane, 14 epics were created and utilized. Please see below the detail list of epics with links, or a link to the project's [Kanban Board](https://github.com/users/tomik-z-cech/projects/4/views/1) *(appendix 1)*. Those Epics were further sliced into 69 USER STORIES.
+
+*Appendix 1 - Kanban Board*
+
+![Kanban Board](/docs/kanban.png)
+
+- EPIC 1 : Environment configuration - [issue #1](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/1)
+- EPIC 2 : Database models - [issue #6](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/6)
+- EPIC 3 : User Authentication and Authorization - [issue #10](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/10)
+- EPIC 4 : Custom Admin Interface - [issue #15](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/15)
+- EPIC 5 : General Features - [issue #22](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/22)
+- EPIC 6 : User Profile Management - [issue #30](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/30)
+- EPIC 7 : The Shop - [issue #35](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/35)
+- EPIC 8 : Wishlist - [issue #43](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/43)
+- EPIC 9 : Vault - [issue #47](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/47)
+- EPIC 10 : Checkout - [issue #53](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/53)
+- EPIC 11 : Order History - [issue #65](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/65)
+- EPIC 12 : Search Bar - [issue #69](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/69)
+- EPIC 13 : Styling and design of UI - [issue #73](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/73)
+- EPIC 14 : Testing and Validation - [issue #77](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/77)
+
+---
+
+### **3.1.5 User stories**
+69 User stories were created based on the Epics. Each user story uses the MoSCoW prioritization technique. Each user story was also estimated for relative effort required to implement satisfactory result of acceptance criteria. My Story points are using a sequence inspired by the Fibonacci numbers (1, 2, 3, 5, 8, 13, etc.). This reflects the uncertainty and variability in estimating larger tasks. The idea was to easy distinguish the initial size of user story using this non-linear sequence. Each user story on the Kanban Board was given 2 labels (MoSCoW and Story Points).
+
+MoSCoW prioritization technique stands for:
+
+Must-Have: Critical requirements that must be implemented for the project to be considered successful.
+
+Should-Have: Important requirements that are not critical but add significant value.
+
+Could-Haves: Desirable features that would be nice to have but are not crucial.
+
+Won't-Have: Features that are explicitly excluded from the project scope.
+
+The **TOTAL** of Story Points for all User Stories in the project is 207.
+- **Must-Have** : 125 story points ( 60 % )
+- **Should-Have** : 46 story points ( 23 % )
+- **Could-Have** : 27 story points ( 13 % )
+- **Wont-Have** : 9 story points ( 4 % )
+
+<details>
+<summary>
+View User Stories for EPIC 1 : Environment configuration
+</summary>
+
+| Issue                                                                    | Title                                  | User Story                                                                                                                 |
+| ------------------------------------------------------------------------ | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| [# 2](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/2) | USER STORY : Set up GiHub repository   | As a Developer, I need to set-up a repository on GitHub platform to be able to have control over versions of project.      |
+| [# 3](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/3) | USER STORY : Set up dependencies       | As a Developer, I need to register and obtain links for third party services.                                              |
+| [# 4](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/4) | USER STORY : Create working Django app | As a Developer, I need to install all dependencies, correctly set settings.py and create working app in local environment. |
+| [# 5](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/5) | USER STORY : Deploy to Heroku          | As a Developer I need to create a working Heroku deployment.                                                          |
+</details>
+
+
+<details>
+<summary>
+View User Stories for EPIC 2 : Database Models
+</summary>
+
+| Issue                                                                    | Title                                            | User Story                                                                                                                                                  |
+| ------------------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [# 7](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/7) | USER STORY : Define Database Schema              | As a Developer, I need to create databse schema that fits the purpose of the project and also create all the modular apps that will be used in the project. |
+| [# 8](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/8) | USER STORY : Create database realtionships       | As a Developer, I need to define relatinships between models and import the relationships into working apps models.                                         |
+| [# 9](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/9) | USER STORY : Implement Data Validation in Models | As a Developer, I need implement data validation rules within Ohm-Azing Components database models.                                                         |
+</details>
+
+
+<details>
+<summary>
+View User Stories for EPIC 3 : User Authentication and Authorisation
+</summary>
+
+| Issue                                                                      | Title                                       | User Story                                                                                       |
+| -------------------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| [# 11](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/11) | USER STORY : Implement user registration    | As a Site User I am able to register to create new account and to select username and passsword. |
+| [# 12](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/12) | USER STORY : Log In                         | As a Site User I am able to Log In to see registered user section.                               |
+| [# 13](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/13) | USER-STORY : Reset my password if forgotten | As a Site User I am able to Reset My Password to change my password if forgotten.                |
+| [# 14](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/14) | USER STORY : Log out                        | As a Site User, I am able to log out to leave the site functions for registered users.           |
+</details>
+
+
+<details>
+<summary>
+View User Stories for EPIC 4 : Custom Admin Interface
+</summary>
+
+| Issue                                                                      | Title                                               | User Story                                                                                                                             |
+| -------------------------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| [# 16](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/16) | USER STORY : Categories section                     | As a Business Owner, I have option to do full CRUD with item categories in order to manage my shop.                                    |
+| [# 17](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/17) | USER STORY : Items section                          | As a Business Owner, I have option to do full CRUD with items in order to manage products sold in my shop.                             |
+| [# 18](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/18) | USER STORY : Invoices section                       | As a Business Owner, I have option to view or download any invoice that was created by shoppers.                                       |
+| [# 19](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/19) | USER STORY : Vouchers section                       | As a Business Owner, I have option to perform full CRUD on "Vouchers" that could be redeemed via checkout.                             |
+| [# 20](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/20) | USER STORY : Comments section                       | As a Business Owner, I have option to approve/delete comments to ensure no inapproproate content on the project page.                  |
+| [# 21](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/21) | USER STORY : Postage Settings section               | As a Business Owner, I have option to adjust free postage treshold and posatege fees for standad and express delivery options.         |
+| [# 28](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/28) | USER STORY : Email interface for marketing purposes | As a Site admin, I need to implement Mailing interface to be able to send emails to all users signed up for email communication.       |
+| [# 97](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/97) | USER STORY : Postage label printing                 | As a Site Admin, I need implement postage label printing page to be able to Effortlessly print postage labels.                         |
+| [# 98](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/98) | USER STORY : Order status emails                    | As a Site Admin, I can mark orders as accepted, pending, fulfilled to be able to keep customers informed of the status of their order. |
+</details>
+
+
+<details>
+<summary>
+View User Stories for EPIC 5 : General Features
+</summary>
+
+| Issue                                                                      | Title                        | User Story                                                                                                                                                      |
+| -------------------------------------------------------------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [# 23](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/23) | USER STORY : FavIcon & Title | As a Site User I woul like to be able to differenciate this site from other sites opened in my browser, in order of easy navigation.                            |
+| [# 24](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/24) | USER STORY : Header          | As a Site User I want to be able to navigate easily through-out the site.                                                                                       |
+| [# 25](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/25) | USER STORY : Footer          | As a Site User I want to be able to find useful info on the bottom of the site in order not to scroll and search too much around.                               |
+| [# 26](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/26) | USER STORY : Loader          | As a Site User I want to be able to see if page is working in the form of loader that appears when complex task is performed.                                   |
+| [# 27](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/27) | USER STORY : Toasts          | As a Site User I want to be informed of results of requests performed in the form of toast that appears when complex task is done sucessfully / unsuccessfully. |
+</details>
+
+
+<details>
+<summary>
+View User Stories for EPIC 6 : User Profile Management
+</summary>
+
+| Issue                                                                      | Title                                                           | User Story                                                                                                           |
+| -------------------------------------------------------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| [# 31](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/31) | USER STORY : Change Details (Phone Number, Email Address, etc.) | As a Site User I can Update My Details to be able to manage my account in case of changes.                           |
+| [# 32](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/32) | USER STORY : Delete my account                                  | As a Site User I can Delete My Account to be able to opt out from all services.                                      |
+| [# 33](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/33) | USER STORY : Profile Picture                                    | As a Site User I can Change my profile picture to add the finishing touch to my profile.                             |
+| [# 34](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/34) | USER STORY : Opt In/Out for Newsletter                          | As a Site User I can Opt In/Out for Newsletter or other marketing communtiation to be able to change my preferences. |
+</details>
+
+
+<details>
+<summary>
+View User Stories for EPIC 7 : The Shop
+</summary>
+
+| Issue                                                                      | Title                                     | User Story                                                                                                                                                    |
+| -------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [# 36](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/36) | USER STORY : Shop Highlights              | As a Site User, I would like to See Newest and Favourites on the landing page so I can see easily what products are after arriving and what are most popular. |
+| [# 37](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/37) | USER STORY : Shop by Category             | As a Site User, I would like to have the shop items sorted by category so I can browse the items faster.                                                      |
+| [# 38](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/38) | USER STORY : Product Details              | As a Site User, I would like to see the details of each item in separate page so I won't get lost in too much info.                                           |
+| [# 39](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/39) | USER STORY : Add to Vault                 | As a Site User, I need to be able to add items to vault in order to see the entire order before payment.                                                      |
+| [# 40](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/40) | USER STORY : Add to Wishlist              | As a Site User, I need to be able to add items to my Wishlist in order to see keep the items I am interested in separately.                                   |
+| [# 41](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/41) | USER STORY : Comment on Products          | As a Site User I can Comment on Items to share my opinion.                                                                                                    |
+| [# 42](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/42) | USER STORY : See Comments of Others       | As a Site User I can see other comments on Items to read other Users opinions.                                                                                |
+| [# 72](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/72) | USER STORY : Like / Dislike Items of Shop | As a Site User I can Like / Dislike particular Item in Shopin order to express my opinion.                                                                    |
+| [# 99](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/99) | USER STORY : Frequently bought together   | As a Site User, I can see what items are bought together to be able to what else can I buy for the same project.                                              |
+</details>
+
+
+<details>
+<summary>
+View User Stories for EPIC 8 : Wishlist
+</summary>
+
+| Issue                                                                      | Title                                   | User Story                                                                                                   |
+| -------------------------------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| [# 44](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/44) | USER STORY : Display Wishlist Items     | As a Site User, I can display items in My Wishlist in order to manage the items.                             |
+| [# 45](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/45) | USER STORY : Remove Items from Wishlist | As a Site User, I can remove items from My Wishlist one by one in order to manage the items in the Wishlist. |
+| [# 46](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/46) | USER STORY : Clear Wishlist             | As a Site User, I can delete all items in My Wishlist in order to manage the items.                          |
+</details>
+
+
+<details>
+<summary>
+View User Stories for EPIC 9 : Vault
+</summary>
+
+| Issue                                                                      | Title                                         | User Story                                                                                                                                                                          |
+| -------------------------------------------------------------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [# 48](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/48) | USER STORY : Display content of Vault         | As a Site User, I can display items in Vault in order to manage the items.                                                                                                          |
+| [# 49](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/49) | USER STORY : Adjust amounts of items in Vault | As a Site User, I can adjust amount of each item in Vault in order to manage the items before proceeding to Checkout.                                                               |
+| [# 50](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/50) |  USER STORY : Clear the Vault                 | As a Site User, I can display items in Vault in order to manage the items.                                                                                                          |
+| [# 51](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/51) |  USER STORY : Proceed to Checkout             | As a Site User, I can proceed to Checkout in order to pay for items in my Vault.                                                                                                    |
+| [# 52](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/52) | USER STORY : Vault management toasts          | As a Site User, I can see message that indicates Vault action along all items that are in Vault in order to be informed and have an idea what's in Vault without opening the Vault. |
+</details>
+
+
+<details>
+<summary>
+View User Stories for EPIC 10 : Checkout
+</summary>
+
+| Issue                                                                      | Title                                  | User Story                                                                                                                                              |
+| -------------------------------------------------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [# 61](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/61) | USER STORY : Checkout Page             | As a Site User, I can see checkout page so I know exactly what am I being charged for.                                                                  |
+| [# 54](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/54) | USER STORY : Shipping Details          | As a Site User, I can provide shipping details in order to inform the shop where to send my purchase.                                                   |
+| [# 62](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/62) | USER STORY : Save info                 | As a Site User, I can save provided shipping info in order the form being prefilled with next order.                                                    |
+| [# 63](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/63) | USER STORY : Delivery Options          | As a Site User, I can choose between standard and express delivery in order to control the speed of delivery.                                           |
+| [# 57](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/57) | USER STORY : Payment                   | As a Site User, I have an option providing payment details in order to pay for my goods.                                                                |
+| [# 55](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/55) | USER STORY : Vouchers                  | As a Site User, I have an option to redeem dicount codes in order to get discount on my purchase.                                                       |
+| [# 58](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/58) | USER STORY : Invoice Generator         | As a Site Admin, I need to be able to generate invoice in \*.pdf format in order the invoice being attached to the confirmation email.                  |
+| [# 59](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/59) | USER STORY : Confirmation Email        | As a Site User, I do get confirmation email in order to know the transaction was sucessfull.                                                            |
+| [# 60](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/60) | USER STORY : Stock Update              | As a Site Admin, I need to be able to update stock amounts after every purchase in order the manage the inventory.                                      |
+| [# 56](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/56) | USER STORY : Stripe and Webhooks Setup | As a Site Admin, I need to be able to process the order functions even in event of failure in order to ensure no paying customer is left without goods. |
+| [# 64](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/64) | USER STORY : Success Page              | As a Site User, I can clarly see sucess page in order to know my order went through without checking my emails.                                         |
+</details>
+
+
+<details>
+<summary>
+View User Stories for EPIC 11 : Order History
+</summary>
+
+| Issue                                                                      | Title                                 | User Story                                                                                          |
+| -------------------------------------------------------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| [# 66](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/66) | USER STORY : Accessing Order History  | As a Site User, I can access my own past orders in case of needing them in future.                  |
+| [# 67](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/67) | USER STORY : Viewing past invoices    | As a Site User, I can view detail of any of my own past orders in case of needing them in future.   |
+| [# 68](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/68) | USER STORY : Downloding past invoices | As a Site User, I can download any of my own past order invoices in case of needing them in future. |
+</details>
+
+
+<details>
+<summary>
+View User Stories for EPIC 12 : Search Bar
+</summary>
+
+| Issue                                                                      | Title                                     | User Story                                                                                                                                     |
+| -------------------------------------------------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| [# 70](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/70) | USER STORY : Search Bar in header of page | As a Site User I am able to use search function through Categories, Items and Item descriptionsin order to quickly find what am I looking for. |
+| [# 71](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/71) | USER STORY : Search results               | As a Site User I can see search result to easily navigate through them.                                                                        |
+</details>
+
+
+<details>
+<summary>
+View User Stories for EPIC 13 : Styling and design of UI
+</summary>
+
+| Issue                                                                      | Title                                 | User Story                                                                                                    |
+| -------------------------------------------------------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| [# 74](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/74) | USER STORY : Intuitive Navigation     | As a Site Developer, I need to insure easy navigation throughout the site                                     |
+| [# 75](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/75) | USER STORY : Color Scheme             | As a Site Developer, I need to insure easy navigation throughout the sit                                      |
+| [# 76](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/76) | USER STORY : W3C + WAVE Compatibility | As a Site Developer, I need to insure easy navigation throughout the site for users in need of ease of access |
+</details>
+
+
+<details>
+<summary>
+View User Stories for EPIC 14 : Testing and Validation
+</summary>
+
+| Issue                                                                      | Title               | User Story                                                                        |
+| -------------------------------------------------------------------------- | ------------------- | --------------------------------------------------------------------------------- |
+| [# 78](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/78) | W3C HTML validation | As a Site Developer, I need to ensure \*.html files do pass the W3C validation.   |
+| [# 79](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/79) | W3C CSS validation  | As a Site Developer, I need to ensure style.css file do pass the W3C validation.  |
+| [# 80](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/80) | JS validation       | As a Site Developer, I need to ensure \*.js files do pass the JS Lint validation. |
+| [# 81](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/81) | PEP8 validation     | As a Site Developer, I need to ensure \*.py file do pass the PEP8 validation.     |
+</details>
+
+---
+
+## **3.2. The Scope Plane**
+
+After decided on the strategy, the scope plane was carefully created.
