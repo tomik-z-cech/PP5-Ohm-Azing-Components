@@ -7,3 +7,14 @@
 - **Audience :** There's no age or any other limit to audience of this page. Target audience are individuals at any level of experience that have interest in electronic components and electronic kits.
 - **Live version :** Live version of **Ohm-Azing Components** e-shop page can be viewed at [https://ohmazing-components-1a5a0fcb9e95.herokuapp.com/](https://ohmazing-components-1a5a0fcb9e95.herokuapp.com/).
 - **Developer :** [Tomas Kubancik](https://github.com/tomik-z-cech/)
+
+
+
+
+
+# **3. User Experience (UX)**
+
+## **3.1. The Strategy Plane**
+
+### **3.1.1 The Idea**
+- The intention of **Ohm-Azing Components** site is to be friendly online shop where users can browse variate of products sorted between categories. Besides that, user can read details of each product, see product comments and also see opinion of other users in form of **likes/dislikes**.
