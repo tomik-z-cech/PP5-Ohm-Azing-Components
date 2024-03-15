@@ -63,10 +63,10 @@ $(document).ready(function() {
             // if first name field empty
             if ($('#id_first_name').val() === '') {
                 // highlight the incorrect field
-                $('#id_first_name').attr('style', 'border: 1px solid var(--negative-foreground) !important');
+                $('#id_first_name').attr('style', 'border: 2px solid var(--dark-highlight) !important');
                 // scroll to the field with animation of 100ms
                 $('html, body').animate({
-                    scrollTop: $('#id_first_name').offset().top - 50
+                    scrollTop: $('#id_first_name').offset().top - 200
                 }, 100);
                 // remove the highlight after 3s
                 setTimeout(function() {
@@ -76,10 +76,10 @@ $(document).ready(function() {
             // if last name field empty
             if ($('#id_last_name').val() === '') {
                 // highlight the incorrect field
-                $('#id_last_name').attr('style', 'border: 1px solid var(--negative-foreground) !important');
+                $('#id_last_name').attr('style', 'border: 2px solid var(--dark-highlight) !important');
                 // scroll to the field with animation of 100ms
                 $('html, body').animate({
-                    scrollTop: $('#id_last_name').offset().top - 50
+                    scrollTop: $('#id_last_name').offset().top - 200
                 }, 100);
                 // remove the highlight after 3s
                 setTimeout(function() {
@@ -89,10 +89,10 @@ $(document).ready(function() {
             // if phone number field empty or doesn't contain only numbers
             if ($('#id_phone_number').val() === '' || !/^\d+$/.test($('#id_phone_number').val())) {
                 // highlight the incorrect field
-                $('#id_phone_number').attr('style', 'border: 1px solid var(--negative-foreground) !important');
+                $('#id_phone_number').attr('style', 'border: 2px solid var(--dark-highlight) !important');
                 // scroll to the field with animation of 100ms
                 $('html, body').animate({
-                    scrollTop: $('#id_phone_number').offset().top - 50
+                    scrollTop: $('#id_phone_number').offset().top - 200
                 }, 100);
                 // remove the highlight after 3s
                 setTimeout(function() {
@@ -102,10 +102,10 @@ $(document).ready(function() {
             // if email field empty or contains incorrect email address format
             if ($('#id_email_order').val() === '' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('#id_email_order').val())){
                 // highlight the incorrect field
-                $('#id_email_order').attr('style', 'border: 1px solid var(--negative-foreground) !important');
+                $('#id_email_order').attr('style', 'border: 2px solid var(--dark-highlight) !important');
                 // scroll to the field with animation of 100ms
                 $('html, body').animate({
-                    scrollTop: $('#id_email_order').offset().top - 50
+                    scrollTop: $('#id_email_order').offset().top - 200
                 }, 100);
                 // remove the highlight after 3s
                 setTimeout(function() {
@@ -115,10 +115,10 @@ $(document).ready(function() {
             // if first line of address field empty
             if ($('#id_address_1').val() === '') {
                 // highlight the incorrect field
-                $('#id_address_1').attr('style', 'border: 1px solid var(--negative-foreground) !important');
+                $('#id_address_1').attr('style', 'border: 2px solid var(--dark-highlight) !important');
                 // scroll to the field with animation of 100ms
                 $('html, body').animate({
-                    scrollTop: $('#id_address_1').offset().top - 50
+                    scrollTop: $('#id_address_1').offset().top - 200
                 }, 100);
                 // remove the highlight after 3s
                 setTimeout(function() {
@@ -128,10 +128,10 @@ $(document).ready(function() {
             // if city field empty
             if ($('#id_city').val() === '') {
                 // highlight the incorrect field
-                $('#id_city').attr('style', 'border: 1px solid var(--negative-foreground) !important');
+                $('#id_city').attr('style', 'border: 2px solid var(--dark-highlight) !important');
                 // scroll to the field with animation of 100ms
                 $('html, body').animate({
-                    scrollTop: $('#id_city').offset().top - 50
+                    scrollTop: $('#id_city').offset().top - 200
                 }, 100);
                 // remove the highlight after 3s
                 setTimeout(function() {
@@ -141,10 +141,10 @@ $(document).ready(function() {
             // if county field empty
             if ($('#id_county').val() === '') {
                 // highlight the incorrect field
-                $('#id_county').attr('style', 'border: 1px solid var(--negative-foreground) !important');
+                $('#id_county').attr('style', 'border: 2px solid var(--dark-highlight) !important');
                 // scroll to the field with animation of 100ms
                 $('html, body').animate({
-                    scrollTop: $('#id_county').offset().top - 50
+                    scrollTop: $('#id_county').offset().top - 200
                 }, 100);
                 // remove the highlight after 3s
                 setTimeout(function() {
@@ -154,10 +154,10 @@ $(document).ready(function() {
             // if post code field empty
             if ($('#id_post_code').val() === '') {
                 // highlight the incorrect field
-                $('#id_post_code').attr('style', 'border: 1px solid var(--negative-foreground) !important');
+                $('#id_post_code').attr('style', 'border: 2px solid var(--dark-highlight) !important');
                 // scroll to the field with animation of 100ms
                 $('html, body').animate({
-                    scrollTop: $('#id_post_code').offset().top - 50
+                    scrollTop: $('#id_post_code').offset().top - 200
                 }, 100);
                 // remove the highlight after 3s
                 setTimeout(function() {
@@ -167,10 +167,10 @@ $(document).ready(function() {
             // if country field empty
             if ($('#id_country').val() === '') {
                 // highlight the incorrect field
-                $('#id_country').attr('style', 'border: 1px solid var(--negative-foreground) !important');
+                $('#id_country').attr('style', 'border: 2px solid var(--dark-highlight) !important');
                 // scroll to the field with animation of 100ms
                 $('html, body').animate({
-                    scrollTop: $('#id_country').offset().top - 50
+                    scrollTop: $('#id_country').offset().top - 200
                 }, 100);
                 // remove the highlight after 3s
                 setTimeout(function() {

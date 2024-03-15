@@ -43,6 +43,17 @@
           {% endif %}
         </a>
       </nav>
+      <!-- If not loged in, display modal when clicked on wishlist -->
+      {% else %}
+      <nav class="navbar p-0">
+        <a class="nav-link header-link text-center p-0" href="#" aria-label="Wishlist" data-bs-toggle="modal" data-bs-target="#wishlistOutModal">
+          <i class="bi bi-star"></i>
+          <br>
+          <span>
+            Wishlist
+          </span>
+        </a>
+      </nav>
       {% endif %}
     </div>
     <div class="col-4 col-lg-1  d-flex justify-content-center header-height">

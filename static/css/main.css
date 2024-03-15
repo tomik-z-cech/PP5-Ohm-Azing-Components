@@ -483,6 +483,7 @@ input[type="radio"] {
     width: 50%;
     color: var(--light-foreground);
     transition: border 0.5s;
+    border-radius: 0px!important;
 }
 
 
@@ -504,7 +505,7 @@ input[type="radio"] {
     color: var(--light-foreground)!important;
     border: 1px solid var(--dark-highlight)!important;
     box-shadow: none!important;
-    border-radius: 0%!important;
+    border-radius: 0px!important;
 }
 
 #id_email:hover,
@@ -541,6 +542,7 @@ input[type="radio"] {
     width: 50%;
     color: var(--light-foreground);
     transition: border 0.5s;
+    border-radius: 0px!important;
 }
 
 #id_password::placeholder,

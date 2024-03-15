@@ -86,15 +86,38 @@
         </p>
     </div>
     <!-- Easteregg Modal -->
-    <div class="modal fade" id="easterEggModal" tabindex="-1" aria-labelledby="easterEggMoeteProfileModalLabel" aria-hidden="true">
+    <div class="modal fade" id="easterEggModal" tabindex="-1" aria-labelledby="easterEggModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title" id="easterEggMoeteProfileModalLabel">Hurray !</h2>
+                    <h2 class="modal-title" id="easterEggModalLabel">Hurray !</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center">
                     Great ! Enjoy 75% discount with code DJANGO75 valid through 2024 !
+                </div>
+                <div class="modal-footer w-100 d-flex justify-content-around">
+                    <button type="button" class="custom-button button-shadow" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Wishlist Logged Out Modal -->
+    <div class="modal fade" id="wishlistOutModal" tabindex="-1" aria-labelledby="wishlistOutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="wishlistOutModalLabel">Ooops !</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    Please, 
+                    <a href="{% url 'account_login' %}" aria-label="Login" class="custom-form-link">
+                        &nbsp;
+                        Log In
+                        &nbsp;
+                    </a>
+                    to avail from Wishlist functions .
                 </div>
                 <div class="modal-footer w-100 d-flex justify-content-around">
                     <button type="button" class="custom-button button-shadow" data-bs-dismiss="modal">Close</button>

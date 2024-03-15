@@ -21,10 +21,12 @@
         <p class="text-center">
             <strong>
                 We have received your order 
+                <br>
                 <span class="highlight">
-                    {{ order_number }}
+                    {{ order_number|slice:":8" }}
+                    <br>
+                    {{ order_number|slice:"-8:"}}
                 </span>
-                .
             </strong>
         </p>
         <p class="text-center">
