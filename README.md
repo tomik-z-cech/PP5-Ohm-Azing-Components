@@ -18,3 +18,13 @@
 
 ### **3.1.1 The Idea**
 - The intention of **Ohm-Azing Components** site is to be friendly online shop where users can browse variate of products sorted between categories. Besides that, user can read details of each product, see product comments and also see opinion of other users in form of **likes/dislikes**.
+
+### **3.1.2 The Ideal User**
+
+The target audience are individuals or groups such as rookies that are seeking inspiration in electronic components to build their own circuit or electronic kits that are programmable and versatile or electronic veterans that need tools or to top up their components stash. 
+
+- Ideal user likes electronics
+- Ideal user creates electronic projects
+- Ideal user likes to shop online
+- Ideal user likes to explore new trends and ideas in the electronics field
+- Ideal user likes to share their opinion in form if likes/dislikes and comments

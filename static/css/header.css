@@ -11,7 +11,7 @@ header {
 }
 
 #logo-image {
-    height: 80%;
+    width: 90%;
     aspect-ratio: 3/1;
 }
 
@@ -88,20 +88,23 @@ header {
     .header-link {
         font-size: 100%!important;
     }
-    #logo-image {
-        height: 90%;
-    }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1199px) {
     .header-link {
-        font-size: 79%!important;
+        font-size: 180%!important;
     }
     #logo-image {
-        height: 90%;
+        width: 30%;
     }
     .dropdown-menu{
         width: 27vw!important;
+    }
+    .header-height{
+        height: 11vh;
+    }
+    header {
+        height: auto;
     }
 }
 
@@ -111,9 +114,6 @@ header {
         justify-content: center;
         align-items: center;
     }    
-    #logo-image {
-        height: 13vh;
-    }
     .header-link {
         font-size: 150%!important;
     }
@@ -128,12 +128,21 @@ header {
     }
 }
 
+@media screen and (max-width: 768px) {
+    #logo-image {
+        width: 45%;    
+    }
+}
+
 @media screen and (max-width: 576px) {
     .dropdown-menu {
         width: 65vw!important;
     }
     .header-link {
         font-size: 120%!important;
+    }
+    #logo-image {
+        width: 60%;
     }
 }
 
