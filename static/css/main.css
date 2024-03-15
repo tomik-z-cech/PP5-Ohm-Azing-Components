@@ -104,7 +104,7 @@ p, th {
     width: 25%;
 }
 
-.show-less-768px {
+.show-less-991px {
     display: none;
 }
 
@@ -116,14 +116,14 @@ p, th {
     .hide-less-991px {
         display: none;
     }
+        .show-less-991px {
+        display: block;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .hide-less-768px {
         display: none;
-    }
-    .show-less-768px {
-        display: block;
     }
 }
 
