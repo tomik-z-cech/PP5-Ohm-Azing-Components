@@ -1011,6 +1011,8 @@ class MediaStorage(S3Boto3Storage):
 ### **6.3.5. Stripe Configuration & Connection**
 
 - **Task :** Obtain all relevant settings and keys for online payments on project site
+- **Finding:** Stripe payment intend will only be created if the target amount is greater than 0.50 € (As I have cheaper items in my project, minimum orer and defensive programming was used) - *( Appendix 71 )* and data passed back from the webhook are always in string type.
+As for customer satisfaction and complaints, I wanted to make sure that I know what orders (invoices) were created by `views.py` and which were created by `webhook_handler.py` - invoice created by webhook has "WH" in header of invoice
 - **Method :** 
   - Navigate to [Stripe](https://stripe.com/)
   - Create an account and login
@@ -1027,10 +1029,13 @@ class MediaStorage(S3Boto3Storage):
 
 ![Webhook testing](/docs/stripe-testing.png)
 
+*Appendix 71 - Minimum Order setting*
+
+![Minimum Order setting](/docs/min-order.png)
+
 ### **6.3.6. Settings.py & file-tree**
 
 - **Task :** Prepare `settings.py` adn file-tree for deployment 
-- **Finding:** Stripe payment intend will only be created if the target amount is greater than 0.50 € (As I have cheaper items in my project, minimum orer and defensive programming was used) - *( Appendix 71 )*
 - **Method :** 
   - Create file `env.py` to keep all sensitive information in
   - See example of `env.py` file *( Appendix 72 )*
@@ -1068,10 +1073,6 @@ EMAIL_USE_TLS = True`
   - Create directories `.\static` and `.\templates`
   - commit and push changes to GitHub
 
-*Appendix 71 - Minimum Order setting*
-
-![Minimum Order setting](/docs/min-order.png)
-
 *Appendix 72 - `env.py` file*
 
 ![env.py](/docs/envpy.png)
@@ -1102,5 +1103,73 @@ EMAIL_USE_TLS = True`
 *Appendix 74 - Procfile*
 
 ![Procfile](/docs/procfile.png)
+
 ---
 
+## **7. Technologies & Credits**
+
+### 7.1. Technologies used to develop and deploy this project
+
+- [**Django/Jinja**](https://docs.djangoproject.com/en/5.0/) - main Framework of the project
+- [**Python**](https://www.python.org/) - main BackEnd programming language of the project
+- [**HTML**](https://developer.mozilla.org/en-US/docs/Web/HTML) - templates programming language of this project (FrontEnd)
+- [**CSS**](https://developer.mozilla.org/en-US/docs/Web/CSS) - styling the project via external CSS file `./static/css/style.css`
+- [**Java Script**](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - dynamic templates programming language of this project (FrontEnd)
+- [**jQuery**](https://api.jquery.com/) - API for JavaScript - dynamic templates programming language of this project (FrontEnd)
+- [**Bootstrap v. 5.3**](https://getbootstrap.com/) - styling framework used in this project (FrontEnd)
+- [**Heroku**](https://heroku.com) - to deploy this project
+- [**Balsamiq**](https://balsamiq.com/support/) - to create wireframes
+- [**Git**](https://git-scm.com/doc) - to make commitments of progress and push the results back to GitHub
+- [**GitHub**](https://github.com/) - to keep the track of version control
+- [**VS Code**](https://code.visualstudio.com/) - local IDE - after starting the project in CodeAnywhere, I had to migrate to VS Code due to CodeAnywhere speed connection issues. This did create commits from 2 different usernames (still same person) in very early stages of the project.
+
+### 7.3. Requirements.txt
+
+Following modules were used in development of **Ohm-Azing Components** website :
+
+- `asgiref==3.7.2` - ASGI framework, a library for building asynchronous Python web applications and servers
+- `bleach==6.1.0` - HTML sanitization library
+- `boto3==1.34.33` - Amazon Web Services (AWS) SDK for Python
+- `botocore==1.34.33` - Low-level, core functionality of boto3, providing access to AWS services
+- `certifi==2023.7.22` - Python package for providing Mozilla's CA bundle
+- `cffi==1.16.0` - Foreign Function Interface for Python calling C code
+- `chardet==5.2.0` - Universal character encoding detector
+- `charset-normalizer==3.3.2` - Library for encoding and decoding characters
+- `cryptography==41.0.5` - Provides cryptographic recipes and primitives to Python developers
+- `defusedxml==0.7.1` - Library for preventing various XML vulnerabilities in Python applications
+- `dj-database-url==0.5.0` - Utility for parsing database connection URLs in Django
+- `Django==4.2.7` - High-level Python web framework for rapid development and clean, pragmatic design
+- `django-allauth==0.58.2` - Authentication for Django applications, supporting social and email accounts
+- `django-ckeditor==6.7.0` - Django integration for CKEditor, a WYSIWYG text editor
+- `django-countries==7.5.1` - Provides a country field for Django models
+- `django-crispy-forms==1.14.0` - Helps easily build crispy forms in Django
+- `django-js-asset==2.2.0` - Django JavaScript asset management
+- `django-mathfilters==1.0.0` - Math filters for Django templates
+- `django-resized==1.0.2` - Resize images for Django models
+- `django-richtextfield==1.6.1` - Rich text field for Django models
+- `django-storages==1.14.2` - Collection of custom storage backends for Django
+- `django-tinymce==3.7.1` - Django integration for TinyMCE, a WYSIWYG HTML editor
+- `gunicorn==21.2.0` - Python WSGI HTTP server for UNIX
+- `idna==3.4` - Python package for handling Internationalized Domain Names
+- `jmespath==1.0.1` - JSON Matching Expressions
+- `oauthlib==3.2.2` - Generic, spec-compliant, thorough implementation of the OAuth request-signing logic
+- `packaging==23.2` - Core utilities for Python packages
+- `pillow==10.2.0` - Python Imaging Library (PIL), forked and maintained
+- `psycopg2==2.9.9` - PostgreSQL adapter for Python
+- `pycparser==2.21` - Complete parser of the C language, written in pure Python
+- `PyJWT==2.8.0` - Encode and decode JSON Web Tokens (JWT) in Python
+- `python-dateutil==2.8.2` - Extensions to the standard Python datetime module
+- `python3-openid==3.2.0` - Python OpenID library
+- `pytz==2023.3.post1` - Library for dealing with time zones
+- `reportlab==4.0.9` - Library for programmatic creation of PDF documents
+- `requests==2.31.0` - Python HTTP library
+- `requests-oauthlib==1.3.1` - OAuth library for Python Requests
+- `s3transfer==0.10.0` - Python library for managing Amazon S3 transfers
+- `setuptools==69.1.0` - Library to facilitate packaging Python projects
+- `six==1.16.0` - Python 2 and 3 compatibility library
+- `sqlparse==0.4.4` - Non-validating SQL parser for Python
+- `stripe==8.5.0` - Python client library for the Stripe API
+- `typing_extensions==4.9.0` - Backported and experimental type hints for Python 3.5 and 3.6
+- `tzdata==2023.3` - Timezone database
+- `urllib3==2.0.7` - Powerful HTTP client for Python
+- `webencodings==0.5.1` - Python implementation of HTML entity encoding/decoding
