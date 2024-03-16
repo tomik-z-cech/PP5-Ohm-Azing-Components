@@ -352,3 +352,83 @@ Following schemas show intended database structure *( appendix 5 )* and the actu
 *Appendix 6 - DBeaver DB schema and relationships*
 
 ![DBeaver DB Schema](/docs/dbeaver-schema.png)
+
+### 3.4.1. Wire-frames
+
+- **Header and Footer** : Header and footer is established on every single page. **Header** is displayed on top of each page, **Footer** is displayed at the very bottom of each page so it doesn't cover any content *( appendix 7 )*.
+
+*Appendix 7 - Header and Footer Wire-frame*
+
+![Header and Footer Wire-frame](/docs/wireframes/header-footer-wireframe.png)
+
+- **Landing page** : Provides user with clear understanding of what the page is about. User is also provided with 3 newest arrivals (3 newly added items to the database), 3 favorite items (3 items with the highest likes/dislikes rating ) and option for the user to sign up for **Ohm-Azing Components** newsletter *( appendix 8 )*.
+
+*Appendix 8 - Landing Page Wire-frame*
+
+![Landing Page Wire-frame](/docs/wireframes/landing-wireframe.png)
+
+- **Shop page** : Provides user with selection of all available categories and all items that belong to the category. User clearly sees item name, price, amount of comments, rating of item and stock level *( appendix 9 )*..
+
+*Appendix 9 - Shop Page Wire-frame*
+
+![Shop Page Wire-frame](/docs/wireframes/shop-wireframe.png)
+
+- **Item Detail page** : Provides user with all relevant product info including name, description, etc. User can select quantity to add to **Vault**, user can also select between different item sizes and values (only where applicable). User can add item to **Wishlist** - *( appendix 10 )*.
+
+*Appendix 10 - Item Detail Page Wire-frame*
+
+![Item Detail Page Wire-frame](/docs/wireframes/item-detail.png)
+
+- **Wishlist page** : This is where user can store their **Wishlist** items, in case the user wan't to buy the item later or just holding it to see trends first. This function is only available to logged in users. *( appendix 11 )*.
+
+*Appendix 11 - Wishlist Page Wire-frame*
+
+![Wishlist Page Wire-frame](/docs/wireframes/wishlist-wireframe.png)
+
+- **Vault Page** : This page serves as last check before **Checkout**. Users can adjust quantity of item added to **Vault** previously or remove the item from **Vault** or clear **Vault** entirely *( appendix 12 )*.
+
+*Appendix 12 - Vault Page Wire-frame*
+
+![Vault Page Wire-frame](/docs/wireframes/vault-wireframe.png)
+
+- **Checkout Page** : Users are prompted to fill in delivery details (details are pre-filled if user logged in and details are saved). Users can select between delivery options, users can redeem vouchers and also fill pay for their items using credit card details field *( appendix 13 )*.
+
+*Appendix 13 - Checkout Page Wire-frame*
+
+![Checkout Page Wire-frame](/docs/wireframes/checkout-wireframe.png)
+
+- **Checkout Successful Page** : This page is presented to users after successful process of payment. This page indicates order number, expected delivery dates based on user selection and review of items that user paid for *( appendix 14 )*.
+
+*Appendix 14 - Checkout Successful Page Wire-frame*
+
+![Checkout Successful Page Wire-frame](/docs/wireframes/checkout-ok.png)
+
+- **My Profile Page** : Gives user the ability to change their details and preferences. The form is pre-populated with existing details. It also gives the user ability to delete their account entirely. *( appendix 15 )*.
+
+*Appendix 15 - My Profile Page*
+
+![My Profile Page Wire-frame](/docs/wireframes/profile-wireframe.png)
+
+- **Order History Page** : This page gives users the ability to browse history of their orders with functions of viewing and downloading the invoices of the orders. *( appendix 16 )*.
+
+*Appendix 16 - Order History Page*
+
+![Order History Page Wire-frame](/docs/wireframes/history-wireframe.png)
+
+- **Search Results Page** : Provides the user with results of their search query in two groups, categories and shop items. Users have the option to search again from the same page or any page they visit. *( Appendix 17 )*.
+
+*Appendix 17 - Search Results Page*
+
+![Search Results Page Wire-frame](/docs/wireframes/search-results-wireframe.png)
+
+- **Forms** : Forms do interact with user. They are designed to be clear and to the point, always in center of the screen. *( Appendix 18 )*.
+
+*Appendix 18 - Forms*
+
+![Forms Wire-frame](/docs/wireframes/forms-wireframe.png)
+
+- **Admin Tools Page** : Admin tools page is designed only for SuperUsers. This page allows the admin to manage functionality of the whole site with varios settings and options. Admin Tools are accessible from devices with width of screen greater than 1200px.  *( Appendix 19 )*.
+
+*Appendix 19 - Admin Tools Page*
+
+![Admin Tools Page Wire-frame](/docs/wireframes/admin-wireframe.png)
