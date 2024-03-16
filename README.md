@@ -526,3 +526,38 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 *Appendix 30 - Favicon*
 
 ![Favicon](/docs/features/favicon.png)
+
+### **4.1.4. Error Pages**
+
+- This project is designed to have custom error pages. In case of user clicks on broken link, submits action that isn't supported or tries to reach certain view without permission, then user isn't completely "cut off" from browsing, instead an error page with header and footer appears and user is informed of the situation.
+
+- The following custom error pages were created :
+- - 403 - Received when user attempts to access a web resource for which they lack the necessary permissions. *( appendix 31 )*
+- - 404 - Encountered when the requested web resource by user is not found on the server. *( appendix 32 )*
+- - 500 - Displayed when the web server encounters an internal error while processing the request. *( appendix 33 )*
+
+*Appendix 31 - 403.html*
+
+![403.html](/docs/features/403html.png)
+
+*Appendix 32 - 404.html*
+
+![404.html](/docs/features/404html.png)
+
+*Appendix 33 - 500.html*
+
+![500.html](/docs/features/500html.png)
+
+### **4.1.5. Scroll bar**
+- Custom scroll bar was used to fit within the color theme within the project *( appendix 34 )*.
+
+*Appendix 34 - Scroll bar*
+
+![Scrollbar](/docs/features/scrollbar.png)
+
+### **4.1.6. Loader**
+- Custom loader was used to fit within the color theme within the project to indicate to users that the page is working even if it might take a bit of time *( appendix 35 )*.
+
+*Appendix 35 - Loader*
+
+![Loader](/docs/features/loader.gif)
