@@ -432,3 +432,50 @@ Following schemas show intended database structure *( appendix 5 )* and the actu
 *Appendix 19 - Admin Tools Page*
 
 ![Admin Tools Page Wire-frame](/docs/wireframes/admin-wireframe.png)
+
+## **3.5. The Surface Plane**
+
+Once the Strategy, Scope, Structure and Skeleton Planes were in place, it was time to work on the Surface Plane (Design).
+
+### 3.5.1. Logo
+
+To create the logo, site called [Looka](https://looka.com/) was used. Few ideas were presented to the site owner and one of the logos was picked *( appendix 20 )*
+
+*Appendix 20 - Logo*
+
+![Logo](/docs/email_logo.png)
+
+### 3.5.2. Color pallette
+
+Based on the colors of the logo, rest of the colors were picked using the [Adobe Color Wheel](https://color.adobe.com/create/color-wheel), following colors were picked into the color pallette *( appendix 21 )*. As some of the colors needed to be opaque, following CSS variables were established *( appendix 22 )*.
+
+*Appendix 21 - Color pallette*
+
+![Color pallette](/docs/color-pallette.png)
+
+*Appendix 22 - Color variables*
+
+![Color variables](/docs/color-vars.png)
+
+### 3.5.3. Fonts
+
+[Google Fonts](https://fonts.google.com/) site was used to pick the best typography style. The most importance was given to balance between style and readability. As a developer I needed to ensure that all text is displayed clear.
+
+One font was picked and saved in CSS vars *( Appendix 24)* :
+ - Electrolize (Sans Serif fallback) -  *( Appendix 23 )*
+
+*Appendix 23 - Electrolize Font*
+
+![Electrloze Font](/docs/electrolize-font.png)
+
+*Appendix 24 - Font Variable*
+
+![Font Variable](/docs/font-vars.png)
+
+### 3.5.4. Icons and pictures
+
+Icons used throughour the projects are [Bootstrap Icons](https://icons.getbootstrap.com/). All of the icons are free to use under their T&C license. Icons were user for various parts of the project such as the Menu, Footer and Buttons as they do enhance user experience.
+
+Site called [Freepik](https://www.freepik.com/) was used to download images used in this project. The site offers massive amounts of imagery that is free to download and use under their T&C license. Images from [Freepik](https://www.freepik.com/) were used as product images and background image.
+
+---
