@@ -874,3 +874,233 @@ Bugs are documented separately in [bugs.md](/docs/bugs.md) file.
   - Confirm the instance by pressing `Create Project`
   - Obtain database URL in format `postgresql://USERNAME:PASSWORD@ep-calm-mode-a2qojqh4.eu-central-1.aws.neon.tech/DATABASE_NAME?sslmode=require`
   - Update `settings.py` in the project directory
+
+### **6.3.3. AWS Cloud Service**
+
+- **Task :** Obtain AWS Access Key and AWS Secret Key in orther to use AWS S3 bucket as static and media files cloud storage
+- **Method :** 
+  - Navigate to [aws.amazon.com](https://aws.amazon.com/)
+  - Create an account and log in
+  - Create **S3 bucket**, name it and choose the region (name should be semantic and region closest to the target audience location)
+  - Allow the bucket to be **public**
+  - Create the **permissions configuration**, I did use 
+``` 
+[
+ 	{
+ 		"AllowedHeaders": [
+ 			"Authorization"
+ 		],
+ 		"AllowedMethods": [
+ 			"GET"
+ 		],
+ 		"AllowedOrigins": [
+ 			"*"
+ 		],
+ 		"ExposeHeaders": []
+ 	}
+]
+```
+- **Method continues :**  
+  - Add the **S3 bucket policy**
+```
+ {
+ 	"Id": "Policy1234567890",
+ 	"Version": "2012-10-17",
+ 	"Statement": [
+ 		{
+ 			"Sid": "Stmt1234567890",
+ 			"Action": [
+ 				"s3:GetObject"
+ 			],
+ 			"Effect": "Allow",
+ 			"Resource": "arn:aws:s3:::bucket-name/*"
+ 			"Principal": "*",
+ 		}
+ 	]
+ }
+```
+- **Method continues :** 
+  - Start setting up IAM by creating a group (group name should be similar to project name for easy navigation)
+  - In the permissions tab of the IAM group select `attach policy`
+  - Import managed policy from the JSON tab (Amazon3FullAccess)
+  - Copy **ARN** from your newly created bucket
+```
+ 	{
+ 		"Version": "2012-10-17",
+ 		"Statement": [
+ 			{
+ 				"Effect": "Allow",
+ 				"Action": "s3:*",
+ 				"Resource": [
+ 					"arn:aws:s3:::bucket-name",
+ 					"arn:aws:s3:::bucket-name/*"
+ 				]
+ 			}
+ 		]
+ 	}
+```
+- **Method continues :** 
+  - Review and attach the policy
+  - Add user (yourself) to the policy
+  - Download CSV file with the following details
+    - `AWS_ACCESS_KEY_ID`
+    - `AWS_SECRET_ACCESS_KEY`
+  - Ensure that info stays private
+  - Create `media` directory in the bucket
+  - Add `AWS configuration` to `settings.py` (`USE_AWS` was set to `FALSE` during development, ensure this is set to `TRUE` on Heroku after final deployment)
+```
+# AWS Settings
+if 'USE_AWS' in os.environ:
+    # Bucket Config
+    AWS_STORAGE_BUCKET_NAME = 'ohmazing-components'
+    AWS_S3_REGION_NAME = 'eu-west-1'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+    # Static and media files
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+
+    # Override static and media URLs in production
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+```
+
+### **6.3.4. Django AWS Connection**
+
+- **Task :** To create connection between **Ohm-Azing Components** project and AWS cloud services
+- **Method :** 
+  - Install `boto` by `pip install boto`
+  - Install `django storages` by `pip install django-stotages`
+  - Add `storages` to installed apps in `settings.py` 
+  - Set `static` and `media` directories in `settings.py`
+```
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+```
+- **Method continues :** 
+  - Create `custom_storages.py` file in root
+```
+# Imports
+from django.conf import settings
+from storages.backends.s3boto3 import S3Boto3Storage
+
+
+class StaticStorage(S3Boto3Storage):
+    """
+    Class sets static files location
+    """
+    location = settings.STATICFILES_LOCATION
+
+
+class MediaStorage(S3Boto3Storage):
+    """
+    Class sets media files location
+    """
+    location = settings.MEDIAFILES_LOCATION
+```
+- **Method continues :** 
+  - If you had any media files created locally as I had using VS code on my local machine and those files are necessary for the project, don't forget to upload them to **S3 bucket** connected with the project
+
+### **6.3.5. Stripe Configuration & Connection**
+
+- **Task :** Obtain all relevant settings and keys for online payments on project site
+- **Method :** 
+  - Navigate to [Stripe](https://stripe.com/)
+  - Create an account and login
+  - Get your API keys (`STRIPE_PUBLIC_KEY` and `STRIPE_SECRET_KEY`)
+  - Set those in your `env.py` for development and in Heroku vars for deployment
+  - Install stripe by `pip install stripe` 
+  - Create Webhook listeners
+  - Add listener endpoint (URL for webhook listeners after deployment)
+  - If webhooks need to be tested locally, install stripe CLI
+  - Run three terminal windows where one serves as your server, second as webhook CLI and third as Stripe response server *( Appendix 70 )* 
+  - Add al keys to `env.py` and to Heroku config vars
+
+*Appendix 70 - Webhook testing*
+
+![Webhook testing](/docs/stripe-testing.png)
+
+### **6.3.6. Settings.py & file-tree**
+
+- **Task :** Prepare `settings.py` adn file-tree for deployment 
+- **Finding:** Stripe payment intend will only be created if the target amount is greater than 0.50 € (As I have cheaper items in my project, minimum orer and defensive programming was used) - *( Appendix 71 )*
+- **Method :** 
+  - Create file `env.py` to keep all sensitive information in
+  - See example of `env.py` file *( Appendix 72 )*
+  - Add `env.py` into `.gitignore` file to ensure this fill won't be uploaded to GitHub
+  - update `settings.py` with `import os`
+  - for every secured variable add code `VARIABLE = os.environ.get("VARIABLE")`
+  - ensure this process for Gmail, Neon Tech DB, AWS, DEBUG and Django Secret Key
+  - update default database settings in `settings.py` with 
+```
+if "DATABASE_URL" in os.environ:
+    DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
+    }
+```
+  - update default static settings in `settings.py` with `
+  STATIC_URL = "/static/"
+STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
+MEDIA = "/media/"
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+  `
+  - update email settings in `settings.py` with `EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True`
+  - Migrate - your database models to ElephantSQL using `python manage.py migrate` command
+  - Create directories `.\static` and `.\templates`
+  - commit and push changes to GitHub
+
+*Appendix 71 - Minimum Order setting*
+
+![Minimum Order setting](/docs/min-order.png)
+
+*Appendix 72 - `env.py` file*
+
+![env.py](/docs/envpy.png)
+
+## **6.4. Deployment to Heroku**
+
+- **Task :** To ensure users are able to view live version of **Aneta's Glimmer** project.
+- **Method :** 
+  - Register & Log In with heroku
+  - Navigate to `New > Create New App`
+  - Select Name of the app that is unique
+  - Navigate to `Settings > Reveal Config Vars`
+  - Add all variables from `env.py` to ConfigVars of Heroku App *( Appendix 73)*
+  - Add variable pair `PORT:8000`
+  - For the testing deployment add variable pair `COLLECT_STATIC:1`
+  - Add the Heroku app URL into `ALLOWED HOSTS` in `settings.py`
+  - In root create file name `Procfile` *( Appendix 74 )*
+  - Navigate to `Deploy > GitHub > Connect`
+  - Navigate to `Deploy > Deploy Branch`
+  - Optionally, you can enable automatic deploys
+  - See the deployment log - if the deployment was successful, you will be prompted with option to see live page  
+
+
+*Appendix 73 - Heroku Config Vars*
+
+![Heroku Config Vars](/docs/heroku-vars.png)
+
+*Appendix 74 - Procfile*
+
+![Procfile](/docs/procfile.png)
+---
+
