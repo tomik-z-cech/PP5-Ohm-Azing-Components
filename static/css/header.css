@@ -12,6 +12,7 @@ header {
 
 #logo-image {
     width: 90%;
+    max-height: 95%;
     aspect-ratio: 3/1;
 }
 
