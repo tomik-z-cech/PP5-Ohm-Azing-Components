@@ -479,3 +479,50 @@ Icons used throughour the projects are [Bootstrap Icons](https://icons.getbootst
 Site called [Freepik](https://www.freepik.com/) was used to download images used in this project. The site offers massive amounts of imagery that is free to download and use under their T&C license. Images from [Freepik](https://www.freepik.com/) were used as product images and background image.
 
 ---
+
+# **4. Features**
+
+## **4.1. Features used in every HTML template**
+
+### **4.1.1 Header**
+- Header contains a Logo section *( appendix 27 )*, which is also used as a link to Home page `{% url 'home' %}`. Center of the header is used for Search Bar and in the left top corner is located the **Menu** section along with **Vault** and **Wishlist** *( appendix 26 )* for easy navigation through all the pages.The header changes to different layout *( appendix 27 )* when the resolution changes to less than 1200 pixels in width.
+- Header is designed to cover full width `width: 100%` of the browsing window.
+- This will allow user to navigate through the pages and to navigate back to home page when click on logo.
+- Header extends `base.html` in block `{% include 'header.html' %}`
+
+*Appendix 25 - Logo*
+
+![Logo](/docs/features/logo.png)
+
+*Appendix 26 - Header on HD devices*
+
+![Header on HD devices](/docs/features/big-header.png)
+
+*Appendix 27 - Header on devices less 1200px in width*
+
+![Header on devices less 1200px](/docs/features/small-header.png)
+
+### **4.1.2. Footer**
+
+- Footer  *( appendix 28 )* is designed to reveal basic contact details of **Ohm-Azing Components** on the left hand side, phone number and email address are constructed to be clickable links that are very useful especially for mobile phone users. Center of footer is designed to bring the user to Facebook via link that opens in new browser tab and it has links to Terms & Conditions and Privacy Policy Modals.
+Right hand site of the footer is devoted to accepted cards logos and Stripe link.
+- Footer is designed to cover full width `width: 100%` of the browsing window.
+- This will allow user to open phone app (dial the number directly), send e-mail (open e-mail application on phone/tablet) and open Facebook link in new window.
+- Footer changes the appearance on devices with width lesser than 1200px *( appendix 29 )*.
+- Footer extends `base.html` in block `{% include 'footer.html' %}`
+
+*Appendix 28 - Footer on HD devices*
+
+![Footer on HD devices](/docs/features/big-footer.png)
+
+*Appendix 29 - Footer on devices less 1200px in width*
+
+![Footer on devices less 1200px in width](/docs/features/small-footer.png)
+
+### **4.1.3. Favicon**
+
+- Every template in this project is equipped with Favicon. This is to ease navigation for user in case of more tabs opened. The logo was selected as Favicon *( appendix 30)*. 
+
+*Appendix 30 - Favicon*
+
+![Favicon](/docs/features/favicon.png)
