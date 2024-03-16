@@ -72,7 +72,7 @@ class ClearWishlistView(LoginRequiredMixin, generic.ListView):
         request.user.userprofile.user_wishlist = []
         # Save the wishlist
         request.user.userprofile.save()
-        messages.success(request, f"Your wishlist is now empty.")
+        messages.success(request, "Your wishlist is now empty.")
         # Redirect back to wishlist
         return redirect("show-wishlist")
 
@@ -94,5 +94,7 @@ class DeleteWishlistItemView(LoginRequiredMixin, generic.ListView):
         users_wishlist.remove(item_to_delete.item_sku)
         # Save wishlist
         request.user.userprofile.save()
+        messages.success(request, f"You removed {item_to_delete.item_name} \
+            from your wishlist.")
         # Return back to wishlist
         return redirect("show-wishlist")

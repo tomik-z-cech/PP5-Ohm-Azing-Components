@@ -561,3 +561,227 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 *Appendix 35 - Loader*
 
 ![Loader](/docs/features/loader.gif)
+
+### **4.1.7. Sorting criterion**
+- Multiple pages are equipped by sorting criterion that allows user to sort display items by their choice. This is used in **Shop Page** and **Admin Tools**  *( appendix 36 )*.
+
+*Appendix 36 - Sorting criterion*
+
+![Sorting criterion](/docs/features/sorting.png)
+
+### **4.1.8. Pagination**
+- Multiple pages are equipped by pagination that allows user to display amount of items by their choice. This is used in **Shop Page** and **Admin Tools** *( appendix 37 )*. When pagination in use (All Items is not the selected option), pagination Navigation Bar will be displayed *( appendix 38 )*. 
+
+*Appendix 37 - Pagination option*
+
+![Pagination option](/docs/features/pagination.png)
+
+*Appendix 38 - Pagination Navbar*
+
+![Pagination Navbar](/docs/features/pagination-nav.png)
+
+### **4.1.9. Toasts**
+- Toasts are used to communicate with the user. Four levels of toasts are in use (success, error, info and vault). Toasts do appear on the right bottom corner of the page with useful message for the user. Templates for toasts are nesting in `templates/toasts`. Two designs were created, simple message toast *( appendix 39 )* that communicates simple message to the user and Vault toasts that let's user know how much more to spend for free delivery and recapitulates the whole content of Vault *( appendix 40 )*. 
+
+*Appendix 39 - Simple toast*
+
+![Simple toast](/docs/features/simple-toast.png)
+
+*Appendix 40 - Vault toast*
+
+![Vault toast](/docs/features/vault-toast.png)
+
+### **4.1.10. Easter Egg**
+- "Easter Egg" surprise is hidden within the project. When user types "ilovetocode" at any stage of browsing, they will be revealed with hidden voucher discount code.  *( appendix 41 )*. 
+
+*Appendix 41 - Easter Egg*
+
+![Easter Egg](/docs/features/easteregg.png)
+
+## **4.2. Main Content**
+
+### **4.2.1. Landing Page**
+
+- **App :** `landing`
+- **Template File :** `index.html` - extends `base.html`
+- **User :** Provides user with clear understanding of what the page is about. User is also provided with 3 newest shop items along with 3 favourite items. User can sign up to newsletter  *( appendix 42 )*.
+
+*Appendix 42 - Landing Page*
+
+![Landing Page](/docs/features/landing.png)
+
+### **4.2.2. Shop Page**
+
+- **App :** `items`
+- **Template File :** `shop.html` - extends `base.html`
+- **User :** Provides users with selection of all available categories on the left hand site and all items that are in the category on the right hand site. Users can sort the items by various criterion and paginate the page as they wish. Users can find details of price, stock level, rating and amount of comments. *( appendix 43 )*.
+
+*Appendix 43 - Shop Page*
+
+![Shop Page](/docs/features/shop.png)
+
+### **4.2.2. Item Detail Page**
+
+- **App :** `items`
+- **Template File :** `item_detail.html` - extends `base.html`
+- **User :** Provides users with exhaustive details of selected product, including price, description, etc. Logged in users can add/remove item to/from their Wishlist, like/dislike item and add comments. Not logged in users have the ability to read comments of others. *( appendix 44 )*.
+
+*Appendix 44 - Item Detail Page*
+
+![Item Detail Page](/docs/features/item-detail.png)
+
+### **4.2.3. Wishlist Page**
+
+- **App :** `wishlist`
+- **Template File :** `wishlist.html` - extends `base.html`
+- **User :** Wishlist is only available to logged in users. Users can review all items that users ever added to their Wishlist. Users have the ability to remove item from Wishlist or completely clear the Wishlist *( appendix 45 )*. Modal is used as confirmation when user likes to clear their Wishlist.
+
+*Appendix 45 - Wishlist Page*
+
+![Wishlist Page](/docs/features/wishlist.png)
+
+### **4.2.4. Vault Page**
+
+- **App :** `vault`
+- **Template File :** `vault.html` - extends `base.html`
+- **User :** Vault gives users the ability to check their order once again before they navigate to checkout page. Users can adjust the quantity of item in their Vault, remove the item or clear the Vault entirely. All those functions are available to both logged in or not logged in users. Once they are happy with the Vault content, they can proceed to checkout *( appendix 46 )*. Modal is used as confirmation when user likes to clear their Vault.
+
+*Appendix 46 - Vault Page*
+
+![Vault Page](/docs/features/vault.png)
+
+### **4.2.5. Checkout Page**
+
+- **App :** `checkout`
+- **Template File :** `checkout.html` - extends `base.html`
+- **User :** In checkout page *( appendix 47 )* , users have to fill in their contact and shipping details. If user is logged in and has those details saved in their profile, those details are pre-populated in checkout *( appendix 48 )*. If users are logged and but don't have those details saved, they have option to save it now for later *( appendix 49 )*. Users can select between two delivery options *( appendix 50 )*. Users can use discount codes *( appendix 51 )* and *( appendix 52 )*. Users do pay for their order on this page *( appendix 53 )*. Page is protected for incorrect form submission *( appendix 54 )*. 
+
+*Appendix 47 - Checkout Page*
+
+![Checkout Page](/docs/features/checkout.png)
+
+*Appendix 48 - Shipping details*
+
+![Shipping details](/docs/features/shipping-details.png)
+
+*Appendix 49 - Save checkbox*
+
+![Save checkbox](/docs/features/save-shipping.png)
+
+*Appendix 50 - Delivery options*
+
+![Delivery options](/docs/features/delivery-options.png)
+
+*Appendix 51 - Unused voucher*
+
+![Unused voucher](/docs/features/voucher-unused.png)
+
+*Appendix 52 - Used voucher*
+
+![Used voucher](/docs/features/vocuher-used.png)
+
+*Appendix 53 - Payment*
+
+![Payment](/docs/features/payment.png)
+
+*Appendix 54 - Incorrect field protection*
+
+![Incorrect field protection](/docs/features/checkout-protection.gif)
+
+### **4.2.6. Checkout Success Page**
+
+- **App :** `checkout`
+- **Template File :** `checkout_ok.html` - extends `base.html`
+- **User :** This page confirms to the user that the payment processed correctly adn also lets them know the order number and estimated delivery dates *( appendix 55 )*.
+
+*Appendix 55 - Checkout Success Page*
+
+![Checkout Success Page](/docs/features/checkout-ok.png)
+
+### **4.2.7. Order History Page**
+
+- **App :** `history`
+- **Template File :** `history.html` - extends `base.html`
+- **User :** This page lists all previous orders to the users and lets them view and download the invoices *( appendix 56 )*. 
+
+*Appendix 56 - Order History Page*
+
+![Order History Page](/docs/features/history.png)
+
+### **4.2.8. My Profile Page**
+
+- **App :** `profilemanager`
+- **Template File :** `my_details.html` - extends `base.html`
+- **User :** Gives user the ability to change their details and preferences. The form is pre-populated with existing details. It also gives the user ability to delete their account entirely. *( Appendix 57 )*.
+
+*Appendix 57 - My Details Page*
+
+![My Details Page](/docs/features/my-details.png)
+
+### **4.2.9. Search Results Page**
+
+- **App :** `landing`
+- **Template File :** `search_results.html` - extends `base.html`
+- **User :** Provides the user with results of their search query in two groups. Categories and Items *( Appendix 58 )*.
+
+*Appendix 58 - Search Results Page*
+
+![Search Results Page](/docs/features/search-results.png)
+
+### **4.2.10. Forms**
+
+- **App :** `AllAuth` extension
+- **Template File :** `*.html` in `./templates/account` - extends `base.html`
+- **User :** Forms do interact with user. They are designed to be clear and to the point, always in center of the screen. *( Appendix 59 )*.
+
+*Appendix 59 - Forms*
+
+![Forms](/docs/features/forms.png)
+
+### **4.2.11. Admin Tools**
+
+- **App :** `owner`
+- **Template File :** `*.html` in `.owner/templates/owner` - extends `base.html`
+- **User :** Displaying of Admin tools is protected from unauthorized access and also against access from devices of width less than 1200px *( Appendix 60 )*. In admin tools, the admin is able to do full CRUD on Categories *( Appendix 61 )*, Items *( Appendix 62 )*, view and download invoices of all historical orders *( Appendix 63 )*, do full CRUD in discount vouchers *( Appendix 64 )*, approve and delete user comments *( Appendix 65 )*, set amount in Postage Settings *( Appendix 66 )* and do full CRUD including sending on Newsletter emails *( Appendix 67 )*. 
+
+*Appendix 60 - Admin Tools - Protection*
+
+![Admin Tools - Protection](/docs/features/admin-protection.png)
+
+*Appendix 61 - Admin Tools - Categories*
+
+![Admin Tools - Categories](/docs/features/admin-categories.png)
+
+*Appendix 62 - Admin Tools - Items*
+
+![Admin Tools - Items](/docs/features/admin-items.png)
+
+*Appendix 63 - Admin Tools - Invoices*
+
+![Admin Tools - Invoices](/docs/features/admin-invoices.png)
+
+*Appendix 64 - Admin Tools - Vouchers*
+
+![Admin Tools - Vouchers](/docs/features/admin-vouchers.png)
+
+*Appendix 65 - Admin Tools - Comments*
+
+![Admin Tools - Comments](/docs/features/admin-comments.png)
+
+*Appendix 66 - Admin Tools - Postage Settings*
+
+![Admin Tools - Postage Settings](/docs/features/admin-postage.png)
+
+*Appendix 67 - Admin Tools - Emails*
+
+![Admin Tools - Email](/docs/features/admin-emails.png)
+
+## **4.3. Future Features**
+
+This project could be significantly improved by adding more features this could include :
+
+- Postage label printing section for owner
+- Order status emails for users
+- Frequently bought together section after an item is added to the Vault
+- Product review after receiving the order
+- Returns section for unhappy customers

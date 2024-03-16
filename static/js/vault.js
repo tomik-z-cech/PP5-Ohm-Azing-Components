@@ -2,7 +2,7 @@ $(document).ready(function() {
     // if plus clicked
     $('.plus').click(function() {
         // set the field edited
-        let formField = $(this).siblings('input[type="number"]').parent();
+        let formField = $(this).siblings('input[type="number"]').parent().parent();
         let inputField = $(this).siblings('input[type="number"]');
         // if no input then input = 1
         if (inputField.val() == '') {
