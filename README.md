@@ -831,3 +831,46 @@ Testing is documented separately in [testing.md](/docs/testing.md) file.
 Bugs are documented separately in [bugs.md](/docs/bugs.md) file.
 
 ---
+
+# **7. Deployment**
+
+## **7.1. Transfer of progress from IDE**
+
+- **Task :** To ensure regular commitments are done to avoid any data/progress loss.
+- **Method :** 
+   - commands `git add [filename]` was used to add specific file to staging area, alternatively command `git add .` was used to add all changed files to staging area
+   - command `git commit -m "[commit description]"` was used to add commitments into queue
+   - command `git push` was used to push all commitments to remote repository on GitHub
+
+## **7.2. Offline cloning**
+
+- **Task :** To use repository on local machine.
+- **Method :** 
+  - Navigate to GitHub and follow `Code -> HTTPS -> Copy button` . after those steps open your local coding environment and type `git clone [copied link]`.
+
+## **7.3. Deployment Prerequisites**
+
+### **7.3.1. Gmail**
+
+- **Task :** Obtain GMail username and app key (password) - GMAIL SMTP to be used as mailing client.
+- **Method :** 
+  - Navigate to `https://accounts.google.com/` and follow all steps for registering new email address
+  - Login to google with newly created email address and password.
+  - Navigate to `https://accounts.google.com/` once again
+  - Select `Security > Signing in to Google > 2-Step Verification > App Passwords`
+  - Enter a name of the app password and select `Generate`
+  - You will get app password in format `xxxx xxxx xxxx xxxx`
+  - Update `settings.py` in the project directory
+
+### **6.3.2. Neon Tech DB**
+
+- **Task :** Obtain database URL to be used as project's database.
+- **Method :** 
+  - Select one of the DB providers, I did use [Neon Tech DB](https://neon.tech)
+  - Navigate to `https://neon.tech` and follow all steps for registering new account
+  - Login to Neon Tech DB Console with newly created account credentials
+  - Navigate to `+ New Project`
+  - Select `Name, Plan and Region`
+  - Confirm the instance by pressing `Create Project`
+  - Obtain database URL in format `postgresql://USERNAME:PASSWORD@ep-calm-mode-a2qojqh4.eu-central-1.aws.neon.tech/DATABASE_NAME?sslmode=require`
+  - Update `settings.py` in the project directory
