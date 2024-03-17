@@ -6,11 +6,86 @@
 - **Key project goal :** To offer all visitors of **Ohm-Azing Components** site the option to buy their chosen products, select delivery option and finish payment online without the need of leaving the house.
 - **Audience :** There's no age or any other limit to audience of this page. Target audience are individuals at any level of experience that have interest in electronic components and electronic kits.
 - **Live version :** Live version of **Ohm-Azing Components** e-shop page can be viewed at [https://ohmazing-components-1a5a0fcb9e95.herokuapp.com/](https://ohmazing-components-1a5a0fcb9e95.herokuapp.com/).
+- **Dummy Card :** 4242 4242 4242 4242, expiry 04/24, cvc 242, zip 42424 
 - **Developer :** [Tomas Kubancik](https://github.com/tomik-z-cech/)
 
 ![Mockup](/docs/mockup.png)
 
+---
 
+# **2. Table of Contents**
+
+- [**1. Key project information**](#--1-key-project-information--)
+- [**2. Table of Contents**](#--2-table-of-contents--)
+- [**3. User Experience (UX)**](#--3-user-experience--ux---)
+  * [**3.1. The Strategy Plane**](#--31-the-strategy-plane--)
+    + [**3.1.1 The Idea**](#--311-the-idea--)
+    + [**3.1.2 The Ideal User**](#--312-the-ideal-user--)
+    + [**3.1.3 Site Goals**](#--313-site-goals--)
+    + [**3.1.4 Epics**](#--314-epics--)
+    + [**3.1.5 User stories**](#--315-user-stories--)
+  * [**3.2. The Scope Plane**](#--32-the-scope-plane--)
+    + [**3.2.1. Features to be implemented**](#--321-features-to-be-implemented--)
+  * [**3.3. The Structure Plane**](#--33-the-structure-plane--)
+    + [**3.3.1. Site Maps**](#--331-site-maps--)
+    + [**3.3.2. Database Schemas**](#--332-database-schemas--)
+  * [**3.4. Wire-frames**](#--34-wire-frames--)
+  * [**3.5. The Surface Plane**](#--35-the-surface-plane--)
+    + [**3.5.1. Logo**](#--351-logo--)
+    + [**3.5.2. Color pallette**](#--352-color-pallette--)
+    + [**3.5.3. Fonts**](#--353-fonts--)
+    + [**3.5.4. Icons and pictures**](#--354-icons-and-pictures--)
+- [**4. Features**](#--4-features--)
+  * [**4.1. Features used in every HTML template**](#--41-features-used-in-every-html-template--)
+    + [**4.1.1 Header**](#--411-header--)
+    + [**4.1.2. Footer**](#--412-footer--)
+    + [**4.1.3. Favicon**](#--413-favicon--)
+    + [**4.1.4. Error Pages**](#--414-error-pages--)
+    + [**4.1.5. Scroll bar**](#--415-scroll-bar--)
+    + [**4.1.6. Loader**](#--416-loader--)
+    + [**4.1.7. Sorting criterion**](#--417-sorting-criterion--)
+    + [**4.1.8. Pagination**](#--418-pagination--)
+    + [**4.1.9. Toasts**](#--419-toasts--)
+    + [**4.1.10. Easter Egg**](#--4110-easter-egg--)
+  * [**4.2. Main Content**](#--42-main-content--)
+    + [**4.2.1. Landing Page**](#--421-landing-page--)
+    + [**4.2.2. Shop Page**](#--422-shop-page--)
+    + [**4.2.3. Item Detail Page**](#--423-item-detail-page--)
+    + [**4.2.4. Wishlist Page**](#--424-wishlist-page--)
+    + [**4.2.5. Vault Page**](#--425-vault-page--)
+    + [**4.2.6. Checkout Page**](#--426-checkout-page--)
+    + [**4.2.7. Checkout Success Page**](#--427-checkout-success-page--)
+    + [**4.2.8. Order History Page**](#--428-order-history-page--)
+    + [**4.2.9. My Profile Page**](#--429-my-profile-page--)
+    + [**4.2.10. Search Results Page**](#--4210-search-results-page--)
+    + [**4.2.11. Forms**](#--4211-forms--)
+    + [**4.2.12. Admin Tools**](#--4212-admin-tools--)
+    + [**4.2.13. User Emails**](#--4213-user-emails--)
+  * [**4.3. Future Features**](#--43-future-features--)
+- [**5. Marketing**](#--5-marketing--)
+  * [**5.1. Social Media Presence**](#--51-social-media-presence--)
+  * [**5.2. Search Engine Optimization (SEO)**](#--52-search-engine-optimization--seo---)
+- [**6. Validation, Testing & Bugs**](#--6-validation--testing---bugs--)
+  * [**6.1. Validation**](#--61-validation--)
+  * [**6.2. Testing**](#--62-testing--)
+  * [**6.3. Bugs**](#--63-bugs--)
+- [**7. Deployment**](#--7-deployment--)
+  * [**7.1. Transfer of progress from IDE**](#--71-transfer-of-progress-from-ide--)
+  * [**7.2. Offline cloning**](#--72-offline-cloning--)
+  * [**7.3. Deployment Prerequisites**](#--73-deployment-prerequisites--)
+    + [**7.3.1. Gmail**](#--731-gmail--)
+    + [**7.3.2. Neon Tech DB**](#--732-neon-tech-db--)
+    + [**7.3.3. AWS Cloud Service**](#--733-aws-cloud-service--)
+    + [**7.3.4. Django AWS Connection**](#--734-django-aws-connection--)
+    + [**7.3.5. Stripe Configuration & Connection**](#--735-stripe-configuration---connection--)
+    + [**7.3.6. Settings.py & file-tree**](#--736-settingspy---file-tree--)
+  * [**7.4. Deployment to Heroku**](#--74-deployment-to-heroku--)
+- [**8. Technologies & Credits**](#--8-technologies---credits--)
+  * [**8.1. Technologies used to develop and deploy this project**](#--81-technologies-used-to-develop-and-deploy-this-project--)
+  * [**8.2. Requirements.txt**](#--82-requirementstxt--)
+  * [**8.3. Credits**](#--83-credits--)
+
+---
 
 # **3. User Experience (UX)**
 
@@ -102,20 +177,20 @@ View User Stories for EPIC 2 : Database Models
 
 | Issue                                                                    | Title                                            | User Story                                                                                                                                                  |
 | ------------------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [# 7](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/7) | USER STORY : Define Database Schema              | As a Developer, I need to create databse schema that fits the purpose of the project and also create all the modular apps that will be used in the project. |
-| [# 8](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/8) | USER STORY : Create database realtionships       | As a Developer, I need to define relatinships between models and import the relationships into working apps models.                                         |
+| [# 7](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/7) | USER STORY : Define Database Schema              | As a Developer, I need to create database schema that fits the purpose of the project and also create all the modular apps that will be used in the project. |
+| [# 8](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/8) | USER STORY : Create database relationships       | As a Developer, I need to define relationships between models and import the relationships into working apps models.                                         |
 | [# 9](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/9) | USER STORY : Implement Data Validation in Models | As a Developer, I need implement data validation rules within Ohm-Azing Components database models.                                                         |
 </details>
 
 
 <details>
 <summary>
-View User Stories for EPIC 3 : User Authentication and Authorisation
+View User Stories for EPIC 3 : User Authentication and Authorization
 </summary>
 
 | Issue                                                                      | Title                                       | User Story                                                                                       |
 | -------------------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| [# 11](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/11) | USER STORY : Implement user registration    | As a Site User I am able to register to create new account and to select username and passsword. |
+| [# 11](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/11) | USER STORY : Implement user registration    | As a Site User I am able to register to create new account and to select username and password. |
 | [# 12](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/12) | USER STORY : Log In                         | As a Site User I am able to Log In to see registered user section.                               |
 | [# 13](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/13) | USER-STORY : Reset my password if forgotten | As a Site User I am able to Reset My Password to change my password if forgotten.                |
 | [# 14](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/14) | USER STORY : Log out                        | As a Site User, I am able to log out to leave the site functions for registered users.           |
@@ -133,8 +208,8 @@ View User Stories for EPIC 4 : Custom Admin Interface
 | [# 17](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/17) | USER STORY : Items section                          | As a Business Owner, I have option to do full CRUD with items in order to manage products sold in my shop.                             |
 | [# 18](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/18) | USER STORY : Invoices section                       | As a Business Owner, I have option to view or download any invoice that was created by shoppers.                                       |
 | [# 19](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/19) | USER STORY : Vouchers section                       | As a Business Owner, I have option to perform full CRUD on "Vouchers" that could be redeemed via checkout.                             |
-| [# 20](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/20) | USER STORY : Comments section                       | As a Business Owner, I have option to approve/delete comments to ensure no inapproproate content on the project page.                  |
-| [# 21](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/21) | USER STORY : Postage Settings section               | As a Business Owner, I have option to adjust free postage treshold and posatege fees for standad and express delivery options.         |
+| [# 20](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/20) | USER STORY : Comments section                       | As a Business Owner, I have option to approve/delete comments to ensure no inappropriate content on the project page.                  |
+| [# 21](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/21) | USER STORY : Postage Settings section               | As a Business Owner, I have option to adjust free postage threshold and postage fees for standard and express delivery options.         |
 | [# 28](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/28) | USER STORY : Email interface for marketing purposes | As a Site admin, I need to implement Mailing interface to be able to send emails to all users signed up for email communication.       |
 | [# 97](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/97) | USER STORY : Postage label printing                 | As a Site Admin, I need implement postage label printing page to be able to Effortlessly print postage labels.                         |
 | [# 98](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/98) | USER STORY : Order status emails                    | As a Site Admin, I can mark orders as accepted, pending, fulfilled to be able to keep customers informed of the status of their order. |
@@ -148,11 +223,11 @@ View User Stories for EPIC 5 : General Features
 
 | Issue                                                                      | Title                        | User Story                                                                                                                                                      |
 | -------------------------------------------------------------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [# 23](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/23) | USER STORY : FavIcon & Title | As a Site User I woul like to be able to differenciate this site from other sites opened in my browser, in order of easy navigation.                            |
+| [# 23](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/23) | USER STORY : FavIcon & Title | As a Site User I would like to be able to differentiate this site from other sites opened in my browser, in order of easy navigation.                            |
 | [# 24](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/24) | USER STORY : Header          | As a Site User I want to be able to navigate easily through-out the site.                                                                                       |
 | [# 25](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/25) | USER STORY : Footer          | As a Site User I want to be able to find useful info on the bottom of the site in order not to scroll and search too much around.                               |
 | [# 26](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/26) | USER STORY : Loader          | As a Site User I want to be able to see if page is working in the form of loader that appears when complex task is performed.                                   |
-| [# 27](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/27) | USER STORY : Toasts          | As a Site User I want to be informed of results of requests performed in the form of toast that appears when complex task is done sucessfully / unsuccessfully. |
+| [# 27](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/27) | USER STORY : Toasts          | As a Site User I want to be informed of results of requests performed in the form of toast that appears when complex task is done successfully / unsuccessfully. |
 </details>
 
 
@@ -166,7 +241,7 @@ View User Stories for EPIC 6 : User Profile Management
 | [# 31](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/31) | USER STORY : Change Details (Phone Number, Email Address, etc.) | As a Site User I can Update My Details to be able to manage my account in case of changes.                           |
 | [# 32](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/32) | USER STORY : Delete my account                                  | As a Site User I can Delete My Account to be able to opt out from all services.                                      |
 | [# 33](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/33) | USER STORY : Profile Picture                                    | As a Site User I can Change my profile picture to add the finishing touch to my profile.                             |
-| [# 34](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/34) | USER STORY : Opt In/Out for Newsletter                          | As a Site User I can Opt In/Out for Newsletter or other marketing communtiation to be able to change my preferences. |
+| [# 34](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/34) | USER STORY : Opt In/Out for Newsletter                          | As a Site User I can Opt In/Out for Newsletter or other marketing communication to be able to change my preferences. |
 </details>
 
 
@@ -177,14 +252,14 @@ View User Stories for EPIC 7 : The Shop
 
 | Issue                                                                      | Title                                     | User Story                                                                                                                                                    |
 | -------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [# 36](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/36) | USER STORY : Shop Highlights              | As a Site User, I would like to See Newest and Favourites on the landing page so I can see easily what products are after arriving and what are most popular. |
+| [# 36](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/36) | USER STORY : Shop Highlights              | As a Site User, I would like to See Newest and Favorites on the landing page so I can see easily what products are after arriving and what are most popular. |
 | [# 37](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/37) | USER STORY : Shop by Category             | As a Site User, I would like to have the shop items sorted by category so I can browse the items faster.                                                      |
 | [# 38](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/38) | USER STORY : Product Details              | As a Site User, I would like to see the details of each item in separate page so I won't get lost in too much info.                                           |
 | [# 39](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/39) | USER STORY : Add to Vault                 | As a Site User, I need to be able to add items to vault in order to see the entire order before payment.                                                      |
 | [# 40](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/40) | USER STORY : Add to Wishlist              | As a Site User, I need to be able to add items to my Wishlist in order to see keep the items I am interested in separately.                                   |
 | [# 41](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/41) | USER STORY : Comment on Products          | As a Site User I can Comment on Items to share my opinion.                                                                                                    |
 | [# 42](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/42) | USER STORY : See Comments of Others       | As a Site User I can see other comments on Items to read other Users opinions.                                                                                |
-| [# 72](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/72) | USER STORY : Like / Dislike Items of Shop | As a Site User I can Like / Dislike particular Item in Shopin order to express my opinion.                                                                    |
+| [# 72](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/72) | USER STORY : Like / Dislike Items of Shop | As a Site User I can Like / Dislike particular Item in Shop in order to express my opinion.                                                                    |
 | [# 99](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/99) | USER STORY : Frequently bought together   | As a Site User, I can see what items are bought together to be able to what else can I buy for the same project.                                              |
 </details>
 
@@ -229,12 +304,12 @@ View User Stories for EPIC 10 : Checkout
 | [# 62](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/62) | USER STORY : Save info                 | As a Site User, I can save provided shipping info in order the form being prefilled with next order.                                                    |
 | [# 63](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/63) | USER STORY : Delivery Options          | As a Site User, I can choose between standard and express delivery in order to control the speed of delivery.                                           |
 | [# 57](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/57) | USER STORY : Payment                   | As a Site User, I have an option providing payment details in order to pay for my goods.                                                                |
-| [# 55](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/55) | USER STORY : Vouchers                  | As a Site User, I have an option to redeem dicount codes in order to get discount on my purchase.                                                       |
+| [# 55](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/55) | USER STORY : Vouchers                  | As a Site User, I have an option to redeem discount codes in order to get discount on my purchase.                                                       |
 | [# 58](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/58) | USER STORY : Invoice Generator         | As a Site Admin, I need to be able to generate invoice in \*.pdf format in order the invoice being attached to the confirmation email.                  |
-| [# 59](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/59) | USER STORY : Confirmation Email        | As a Site User, I do get confirmation email in order to know the transaction was sucessfull.                                                            |
+| [# 59](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/59) | USER STORY : Confirmation Email        | As a Site User, I do get confirmation email in order to know the transaction was successful.                                                            |
 | [# 60](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/60) | USER STORY : Stock Update              | As a Site Admin, I need to be able to update stock amounts after every purchase in order the manage the inventory.                                      |
 | [# 56](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/56) | USER STORY : Stripe and Webhooks Setup | As a Site Admin, I need to be able to process the order functions even in event of failure in order to ensure no paying customer is left without goods. |
-| [# 64](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/64) | USER STORY : Success Page              | As a Site User, I can clarly see sucess page in order to know my order went through without checking my emails.                                         |
+| [# 64](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/64) | USER STORY : Success Page              | As a Site User, I can clearly see success page in order to know my order went through without checking my emails.                                         |
 </details>
 
 
@@ -247,7 +322,7 @@ View User Stories for EPIC 11 : Order History
 | -------------------------------------------------------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | [# 66](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/66) | USER STORY : Accessing Order History  | As a Site User, I can access my own past orders in case of needing them in future.                  |
 | [# 67](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/67) | USER STORY : Viewing past invoices    | As a Site User, I can view detail of any of my own past orders in case of needing them in future.   |
-| [# 68](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/68) | USER STORY : Downloding past invoices | As a Site User, I can download any of my own past order invoices in case of needing them in future. |
+| [# 68](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/68) | USER STORY : Downloading past invoices | As a Site User, I can download any of my own past order invoices in case of needing them in future. |
 </details>
 
 
@@ -258,7 +333,7 @@ View User Stories for EPIC 12 : Search Bar
 
 | Issue                                                                      | Title                                     | User Story                                                                                                                                     |
 | -------------------------------------------------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| [# 70](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/70) | USER STORY : Search Bar in header of page | As a Site User I am able to use search function through Categories, Items and Item descriptionsin order to quickly find what am I looking for. |
+| [# 70](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/70) | USER STORY : Search Bar in header of page | As a Site User I am able to use search function through Categories, Items and Item descriptions in order to quickly find what am I looking for. |
 | [# 71](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/71) | USER STORY : Search results               | As a Site User I can see search result to easily navigate through them.                                                                        |
 </details>
 
@@ -295,7 +370,7 @@ View User Stories for EPIC 14 : Testing and Validation
 
 After decided on the strategy, the scope plane was carefully created.
 
-### 3.2.1. Features to be implemented
+### **3.2.1. Features to be implemented**
 
 - **User Authentication** : Users can Register, access **My Profile** page where users can manage their information and preferences and delete their account (CRUD)
 
@@ -325,7 +400,7 @@ After decided on the strategy, the scope plane was carefully created.
 
 ## **3.3. The Structure Plane**
 
-### 3.3.1. Site Maps
+### **3.3.1. Site Maps**
 
 The following site-maps show how the site is structured to **Logged in user** *( Appendix 2 )* ,**Not logged in user** *( Appendix 3 )* and **Site Admin** *( Appendix 3 )*.
 
@@ -341,7 +416,7 @@ The following site-maps show how the site is structured to **Logged in user** *(
 
 ![Site Map - Not Logged In](/docs/sitemap-admin.png)
 
-### 3.3.2. Database Schemas
+### **3.3.2. Database Schemas**
 
 Following schemas show intended database structure *( Appendix 5 )* and the actual database structure generated by DBeaver *( Appendix 6 )*.
 
@@ -353,7 +428,7 @@ Following schemas show intended database structure *( Appendix 5 )* and the actu
 
 ![DBeaver DB Schema](/docs/dbeaver-schema.png)
 
-### 3.4.1. Wire-frames
+## **3.4. Wire-frames**
 
 - **Header and Footer** : Header and footer is established on every single page. **Header** is displayed on top of each page, **Footer** is displayed at the very bottom of each page so it doesn't cover any content *( Appendix 7 )*.
 
@@ -427,7 +502,7 @@ Following schemas show intended database structure *( Appendix 5 )* and the actu
 
 ![Forms Wire-frame](/docs/wireframes/forms-wireframe.png)
 
-- **Admin Tools Page** : Admin tools page is designed only for SuperUsers. This page allows the admin to manage functionality of the whole site with varios settings and options. Admin Tools are accessible from devices with width of screen greater than 1200px.  *( Appendix 19 )*.
+- **Admin Tools Page** : Admin tools page is designed only for SuperUsers. This page allows the admin to manage functionality of the whole site with various settings and options. Admin Tools are accessible from devices with width of screen greater than 1200px.  *( Appendix 19 )*.
 
 *Appendix 19 - Admin Tools Page*
 
@@ -437,7 +512,7 @@ Following schemas show intended database structure *( Appendix 5 )* and the actu
 
 Once the Strategy, Scope, Structure and Skeleton Planes were in place, it was time to work on the Surface Plane (Design).
 
-### 3.5.1. Logo
+### **3.5.1. Logo**
 
 To create the logo, site called [Looka](https://looka.com/) was used. Few ideas were presented to the site owner and one of the logos was picked *( Appendix 20 )*
 
@@ -445,7 +520,7 @@ To create the logo, site called [Looka](https://looka.com/) was used. Few ideas 
 
 ![Logo](/docs/email_logo.png)
 
-### 3.5.2. Color pallette
+### **3.5.2. Color pallette**
 
 Based on the colors of the logo, rest of the colors were picked using the [Adobe Color Wheel](https://color.adobe.com/create/color-wheel), following colors were picked into the color pallette *( Appendix 21 )*. As some of the colors needed to be opaque, following CSS variables were established *( Appendix 22 )*.
 
@@ -457,7 +532,7 @@ Based on the colors of the logo, rest of the colors were picked using the [Adobe
 
 ![Color variables](/docs/color-vars.png)
 
-### 3.5.3. Fonts
+### **3.5.3. Fonts**
 
 [Google Fonts](https://fonts.google.com/) site was used to pick the best typography style. The most importance was given to balance between style and readability. As a developer I needed to ensure that all text is displayed clear.
 
@@ -472,9 +547,9 @@ One font was picked and saved in CSS vars *( Appendix 24)* :
 
 ![Font Variable](/docs/font-vars.png)
 
-### 3.5.4. Icons and pictures
+### **3.5.4. Icons and pictures**
 
-Icons used throughour the projects are [Bootstrap Icons](https://icons.getbootstrap.com/). All of the icons are free to use under their T&C license. Icons were user for various parts of the project such as the Menu, Footer and Buttons as they do enhance user experience.
+Icons used throughout the projects are [Bootstrap Icons](https://icons.getbootstrap.com/). All of the icons are free to use under their T&C license. Icons were user for various parts of the project such as the Menu, Footer and Buttons as they do enhance user experience.
 
 Site called [Freepik](https://www.freepik.com/) was used to download images used in this project. The site offers massive amounts of imagery that is free to download and use under their T&C license. Images from [Freepik](https://www.freepik.com/) were used as product images and background image.
 
@@ -604,7 +679,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 
 - **App :** `landing`
 - **Template File :** `index.html` - extends `base.html`
-- **User :** Provides user with clear understanding of what the page is about. User is also provided with 3 newest shop items along with 3 favourite items. User can sign up to newsletter  *( Appendix 42 )*.
+- **User :** Provides user with clear understanding of what the page is about. User is also provided with 3 newest shop items along with 3 favorite items. User can sign up to newsletter  *( Appendix 42 )*.
 
 *Appendix 42 - Landing Page*
 
@@ -620,7 +695,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 
 ![Shop Page](/docs/features/shop.png)
 
-### **4.2.2. Item Detail Page**
+### **4.2.3. Item Detail Page**
 
 - **App :** `items`
 - **Template File :** `item_detail.html` - extends `base.html`
@@ -630,7 +705,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 
 ![Item Detail Page](/docs/features/item-detail.png)
 
-### **4.2.3. Wishlist Page**
+### **4.2.4. Wishlist Page**
 
 - **App :** `wishlist`
 - **Template File :** `wishlist.html` - extends `base.html`
@@ -640,7 +715,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 
 ![Wishlist Page](/docs/features/wishlist.png)
 
-### **4.2.4. Vault Page**
+### **4.2.5. Vault Page**
 
 - **App :** `vault`
 - **Template File :** `vault.html` - extends `base.html`
@@ -650,11 +725,11 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 
 ![Vault Page](/docs/features/vault.png)
 
-### **4.2.5. Checkout Page**
+### **4.2.6. Checkout Page**
 
 - **App :** `checkout`
 - **Template File :** `checkout.html` - extends `base.html`
-- **User :** In checkout page *( Appendix 47 )* , users have to fill in their contact and shipping details. If user is logged in and has those details saved in their profile, those details are pre-populated in checkout *( Appendix 48 )*. If users are logged and but don't have those details saved, they have option to save it now for later *( Appendix 49 )*. Users can select between two delivery options *( Appendix 50 )*. Users can use discount codes *( Appendix 51 )* and *( Appendix 52 )*. Users do pay for their order on this page *( Appendix 53 )*. Page is protected for incorrect form submission *( Appendix 54 )*. 
+- **User :** In checkout page *( Appendix 47 )* , users have to fill in their contact and shipping details. If user is logged in and has those details saved in their profile, those details are pre-populated in checkout *( Appendix 48 )*. If users are logged and but don't have those details saved, they have option to save it now for later *( Appendix 49 )*. Users can select between two delivery options *( Appendix 50 )*. Users can use discount codes *( Appendix 51 )* and *( Appendix 52 )*. Users do pay for their order on this page *( Appendix 53 )*. Page is protected for incorrect form submission *( Appendix 54 )*. The checkout app also updates the amount of stock of item after successful purchase.
 
 *Appendix 47 - Checkout Page*
 
@@ -688,7 +763,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 
 ![Incorrect field protection](/docs/features/checkout-protection.gif)
 
-### **4.2.6. Checkout Success Page**
+### **4.2.7. Checkout Success Page**
 
 - **App :** `checkout`
 - **Template File :** `checkout_ok.html` - extends `base.html`
@@ -698,7 +773,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 
 ![Checkout Success Page](/docs/features/checkout-ok.png)
 
-### **4.2.7. Order History Page**
+### **4.2.8. Order History Page**
 
 - **App :** `history`
 - **Template File :** `history.html` - extends `base.html`
@@ -708,7 +783,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 
 ![Order History Page](/docs/features/history.png)
 
-### **4.2.8. My Profile Page**
+### **4.2.9. My Profile Page**
 
 - **App :** `profilemanager`
 - **Template File :** `my_details.html` - extends `base.html`
@@ -718,7 +793,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 
 ![My Details Page](/docs/features/my-details.png)
 
-### **4.2.9. Search Results Page**
+### **4.2.10. Search Results Page**
 
 - **App :** `landing`
 - **Template File :** `search_results.html` - extends `base.html`
@@ -728,7 +803,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 
 ![Search Results Page](/docs/features/search-results.png)
 
-### **4.2.10. Forms**
+### **4.2.11. Forms**
 
 - **App :** `AllAuth` extension
 - **Template File :** `*.html` in `./templates/account` - extends `base.html`
@@ -738,7 +813,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 
 ![Forms](/docs/features/forms.png)
 
-### **4.2.11. Admin Tools**
+### **4.2.12. Admin Tools**
 
 - **App :** `owner`
 - **Template File :** `*.html` in `.owner/templates/owner` - extends `base.html`
@@ -776,11 +851,11 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 
 ![Admin Tools - Email](/docs/features/admin-emails.png)
 
-### **4.2.12. User Emails**
+### **4.2.13. User Emails**
 
 - **App :** `checkout` and `owner`
 - **Template File :** `*.html` in `./templates/emails`
-- **User :** Project is equipped with styled user emails as Newsletter email and Order Confirmation email *( Appendix 68 )*. Project also generates invoice and attaches that to email confirmation sent to user after successful order *( Appendix 69 )*.
+- **User :** Project is equipped with styled user emails as Newsletter email and Order Confirmation email *( Appendix 68 )*. Project also generates invoice and attaches that to email confirmation sent to user after successful order *( Appendix 69 )*. Invoices are configured the way that if they are generated via webhook, they will have "WH" in the invoice heading
 
 *Appendix 68 - Email Sample*
 
@@ -808,11 +883,11 @@ This project could be significantly improved by adding more features this could 
 
 [Ohm-Azing Components Facebook Page](https://www.facebook.com/profile.php?id=61556654592935) was created in order to capture more online presence. The page will be used for adding posts to inform customers of newly arrived products and also competitions will be held. This will generate greater site foot-fall and generate greater income. Facebook and other social platform do provide easy, cheap and effortless way of advertisement.
 
-## **5.2. Search Engine Optimisation (SEO)**
+## **5.2. Search Engine Optimization (SEO)**
 
 Key words within the **Ohm-Azing Components** business scope were researched same as description tags. [Wordtracker](https://www.wordtracker.com/) was used to ensure that both short-tail and long-tail keywords are included. Keywords such as 'electronic components', 'electronic kits' and 'electronic tools' aim to reach most of the market search and are within the business scope. Accurate item names are present in the product names and descriptions to appear at the top of Google searches.
 
-Files `sitemap.xml` and `robots.txt` were created to increase visibility of the site. These files are essential for SEO (Search Engine Optimisation). The `sitemap.xml` file was generated using XML Sitemap and included in the root folder of the project. A robots.txt file was created in the root folder to instruct search engine crawlers on how to access and crawl the site's pages.
+Files `sitemap.xml` and `robots.txt` were created to increase visibility of the site. These files are essential for SEO (Search Engine Optimization). The `sitemap.xml` file was generated using XML Sitemap and included in the root folder of the project. A robots.txt file was created in the root folder to instruct search engine crawlers on how to access and crawl the site's pages.
 
 ---
 
@@ -862,7 +937,7 @@ Bugs are documented separately in [bugs.md](/docs/bugs.md) file.
   - You will get app password in format `xxxx xxxx xxxx xxxx`
   - Update `settings.py` in the project directory
 
-### **6.3.2. Neon Tech DB**
+### **7.3.2. Neon Tech DB**
 
 - **Task :** Obtain database URL to be used as project's database.
 - **Method :** 
@@ -875,9 +950,9 @@ Bugs are documented separately in [bugs.md](/docs/bugs.md) file.
   - Obtain database URL in format `postgresql://USERNAME:PASSWORD@ep-calm-mode-a2qojqh4.eu-central-1.aws.neon.tech/DATABASE_NAME?sslmode=require`
   - Update `settings.py` in the project directory
 
-### **6.3.3. AWS Cloud Service**
+### **7.3.3. AWS Cloud Service**
 
-- **Task :** Obtain AWS Access Key and AWS Secret Key in orther to use AWS S3 bucket as static and media files cloud storage
+- **Task :** Obtain AWS Access Key and AWS Secret Key in order to use AWS S3 bucket as static and media files cloud storage
 - **Method :** 
   - Navigate to [aws.amazon.com](https://aws.amazon.com/)
   - Create an account and log in
@@ -969,7 +1044,7 @@ if 'USE_AWS' in os.environ:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 ```
 
-### **6.3.4. Django AWS Connection**
+### **7.3.4. Django AWS Connection**
 
 - **Task :** To create connection between **Ohm-Azing Components** project and AWS cloud services
 - **Method :** 
@@ -1008,11 +1083,12 @@ class MediaStorage(S3Boto3Storage):
 - **Method continues :** 
   - If you had any media files created locally as I had using VS code on my local machine and those files are necessary for the project, don't forget to upload them to **S3 bucket** connected with the project
 
-### **6.3.5. Stripe Configuration & Connection**
+### **7.3.5. Stripe Configuration & Connection**
 
 - **Task :** Obtain all relevant settings and keys for online payments on project site
 - **Finding:** Stripe payment intend will only be created if the target amount is greater than 0.50 € (As I have cheaper items in my project, minimum orer and defensive programming was used) - *( Appendix 71 )* and data passed back from the webhook are always in string type.
-As for customer satisfaction and complaints, I wanted to make sure that I know what orders (invoices) were created by `views.py` and which were created by `webhook_handler.py` - invoice created by webhook has "WH" in header of invoice
+As for customer satisfaction and complaints, I wanted to make sure that I know what orders (invoices) were created by `views.py` and which were created by `webhook_handler.py` - invoice created by webhook has "WH" in header of invoice. If order is created by webhook, the stock amount is also updated.
+- **Testing :** - Dummy card details were used for testing purposes 4242 4242 4242 4242, expiry 04/24, cvc 242, zip 42424
 - **Method :** 
   - Navigate to [Stripe](https://stripe.com/)
   - Create an account and login
@@ -1033,7 +1109,7 @@ As for customer satisfaction and complaints, I wanted to make sure that I know w
 
 ![Minimum Order setting](/docs/min-order.png)
 
-### **6.3.6. Settings.py & file-tree**
+### **7.3.6. Settings.py & file-tree**
 
 - **Task :** Prepare `settings.py` adn file-tree for deployment 
 - **Method :** 
@@ -1055,20 +1131,41 @@ else:
         }
     }
 ```
-  - update default static settings in `settings.py` with `
-  STATIC_URL = "/static/"
-STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
-MEDIA = "/media/"
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-  `
+- **Method continues :**
+  - update default static settings in `settings.py` with 
+```
+# AWS Settings
+if 'USE_AWS' in os.environ:
+    # Bucket Config
+    AWS_STORAGE_BUCKET_NAME = 'ohmazing-components'
+    AWS_S3_REGION_NAME = 'eu-west-1'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+    # Static and media files
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+
+    # Override static and media URLs in production
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+```
+- **Method continues :**
   - update email settings in `settings.py` with `EMAIL_HOST = "smtp.gmail.com"
+```
+# Gmail settings
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "Ohm-azning Components - "
+MAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True`
+```
+- **Method continues :**
   - Migrate - your database models to ElephantSQL using `python manage.py migrate` command
   - Create directories `.\static` and `.\templates`
   - commit and push changes to GitHub
@@ -1077,9 +1174,9 @@ EMAIL_USE_TLS = True`
 
 ![env.py](/docs/envpy.png)
 
-## **6.4. Deployment to Heroku**
+## **7.4. Deployment to Heroku**
 
-- **Task :** To ensure users are able to view live version of **Aneta's Glimmer** project.
+- **Task :** To ensure users are able to view live version of **Ohm-Azing Components** project.
 - **Method :** 
   - Register & Log In with heroku
   - Navigate to `New > Create New App`
@@ -1106,9 +1203,9 @@ EMAIL_USE_TLS = True`
 
 ---
 
-## **7. Technologies & Credits**
+# **8. Technologies & Credits**
 
-### 7.1. Technologies used to develop and deploy this project
+## **8.1. Technologies used to develop and deploy this project**
 
 - [**Django/Jinja**](https://docs.djangoproject.com/en/5.0/) - main Framework of the project
 - [**Python**](https://www.python.org/) - main BackEnd programming language of the project
@@ -1118,12 +1215,12 @@ EMAIL_USE_TLS = True`
 - [**jQuery**](https://api.jquery.com/) - API for JavaScript - dynamic templates programming language of this project (FrontEnd)
 - [**Bootstrap v. 5.3**](https://getbootstrap.com/) - styling framework used in this project (FrontEnd)
 - [**Heroku**](https://heroku.com) - to deploy this project
-- [**Balsamiq**](https://balsamiq.com/support/) - to create wireframes
+- [**Balsamiq**](https://balsamiq.com/support/) - to create wire-frames
 - [**Git**](https://git-scm.com/doc) - to make commitments of progress and push the results back to GitHub
 - [**GitHub**](https://github.com/) - to keep the track of version control
-- [**VS Code**](https://code.visualstudio.com/) - local IDE - after starting the project in CodeAnywhere, I had to migrate to VS Code due to CodeAnywhere speed connection issues. This did create commits from 2 different usernames (still same person) in very early stages of the project.
+- [**VS Code**](https://code.visualstudio.com/) - local IDE
 
-### 7.3. Requirements.txt
+## **8.2. Requirements.txt**
 
 Following modules were used in development of **Ohm-Azing Components** website :
 
@@ -1169,7 +1266,22 @@ Following modules were used in development of **Ohm-Azing Components** website :
 - `six==1.16.0` - Python 2 and 3 compatibility library
 - `sqlparse==0.4.4` - Non-validating SQL parser for Python
 - `stripe==8.5.0` - Python client library for the Stripe API
-- `typing_extensions==4.9.0` - Backported and experimental type hints for Python 3.5 and 3.6
+- `typing_extensions==4.9.0` - Back-ported and experimental type hints for Python 3.5 and 3.6
 - `tzdata==2023.3` - Timezone database
 - `urllib3==2.0.7` - Powerful HTTP client for Python
 - `webencodings==0.5.1` - Python implementation of HTML entity encoding/decoding
+
+## **8.3. Credits**
+
+- [**Daisy McGirr**](https://www.linkedin.com/in/daisy-mcgirr/?originalSubdomain=uk) - massive shout-out for keeping me in the right direction as the best mentor I could ask for
+- [**Alan Bushell**](https://www.linkedin.com/in/bushell23/) and [**Amy Richardson**](https://www.linkedin.com/in/amy-richardson-dev/)- thank you for all the support during weekly stand-ups
+- [**Looka**](https://looka.com/) - used for creating logo
+- [**Adobe Color Wheel**](https://color.adobe.com/create/color-wheel) - used for picking the best color schema
+- [**Google Fonts**](https://fonts.google.com/) - used for picking the best typography
+- [**Neon Tech**](https://neon.tech/) - used as a database storage
+- [**AWS**](https://aws.amazon.com/) - used as a storage of static and media files
+- [**FavIcon.io**](https://favicon.io/favicon-converter/) - used to compress favicon
+- [**FreePik**](https://www.freepik.com/) - used as images database
+- [**Bootstrap Icons**](https://icons.getbootstrap.com/) - used as icons database
+- [**W3Schools**](https://www.w3schools.com/) - useful information and cheat sheets
+- [Markdown-Toc](https://ecotrust-canada.github.io/markdown-toc/) - Table of contents generator
