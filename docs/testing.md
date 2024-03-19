@@ -1,14 +1,14 @@
-# **5.2. Testing**
+# **6.2. Testing**
 
-## **5.2.1. Table of Content - Testing**
+## **6.2.1. Table of Content - Testing**
 
-- [**5.2.1. Table of Content - Testing**]()
-- [**5.2.2. User stories testing**]()
-- [**5.2.3. Test Cases**]()
-- [**5.2.4. Viewport Testing**]()
-- [**5.2.5. Compatibility Testing**]()
+- [**6.2.1. Table of Content - Testing**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/testing.md#521-table-of-content---testing)
+- [**6.2.2. User stories testing**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/testing.md#522-user-stories-testing)
+- [**6.2.3. Test Cases**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/testing.md#524-test-cases)
+- [**6.2.4. Viewport Testing**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/testing.md#524-viewport-testing)
+- [**6.2.5. Compatibility Testing**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/testing.md#525-compatibility-testing)
 
-## **5.2.2. User stories testing**
+## **6.2.2. User stories testing**
 
 | Epic 1                                                                     | Environment configuration                                       |                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                  |                                                               |                                                                                                                     |        |
 | -------------------------------------------------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------ |
@@ -121,6 +121,10 @@
 | [# 79](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/79) | W3C CSS validation                                              | As a Site Developer, I need to ensure style.css file do pass the W3C validation.                                                                                                    | When I copy and paste the content of style.css file then it doesn't throw any major errors.                                                                                                                                                                                      | Not Applicable                                                | [d2f8a5a](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/commit/d2f8a5af34e5447385796a73a270ea102f2314d0) | PASS   |
 | [# 80](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/80) | JS validation                                                   | As a Site Developer, I need to ensure *.js files do pass the JS Lint validation.                                                                                                   | When I copy and paste the content of *.js files then it doesn't throw any major errors.                                                                                                                                                                                         | Not Applicable                                                | [aa7b1ca](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/commit/aa7b1ca0c5191d05575a69e381e3953c513a5526) | PASS   |
 | [# 81](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/issues/81) | PEP8 validation                                                 | As a Site Developer, I need to ensure *.py file do pass the PEP8 validation.                                                                                                       | When I copy and paste the content of *.py files then it doesn't throw any errors.                                                                                                                                                                                               | Not Applicable                                                | [d8cf9ba](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/commit/d8cf9babec03c031dc7dec4d960e453b9967d246) | PASS   |
+
+[Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/testing.md#521-table-of-content---testing)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
 
 *Appendix 90 - Testing*
 
@@ -302,10 +306,14 @@
 
 ![Appendix 134](/docs/testing/test-134.png)
 
+[Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/testing.md#521-table-of-content---testing)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 
-## **5.2.4. Test Cases**
+## **6.2.3. Test Cases**
 
 Part ot this testing was to ensure user cannot access restricted content to registered users or user cannot change content that was created by another user. This was achieved by using `LoginRequiredMixin` for classes and `@login_required` for methods when user needs to be logged in for certain view.
 
@@ -321,6 +329,8 @@ For user not being able to change content that isn't created by user was used fo
 
 ### **Test case 001 - General Site Navigation ( Appendix 135 )**
 
+General site navigation tested.
+
 *Appendix 135 - Test Case 001*
 
 ![Test Case 001](/docs/testing/case-001.png)
@@ -328,6 +338,8 @@ For user not being able to change content that isn't created by user was used fo
 ---
 
 ### **Test case 002 - Search Function ( Appendix 136 )**
+
+Search functions tested.
 
 *Appendix 136 - Test Case 002*
 
@@ -337,6 +349,8 @@ For user not being able to change content that isn't created by user was used fo
 
 ### **Test case 003 - Registering New User ( Appendix 137 )**
 
+New User registration tested.
+
 *Appendix 137 - Test Case 003*
 
 ![Test Case 003](/docs/testing/case-003.png)
@@ -344,6 +358,8 @@ For user not being able to change content that isn't created by user was used fo
 ---
 
 ### **Test Case 004 - Changing user's name, phone number, marketing preferences ( Appendix 138 )**
+
+Details change of registered User tested.
 
 *Appendix 138 - Test Case 004*
 
@@ -353,6 +369,8 @@ For user not being able to change content that isn't created by user was used fo
 
 ### **Test Case 005 - Changing user's email ( Appendix 139 )**
 
+Email change of registered User tested.
+
 *Appendix 139 - Test Case 005*
 
 ![Test Case 005](/docs/testing/case-005.png)
@@ -360,6 +378,8 @@ For user not being able to change content that isn't created by user was used fo
 ---
 
 ### **Test Case 006 - Changing user's password ( Appendix 140 )**
+
+Password change of registered User tested.
 
 *Appendix 140 - Test Case 006*
 
@@ -369,6 +389,8 @@ For user not being able to change content that isn't created by user was used fo
 
 ### **Test Case 007 - Commenting on Shop Item ( Appendix 141 )**
 
+Comments on Shop Items tested.
+
 *Appendix 141 - Test Case 007*
 
 ![Test Case 007](/docs/testing/case-007.png)
@@ -376,6 +398,8 @@ For user not being able to change content that isn't created by user was used fo
 ---
 
 ### **Test Case 008 - Liking/Disliking on Shop Item ( Appendix 142 )**
+
+Likes/Dislikes on Shop Items tested.
 
 *Appendix 142 - Test Case 008*
 
@@ -385,6 +409,8 @@ For user not being able to change content that isn't created by user was used fo
 
 ### **Test Case 009 - Add to Wishlist ( Appendix 143 )**
 
+Wishlist toggle tested.
+
 *Appendix 143 - Test Case 009*
 
 ![Test Case 009](/docs/testing/case-009.png)
@@ -392,6 +418,8 @@ For user not being able to change content that isn't created by user was used fo
 ---
 
 ### **Test Case 010 - Wishlist functions ( Appendix 144 )**
+
+Internal Wishlist functions tested.
 
 *Appendix 144 - Test Case 010*
 
@@ -401,6 +429,8 @@ For user not being able to change content that isn't created by user was used fo
 
 ### **Test Case 011 - Vault functions ( Appendix 145 )**
 
+Internal Vault functions tested.
+
 *Appendix 145 - Test Case 011*
 
 ![Test Case 011](/docs/testing/case-011.png)
@@ -408,6 +438,8 @@ For user not being able to change content that isn't created by user was used fo
 ---
 
 ### **Test Case 012 - Checkout functions ( Appendix 146 )**
+
+Internal and external Checkout functions tested.
 
 *Appendix 146 - Test Case 012*
 
@@ -417,6 +449,8 @@ For user not being able to change content that isn't created by user was used fo
 
 ### **Test Case 013 - Webhooks functions ( Appendix 147 )**
 
+Internal and external Webhooks functions tested.
+
 *Appendix 147 - Test Case 013*
 
 ![Test Case 013](/docs/testing/case-013.png)
@@ -424,6 +458,8 @@ For user not being able to change content that isn't created by user was used fo
 ---
 
 ### **Test Case 014 - Order History functions ( Appendix 148 )**
+
+Internal functions of User's Order History tested.
 
 *Appendix 148 - Test Case 014*
 
@@ -433,13 +469,19 @@ For user not being able to change content that isn't created by user was used fo
 
 ### **Test Case 015 - Deleting User account ( Appendix 149 )**
 
+Deleting Users account tested.
+
 *Appendix 149 - Test Case 015*
 
 ![Test Case 015](/docs/testing/case-015.png)
 
+[Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/testing.md#521-table-of-content---testing)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
-## **5.2.4. Viewport Testing**
+## **6.2.4. Viewport Testing**
 
 - **Task :** To physically test the final project responsiveness on different devices with different view-port.
 - **Method :** All test cases listed above were tested on following devices : 
@@ -457,9 +499,13 @@ For user not being able to change content that isn't created by user was used fo
 
 ![Responsiveness Testing](/docs/testing/responsiveness.png)
 
+[Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/testing.md#521-table-of-content---testing)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
-## **5.2.5. Compatibility Testing**
+## **6.2.5. Compatibility Testing**
 
 - **Task :** To physically test the final project functionality in different browsing applications.
 - **Method :** All test cases listed above were tested in following applications : 
@@ -471,3 +517,7 @@ For user not being able to change content that isn't created by user was used fo
 - **Expected result :** Project does function in all web browsers.
 - **Actual result :**  No content is distorted in any of the listed browsers and project keeps functionality, all navigation links are working and form is responsive to empty fields.
 - **Overall result :** Pass
+
+[Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/testing.md#521-table-of-content---testing)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
