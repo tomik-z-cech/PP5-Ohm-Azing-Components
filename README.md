@@ -15,75 +15,75 @@
 
 # **2. Table of Contents**
 
-- [**1. Key project information**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--1-key-project-information--)
-- [**2. Table of Contents**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--2-table-of-contents--)
-- [**3. User Experience (UX)**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--3-user-experience--ux---)
-  * [**3.1. The Strategy Plane**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--31-the-strategy-plane--)
-    + [**3.1.1 The Idea**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--311-the-idea--)
-    + [**3.1.2 The Ideal User**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--312-the-ideal-user--)
-    + [**3.1.3 Site Goals**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--313-site-goals--)
-    + [**3.1.4 Epics**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--314-epics--)
-    + [**3.1.5 User stories**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--315-user-stories--)
-  * [**3.2. The Scope Plane**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--32-the-scope-plane--)
-    + [**3.2.1. Features to be implemented**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--321-features-to-be-implemented--)
-  * [**3.3. The Structure Plane**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--33-the-structure-plane--)
-    + [**3.3.1. Site Maps**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--331-site-maps--)
-    + [**3.3.2. Database Schemas**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--332-database-schemas--)
-  * [**3.4. Wire-frames**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--34-wire-frames--)
-  * [**3.5. The Surface Plane**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--35-the-surface-plane--)
-    + [**3.5.1. Logo**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--351-logo--)
-    + [**3.5.2. Color pallette**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--352-color-pallette--)
-    + [**3.5.3. Fonts**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--353-fonts--)
-    + [**3.5.4. Icons and pictures**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--354-icons-and-pictures--)
-- [**4. Features**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--4-features--)
-  * [**4.1. Features used in every HTML template**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--41-features-used-in-every-html-template--)
-    + [**4.1.1 Header**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--411-header--)
-    + [**4.1.2. Footer**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--412-footer--)
-    + [**4.1.3. Favicon**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--413-favicon--)
-    + [**4.1.4. Error Pages**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--414-error-pages--)
-    + [**4.1.5. Scroll bar**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--415-scroll-bar--)
-    + [**4.1.6. Loader**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--416-loader--)
-    + [**4.1.7. Sorting criterion**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--417-sorting-criterion--)
-    + [**4.1.8. Pagination**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--418-pagination--)
-    + [**4.1.9. Toasts**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--419-toasts--)
-    + [**4.1.10. Easter Egg**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--4110-easter-egg--)
-  * [**4.2. Main Content**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--42-main-content--)
-    + [**4.2.1. Landing Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--421-landing-page--)
-    + [**4.2.2. Shop Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--422-shop-page--)
-    + [**4.2.3. Item Detail Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--423-item-detail-page--)
-    + [**4.2.4. Wishlist Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--424-wishlist-page--)
-    + [**4.2.5. Vault Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--425-vault-page--)
-    + [**4.2.6. Checkout Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--426-checkout-page--)
-    + [**4.2.7. Checkout Success Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--427-checkout-success-page--)
-    + [**4.2.8. Order History Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--428-order-history-page--)
-    + [**4.2.9. My Profile Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--429-my-profile-page--)
-    + [**4.2.10. Search Results Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--4210-search-results-page--)
-    + [**4.2.11. Forms**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--4211-forms--)
-    + [**4.2.12. Admin Tools**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--4212-admin-tools--)
-    + [**4.2.13. User Emails**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--4213-user-emails--)
-  * [**4.3. Future Features**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--43-future-features--)
-- [**5. Marketing**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--5-marketing--)
-  * [**5.1. Social Media Presence**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--51-social-media-presence--)
-  * [**5.2. Search Engine Optimization (SEO)**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--52-search-engine-optimization--seo---)
-- [**6. Validation, Testing & Bugs**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--6-validation--testing---bugs--)
-  * [**6.1. Validation**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--61-validation--)
-  * [**6.2. Testing**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--62-testing--)
-  * [**6.3. Bugs**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--63-bugs--)
-- [**7. Deployment**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--7-deployment--)
-  * [**7.1. Transfer of progress from IDE**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--71-transfer-of-progress-from-ide--)
-  * [**7.2. Offline cloning**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--72-offline-cloning--)
-  * [**7.3. Deployment Prerequisites**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--73-deployment-prerequisites--)
-    + [**7.3.1. Gmail**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--731-gmail--)
-    + [**7.3.2. Neon Tech DB**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--732-neon-tech-db--)
-    + [**7.3.3. AWS Cloud Service**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--733-aws-cloud-service--)
-    + [**7.3.4. Django AWS Connection**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--734-django-aws-connection--)
-    + [**7.3.5. Stripe Configuration & Connection**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--735-stripe-configuration---connection--)
+- [**1. Key project information**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#1-key-project-information)
+- [**2. Table of Contents**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#2-table-of-contents)
+- [**3. User Experience (UX)**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#3-user-experience-ux)
+  * [**3.1. The Strategy Plane**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#31-the-strategy-plane)
+    + [**3.1.1 The Idea**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#311-the-idea)
+    + [**3.1.2 The Ideal User**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#312-the-ideal-user)
+    + [**3.1.3 Site Goals**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#313-site-goals)
+    + [**3.1.4 Epics**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#314-epics)
+    + [**3.1.5 User stories**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#315-user-stories)
+  * [**3.2. The Scope Plane**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#32-the-scope-plane)
+    + [**3.2.1. Features to be implemented**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#321-features-to-be-implemented)
+  * [**3.3. The Structure Plane**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#33-the-structure-plane)
+    + [**3.3.1. Site Maps**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#331-site-maps)
+    + [**3.3.2. Database Schemas**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#332-database-schemas)
+  * [**3.4. Wire-frames**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#34-wire-frames)
+  * [**3.5. The Surface Plane**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#35-the-surface-plane)
+    + [**3.5.1. Logo**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#351-logo)
+    + [**3.5.2. Color pallette**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#352-color-pallette)
+    + [**3.5.3. Fonts**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#353-fonts)
+    + [**3.5.4. Icons and pictures**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#354-icons-and-pictures)
+- [**4. Features**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#4-features)
+  * [**4.1. Features used in every HTML template**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#41-features-used-in-every-html-template)
+    + [**4.1.1 Header**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#411-header)
+    + [**4.1.2. Footer**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#412-footer)
+    + [**4.1.3. Favicon**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#413-favicon)
+    + [**4.1.4. Error Pages**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#414-error-pages)
+    + [**4.1.5. Scroll bar**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#415-scroll-bar)
+    + [**4.1.6. Loader**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#416-loader)
+    + [**4.1.7. Sorting criterion**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#417-sorting-criterion)
+    + [**4.1.8. Pagination**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#418-pagination)
+    + [**4.1.9. Toasts**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#419-toasts)
+    + [**4.1.10. Easter Egg**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#4110-easter-egg)
+  * [**4.2. Main Content**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#42-main-content)
+    + [**4.2.1. Landing Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#421-landing-page)
+    + [**4.2.2. Shop Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#422-shop-page)
+    + [**4.2.3. Item Detail Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#423-item-detail-page)
+    + [**4.2.4. Wishlist Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#424-wishlist-page)
+    + [**4.2.5. Vault Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#425-vault-page)
+    + [**4.2.6. Checkout Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#426-checkout-page)
+    + [**4.2.7. Checkout Success Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#427-checkout-success-page)
+    + [**4.2.8. Order History Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#428-order-history-page)
+    + [**4.2.9. My Profile Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#429-my-profile-page)
+    + [**4.2.10. Search Results Page**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#4210-search-results-page)
+    + [**4.2.11. Forms**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#4211-forms)
+    + [**4.2.12. Admin Tools**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#4212-admin-tools)
+    + [**4.2.13. User Emails**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#4213-user-emails)
+  * [**4.3. Future Features**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#43-future-features)
+- [**5. Marketing**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#5-marketing)
+  * [**5.1. Social Media Presence**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#51-social-media-presence)
+  * [**5.2. Search Engine Optimization (SEO)**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#52-search-engine-optimization-seo)
+- [**6. Validation, Testing & Bugs**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#6-validation-testing--bugs)
+  * [**6.1. Validation**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#61-validation)
+  * [**6.2. Testing**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#62-testing)
+  * [**6.3. Bugs**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#63-bugs)
+- [**7. Deployment**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#7-deployment)
+  * [**7.1. Transfer of progress from IDE**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#71-transfer-of-progress-from-ide)
+  * [**7.2. Offline cloning**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#72-offline-cloning)
+  * [**7.3. Deployment Prerequisites**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#73-deployment-prerequisites)
+    + [**7.3.1. Gmail**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#731-gmail)
+    + [**7.3.2. Neon Tech DB**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#732-neon-tech-db)
+    + [**7.3.3. AWS Cloud Service**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#733-aws-cloud-service)
+    + [**7.3.4. Django AWS Connection**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#734-django-aws-connection)
+    + [**7.3.5. Stripe Configuration & Connection**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#735-stripe-configuration--connection)
     + [**7.3.6. Settings.py & file-tree**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--736-settingspy---file-tree--)
-  * [**7.4. Deployment to Heroku**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--74-deployment-to-heroku--)
-- [**8. Technologies & Credits**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--8-technologies---credits--)
-  * [**8.1. Technologies used to develop and deploy this project**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--81-technologies-used-to-develop-and-deploy-this-project--)
-  * [**8.2. Requirements.txt**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--82-requirementstxt--)
-  * [**8.3. Credits**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#--83-credits--)
+  * [**7.4. Deployment to Heroku**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#74-deployment-to-heroku)
+- [**8. Technologies & Credits**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#8-technologies---credits)
+  * [**8.1. Technologies used to develop and deploy this project**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#81-technologies-used-to-develop-and-deploy-this-project)
+  * [**8.2. Requirements.txt**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#82-requirementstxt)
+  * [**8.3. Credits**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#83-credits)
 
 ---
 
@@ -95,6 +95,7 @@
 - The intention of **Ohm-Azing Components** site is to be friendly online shop where users can browse variate of products sorted between categories. Besides that, user can read details of each product, see product comments and also see opinion of other users in form of **likes/dislikes**.
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 ### **3.1.2 The Ideal User**
 
@@ -107,6 +108,7 @@ The target audience are individuals or groups such as rookies that are seeking i
 - Ideal user likes to share their opinion in form if **likes/dislikes** and **comments**
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 ### **3.1.3 Site Goals**
 
@@ -117,6 +119,7 @@ The target audience are individuals or groups such as rookies that are seeking i
 - Offer users inspiration in electronics field
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 ### **3.1.4 Epics**
 
@@ -143,6 +146,7 @@ As a thought process of the strategy plane, 14 epics were created and utilized. 
 
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **3.1.5 User stories**
@@ -374,6 +378,7 @@ View User Stories for EPIC 14 : Testing and Validation
 
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **3.2. The Scope Plane**
@@ -408,6 +413,7 @@ After decided on the strategy, the scope plane was carefully created.
 
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **3.3. The Structure Plane**
@@ -430,6 +436,7 @@ The following site-maps show how the site is structured to **Logged in user** *(
 
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **3.3.2. Database Schemas**
@@ -445,6 +452,7 @@ Following schemas show intended database structure *( Appendix 5 )* and the actu
 ![DBeaver DB Schema](/docs/dbeaver-schema.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **3.4. Wire-frames**
@@ -528,6 +536,7 @@ Following schemas show intended database structure *( Appendix 5 )* and the actu
 ![Admin Tools Page Wire-frame](/docs/wireframes/admin-wireframe.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **3.5. The Surface Plane**
@@ -543,6 +552,7 @@ To create the logo, site called [Looka](https://looka.com/) was used. Few ideas 
 ![Logo](/docs/email_logo.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **3.5.2. Color pallette**
@@ -558,6 +568,7 @@ Based on the colors of the logo, rest of the colors were picked using the [Adobe
 ![Color variables](/docs/color-vars.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **3.5.3. Fonts**
@@ -576,6 +587,7 @@ One font was picked and saved in CSS vars *( Appendix 24)* :
 ![Font Variable](/docs/font-vars.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **3.5.4. Icons and pictures**
@@ -585,6 +597,7 @@ Icons used throughout the projects are [Bootstrap Icons](https://icons.getbootst
 Site called [Freepik](https://www.freepik.com/) was used to download images used in this project. The site offers massive amounts of imagery that is free to download and use under their T&C license. Images from [Freepik](https://www.freepik.com/) were used as product images and background image.
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 # **4. Features**
@@ -610,6 +623,7 @@ Site called [Freepik](https://www.freepik.com/) was used to download images used
 ![Header on devices less 1200px](/docs/features/small-header.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.1.2. Footer**
@@ -630,6 +644,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Footer on devices less 1200px in width](/docs/features/small-footer.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.1.3. Favicon**
@@ -641,6 +656,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Favicon](/docs/features/favicon.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.1.4. Error Pages**
@@ -665,6 +681,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![500.html](/docs/features/500html.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.1.5. Scroll bar**
@@ -675,6 +692,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Scrollbar](/docs/features/scrollbar.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.1.6. Loader**
@@ -685,6 +703,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Loader](/docs/features/loader.gif)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.1.7. Sorting criterion**
@@ -695,6 +714,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Sorting criterion](/docs/features/sorting.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.1.8. Pagination**
@@ -709,6 +729,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Pagination Navbar](/docs/features/pagination-nav.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.1.9. Toasts**
@@ -723,6 +744,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Vault toast](/docs/features/vault-toast.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.1.10. Easter Egg**
@@ -733,6 +755,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Easter Egg](/docs/features/easteregg.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **4.2. Main Content**
@@ -748,6 +771,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Landing Page](/docs/features/landing.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.2.2. Shop Page**
@@ -761,6 +785,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Shop Page](/docs/features/shop.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.2.3. Item Detail Page**
@@ -774,6 +799,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Item Detail Page](/docs/features/item-detail.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.2.4. Wishlist Page**
@@ -787,6 +813,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Wishlist Page](/docs/features/wishlist.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.2.5. Vault Page**
@@ -800,6 +827,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Vault Page](/docs/features/vault.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.2.6. Checkout Page**
@@ -841,6 +869,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Incorrect field protection](/docs/features/checkout-protection.gif)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.2.7. Checkout Success Page**
@@ -854,6 +883,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Checkout Success Page](/docs/features/checkout-ok.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.2.8. Order History Page**
@@ -867,6 +897,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Order History Page](/docs/features/history.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.2.9. My Profile Page**
@@ -880,6 +911,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![My Details Page](/docs/features/my-details.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.2.10. Search Results Page**
@@ -893,6 +925,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Search Results Page](/docs/features/search-results.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.2.11. Forms**
@@ -906,6 +939,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Forms](/docs/features/forms.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.2.12. Admin Tools**
@@ -947,6 +981,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Admin Tools - Email](/docs/features/admin-emails.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **4.2.13. User Emails**
@@ -964,6 +999,7 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 ![Invoice Sample](/docs/features/invoice-sample.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **4.3. Future Features**
@@ -977,6 +1013,7 @@ This project could be significantly improved by adding more features this could 
 - Returns section for unhappy customers
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 # **5. Marketing**
@@ -986,6 +1023,7 @@ This project could be significantly improved by adding more features this could 
 [Ohm-Azing Components Facebook Page](https://www.facebook.com/profile.php?id=61556654592935) was created in order to capture more online presence. The page will be used for adding posts to inform customers of newly arrived products and also competitions will be held. This will generate greater site foot-fall and generate greater income. Facebook and other social platform do provide easy, cheap and effortless way of advertisement.
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **5.2. Search Engine Optimization (SEO)**
@@ -995,6 +1033,7 @@ Key words within the **Ohm-Azing Components** business scope were researched sam
 Files `sitemap.xml` and `robots.txt` were created to increase visibility of the site. These files are essential for SEO (Search Engine Optimization). The `sitemap.xml` file was generated using XML Sitemap and included in the root folder of the project. A robots.txt file was created in the root folder to instruct search engine crawlers on how to access and crawl the site's pages.
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 # **6. Validation, Testing & Bugs**
@@ -1012,6 +1051,7 @@ Testing is documented separately in [testing.md](/docs/testing.md) file.
 Bugs are documented separately in [bugs.md](/docs/bugs.md) file.
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 # **7. Deployment**
@@ -1025,6 +1065,7 @@ Bugs are documented separately in [bugs.md](/docs/bugs.md) file.
    - command `git push` was used to push all commitments to remote repository on GitHub
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **7.2. Offline cloning**
@@ -1034,6 +1075,7 @@ Bugs are documented separately in [bugs.md](/docs/bugs.md) file.
   - Navigate to GitHub and follow `Code -> HTTPS -> Copy button` . after those steps open your local coding environment and type `git clone [copied link]`.
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **7.3. Deployment Prerequisites**
@@ -1051,6 +1093,7 @@ Bugs are documented separately in [bugs.md](/docs/bugs.md) file.
   - Update `settings.py` in the project directory
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **7.3.2. Neon Tech DB**
@@ -1067,6 +1110,7 @@ Bugs are documented separately in [bugs.md](/docs/bugs.md) file.
   - Update `settings.py` in the project directory
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **7.3.3. AWS Cloud Service**
@@ -1164,6 +1208,7 @@ if 'USE_AWS' in os.environ:
 ```
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **7.3.4. Django AWS Connection**
@@ -1206,6 +1251,7 @@ class MediaStorage(S3Boto3Storage):
   - If you had any media files created locally as I had using VS code on my local machine and those files are necessary for the project, don't forget to upload them to **S3 bucket** connected with the project
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **7.3.5. Stripe Configuration & Connection**
@@ -1235,6 +1281,7 @@ As for customer satisfaction and complaints, I wanted to make sure that I know w
 ![Minimum Order setting](/docs/min-order.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ### **7.3.6. Settings.py & file-tree**
@@ -1303,6 +1350,7 @@ EMAIL_USE_TLS = True`
 ![env.py](/docs/envpy.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **7.4. Deployment to Heroku**
@@ -1334,6 +1382,7 @@ EMAIL_USE_TLS = True`
 
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 # **8. Technologies & Credits**
@@ -1354,6 +1403,7 @@ EMAIL_USE_TLS = True`
 - [**VS Code**](https://code.visualstudio.com/) - local IDE
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **8.2. Requirements.txt**
@@ -1408,6 +1458,7 @@ Following modules were used in development of **Ohm-Azing Components** website :
 - `webencodings==0.5.1` - Python implementation of HTML entity encoding/decoding
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **8.3. Credits**
@@ -1423,7 +1474,8 @@ Following modules were used in development of **Ohm-Azing Components** website :
 - [**FreePik**](https://www.freepik.com/) - used as images database
 - [**Bootstrap Icons**](https://icons.getbootstrap.com/) - used as icons database
 - [**W3Schools**](https://www.w3schools.com/) - useful information and cheat sheets
-- [Markdown-Toc](https://ecotrust-canada.github.io/markdown-toc/) - Table of contents generator
+- [**Markdown-Toc**](https://ecotrust-canada.github.io/markdown-toc/) - Table of contents generator
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---

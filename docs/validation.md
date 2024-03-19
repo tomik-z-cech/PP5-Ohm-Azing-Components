@@ -2,13 +2,13 @@
 
 ## **6.1.1. Table of Contents - Validation**
 
-- [**6.1.1. Table of Contents - Validation**]()
-- [**6.1.2. PEP8 Validation**]()
-- [**6.1.3. HTML Validation**]()
-- [**6.1.4. CSS Validation**]()
-- [**6.1.5. JS Validation**]()
-- [**6.1.6. WAVE Validation**]()
-- [**6.1.7. Lighthouse**]()
+- [**6.1.1. Table of Contents - Validation**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/validation.md#611-table-of-contents---validation)
+- [**6.1.2. PEP8 Validation**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/validation.md#612-pep8-validation)
+- [**6.1.3. HTML Validation**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/validation.md#613-html-validation)
+- [**6.1.4. CSS Validation**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/validation.md#614-css-validation)
+- [**6.1.5. JS Validation**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/validation.md#615-js-validation)
+- [**6.1.6. WAVE Validation**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/validation.md#616-wave-validation)
+- [**6.1.7. Lighthouse**](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/validation.md#617-lighthouse)
 
 ## **6.1.2. PEP8 Validation**
 
@@ -78,6 +78,11 @@ The only file failing the PEP8 standard is `ohmazing_components/settings.py` due
 
 ![`ohmazing_components/settings.py`](/docs/validation/settings-pep8.png)
 
+
+[Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/validation.md#611-table-of-contents---validation)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **6.1.3. HTML Validation**
@@ -144,6 +149,10 @@ All pages are free of any errors or warnings.
 
 ![W3C HTML Validator](/docs/validation/w3c-html.png)
 
+[Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/validation.md#611-table-of-contents---validation)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **6.1.4. CSS Validation**
@@ -188,6 +197,11 @@ Reasons for this result :
 
 ![CSS Validation - warnings example](/docs/validation/css-warning.png)
 
+
+[Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/validation.md#611-table-of-contents---validation)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **6.1.5. JS Validation**
@@ -216,6 +230,10 @@ All `*.js` files passed without errors *( Appendix 85 )*.
 *Appendix 85 - JS Validation*
 
 ![JS Validation](/docs/validation/jshint.png)
+
+[Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/validation.md#611-table-of-contents---validation)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
 
 ---
 
@@ -287,6 +305,10 @@ In the project, I have got no Alert's or Contrast Errors, each page got multiple
 
 ![WAVE Results Example](/docs/validation/wave-example.png)
 
+[Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/validation.md#611-table-of-contents---validation)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 ---
 
 ## **6.1.7. Lighthouse**
@@ -310,7 +332,7 @@ In the project, I have got no Alert's or Contrast Errors, each page got multiple
 
 ![Lighthouse Results Example](/docs/validation/lighthouse-result.png)
 
-[Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/testing.md#521-table-of-content---testing)
+[Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/validation.md#611-table-of-contents---validation)
 
 [Back to README.md](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
 
