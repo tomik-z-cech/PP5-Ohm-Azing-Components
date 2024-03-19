@@ -301,3 +301,173 @@
 *Appendix 134 - Testing*
 
 ![Appendix 134](/docs/testing/test-134.png)
+
+---
+
+
+## **5.2.4. Test Cases**
+
+Part ot this testing was to ensure user cannot access restricted content to registered users or user cannot change content that was created by another user. This was achieved by using `LoginRequiredMixin` for classes and `@login_required` for methods when user needs to be logged in for certain view.
+
+For user not being able to change content that isn't created by user was used following Mixin and test function. 
+
+`UserPassesTestMixin`
+```
+    def test_func(self):
+        """Test function to ensure user is superuser"""
+        return self.request.user.is_superuser
+```
+---
+
+### **Test case 001 - General Site Navigation ( Appendix 135 )**
+
+*Appendix 135 - Test Case 001*
+
+![Test Case 001](/docs/testing/case-001.png)
+
+---
+
+### **Test case 002 - Search Function ( Appendix 136 )**
+
+*Appendix 136 - Test Case 002*
+
+![Test Case 00](/docs/testing/case-002.png)
+
+---
+
+### **Test case 003 - Registering New User ( Appendix 137 )**
+
+*Appendix 137 - Test Case 003*
+
+![Test Case 003](/docs/testing/case-003.png)
+
+---
+
+### **Test Case 004 - Changing user's name, phone number, marketing preferences ( Appendix 138 )**
+
+*Appendix 138 - Test Case 004*
+
+![Test Case 004](/docs/testing/case-004.png)
+
+---
+
+### **Test Case 005 - Changing user's email ( Appendix 139 )**
+
+*Appendix 139 - Test Case 005*
+
+![Test Case 005](/docs/testing/case-005.png)
+
+---
+
+### **Test Case 006 - Changing user's password ( Appendix 140 )**
+
+*Appendix 140 - Test Case 006*
+
+![Test Case 006](/docs/testing/case-006.png)
+
+---
+
+### **Test Case 007 - Commenting on Shop Item ( Appendix 141 )**
+
+*Appendix 141 - Test Case 007*
+
+![Test Case 007](/docs/testing/case-007.png)
+
+---
+
+### **Test Case 008 - Liking/Disliking on Shop Item ( Appendix 142 )**
+
+*Appendix 142 - Test Case 008*
+
+![Test Case 008](/docs/testing/case-008.png)
+
+---
+
+### **Test Case 009 - Add to Wishlist ( Appendix 143 )**
+
+*Appendix 143 - Test Case 009*
+
+![Test Case 009](/docs/testing/case-009.png)
+
+---
+
+### **Test Case 010 - Wishlist functions ( Appendix 144 )**
+
+*Appendix 144 - Test Case 010*
+
+![Test Case 010](/docs/testing/case-010.png)
+
+---
+
+### **Test Case 011 - Vault functions ( Appendix 145 )**
+
+*Appendix 145 - Test Case 011*
+
+![Test Case 011](/docs/testing/case-011.png)
+
+---
+
+### **Test Case 012 - Checkout functions ( Appendix 146 )**
+
+*Appendix 146 - Test Case 012*
+
+![Test Case 012](/docs/testing/case-012.png)
+
+---
+
+### **Test Case 013 - Webhooks functions ( Appendix 147 )**
+
+*Appendix 147 - Test Case 013*
+
+![Test Case 013](/docs/testing/case-013.png)
+
+---
+
+### **Test Case 014 - Order History functions ( Appendix 148 )**
+
+*Appendix 148 - Test Case 014*
+
+![Test Case 014](/docs/testing/case-014.png)
+
+---
+
+### **Test Case 015 - Deleting User account ( Appendix 149 )**
+
+*Appendix 149 - Test Case 015*
+
+![Test Case 015](/docs/testing/case-015.png)
+
+---
+
+## **5.2.4. Viewport Testing**
+
+- **Task :** To physically test the final project responsiveness on different devices with different view-port.
+- **Method :** All test cases listed above were tested on following devices : 
+  - IPhone 8 - mobile phone with small view-port
+  - Samsung Fold Z4 - mobile phone with large view-port
+  - FireHD 8 - tablet with small view-port
+  - Samsung Galaxy tab S6 - tablet with large view-port
+  - PC with resolution 1366px * 768px (HD)
+  - PC with resolution 1920px * 1080px (Full HD)  
+- **Expected result :** Project does response without distortion on all devices.
+- **Actual result :**  No content is distorted on any of the listed devices.
+- **Overall result :** Pass *( Appendix 150 )*
+
+*Appendix 150 - Responsiveness testing*
+
+![Responsiveness Testing](/docs/testing/responsiveness.png)
+
+---
+
+## **5.2.5. Compatibility Testing**
+
+- **Task :** To physically test the final project functionality in different browsing applications.
+- **Method :** All test cases listed above were tested in following applications : 
+  - Google Chrome
+  - Mozilla Firefox
+  - Microsoft Edge
+  - Opera
+  - Safari
+- **Expected result :** Project does function in all web browsers.
+- **Actual result :**  No content is distorted in any of the listed browsers and project keeps functionality, all navigation links are working and form is responsive to empty fields.
+- **Overall result :** Pass
