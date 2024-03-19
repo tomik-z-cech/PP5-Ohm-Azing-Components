@@ -37,8 +37,8 @@ class UserProfile(models.Model):
     post_code = models.CharField(max_length=15, blank=True, null=True)
     country = CountryField(blank=True, null=True)
     user_wishlist = ArrayField(
-        models.CharField(max_length=254), blank=True, null=True
-    )
+        models.CharField(max_length=254), blank=True, null=True, default=list
+        )
 
     class Meta:
         verbose_name = "User Profile"

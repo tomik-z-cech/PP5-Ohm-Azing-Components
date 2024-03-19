@@ -1,13 +1,13 @@
 # **5.1. Validation**
 
-## **5.1.1. Table of Content - Validation**
-- [5.1.1. Table of Content - Validation](h)
-- [5.1.2. PEP8 Validation]()
-- [5.1.3. HTML Validation]()
-- [5.1.4. CSS Validation]()
-- [5.1.5. JS Validation]()
-- [5.1.6. WAVE Validation]()
-- [5.1.7. Lighthouse]()
+## **5.1.1. Table of Contents - Validation**
+- [**5.1.1. Table of Contents - Validation**]()
+- [**5.1.2. PEP8 Validation**]()
+- [**5.1.3. HTML Validation**]()
+- [**5.1.4. CSS Validation**]()
+- [**5.1.5. JS Validation**]()
+- [**5.1.6. WAVE Validation**]()
+- [**5.1.7. Lighthouse**]()
 
 ## **5.1.2. PEP8 Validation**
 
