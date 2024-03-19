@@ -1,15 +1,16 @@
-# **5.1. Validation**
+# **6.1. Validation**
 
-## **5.1.1. Table of Contents - Validation**
-- [**5.1.1. Table of Contents - Validation**]()
-- [**5.1.2. PEP8 Validation**]()
-- [**5.1.3. HTML Validation**]()
-- [**5.1.4. CSS Validation**]()
-- [**5.1.5. JS Validation**]()
-- [**5.1.6. WAVE Validation**]()
-- [**5.1.7. Lighthouse**]()
+## **6.1.1. Table of Contents - Validation**
 
-## **5.1.2. PEP8 Validation**
+- [**6.1.1. Table of Contents - Validation**]()
+- [**6.1.2. PEP8 Validation**]()
+- [**6.1.3. HTML Validation**]()
+- [**6.1.4. CSS Validation**]()
+- [**6.1.5. JS Validation**]()
+- [**6.1.6. WAVE Validation**]()
+- [**6.1.7. Lighthouse**]()
+
+## **6.1.2. PEP8 Validation**
 
 - **Task :** To ensure `*.py` files are compliant with PEP8 standards.
 - **Tools :** 
@@ -79,7 +80,7 @@ The only file failing the PEP8 standard is `ohmazing_components/settings.py` due
 
 ---
 
-## **5.1.3. HTML Validation**
+## **6.1.3. HTML Validation**
 
 - **Task :** To ensure source code generated from all `*.html` templates is compliant with W3C standards.
 - **Tools :** 
@@ -145,7 +146,7 @@ All pages are free of any errors or warnings.
 
 ---
 
-## **5.1.4. CSS Validation**
+## **6.1.4. CSS Validation**
 
 My styling files were separated into smaller files by app names for easy navigation.
 
@@ -189,7 +190,7 @@ Reasons for this result :
 
 ---
 
-## **5.1.5. JS Validation**
+## **6.1.5. JS Validation**
 
 - **Task :** To ensure the code in `*.js` has no errors.
 - **Tools :** 
@@ -218,7 +219,7 @@ All `*.js` files passed without errors *( Appendix 85 )*.
 
 ---
 
-## **5.1.6. WAVE Validation**
+## **6.1.6. WAVE Validation**
 
 - **Task :** To ensure all pages are within accessibility standards and are suitable for screen-readers.
 - **Tools :** 
@@ -288,7 +289,7 @@ In the project, I have got no Alert's or Contrast Errors, each page got multiple
 
 ---
 
-## **5.1.7. Lighthouse**
+## **6.1.7. Lighthouse**
 
 - **Task :** To ensure that speeds of project loading are viable.
 - **Tools :** 
@@ -308,5 +309,10 @@ In the project, I have got no Alert's or Contrast Errors, each page got multiple
 *Appendix 89 - Lighthouse Results Example*
 
 ![Lighthouse Results Example](/docs/validation/lighthouse-result.png)
+
+[Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/testing.md#521-table-of-content---testing)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
 
 ---

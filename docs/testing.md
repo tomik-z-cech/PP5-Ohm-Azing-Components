@@ -521,3 +521,5 @@ Deleting Users account tested.
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/docs/testing.md#521-table-of-content---testing)
 
 [Back to README.md](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
+
+---

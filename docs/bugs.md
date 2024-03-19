@@ -1,6 +1,6 @@
-# **5.3. Bugs**
+# **6.3. Bugs**
 
-## **5.3.1. Fixed Bugs**
+## **6.3.1. Fixed Bugs**
 
 **During the development, following bugs were noted :**
 
@@ -40,6 +40,6 @@
 ![Bug - issue 96](/docs/bugs/bug-96.png)
 
 
-## **5.3.2. Unfixed bugs**
+## **6.3.2. Unfixed bugs**
 
 There are no know unfixed bugs as of 17.3.2024.
