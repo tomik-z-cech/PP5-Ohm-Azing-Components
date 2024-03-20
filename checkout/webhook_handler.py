@@ -170,7 +170,8 @@ class StripeWH_Handler:
             # Create new instance of order
             n_o = Order()
             n_o.order_number = uuid.uuid4().hex.upper()
-            n_o.user = profile.user
+            if save_details and username != "AnonymousUser":
+                n_o.user = profile.user
             n_o.delivery_option = delivery_option
             n_o.delivery_cost = selected_delivery_cost
             n_o.sub_total = subtotal

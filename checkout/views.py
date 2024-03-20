@@ -354,7 +354,9 @@ class CheckoutView(generic.ListView):
                     # Create new instance of order
                     n_o = order_form.save(commit=False)
                     n_o.order_number = uuid.uuid4().hex.upper()
-                    n_o.user = request.user
+                    if request.user.is_authenticated:
+                        n_o.user = request.user
+                    n_o.email = request.POST.get('email')
                     n_o.delivery_option = request.POST.get("delivery_option")
                     n_o.delivery_cost = selected_delivery_cost
                     n_o.sub_total = subtotal
@@ -508,7 +510,7 @@ class CheckoutView(generic.ListView):
                     # Send order to the shop for confirmation
                     recipient = ["ohmazingcomponents@gmail.com"]
                     # Add email of user creating booking
-                    recipient.append(request.user.email)
+                    recipient.append(n_o.email)
                     subject = "New Order at Ohm-Azing Components"
                     from_address = "ohmazingcomponents@gmail.com"
                     # Get dates for email
