@@ -1020,7 +1020,11 @@ This project could be significantly improved by adding more features this could 
 
 ## **5.1. Social Media Presence**
 
-[Ohm-Azing Components Facebook Page](https://www.facebook.com/profile.php?id=61556654592935) was created in order to capture more online presence. The page will be used for adding posts to inform customers of newly arrived products and also competitions will be held. This will generate greater site foot-fall and generate greater income. Facebook and other social platform do provide easy, cheap and effortless way of advertisement.
+[Ohm-Azing Components Facebook Page](https://www.facebook.com/profile.php?id=61556654592935) was created in order to capture more online presence. The page will be used for adding posts to inform customers of newly arrived products and also competitions will be held. This will generate greater site foot-fall and generate greater income. Facebook and other social platform do provide easy, cheap and effortless way of advertisement *( Appendix 151 )*.
+
+*Appendix 151 - Facebook Page*
+
+![Facebook Page](/docs/fb-page.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
 
@@ -1031,6 +1035,18 @@ This project could be significantly improved by adding more features this could 
 Key words within the **Ohm-Azing Components** business scope were researched same as description tags. [Wordtracker](https://www.wordtracker.com/) was used to ensure that both short-tail and long-tail keywords are included. Keywords such as 'electronic components', 'electronic kits' and 'electronic tools' aim to reach most of the market search and are within the business scope. Accurate item names are present in the product names and descriptions to appear at the top of Google searches.
 
 Files `sitemap.xml` and `robots.txt` were created to increase visibility of the site. These files are essential for SEO (Search Engine Optimization). The `sitemap.xml` file was generated using XML Sitemap and included in the root folder of the project. A robots.txt file was created in the root folder to instruct search engine crawlers on how to access and crawl the site's pages.
+
+Page [XML-Sitemaps.com](https://www.xml-sitemaps.com/) was used to generate site map in `*.xml` format *( Appendix 152 )*.
+
+*Appendix 152 - XML Site-map generator*
+
+![XML Site-map generator](/docs/sitemap-generator.png)
+
+Once the file `robots.txt` was created, it was tested by [Ryte](https://en.ryte.com/free-tools/robots-txt/) and the result of the test was pass *( Appendix 153 )*.
+
+*Appendix 153 - Testing of `robots.txt`*
+
+![Testing of robots.txt](/docs/robots-test.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
 
@@ -1475,6 +1491,9 @@ Following modules were used in development of **Ohm-Azing Components** website :
 - [**Bootstrap Icons**](https://icons.getbootstrap.com/) - used as icons database
 - [**W3Schools**](https://www.w3schools.com/) - useful information and cheat sheets
 - [**Markdown-Toc**](https://ecotrust-canada.github.io/markdown-toc/) - Table of contents generator
+- [**XML-Sitemaps.com**](https://www.xml-sitemaps.com/) - XML Site-map generator
+- [**Facebook**](https://www.facebook.com/profile.php?id=61556654592935) - Used as social media platform to promote the business goals
+- [**Ryte**](https://en.ryte.com/free-tools/robots-txt/) - `robots.txt` testing tool
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
 
