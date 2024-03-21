@@ -664,9 +664,9 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 - This project is designed to have custom error pages. In case of user clicks on broken link, submits action that isn't supported or tries to reach certain view without permission, then user isn't completely "cut off" from browsing, instead an error page with header and footer appears and user is informed of the situation.
 
 - The following custom error pages were created :
-- - 403 - Received when user attempts to access a web resource for which they lack the necessary permissions. *( Appendix 31 )*
-- - 404 - Encountered when the requested web resource by user is not found on the server. *( Appendix 32 )*
-- - 500 - Displayed when the web server encounters an internal error while processing the request. *( Appendix 33 )*
+  - 403 - Received when user attempts to access a web resource for which they lack the necessary permissions. *( Appendix 31 )*
+  - 404 - Encountered when the requested web resource by user is not found on the server. *( Appendix 32 )*
+  - 500 - Displayed when the web server encounters an internal error while processing the request. *( Appendix 33 )*
 
 *Appendix 31 - 403.html*
 
@@ -794,9 +794,34 @@ Right hand site of the footer is devoted to accepted cards logos and Stripe link
 - **Template File :** `item_detail.html` - extends `base.html`
 - **User :** Provides users with exhaustive details of selected product, including price, description, etc. Logged in users can add/remove item to/from their Wishlist, like/dislike item and add comments. Not logged in users have the ability to read comments of others. *( Appendix 44 )*. Protection against adding greater quantity than in stock in place.
 
+Item detail page does also displays and changes the product `rating`. Product rating is the difference between likes and dislikes and can be any number between neg integer and pos integer including zero. Examples in *( Appendix 154 )*, *( Appendix 155 )* and *( Appendix 156 )*. Simplified formula `rating = likes - dislikes`, with actual code used. 
+
+```
+.annotate(
+  like=Count("item_likes"),
+  dislike=Count("item_dislikes"),
+  item_likes_num=ExpressionWrapper(
+    F("like") - F("dislike"),
+    output_field=fields.IntegerField(),
+    ),
+  )`
+```
+
 *Appendix 44 - Item Detail Page*
 
 ![Item Detail Page](/docs/features/item-detail.png)
+
+*Appendix 154 - Positive rating*
+
+![Positive rating](/docs/pos-rating.png)
+
+*Appendix 155 - Negative rating*
+
+![Negative rating](/docs/neg-rating.png)
+
+*Appendix 156 - Neutral rating*
+
+![Neutral rating](/docs/neu-rating.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)
 
@@ -1010,6 +1035,7 @@ This project could be significantly improved by adding more features this could 
 - Order status emails for users
 - Frequently bought together section after an item is added to the Vault
 - Product review after receiving the order
+- Recommended products
 - Returns section for unhappy customers
 
 [Back to top](https://github.com/tomik-z-cech/PP5-Ohm-Azing-Components/blob/main/README.md#ohm-azing-components---portfolio-project-5)

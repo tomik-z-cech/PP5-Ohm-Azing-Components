@@ -211,6 +211,8 @@ Reasons for this result :
   - [JSHint](https://jshint.com/) - JS Validator
 - **Method :** 
    - Open the `*.js*` files
+   - Set the `esversion` to 6 using `/* jshint esversion:6 */` as first line of the code
+   - Turn on `jQuery` in JSLint configurations
    - Copy and Paste the code from IDE to validator
    - See results
 - **Results :**
